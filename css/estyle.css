@@ -1,0 +1,20 @@
+body,div,h1{
+	font-family: 'Prompt', sans-serif;
+}
+.ml{
+	color: #D35400;
+	font-family: 'Prompt', sans-serif;
+}
+.ml:hover{
+	display: inline-block;
+	color: #0B5345;
+	font-weight: bold; 
+	background: #D0D3D4;
+	border-radius: 8px;
+	padding: 1%;
+	margin: 1%;
+}
+.c_detail{
+	text-align: center;
+
+}
