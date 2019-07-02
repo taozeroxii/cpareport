@@ -12,7 +12,100 @@
   <link rel="stylesheet" href="dist/css/skins/_all-skins.min.css">
   <link rel="stylesheet" href="plugins/datepicker/datepicker3.css">
   <link rel="stylesheet" href="css/estyle.css">
-
-  <!-- <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic"> -->
   <link href="https://fonts.googleapis.com/css?family=Prompt" rel="stylesheet">
+      <script type="text/javascript" src="http://code.jquery.com/jquery-1.7.1.js"></script>
+  <script type="text/javascript">
+          $(document).ready(function(){
+            var shownIds = new Array();
+            setInterval(function(){
+                $.get("sql_rt/realtime_opd.php", function(data){
+                    data = $.parseJSON(data);
+                            $("#realtime_opd").html("<span class='rt'>" + data + "</span>");
+                });
+            }, 8000);
+        });
+
+           $(document).ready(function(){
+            var shownIds = new Array();
+            setInterval(function(){
+                $.get("sql_rt/realtime_ipd.php", function(data){
+                    data = $.parseJSON(data);
+                            $("#realtime_ipd").html("<span class='rt'>" + data + "</span>");
+                });
+            }, 8000);
+        });
+
+           $(document).ready(function(){
+            var shownIds = new Array();
+            setInterval(function(){
+                $.get("sql_rt/realtime_app.php", function(data){
+                    data = $.parseJSON(data);
+                            $("#realtime_app").html("<span class='rt'>" + data + "</span>");
+                });
+            }, 8000);
+        });
+
+           $(document).ready(function(){
+            var shownIds = new Array();
+            setInterval(function(){
+                $.get("sql_rt/realtime_admit.php", function(data){
+                    data = $.parseJSON(data);
+                            $("#realtime_admit").html("<span class='rt'>" + data + "</span>");
+                });
+            }, 8000);
+        });
+
+           $(document).ready(function(){
+            var shownIds = new Array();
+            setInterval(function(){
+                $.get("sql_rt/realtime_dsc.php", function(data){
+                    data = $.parseJSON(data);
+                            $("#realtime_dsc").html("<span class='rt'>" + data + "</span>");
+                });
+            }, 8000);
+        });
+      
+           $(document).ready(function(){
+            var shownIds = new Array();
+            setInterval(function(){
+                $.get("sql_rt/realtime_referin.php", function(data){
+                    data = $.parseJSON(data);
+                            $("#realtime_referin").html("<span class='rt'>" + data + "</span>");
+                });
+            }, 8000);
+        });
+
+           $(document).ready(function(){
+            var shownIds = new Array();
+            setInterval(function(){
+                $.get("sql_rt/realtime_referout.php", function(data){
+                    data = $.parseJSON(data);
+                            $("#realtime_referout").html("<span class='rt'>" + data + "</span>");
+                });
+            }, 8000);
+        });
+
+           $(document).ready(function(){
+            var shownIds = new Array();
+            setInterval(function(){
+                $.get("sql_rt/realtime_bed.php", function(data){
+                    data = $.parseJSON(data);
+                            $("#realtime_bed").html("<span class='rt'>" + data + "</span>");
+                });
+            }, 8000);
+        });
+           $(document).ready(function(){
+            var shownIds = new Array();
+            setInterval(function(){
+                $.get("sql_rt/realtime_death.php", function(data){
+                    data = $.parseJSON(data);
+                            $("#dhc_death").html("<span class='rt'>" + data + "</span>");
+                });
+            }, 8000);
+        });
+
+
+
+  </script>
+
 </head>

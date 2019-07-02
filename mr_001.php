@@ -32,7 +32,6 @@
     <section class="content-header">
       <h1>
         รายงานการส่งตรวจคนไข้ งานเวชระเบียน
-        <small><?php echo " เวลาที่ใช้ในการประมวลผล ".$bm->stop()." วินาที "; ?></small>
       </h1>
     </section>
     <section class="content">
@@ -82,7 +81,9 @@ $total = pg_num_rows($result);
         <div class="col-xs-12">
           <div class="box">
             <div class="box-header">
-              <h3 class="box-title">ข้อมูลระหว่างวันที่ <?php echo thaiDate($datepickers)." - ".thaiDate($datepickert); ?></h3>
+              <h3 class="box-title">ข้อมูลระหว่างวันที่ <?php echo thaiDate($datepickers)." - ".thaiDate($datepickert); ?>
+                <small><?php echo " เวลาที่ใช้ในการประมวลผล ".$bm->stop()." วินาที "; ?></small>
+              </h3>
             </div>
             <div class="box-body">
               <table id="example1" class="table table-bordered table-striped">

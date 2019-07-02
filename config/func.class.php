@@ -41,7 +41,7 @@ function thaiDateFULL($datetime)
     case "02":$m = "กุมภาพันธ์"; break;
     case "03":$m = "มีนาคม"; break;
     case "04":$m = "เมษายน"; break;
-    case "05":$m = "พฤษภ่คม"; break;
+    case "05":$m = "พฤษภาคม"; break;
     case "06":$m = "มิถุนายน"; break;
     case "07":$m = "กรกฎาคม"; break;
     case "08":$m = "สิงหาคม"; break;
@@ -68,7 +68,7 @@ function thaiDate_shut($datetime)
     case "02":$m = "กุมภาพันธ์"; break;
     case "03":$m = "มีนาคม"; break;
     case "04":$m = "เมษายน"; break;
-    case "05":$m = "พฤษภ่คม"; break;
+    case "05":$m = "พฤษภาคม"; break;
     case "06":$m = "มิถุนายน"; break;
     case "07":$m = "กรกฎาคม"; break;
     case "08":$m = "สิงหาคม"; break;
