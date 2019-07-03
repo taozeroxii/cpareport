@@ -43,7 +43,7 @@ for ($i = 0; $i < 100000; $i++) {
                                 <h3 class="box-title">
                                     <div class="container">
                                         <form class="form-inline" method="POST" action="heartI500andI630.php">
-                                            <small>ช่วงวันที่จับจาก vn ผู้ป่วย</small>
+                                            <small>ช่วงวันที่จับจาก Dch ผู้ป่วย</small>
                                             <input type="text" class="form-control" id="datepickers" placeholder="วันที่เริ่ม" name="datepickers" data-provide="datepicker" data-date-language="th" autocomplete="off">
                                             <input type="text" class="form-control" id="datepickert" placeholder="วันที่สิ้นสุด" name="datepickert" data-provide="datepicker" data-date-language="th" autocomplete="off">
                                             <button type="submit" class="btn btn-default" name="submit" value="submit">Submit</button>
