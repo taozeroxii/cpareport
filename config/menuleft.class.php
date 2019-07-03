@@ -163,7 +163,7 @@
   </span>
 </a>
 <ul class="treeview-menu">
-  <li><a href="smc_visit.php" title="  VA "><i class="fa fa-files-o text-aqua"></i><span class=""> VA</span></a></li>
+  <li><a href="va.php" title="  VA "><i class="fa fa-files-o text-aqua"></i><span class=""> VA</span></a></li>
 </ul>
 </li> 
 <li class="treeview">
