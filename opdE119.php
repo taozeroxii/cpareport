@@ -73,7 +73,7 @@ for ($i = 0; $i < 100000; $i++) {
                                 inner join icd101 icd on icd.code = ovd.icd10
                                 left  join patient pt on pt.hn = ovd.hn
                             WHERE ovs.vstdate BETWEEN '" . $datepickers . "' and '" . $datepickert . "'
-                            AND  ovs.ovstost not in ('52','04')  AND ovs.main_dep = '292'
+                            AND  ovs.ovstost not in ('52','04','54')  AND ovs.main_dep = '292'
                             group by ovs.vstdate,ovs.hn,ksk.department,concat(pt.pname,' ',pt.fname,' ',pt.lname),ovd.icd10,icd.name,icd.tname
                             ORDER BY ovs.vstdate ";
 
@@ -88,7 +88,7 @@ for ($i = 0; $i < 100000; $i++) {
                                 inner join icd101 icd on icd.code = ovd.icd10
                                 left  join patient pt on pt.hn = ovd.hn
                             WHERE ovs.vstdate BETWEEN '" . $datepickers . "' and '" . $datepickert . "'
-                            AND  ovs.ovstost not in ('52','04')  AND ovs.main_dep = '292'
+                            AND  ovs.ovstost not in ('52','04','54')  AND ovs.main_dep = '292'
                             group by ovs.vstdate,ovs.hn,ksk.department,concat(pt.pname,' ',pt.fname,' ',pt.lname),ovd.icd10,icd.name,icd.tname
                             ORDER BY ovs.vstdate ";
                     $queryalrecord = pg_query($allrec);
