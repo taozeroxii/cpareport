@@ -67,6 +67,7 @@
    <i class="fa fa-folder text-aqua"></i>
    <span>รายงานผู้ป่วยใน</span>
    <span class="pull-right-container">
+   <li><a href="heartI500andI630.php"><i class="fa fa-files-o text-aqua"></i>โรคหัวใจเฉพาะ PDX 'I500'ถึงI630'</a></li>
     <i class="fa fa-angle-left pull-right text-aqua"></i>
   </span>
 </a>

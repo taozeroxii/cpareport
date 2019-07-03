@@ -32,7 +32,7 @@ for ($i = 0; $i < 100000; $i++) {
         <?php include "config/menuleft.class.php"; ?>
         <div class="content-wrapper">
             <section class="content-header">
-                <h1>รายการผู้ป่วยโรคความดันโลหิตสูงตามรหัสโรค I10 ห้องตรวจ 292</h1>
+                <h1>รายการผู้ป่วยโรคหัวใจเฉพาะ PDX โดย ICD10 (ระหว่าง I500-I63)  </h1>
             </section>
             <section class="content">
 
@@ -42,7 +42,7 @@ for ($i = 0; $i < 100000; $i++) {
                             <div class="box-header">
                                 <h3 class="box-title">
                                     <div class="container">
-                                        <form class="form-inline" method="POST" action="opdi10.php">
+                                        <form class="form-inline" method="POST" action="heartI500andI630.php">
                                             <small>ช่วงวันที่จับจาก vn ผู้ป่วย</small>
                                             <input type="text" class="form-control" id="datepickers" placeholder="วันที่เริ่ม" name="datepickers" data-provide="datepicker" data-date-language="th" autocomplete="off">
                                             <input type="text" class="form-control" id="datepickert" placeholder="วันที่สิ้นสุด" name="datepickert" data-provide="datepicker" data-date-language="th" autocomplete="off">
@@ -65,7 +65,8 @@ for ($i = 0; $i < 100000; $i++) {
 
                 if ($datepickers != "--") {
 
-                    $sql = "SELECT ipt.hn,ipt.an,concat(pat.pname,' ',pat.fname,' ',pat.lname) as fname_lname,pat.cid,
+                    $sql = "
+                    SELECT ipt.hn,ipt.an,concat(pat.pname,' ',pat.fname,' ',pat.lname) as fnamelname,pat.cid,
                     case when pat.sex = '1' then 'ชาย' else 'หญิง' end AS sex,pat.birthday,
                     EXTRACT(YEAR FROM age(cast(pat.birthday as date)))AS AGE,
                     ipt.dchdate,ipt.dchtime,wd.name as wardname,
@@ -84,7 +85,7 @@ for ($i = 0; $i < 100000; $i++) {
                     $result = pg_query($sql);
 
                     $allrec = "
-                    SELECT ipt.hn,ipt.an,concat(pat.pname,' ',pat.fname,' ',pat.lname) as fname_lname,pat.cid,
+                    SELECT ipt.hn,ipt.an,concat(pat.pname,' ',pat.fname,' ',pat.lname) as fnamelname,pat.cid,
                     case when pat.sex = '1' then 'ชาย' else 'หญิง' end AS sex,pat.birthday,
                     EXTRACT(YEAR FROM age(cast(pat.birthday as date)))AS AGE,
                     ipt.dchdate,ipt.dchtime,wd.name as wardname,
@@ -110,7 +111,7 @@ for ($i = 0; $i < 100000; $i++) {
                                 <div class="box-header">
                                     <h3 class="box-title co_dep"><?php echo "ข้อมูลช่วงวันที่ " . thaiDatefull($datepickers) . " ถึงวันที่ " . thaiDatefull($datepickert) ?>
                                         <small><?php echo " เวลาที่ใช้ในการประมวลผล " . $bm->stop() . " วินาที "; ?></small>
-                                        <?php echo  '<p>ผู้ป่วยโรคความดันทั้งหมด : ' . $totaldata = pg_num_rows($queryalrecord) . ' รายการ ตามHn</p>'; ?>
+                                        <?php echo  '<p>ผู้ป่วยโรคหัวใจทั้งหมด : ' . $totaldata = pg_num_rows($queryalrecord) . ' รายการ'; ?>
                                     </h3>
                                 </div>
                                 <div class="box-body">
@@ -119,21 +120,42 @@ for ($i = 0; $i < 100000; $i++) {
                                         <table class="table table-bordered  table-hover table-striped " style='text-align:center' id="example1">
                                             <thead>
                                                 <tr>
-                                                    <th style='text-align:center'>visit</th>
                                                     <th style='text-align:center'>hn</th>
-                                                    <th style='text-align:center'>ห้องตรวจ</th>
+                                                    <th style='text-align:center'>an</th>
                                                     <th style='text-align:center'>ชื่อผู้ป่วย</th>
-                                                    <th style='text-align:center'>รหัสโรค</th>
+                                                    <th style='text-align:center'>CID</th>
+                                                    <th style='text-align:center'>เพศ</th>
+                                                    <th style='text-align:center'>วันเกิด</th>
+                                                    <th style='text-align:center'>อายุ</th>
+                                                    <th style='text-align:center'>dchdate</th>
+                                                    <th style='text-align:center'>dchtime</th>
+                                                    <th style='text-align:center'>wardname</th>
+                                                    <th style='text-align:center'>สิทธิ</th>
+                                                    <th style='text-align:center'>ชื่อสิทธิ</th>
+                                                    <th style='text-align:center'>ICD10</th>
+                                                    <th style='text-align:center'>ชื่อโรค</th>
+                                                    <th style='text-align:center'>status</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
                                                 <?php while ($row_result2 = pg_fetch_array($result)) { ?>
                                                     <tr>
-                                                        <td><?php echo  $row_result2['vstdate']; ?> </td>
                                                         <td><?php echo  $row_result2['hn']; ?> </td>
-                                                        <td><?php echo  $row_result2['department']; ?></td>
-                                                        <td><?php echo  $row_result2['name']; ?></td>
+                                                        <td><?php echo  $row_result2['an']; ?> </td>
+                                                        <td><?php echo  $row_result2['fnamelname']; ?></td>
+                                                        <td><?php echo  $row_result2['cid']; ?></td>
+                                                        <td><?php echo  $row_result2['sex']; ?></td>
+                                                        <td><?php echo  $row_result2['birthday']; ?></td>
+                                                        <td><?php echo  $row_result2['AGE']; ?></td>
+                                                        <td><?php echo  $row_result2['dchdate']; ?></td>
+                                                        <td><?php echo  $row_result2['dchtime']; ?></td>
+                                                        <td><?php echo  $row_result2['wardname']; ?></td>
+                                                        <td><?php echo  $row_result2['sit']; ?></td>
+                                                        <td><?php echo  $row_result2['namesit']; ?></td>
                                                         <td><?php echo  $row_result2['icd10']; ?></td>
+                                                        <td><?php echo  $row_result2['tname']; ?></td>
+                                                        <td><?php echo  $row_result2['status']; ?></td>
+                                                        
                                                     <?php }
                                                 } ?>
                                             </tr>
