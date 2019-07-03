@@ -68,7 +68,7 @@ for ($i = 0; $i < 100000; $i++) {
                     $sql = "
                     SELECT ipt.hn,ipt.an,concat(pat.pname,' ',pat.fname,' ',pat.lname) as fnamelname,pat.cid,
                     case when pat.sex = '1' then 'ชาย' else 'หญิง' end AS sex,pat.birthday,
-                    EXTRACT(YEAR FROM age(cast(pat.birthday as date)))AS AGE,
+                    EXTRACT(YEAR FROM age(cast(pat.birthday as date)))AS age,
                     ipt.dchdate,ipt.dchtime,wd.name as wardname,
                     ipt.pttype AS sit,pt.name as namesit,iptd.icd10,ic.tname,dc.name AS status,dt.name AS TYPE
                     from ipt ipt 
@@ -146,7 +146,7 @@ for ($i = 0; $i < 100000; $i++) {
                                                         <td><?php echo  $row_result2['cid']; ?></td>
                                                         <td><?php echo  $row_result2['sex']; ?></td>
                                                         <td><?php echo  $row_result2['birthday']; ?></td>
-                                                        <td><?php echo  $row_result2['AGE']; ?></td>
+                                                        <td><?php echo  $row_result2['age']; ?></td>
                                                         <td><?php echo  $row_result2['dchdate']; ?></td>
                                                         <td><?php echo  $row_result2['dchtime']; ?></td>
                                                         <td><?php echo  $row_result2['wardname']; ?></td>

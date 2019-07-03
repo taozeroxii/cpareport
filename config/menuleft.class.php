@@ -67,14 +67,13 @@
    <i class="fa fa-folder text-aqua"></i>
    <span>รายงานผู้ป่วยใน</span>
    <span class="pull-right-container">
-   <li><a href="heartI500andI630.php"><i class="fa fa-files-o text-aqua"></i>โรคหัวใจเฉพาะ PDX 'I500'ถึงI630'</a></li>
     <i class="fa fa-angle-left pull-right text-aqua"></i>
   </span>
 </a>
 <ul class="treeview-menu">
   <li><a href="ipd_001.php"><i class="fa fa-files-o text-aqua"></i> สรุปค่ารักษาผู้ป่วยใน</a></li>
   <li><a href="fr_nur_001_r_1.php" title="แบบเก็บรายงานกิจกรรม ตามช่วงที่เลือก และหอผู้ป่วย"><i class="fa fa-files-o text-aqua"></i> แบบเก็บรายงานกิจกรรม</a></li>
-
+  <li><a href="heartI500andI630.php"><i class="fa fa-files-o text-aqua"></i>โรคหัวใจเฉพาะ PDX 'I500'ถึงI630'</a></li>
 </ul>
 </li>   
 
