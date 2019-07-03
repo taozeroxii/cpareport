@@ -157,6 +157,18 @@
 <li class="treeview">
   <a href="#">
    <i class="fa fa-folder text-aqua"></i>
+   <span>รายงาน จักษุ</span>
+   <span class="pull-right-container">
+    <i class="fa fa-angle-left pull-right text-aqua"></i>
+  </span>
+</a>
+<ul class="treeview-menu">
+  <li><a href="smc_visit.php" title="  VA "><i class="fa fa-files-o text-aqua"></i><span class=""> VA</span></a></li>
+</ul>
+</li> 
+<li class="treeview">
+  <a href="#">
+   <i class="fa fa-folder text-aqua"></i>
    <span>ส่วนเบิก/เรียกเก็บ</span>
    <span class="pull-right-container">
     <i class="fa fa-angle-left pull-right text-aqua"></i>
