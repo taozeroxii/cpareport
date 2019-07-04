@@ -179,6 +179,18 @@
 </ul>
 </li>   
 
+<li class="treeview">
+  <a href="#">
+   <i class="fa fa-folder text-aqua"></i>
+   <span>รายงาน การเงิน</span>
+   <span class="pull-right-container">
+    <i class="fa fa-angle-left pull-right text-aqua"></i>
+  </span>
+</a>
+<ul class="treeview-menu">
+  <li><a href="ipd_ward_patient.php"><i class="fa fa-files-o text-aqua"></i>ผู้ป่วยใน Ward</a></li>
+</ul>
+</li>  
 
 <li class="treeview">
   <a href="#">
