@@ -72,7 +72,7 @@ for( $i = 0 ; $i < 100000 ; $i++ )
         $sql_dep = " SELECT name FROM ward WHERE ward = '". $ward_dropdown ."'";
         $result_dep = pg_query($sql_dep);
         $row_dep = pg_fetch_array($result_dep);
-
+        $wardname = $row_dep['name'];
         if($ward_dropdown != "") {
 
           $sql = " SELECT ipt.hn as  hn,
@@ -109,7 +109,7 @@ for( $i = 0 ; $i < 100000 ; $i++ )
                   <h3 class="box-title co_dep"><?php echo "หอผู้ป่วย".$row_dep['name']; ?> 
                   <small><?php echo " เวลาที่ใช้ในการประมวลผล ".$bm->stop()." วินาที "; ?></small>
                 </h3>
-                  <a href="expoer_excel_ipd_ward_patient.php?ward=<?php echo $ward_dropdown;?>" target="_blank" title="ส่งออก excel"><button type="" class="btn btn-default pull-right" class="btn btn-success btn-lg">
+                  <a href="expoer_excel_ipd_ward_patient.php?ward=<?php echo $ward_dropdown;?>&&wardname=<?php echo $wardname;?>" target="_blank" title="ส่งออก excel"><button type="" class="btn btn-default pull-right" class="btn btn-success btn-lg">
                     <!-- <img src="image/excel_iocn.png" width="80px" height="20px"> -->Excel
                   </button>
                 </a>

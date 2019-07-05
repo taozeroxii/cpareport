@@ -1,14 +1,14 @@
-<?php
-$todate = date('YmdHis');
+<?php   $ward_dropdown   = $_GET['ward'];  
+        $wardname = $_GET['wardname'];
+$todate = date('Y-m-d');
 header("Content-type: application/vnd.ms-excel");
-header("Content-Disposition: attachment; filename=ward_ipd_".$todate.".xls");
+header("Content-Disposition: attachment; filename=".$wardname."_".$todate.".xls");
 ?>
-<!DOCTYPE html>
-<html>
+
 <?php include"config/pg_con.class.php";
 include"config/func.class.php";
 include"config/time.class.php";
-        $ward_dropdown   = $_GET['ward'];  
+
         $sql_dep = " SELECT name FROM ward WHERE ward = '". $ward_dropdown ."'";
         $result_dep = pg_query($sql_dep);
         $row_dep = pg_fetch_array($result_dep);
@@ -40,10 +40,11 @@ include"config/time.class.php";
        AND ipt.ward = '".$ward_dropdown ."'
        ORDER BY	ipt.regdate,	ipt.regtime ";
           $result = pg_query($sql);
-
-echo $showward;
-
 ?>
+<!DOCTYPE html>
+<html>
+<body>
+<?php echo $showward; ?>
                 <table border="1" width="100%">
                   <thead>
                   <tr>
