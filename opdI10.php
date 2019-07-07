@@ -43,7 +43,7 @@ for ($i = 0; $i < 100000; $i++) {
                                 <h3 class="box-title">
                                     <div class="container">
                                         <form class="form-inline" method="POST" action="opdi10.php">
-                                            <small>ช่วงวันที่จับจาก vn ผู้ป่วย</small> 
+                                            <small>ช่วงวันที่จับจาก vn ผู้ป่วย</small>
                                             <input type="text" class="form-control" id="datepickers" placeholder="วันที่เริ่ม" name="datepickers" data-provide="datepicker" data-date-language="th" autocomplete="off">
                                             <input type="text" class="form-control" id="datepickert" placeholder="วันที่สิ้นสุด" name="datepickert" data-provide="datepicker" data-date-language="th" autocomplete="off">
                                             <button type="submit" class="btn btn-default" name="submit" value="submit">Submit</button>
@@ -65,33 +65,42 @@ for ($i = 0; $i < 100000; $i++) {
 
                 if ($datepickers != "--") {
 
-                    $sql = "
-                            SELECT ovs.vstdate,ovs.hn,ksk.department,concat(pt.pname,' ',pt.fname,' ',pt.lname)AS name,ovd.icd10,icd.name AS en_name,icd.tname AS th_name
+                    $sql = "SELECT ovs.hn,concat(pt.pname,' ',pt.fname,' ',pt.lname)AS patientname,ksk.department,
+                                ovd.icd10,cm.regdate AS regbaowhan,cm.lastvisit AS lastvisit ,cm.note,cm.begin_year,
+                                cms.clinic_member_status_name AS status
                             FROM ovst ovs
-                                inner join ovstdiag ovd on ovd.hn = ovs.hn AND  ovd.icd10 = 'I10' 
-                                and ovd.vstdate BETWEEN '2019-01-01' AND '2019-06-27'
+                                inner join ovstdiag ovd on ovd.vn = ovs.vn AND  ovd.icd10 = 'I10' 
                                 inner join kskdepartment ksk on ksk.depcode = ovs.main_dep
                                 inner join icd101 icd on icd.code = ovd.icd10
                                 left  join patient pt on pt.hn = ovd.hn
+                                inner join ovstost ost on ost.ovstost = ovs.ovstost 
+                                left join  clinicmember cm on cm.hn = ovs.hn and cm.clinic = '001' and cm.clinic_member_status_id in ('3','10')
+                                LEFT JOIN clinic_member_status cms ON cms.clinic_member_status_id = cm.clinic_member_status_id
                             WHERE ovs.vstdate BETWEEN '" . $datepickers . "' and '" . $datepickert . "'
                             AND  ovs.ovstost not in ('52','04','54')  AND ovs.main_dep = '292'
-                            group by ovs.vstdate,ovs.hn,ksk.department,concat(pt.pname,' ',pt.fname,' ',pt.lname),ovd.icd10,icd.name,icd.tname
-                            ORDER BY ovs.vstdate ";
+                            group by ovs.hn,ksk.department,concat(pt.pname,' ',pt.fname,' ',pt.lname),
+                                ovd.icd10,icd.name,icd.tname,cm.regdate,cm.lastvisit,cm.note,cm.begin_year,status
+                            ORDER BY lastvisit desc ";
 
-                                         $result = pg_query($sql);
+                    $result = pg_query($sql);
 
-                                            $allrec = "
-                            SELECT ovs.vstdate,ovs.hn,ksk.department,concat(pt.pname,' ',pt.fname,' ',pt.lname)AS name,ovd.icd10,icd.name AS en_name,icd.tname AS th_name
-                            FROM ovst ovs
-                                inner join ovstdiag ovd on ovd.hn = ovs.hn AND  ovd.icd10 = 'I10' 
-                                and ovd.vstdate BETWEEN '2019-01-01' AND '2019-06-27'
-                                inner join kskdepartment ksk on ksk.depcode = ovs.main_dep
-                                inner join icd101 icd on icd.code = ovd.icd10
-                                left  join patient pt on pt.hn = ovd.hn
-                            WHERE ovs.vstdate BETWEEN '" . $datepickers . "' and '" . $datepickert . "'
-                            AND  ovs.ovstost not in ('52','04','54')  AND ovs.main_dep = '292'
-                            group by ovs.vstdate,ovs.hn,ksk.department,concat(pt.pname,' ',pt.fname,' ',pt.lname),ovd.icd10,icd.name,icd.tname
-                            ORDER BY ovs.vstdate ";
+                    $allrec = "
+                                            SELECT ovs.hn,concat(pt.pname,' ',pt.fname,' ',pt.lname)AS patientname,ksk.department,
+                                            ovd.icd10,cm.regdate AS regbaowhan,cm.lastvisit AS lastvisit ,cm.note,cm.begin_year,
+                                            cms.clinic_member_status_name AS status
+                                        FROM ovst ovs
+                                            inner join ovstdiag ovd on ovd.vn = ovs.vn AND  ovd.icd10 = 'I10' 
+                                            inner join kskdepartment ksk on ksk.depcode = ovs.main_dep
+                                            inner join icd101 icd on icd.code = ovd.icd10
+                                            left  join patient pt on pt.hn = ovd.hn
+                                            inner join ovstost ost on ost.ovstost = ovs.ovstost 
+                                            left join  clinicmember cm on cm.hn = ovs.hn and cm.clinic = '001' and cm.clinic_member_status_id in ('3','10')
+                                            LEFT JOIN clinic_member_status cms ON cms.clinic_member_status_id = cm.clinic_member_status_id
+                                        WHERE ovs.vstdate BETWEEN '" . $datepickers . "' and '" . $datepickert . "'
+                                        AND  ovs.ovstost not in ('52','04','54')  AND ovs.main_dep = '292'
+                                        group by ovs.hn,ksk.department,concat(pt.pname,' ',pt.fname,' ',pt.lname),
+                                            ovd.icd10,icd.name,icd.tname,cm.regdate,cm.lastvisit,cm.note,cm.begin_year,status
+                                        ORDER BY lastvisit desc";
                     $queryalrecord = pg_query($allrec);
 
                     ?>
@@ -112,21 +121,29 @@ for ($i = 0; $i < 100000; $i++) {
                                         <table class="table table-bordered  table-hover table-striped " style='text-align:center' id="example1">
                                             <thead>
                                                 <tr>
-                                                    <th style='text-align:center'>visit</th>
                                                     <th style='text-align:center'>hn</th>
-                                                    <th style='text-align:center'>ห้องตรวจ</th>
                                                     <th style='text-align:center'>ชื่อผู้ป่วย</th>
+                                                    <th style='text-align:center'>ห้องตรวจ</th>
                                                     <th style='text-align:center'>รหัสโรค</th>
+                                                    <th style='text-align:center'>วันขึ้นทะเบียน</th>
+                                                    <th style='text-align:center'>วันมาล่าสุด</th>
+                                                    <th style='text-align:center'>NOTE</th>
+                                                    <th style='text-align:center'>ปีที่เป็น</th>
+                                                    <th style='text-align:center'>สถานะ</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
                                                 <?php while ($row_result2 = pg_fetch_array($result)) { ?>
                                                     <tr>
-                                                        <td><?php echo  $row_result2['vstdate']; ?> </td>
                                                         <td><?php echo  $row_result2['hn']; ?> </td>
+                                                        <td><?php echo  $row_result2['patientname']; ?> </td>
                                                         <td><?php echo  $row_result2['department']; ?></td>
-                                                        <td><?php echo  $row_result2['name']; ?></td>
                                                         <td><?php echo  $row_result2['icd10']; ?></td>
+                                                        <td><?php echo  $row_result2['regbaowhan']; ?></td>
+                                                        <td><?php echo  $row_result2['lastvisit']; ?></td>
+                                                        <td><?php echo  $row_result2['note']; ?></td>
+                                                        <td><?php echo  $row_result2['begin_year']; ?></td>
+                                                        <td><?php echo  $row_result2['status']; ?></td>
                                                     <?php }
                                                 } ?>
                                             </tr>
@@ -144,7 +161,7 @@ for ($i = 0; $i < 100000; $i++) {
         ?>
 
 
-      
+
         <?php include "config/js.class.php" ?>
         <script>
             $(function() {
