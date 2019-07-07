@@ -69,7 +69,7 @@ for ($i = 0; $i < 100000; $i++) {
                         cms.clinic_member_status_name AS status
                     FROM ovst ovs
                         inner join ovstdiag ovd on ovd.hn = ovs.hn AND  ovd.icd10 = 'E119' 
-                        and ovd.vstdate BETWEEN '2019-01-01' AND '2019-07-31'
+                        and ovd.vstdate BETWEEN '" . $datepickers . "' and '" . $datepickert . "'
                         inner join kskdepartment ksk on ksk.depcode = ovs.main_dep
                         inner join icd101 icd on icd.code = ovd.icd10
                         left  join patient pt on pt.hn = ovd.hn
@@ -77,10 +77,10 @@ for ($i = 0; $i < 100000; $i++) {
                         left join  clinicmember cm on cm.hn = ovs.hn 
                             and cm.clinic = '001' and cm.clinic_member_status_id in ('3','10')
                         LEFT JOIN clinic_member_status cms ON cms.clinic_member_status_id = cm.clinic_member_status_id
-                    WHERE ovs.vstdate BETWEEN '2019-01-01' AND '2019-07-31'
+                    WHERE ovs.vstdate BETWEEN '" . $datepickers . "' and '" . $datepickert . "'
                     AND  ovs.ovstost not in ('52','04','54')  AND ovs.main_dep = '292'
                     group by ovs.hn,ksk.department,concat(pt.pname,' ',pt.fname,' ',pt.lname),ovd.icd10,icd.name,icd.tname,cm.regdate,cm.lastvisit,cm.note,cm.begin_year,status
-                    ORDER BY lastvisit desc";
+                    ORDER BY cm.lastvisit desc";
                     $result = pg_query($sql);
 
                     $allrec = "SELECT ovs.hn,concat(pt.pname,' ',pt.fname,' ',pt.lname)AS patientname,ksk.department,
@@ -88,7 +88,7 @@ for ($i = 0; $i < 100000; $i++) {
                         cms.clinic_member_status_name AS status
                     FROM ovst ovs
                         inner join ovstdiag ovd on ovd.hn = ovs.hn AND  ovd.icd10 = 'E119' 
-                        and ovd.vstdate BETWEEN '2019-01-01' AND '2019-07-31'
+                        and ovd.vstdate BETWEEN '" . $datepickers . "' and '" . $datepickert . "'
                         inner join kskdepartment ksk on ksk.depcode = ovs.main_dep
                         inner join icd101 icd on icd.code = ovd.icd10
                         left  join patient pt on pt.hn = ovd.hn
@@ -96,7 +96,7 @@ for ($i = 0; $i < 100000; $i++) {
                         left join  clinicmember cm on cm.hn = ovs.hn 
                             and cm.clinic = '001' and cm.clinic_member_status_id in ('3','10')
                         LEFT JOIN clinic_member_status cms ON cms.clinic_member_status_id = cm.clinic_member_status_id
-                    WHERE ovs.vstdate BETWEEN '2019-01-01' AND '2019-07-31'
+                    WHERE ovs.vstdate BETWEEN '" . $datepickers . "' and '" . $datepickert . "'
                     AND  ovs.ovstost not in ('52','04','54')  AND ovs.main_dep = '292'
                     group by ovs.hn,ksk.department,concat(pt.pname,' ',pt.fname,' ',pt.lname),ovd.icd10,icd.name,icd.tname,cm.regdate,cm.lastvisit,cm.note,cm.begin_year,status
                     ORDER BY lastvisit desc";
