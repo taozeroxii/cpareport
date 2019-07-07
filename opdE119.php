@@ -75,7 +75,7 @@ for ($i = 0; $i < 100000; $i++) {
                         inner join ovstost ost on ost.ovstost = ovs.ovstost 
                         left join  clinicmember cm on cm.hn = ovs.hn and cm.clinic = '001' and cm.clinic_member_status_id in ('3','10')
                         LEFT JOIN clinic_member_status cms ON cms.clinic_member_status_id = cm.clinic_member_status_id
-                    WHERE ovs.vstdate '" . $datepickers . "' and '" . $datepickert . "'
+                    WHERE ovs.vstdate BETWEEN '" . $datepickers . "' and '" . $datepickert . "'
                     AND  ovs.ovstost not in ('52','04','54')  AND ovs.main_dep = '292'
                     group by ovs.hn,ksk.department,concat(pt.pname,' ',pt.fname,' ',pt.lname),
                         ovd.icd10,icd.name,icd.tname,cm.regdate,cm.lastvisit,cm.note,cm.begin_year,status
@@ -94,7 +94,7 @@ for ($i = 0; $i < 100000; $i++) {
                         inner join ovstost ost on ost.ovstost = ovs.ovstost 
                         left join  clinicmember cm on cm.hn = ovs.hn and cm.clinic = '001' and cm.clinic_member_status_id in ('3','10')
                         LEFT JOIN clinic_member_status cms ON cms.clinic_member_status_id = cm.clinic_member_status_id
-                    WHERE ovs.vstdate '" . $datepickers . "' and '" . $datepickert . "'
+                    WHERE ovs.vstdate BETWEEN '" . $datepickers . "' and '" . $datepickert . "'
                     AND  ovs.ovstost not in ('52','04','54')  AND ovs.main_dep = '292'
                     group by ovs.hn,ksk.department,concat(pt.pname,' ',pt.fname,' ',pt.lname),
                         ovd.icd10,icd.name,icd.tname,cm.regdate,cm.lastvisit,cm.note,cm.begin_year,status
