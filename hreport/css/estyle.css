@@ -1,0 +1,114 @@
+body,div,h1,h3{
+	font-family: 'Prompt', sans-serif;
+}
+.ml{
+	color: #D35400;
+	font-family: 'Prompt', sans-serif;
+}
+.ml:hover{
+	display: inline-block;
+	color: #0B5345;
+	font-weight: bold; 
+	background: #D0D3D4;
+	border-radius: 8px;
+	padding: 1%;
+	margin: 1%;
+}
+.c_detail{
+	text-align: center;
+
+}
+.fo_resout{
+	/*text-align: center;*/
+	font-size: 1.0em;
+	font-weight: bold;
+	color: #0B5345;
+}
+
+.fo{
+	text-align: center;
+}
+.box{
+color: #0B5345;
+}
+/*td:hover{
+background: #E5E7E9;
+}*/
+.rr{
+	text-align: center;
+}
+.ffont{
+	font-size: 0.8em;
+}
+.cen{
+	text-align: center;
+}
+.table-hover{
+	cursor: pointer;
+}
+.dis{
+	color: red;
+	/*font-size: 2.0em;*/
+}
+.total_s{
+	color: red;
+	font-size: 1.4em;
+}
+.pdx{
+	color: #0067CE;
+	font-weight: bold;
+}
+.pdx_s{
+ color: red;
+ font-size: 1.4em;
+ font-weight: bold;
+}
+.total_p{
+		font-size: 1.2em;
+		font-weight: bold;
+}
+.pdx_1{
+	color: red;
+	font-weight: bold;
+}
+.hth{
+	text-align: center;
+}
+.rt{
+	font-size: 1.2em;
+    font-weight: bold;
+    text-align: right;
+}
+.pr{
+	color: #9A2109;
+	font-weight: bold;
+}
+.fcol{
+	font-size: 1.2em;
+	color: #943126;
+	text-align: center;
+	padding: 1%
+}
+.sdx{
+	color: #0067CE;
+	font-weight: bold;
+	font-size: 0.8em;
+}
+.co_dep{
+	color: #566573;
+}
+
+.t_dsc{
+	color: #3498DB;
+}
+.f_dsc{
+	color: #D35400;
+}
+.staff{
+	color: #DA081E;
+}
+.box-t{
+	text-align: center;
+	font-weight: bold;
+	color: #0A71DF; 
+}
