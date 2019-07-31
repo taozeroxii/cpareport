@@ -121,17 +121,10 @@ foreach($row as $item) {
             <div class="box">
               <div class="box-header">
                <h3 class="box-title">
-                
               </h3>
               <button type="" class="btn btn-default pull-right" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal"> SQL </button>&nbsp;&nbsp;
               <a href="config/excel.class.php?sql=<?php //echo $sql; ?>" class="btn btn-default pull-right" class="btn btn-info btn-lg" > Excel </a> 
-
             </div>  
-            <div class="box-body table-responsive">
-              <div> 
-            </div>
-
-          </div>
         </div>
       </div>
     </div>
