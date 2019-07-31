@@ -86,9 +86,7 @@ foreach($row as $item) {
       list($m,$d,$Y)  = split('/',$datepickers); 
       $datepickers    = trim($Y)."-".trim($m)."-".trim($d);
 
-      $datepickert    = $_POST['datepickert'];
-      list($m,$d,$Y)  = split('/',$datepickert); 
-      $datepickert    = trim($Y)."-".trim($m)."-".trim($d);
+
 
       if($datepickers != "--") {
         $sql_a = " $sql_detail ";
@@ -99,7 +97,6 @@ foreach($row as $item) {
 
         $sql = " $sql_detail_2 ";
         $sql = str_replace("{datepickers}", "'$datepickers'", $sql);
-        $sql = str_replace("{datepickert}", "'$datepickert'", $sql);
         $result = pg_query($sql);
         $total = pg_num_rows($result);      
         ?>
@@ -110,7 +107,7 @@ foreach($row as $item) {
               <div class="box-header">
                 <h3 class="box-title">
                   <?php echo $menu_sub; ?>
-                  <?php echo "ข้อมูลวันที่ ".thaidate($datepickers)." - ".thaidate($datepickert); ?>
+                  <?php echo "ข้อมูลวันที่ ".thaidate($datepickers); ?>
                   <small><?php echo " เวลาที่ใช้ในการประมวลผล ".$bm->stop()." วินาที "; ?></small>
                 </h3>
               </div>  
@@ -126,7 +123,7 @@ foreach($row as $item) {
             <div class="box">
               <div class="box-header">
                <h3 class="box-title">
-                <div> <?php echo "ผู้ป่วยในโรค J ".  $row_result_a." , ผู้ป่วยทั้งหมด ". $total; ?></div>
+                <div> <?php echo "ผู้ป่วยในโรค J ".  $row_result_a." คน , ผู้ป่วยทั้งหมด ". $total." คน"; ?></div>
               </h3>
               <button type="" class="btn btn-default pull-right" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModalpdf_dn0101"> นิยาม </button>
               <button type="" class="btn btn-default pull-right" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal"> SQL </button>
