@@ -107,8 +107,8 @@ foreach($row as $item) {
               <div class="box-header">
                 <h3 class="box-title">
                   <?php echo $menu_sub; ?>
-                  <?php echo "ข้อมูลวันที่ ".thaidate($datepickers); ?>
-                  <div> <?php echo "ผู้ป่วยในโรค J ".  $row_result_a." คน , ผู้ป่วยทั้งหมด ". $total." คน  "; ?></div> 
+                  <?php echo "ข้อมูลวันที่ ".thaidate($datepickers); ?>&nsp;
+                   <?php echo "ผู้ป่วยในโรค J ".  $row_result_a." คน , ผู้ป่วยทั้งหมด ". $total." คน  "; ?>&nsp;
                   <small><?php echo " เวลาที่ใช้ในการประมวลผล ".$bm->stop()." วินาที "; ?></small>
                 </h3>
               </div>  
@@ -126,7 +126,7 @@ foreach($row as $item) {
                <h3 class="box-title">
                 
               </h3>
-              <button type="" class="btn btn-default pull-right" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal"> SQL </button>
+              <button type="" class="btn btn-default pull-right" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal"> SQL </button>&nsp;&nsp;
               <a href="config/excel.class.php?sql=<?php //echo $sql; ?>" class="btn btn-default pull-right" class="btn btn-info btn-lg" > Excel </a> 
 
             </div>  
