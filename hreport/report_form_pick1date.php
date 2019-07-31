@@ -72,7 +72,6 @@ foreach($row as $item) {
                 <div class="container">
                   <form class="form-inline" method="POST" action="#">
                     <input type="text" class="form-control" id="datepickers" name="datepickers" data-provide="datepicker" data-date-language="th" autocomplete="off" >
-                    <input type="text" class="form-control" id="datepickert" name="datepickert" data-provide="datepicker" data-date-language="th" autocomplete="off" >
                     <button type="submit" class="btn btn-default">ตกลง</button>
                   </form>
 
@@ -91,28 +90,18 @@ foreach($row as $item) {
       list($m,$d,$Y)  = split('/',$datepickert); 
       $datepickert    = trim($Y)."-".trim($m)."-".trim($d);
 
-      if($datepickers != "--" && $datepickert != "--") {
+      if($datepickers != "--") {
         $sql_a = " $sql_detail ";
         $sql_a = str_replace("{datepickers}", "'$datepickers'", $sql_a);
-        $sql_a = str_replace("{datepickert}", "'$datepickert'", $sql_a);
         $result_a = pg_query($sql_a);
         $result_a = pg_query($sql_a);
         $row_result_a = pg_num_rows($result_a);
-//echo $sql_a;
-        $sql_b = " $sql_detail_1 ";
-        $sql_b = str_replace("{datepickers}", "'$datepickers'", $sql_b);
-        $sql_b = str_replace("{datepickert}", "'$datepickert'", $sql_b);
-        $result_b = pg_query($sql_b);
-        $row_result_b = pg_fetch_array($result_b);
-//echo $sql_b;
-        //$total_sum = @($row_result_a['daa']/$row_result_b['dbb'])*100;
 
         $sql = " $sql_detail_2 ";
         $sql = str_replace("{datepickers}", "'$datepickers'", $sql);
         $sql = str_replace("{datepickert}", "'$datepickert'", $sql);
         $result = pg_query($sql);
         $total = pg_num_rows($result);      
-  //      echo $sql;
         ?>
 
         <div class="row">
@@ -137,7 +126,7 @@ foreach($row as $item) {
             <div class="box">
               <div class="box-header">
                <h3 class="box-title">
-                <div> <?php echo "a =  ".  $row_result_a." , b =  ". $total; ?></div>
+                <div> <?php echo "ผู้ป่วยในโรค J ".  $row_result_a." , ผู้ป่วยทั้งหมด ". $total; ?></div>
               </h3>
               <button type="" class="btn btn-default pull-right" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModalpdf_dn0101"> นิยาม </button>
               <button type="" class="btn btn-default pull-right" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal"> SQL </button>
@@ -145,11 +134,7 @@ foreach($row as $item) {
 
             </div>  
             <div class="box-body table-responsive">
-              <div> <?php
-                $total_sum =( $row_result_a / $total)*100;
-              echo  "( ". $row_result_a." / ".$total." ) X 100 "." = <span class='total_p'>ร้อยละ  </span>
-              <span class='total_s'>".number_format($total_sum,2)."</span>" ; ?>
-              
+              <div> 
             </div>
 
           </div>
@@ -166,9 +151,9 @@ foreach($row as $item) {
               <thead>
                 <tr>
                   <?php
-                  $i = pg_num_fields($result);
+                  $i = pg_num_fields($result_a);
                   for ($j = 0 ; $j < $i ; $j++) {
-                    $fieldname = pg_field_name($result, $j);
+                    $fieldname = pg_field_name($result_a, $j);
                     echo '<th>' . $fieldname . '</th>';
                   }
                   ?>
@@ -176,14 +161,14 @@ foreach($row as $item) {
               </thead>
               <tbody>
                 <? $rw=0;
-                while($row_result = pg_fetch_array($result)) 
+                while($row_result = pg_fetch_array($result_a)) 
                 { 
                   $rw++;
                   ?>
                   <tr>
                     <?php
                     for ($j = 0 ; $j < $i ; $j++) {
-                      $fieldname = pg_field_name($result, $j);
+                      $fieldname = pg_field_name($result_a, $j);
                       echo '<td>' . $row_result[$fieldname] . '</td>';
                     } 
                     ?>
