@@ -96,14 +96,23 @@ foreach($row as $item) {
         $sql_a = str_replace("{datepickers}", "'$datepickers'", $sql_a);
         $sql_a = str_replace("{datepickert}", "'$datepickert'", $sql_a);
         $result_a = pg_query($sql_a);
+        $result_a = pg_query($sql_a);
         $row_result_a = pg_num_rows($result_a);
-
+//echo $sql_a;
         $sql_b = " $sql_detail_1 ";
         $sql_b = str_replace("{datepickers}", "'$datepickers'", $sql_b);
         $sql_b = str_replace("{datepickert}", "'$datepickert'", $sql_b);
         $result_b = pg_query($sql_b);
         $row_result_b = pg_fetch_array($result_b);
+//echo $sql_b;
+        //$total_sum = @($row_result_a['daa']/$row_result_b['dbb'])*100;
 
+        $sql = " $sql_detail_2 ";
+        $sql = str_replace("{datepickers}", "'$datepickers'", $sql);
+        $sql = str_replace("{datepickert}", "'$datepickert'", $sql);
+        $result = pg_query($sql);
+        $total = pg_num_rows($result);      
+  //      echo $sql;
         ?>
 
         <div class="row">
@@ -132,7 +141,7 @@ foreach($row as $item) {
               </h3>
               <button type="" class="btn btn-default pull-right" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModalpdf_dn0101"> นิยาม </button>
               <button type="" class="btn btn-default pull-right" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal"> SQL </button>
-              <a href="config/excel.class.php?sql=<?php echo $sql; ?>" class="btn btn-default pull-right" class="btn btn-info btn-lg" > Excel </a> 
+              <a href="config/excel.class.php?sql=<?php //echo $sql; ?>" class="btn btn-default pull-right" class="btn btn-info btn-lg" > Excel </a> 
 
             </div>  
             <div class="box-body table-responsive">
