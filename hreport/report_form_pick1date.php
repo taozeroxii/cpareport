@@ -102,7 +102,7 @@ foreach($row as $item) {
         ?>
 
         <div class="row">
-          <div class="col-xs-10">
+          <div class="col-xs-9">
             <div class="box">
               <div class="box-header">
                 <h3 class="box-title">
@@ -117,7 +117,7 @@ foreach($row as $item) {
               </div>
             </div>
 
-          <div class="col-xs-2">
+          <div class="col-xs-3">
             <div class="box">
               <div class="box-header">
                <h3 class="box-title">
