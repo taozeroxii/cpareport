@@ -102,23 +102,22 @@ foreach($row as $item) {
         ?>
 
         <div class="row">
-          <div class="col-xs-8">
+          <div class="col-xs-10">
             <div class="box">
               <div class="box-header">
                 <h3 class="box-title">
                   <?php echo $menu_sub; ?>
                   <?php echo "ข้อมูลวันที่ ".thaidate($datepickers); ?>&nbsp;
-                  <small><?php echo " เวลาที่ใช้ในการประมวลผล ".$bm->stop()." วินาที "; ?></small>
+                  <small><?php echo " เวลาที่ใช้ในการประมวลผล ".$bm->stop()." วินาที "; ?></small>&nbsp;&nbsp;
                 </h3>
-              </div>  
-              <div class="box-body table-responsive">
-                <div> ผู้ป่วยในโรค J <sup class="pdx_s"><?php echo $row_result_a ." คน  ";?></sup></div>
-                <div>ผู้ป่วยทั้งหมด <span class="pdx"><?php echo $total ." คน  "; ?></span></div>
+                <div> ผู้ป่วยในโรค J <sup class="pdx_s"><?php echo $row_result_a ." คน  ";?></sup>&nbsp;&nbsp;
+               ผู้ป่วยทั้งหมด <span class="pdx"><?php echo $total ." คน  "; ?></span>
+             </div>
               </div>
             </div>
           </div>
 
-          <div class="col-xs-4">
+          <div class="col-xs-2">
             <div class="box">
               <div class="box-header">
                <h3 class="box-title">
