@@ -107,15 +107,13 @@ foreach($row as $item) {
               <div class="box-header">
                 <h3 class="box-title">
                   <?php echo $menu_sub; ?>
-                  <?php echo "ข้อมูลวันที่ ".thaidate($datepickers); ?>&nsp;
-                   <?php echo "ผู้ป่วยในโรค J ".  $row_result_a." คน , ผู้ป่วยทั้งหมด ". $total." คน  "; ?>&nsp;
+                  <?php echo "ข้อมูลวันที่ ".thaidate($datepickers); ?>&nbsp;
                   <small><?php echo " เวลาที่ใช้ในการประมวลผล ".$bm->stop()." วินาที "; ?></small>
                 </h3>
               </div>  
               <div class="box-body table-responsive">
-                <div><?php echo $text_0; ?> <sup class="pdx_s"><?php echo $text_1;?></sup></div>
-                <div><?php echo $text_2; ?><span class="pdx"><?php echo $text_4; ?></span></div>
-                <div><?php echo $text_3; ?><span class="pdx"><?php echo $text_5; ?></span></div>
+                <div> ผู้ป่วยในโรค J <sup class="pdx_s"><?php echo $row_result_a ." คน  ";?></sup></div>
+                <div>ผู้ป่วยทั้งหมด <span class="pdx"><?php echo $total ." คน  "; ?></span></div>
               </div>
             </div>
           </div>
@@ -126,7 +124,7 @@ foreach($row as $item) {
                <h3 class="box-title">
                 
               </h3>
-              <button type="" class="btn btn-default pull-right" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal"> SQL </button>&nsp;&nsp;
+              <button type="" class="btn btn-default pull-right" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal"> SQL </button>&nbsp;&nbsp;
               <a href="config/excel.class.php?sql=<?php //echo $sql; ?>" class="btn btn-default pull-right" class="btn btn-info btn-lg" > Excel </a> 
 
             </div>  
