@@ -6,7 +6,7 @@ include"config/time.class.php";
 include"config/sql.class.php";
 $bm = new Timer; 
 $bm->start();
-include"config/head.class.php"; 
+include"config/head.index.class.php"; 
 for( $i = 0 ; $i < 100000 ; $i++ )
 {
  $i;

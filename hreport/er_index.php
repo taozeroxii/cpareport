@@ -1,5 +1,8 @@
 <!DOCTYPE html>
 <html>
+<?
+ header( "refresh: 200; url=" );
+?>
 <?php include"config/pg_con.class.php";
 include"config/func.class.php";
 include"config/time.class.php";
