@@ -110,12 +110,12 @@ foreach($row as $item) {
                   <?php echo "ข้อมูลวันที่ ".thaidate($datepickers); ?>&nbsp;
                   <small><?php echo " เวลาที่ใช้ในการประมวลผล ".$bm->stop()." วินาที "; ?></small>&nbsp;&nbsp;
                 </h3>
-                <div> ผู้ป่วยในโรค J <sup class="pdx_s"><?php echo $row_result_a ." คน  ";?></sup>&nbsp;&nbsp;
+                &nbsp;&nbsp;
+                 ผู้ป่วยในโรค J <span class="pdx_s"><?php echo $row_result_a ." คน  ";?></span>&nbsp;&nbsp;
                ผู้ป่วยทั้งหมด <span class="pdx"><?php echo $total ." คน  "; ?></span>
              </div>
               </div>
             </div>
-          </div>
 
           <div class="col-xs-2">
             <div class="box">
