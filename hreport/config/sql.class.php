@@ -172,5 +172,197 @@ $row_cmi = pg_query($sql_cmi);
 
 
 
+//ER 
 
+$sql_er1 = " SELECT CASE
+        WHEN a.er_pt_type = '1' THEN 'ผู้ป่วยตรวจโรคทั่วไป'
+        WHEN a.er_pt_type = '2' THEN 'ผู้ป่วยรับบริการอื่นๆ'
+        WHEN a.er_pt_type = '3' THEN 'ผู้ป่วยฉุกเฉิน'
+        WHEN a.er_pt_type = '4' THEN 'ผู้ป่วยอุบัติเหตุ(ทั่วไป)'
+        WHEN a.er_pt_type = '5' THEN 'ผู้ป่วยอุบัติเหตุ(ยานพาหนะ)'
+        ELSE ' - '
+      END  AS erpt,
+       SUM ( CASE WHEN  a.er_emergency_type = '1' THEN 1 ELSE 0 END ) AS  Resuscitate,
+       SUM ( CASE WHEN  a.er_emergency_type = '2' THEN 1 ELSE 0 END ) AS  Emergency,
+       SUM ( CASE WHEN  a.er_emergency_type = '3' THEN 1 ELSE 0 END ) AS  Urgent,
+       SUM ( CASE WHEN  a.er_emergency_type = '4' THEN 1 ELSE 0 END ) AS  Ac_illness,
+       SUM ( CASE WHEN  a.er_emergency_type = '5' THEN 1 ELSE 0 END ) AS  Non_Ac_illness
+FROM er_regist a
+inner join er_emergency_type  as c on c.er_emergency_type = a.er_emergency_type
+INNER JOIN vn_stat        as b ON a.vn = b.vn
+INNER JOIN er_pt_type     as d ON d.er_pt_type = a.er_pt_type
+WHERE b.vstdate = CURRENT_DATE
+AND a.er_pt_type IS NOT NULL
+GROUP BY erpt
+ORDER BY erpt ASC ";
+$result_1 = pg_query($sql_er1);
+
+
+$sql_er2 = " SELECT   es.er_refer_sender_name as sender
+      ,SUM ( CASE WHEN  a.er_emergency_type = '1' THEN 1 ELSE 0 END ) AS  Resuscitate,
+       SUM ( CASE WHEN  a.er_emergency_type = '2' THEN 1 ELSE 0 END ) AS  Emergency,
+       SUM ( CASE WHEN  a.er_emergency_type = '3' THEN 1 ELSE 0 END ) AS  Urgent,
+       SUM ( CASE WHEN  a.er_emergency_type = '4' THEN 1 ELSE 0 END ) AS  Ac_illness,
+       SUM ( CASE WHEN  a.er_emergency_type = '5' THEN 1 ELSE 0 END ) AS  Non_Ac_illness
+FROM er_regist a
+inner join er_emergency_type    as c on c.er_emergency_type = a.er_emergency_type
+INNER JOIN vn_stat as b ON a.vn = b.vn
+INNER JOIN er_nursing_detail  as er ON er.vn = a.vn
+INNER JOIN er_refer_sender as es ON es.er_refer_sender_id = er.er_refer_sender_id
+WHERE b.vstdate = CURRENT_DATE
+GROUP BY sender ";
+$result_2 = pg_query($sql_er2);
+
+
+$sql_er3 = " SELECT CASE
+    WHEN er_leave_status_id = '1' THEN 'Admit'
+    WHEN er_leave_status_id = '2' THEN 'Referทางกาย'
+    WHEN er_leave_status_id = '3' THEN 'Referทางจิต'
+    WHEN er_leave_status_id = '4' THEN 'รับยา'
+    WHEN er_leave_status_id = '5' THEN 'Observe'
+    WHEN er_leave_status_id = '6' THEN 'กลับบ้าน'
+    WHEN er_leave_status_id = '7' THEN 'หนีกลับ'
+    WHEN er_leave_status_id = '8' THEN 'ปฏิเสธการรักษา'   
+    WHEN er_leave_status_id = '9' THEN 'ตาย'        
+    ELSE ' - '
+END  AS v_time,
+       SUM ( CASE WHEN  a.er_emergency_type = '1' THEN 1 ELSE 0 END ) AS  Resuscitate,
+       SUM ( CASE WHEN  a.er_emergency_type = '2' THEN 1 ELSE 0 END ) AS  Emergency,
+       SUM ( CASE WHEN  a.er_emergency_type = '3' THEN 1 ELSE 0 END ) AS  Urgent,
+       SUM ( CASE WHEN  a.er_emergency_type = '4' THEN 1 ELSE 0 END ) AS  Ac_illness,
+       SUM ( CASE WHEN  a.er_emergency_type = '5' THEN 1 ELSE 0 END ) AS  Non_Ac_illness
+FROM er_regist a
+inner join er_emergency_type    as c on c.er_emergency_type = a.er_emergency_type
+inner join er_emergency_level   as d on d.er_emergency_level_id = c.er_emergency_type
+INNER JOIN vn_stat as b ON a.vn = b.vn
+WHERE b.vstdate = CURRENT_DATE
+AND er_leave_status_id IS NOT NULL
+GROUP BY v_time
+ORDER BY v_time ASC ";
+$result_3 = pg_query($sql_er3);
+
+$sql_er4 = " SELECT e.name AS job,
+       SUM ( CASE WHEN  a.er_emergency_type = '1' THEN 1 ELSE 0 END ) AS  Resuscitate,
+       SUM ( CASE WHEN  a.er_emergency_type = '2' THEN 1 ELSE 0 END ) AS  Emergency,
+       SUM ( CASE WHEN  a.er_emergency_type = '3' THEN 1 ELSE 0 END ) AS  Urgent,
+       SUM ( CASE WHEN  a.er_emergency_type = '4' THEN 1 ELSE 0 END ) AS  Ac_illness,
+       SUM ( CASE WHEN  a.er_emergency_type = '5' THEN 1 ELSE 0 END ) AS  Non_Ac_illness
+FROM er_regist a
+inner join er_emergency_type    as c on c.er_emergency_type = a.er_emergency_type
+inner join er_emergency_level   as d on d.er_emergency_level_id = c.er_emergency_type
+inner join er_period            as e on e.er_period = a.er_period
+INNER JOIN vn_stat as b ON a.vn = b.vn
+WHERE a.vstdate  = CURRENT_DATE
+AND a.er_period IS NOT NULL
+GROUP BY job
+ORDER BY job ASC ";
+$result_4 = pg_query($sql_er4);
+
+$sql_er5 = " SELECT   es.er_refer_hosptype_name as hos
+      ,SUM ( CASE WHEN  a.er_emergency_type = '1' THEN 1 ELSE 0 END ) AS  Resuscitate,
+       SUM ( CASE WHEN  a.er_emergency_type = '2' THEN 1 ELSE 0 END ) AS  Emergency,
+       SUM ( CASE WHEN  a.er_emergency_type = '3' THEN 1 ELSE 0 END ) AS  Urgent,
+       SUM ( CASE WHEN  a.er_emergency_type = '4' THEN 1 ELSE 0 END ) AS  Ac_illness,
+       SUM ( CASE WHEN  a.er_emergency_type = '5' THEN 1 ELSE 0 END ) AS  Non_Ac_illness
+FROM er_regist a
+inner join er_emergency_type    as c on c.er_emergency_type = a.er_emergency_type
+INNER JOIN vn_stat as b ON a.vn = b.vn
+INNER JOIN er_nursing_detail  as er ON er.vn = a.vn
+INNER JOIN er_refer_hosptype as es ON es.er_refer_hosptype_id = er.er_refer_hosptype_id
+WHERE b.vstdate  = CURRENT_DATE
+GROUP BY hos ";
+$result_5 = pg_query($sql_er5);
+
+$sql_er6 = " SELECT w.name as wardname
+       ,SUM ( CASE WHEN  a.er_emergency_type = '1' THEN 1 ELSE 0 END ) AS  Resuscitate,
+       SUM ( CASE WHEN  a.er_emergency_type = '2' THEN 1 ELSE 0 END ) AS  Emergency,
+       SUM ( CASE WHEN  a.er_emergency_type = '3' THEN 1 ELSE 0 END ) AS  Urgent,
+       SUM ( CASE WHEN  a.er_emergency_type = '4' THEN 1 ELSE 0 END ) AS  Ac_illness,
+       SUM ( CASE WHEN  a.er_emergency_type = '5' THEN 1 ELSE 0 END ) AS  Non_Ac_illness
+FROM er_regist a
+inner join er_emergency_type    as c on c.er_emergency_type = a.er_emergency_type
+inner join er_emergency_level   as d on d.er_emergency_level_id = c.er_emergency_type
+INNER JOIN vn_stat              as b ON a.vn = b.vn
+INNER JOIN ipt                  as i ON i.vn = a.vn 
+INNER JOIN ward                 as w ON w.ward = i.ward
+WHERE b.vstdate = CURRENT_DATE
+AND er_leave_status_id IS NOT NULL
+GROUP BY wardname
+ORDER BY wardname ASC ";
+$result_6 = pg_query($sql_er6);
+
+$sql_er7 = " SELECT CASE
+    WHEN b.age_y BETWEEN '0'  AND '4'   THEN '00-04'
+    WHEN b.age_y BETWEEN '5'  AND '9'   THEN '05-09'
+    WHEN b.age_y BETWEEN '10' AND '14'  THEN '10-14'
+    WHEN b.age_y BETWEEN '15' AND '19'  THEN '15-19'
+    WHEN b.age_y BETWEEN '20' AND '24'  THEN '20-24'
+    WHEN b.age_y BETWEEN '25' AND '29'  THEN '25-29'
+    WHEN b.age_y BETWEEN '30' AND '34'  THEN '30-34'    
+    WHEN b.age_y BETWEEN '35' AND '39'  THEN '35-39'  
+    WHEN b.age_y BETWEEN '40' AND '44'  THEN '40-44'  
+    WHEN b.age_y BETWEEN '45' AND '49'  THEN '45-49'  
+    WHEN b.age_y BETWEEN '50' AND '54'  THEN '50-54'  
+    WHEN b.age_y BETWEEN '55' AND '59'  THEN '55-59'  
+    WHEN b.age_y BETWEEN '60' AND '64'  THEN '60-64'  
+    WHEN b.age_y BETWEEN '65' AND '69'  THEN '65-69'  
+    WHEN b.age_y BETWEEN '70' AND '74'  THEN '70-74'  
+    WHEN b.age_y > '74'                 THEN '> 74' 
+    ELSE ' '
+END  AS age
+      ,SUM ( CASE WHEN  a.er_emergency_type = '1' THEN 1 ELSE 0 END ) AS  Resuscitate,
+       SUM ( CASE WHEN  a.er_emergency_type = '2' THEN 1 ELSE 0 END ) AS  Emergency,
+       SUM ( CASE WHEN  a.er_emergency_type = '3' THEN 1 ELSE 0 END ) AS  Urgent,
+       SUM ( CASE WHEN  a.er_emergency_type = '4' THEN 1 ELSE 0 END ) AS  Ac_illness,
+       SUM ( CASE WHEN  a.er_emergency_type = '5' THEN 1 ELSE 0 END ) AS  Non_Ac_illness
+FROM er_regist a
+inner join er_emergency_type    as c on c.er_emergency_type = a.er_emergency_type
+inner join er_emergency_level   as d on d.er_emergency_level_id = c.er_emergency_type
+INNER JOIN vn_stat as b ON a.vn = b.vn
+WHERE a.vstdate = CURRENT_DATE
+GROUP BY age
+ORDER BY age ASC
+ ";
+$result_7 = pg_query($sql_er7);
+
+$sql_er8 = " SELECT CASE
+    WHEN to_char(enter_er_time,'HH24:MI:SS') BETWEEN '00:00:00' AND '00:59:59'  THEN '00.00 - 00.59'
+    WHEN to_char(enter_er_time,'HH24:MI:SS') BETWEEN '01:00:00' AND '01:59:59'  THEN '01.00 - 01.59'
+    WHEN to_char(enter_er_time,'HH24:MI:SS') BETWEEN '02:00:00' AND '02:59:59'  THEN '02.00 - 02.59'
+    WHEN to_char(enter_er_time,'HH24:MI:SS') BETWEEN '03:00:00' AND '03:59:59'  THEN '03.00 - 03.59'
+    WHEN to_char(enter_er_time,'HH24:MI:SS') BETWEEN '04:00:00' AND '04:59:59'  THEN '04.00 - 04.59'
+    WHEN to_char(enter_er_time,'HH24:MI:SS') BETWEEN '05:00:00' AND '05:59:59'  THEN '05.00 - 05.59'
+    WHEN to_char(enter_er_time,'HH24:MI:SS') BETWEEN '06:00:00' AND '06:59:59'  THEN '06.00 - 06.59'
+    WHEN to_char(enter_er_time,'HH24:MI:SS') BETWEEN '07:00:00' AND '07:59:59'  THEN '07.00 - 07.59'
+    WHEN to_char(enter_er_time,'HH24:MI:SS') BETWEEN '08:00:00' AND '08:59:59'  THEN '08.00 - 08.59'
+    WHEN to_char(enter_er_time,'HH24:MI:SS') BETWEEN '09:00:00' AND '09:59:59'  THEN '09.00 - 09.59'
+    WHEN to_char(enter_er_time,'HH24:MI:SS') BETWEEN '10:00:00' AND '10:59:59'  THEN '10.00 - 10.59'
+    WHEN to_char(enter_er_time,'HH24:MI:SS') BETWEEN '11:00:00' AND '11:59:59'  THEN '11.00 - 11.59'
+    WHEN to_char(enter_er_time,'HH24:MI:SS') BETWEEN '12:00:00' AND '12:59:59'  THEN '12.00 - 12.59'
+    WHEN to_char(enter_er_time,'HH24:MI:SS') BETWEEN '13:00:00' AND '13:59:59'  THEN '13.00 - 13.59'
+    WHEN to_char(enter_er_time,'HH24:MI:SS') BETWEEN '14:00:00' AND '14:59:59'  THEN '14.00 - 14.59'
+    WHEN to_char(enter_er_time,'HH24:MI:SS') BETWEEN '15:00:00' AND '15:59:59'  THEN '15.00 - 15.59'
+    WHEN to_char(enter_er_time,'HH24:MI:SS') BETWEEN '16:00:00' AND '16:59:59'  THEN '16.00 - 16.59'
+    WHEN to_char(enter_er_time,'HH24:MI:SS') BETWEEN '17:00:00' AND '17:59:59'  THEN '17.00 - 17.59'
+    WHEN to_char(enter_er_time,'HH24:MI:SS') BETWEEN '18:00:00' AND '18:59:59'  THEN '18.00 - 18.59'
+    WHEN to_char(enter_er_time,'HH24:MI:SS') BETWEEN '19:00:00' AND '19:59:59'  THEN '19.00 - 19.59'
+    WHEN to_char(enter_er_time,'HH24:MI:SS') BETWEEN '20:00:00' AND '20:59:59'  THEN '20.00 - 20.59'
+    WHEN to_char(enter_er_time,'HH24:MI:SS') BETWEEN '21:00:00' AND '21:59:59'  THEN '21.00 - 21.59'
+    WHEN to_char(enter_er_time,'HH24:MI:SS') BETWEEN '22:00:00' AND '22:59:59'  THEN '22.00 - 22.59'
+    WHEN to_char(enter_er_time,'HH24:MI:SS') BETWEEN '23:00:00' AND '23:59:59'  THEN '23.00 - 23.59'
+    ELSE ' - '
+END  AS v_time,
+       SUM ( CASE WHEN  a.er_emergency_type = '1' THEN 1 ELSE 0 END ) AS  Resuscitate,
+       SUM ( CASE WHEN  a.er_emergency_type = '2' THEN 1 ELSE 0 END ) AS  Emergency,
+       SUM ( CASE WHEN  a.er_emergency_type = '3' THEN 1 ELSE 0 END ) AS  Urgent,
+       SUM ( CASE WHEN  a.er_emergency_type = '4' THEN 1 ELSE 0 END ) AS  Ac_illness,
+       SUM ( CASE WHEN  a.er_emergency_type = '5' THEN 1 ELSE 0 END ) AS  Non_Ac_illness
+FROM er_regist a
+inner join er_emergency_type    as c on c.er_emergency_type = a.er_emergency_type
+inner join er_emergency_level   as d on d.er_emergency_level_id = c.er_emergency_type
+INNER JOIN vn_stat as b ON a.vn = b.vn
+WHERE b.vstdate = CURRENT_DATE
+GROUP BY v_time
+ORDER BY v_time ASC ";
+$result_8 = pg_query($sql_er8);
 ?>
