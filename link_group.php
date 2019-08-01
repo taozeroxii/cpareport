@@ -36,7 +36,7 @@
  <section class="content">
       <div class="row">
         <div class="col-md-6">
-                                        <a href="https://pri.hdc.moph.go.th/hdc/main/index.php" class="btn btn-app" target="_blank">
+              <a href="https://pri.hdc.moph.go.th/hdc/main/index.php" class="btn btn-app" target="_blank">
                 <span class="hhh"> <i class="glyphicon glyphicon-hand-right">  </i> HDC (Health Data Center) ปราจีนบุรี</span>
               </a>  
 
@@ -50,13 +50,13 @@
 
       <div class="row">
         <div class="col-md-6">
-                  <a href="http://zone6.cbo.moph.go.th/phi/" class="btn btn-app" target="_blank">
+              <a href="http://zone6.cbo.moph.go.th/phi/" class="btn btn-app" target="_blank">
                 <span class="hhh"> <i class="glyphicon glyphicon-hand-right">   </i> HDC (Health Data Center) เขต 6</span>
               </a> 
                                                  
         </div>
         <div class="col-md-6">
-                            <a href="http://op.nhso.go.th/op/main/MainWebAction.do" class="btn btn-app" target="_blank">
+              <a href="http://op.nhso.go.th/op/main/MainWebAction.do" class="btn btn-app" target="_blank">
                 <span class="hhh">  <i class="glyphicon glyphicon-hand-right">  </i> OP/PP ระบบบันทึกข้อมูลผู้ป่วยนอกและส่งเสริมป้องกันโรครายบุคคล</span>
               </a>  
                                                                                             
@@ -100,8 +100,6 @@
               </a>                                                                                                
         </div>
     </div>  
-
-
 
 
 
