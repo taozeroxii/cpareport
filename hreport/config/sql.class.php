@@ -258,12 +258,27 @@ GROUP BY job
 ORDER BY job ASC ";
 $result_4 = pg_query($sql_er4);
 
+/*
+Resuscitate (กู้ชีพทันที)
+Emergency (ฉุกเฉินเร่งด่วน)
+Urgency (ด่วนมาก)
+Semi Urgency (ด่วน)
+Non Urgency (รอได้)
+*/
+
+
 $sql_er5 = " SELECT   es.er_refer_hosptype_name as hos
       ,SUM ( CASE WHEN  a.er_emergency_type = '1' THEN 1 ELSE 0 END ) AS  Resuscitate,
        SUM ( CASE WHEN  a.er_emergency_type = '2' THEN 1 ELSE 0 END ) AS  Emergency,
        SUM ( CASE WHEN  a.er_emergency_type = '3' THEN 1 ELSE 0 END ) AS  Urgent,
        SUM ( CASE WHEN  a.er_emergency_type = '4' THEN 1 ELSE 0 END ) AS  Ac_illness,
        SUM ( CASE WHEN  a.er_emergency_type = '5' THEN 1 ELSE 0 END ) AS  Non_Ac_illness
+
+      ,SUM ( CASE WHEN  a.er_emergency_type = '1' THEN 1 ELSE 0 END ) AS  กู้ชีพทันที,
+       SUM ( CASE WHEN  a.er_emergency_type = '2' THEN 1 ELSE 0 END ) AS  ฉุกเฉินเร่งด่วน,
+       SUM ( CASE WHEN  a.er_emergency_type = '3' THEN 1 ELSE 0 END ) AS  ด่วนมาก,
+       SUM ( CASE WHEN  a.er_emergency_type = '4' THEN 1 ELSE 0 END ) AS  ด่วน,
+       SUM ( CASE WHEN  a.er_emergency_type = '5' THEN 1 ELSE 0 END ) AS  รอได้
 FROM er_regist a
 inner join er_emergency_type    as c on c.er_emergency_type = a.er_emergency_type
 INNER JOIN vn_stat as b ON a.vn = b.vn
@@ -309,7 +324,7 @@ $sql_er7 = " SELECT CASE
     WHEN b.age_y BETWEEN '70' AND '74'  THEN '70-74'  
     WHEN b.age_y > '74'                 THEN '> 74' 
     ELSE ' '
-END  AS age
+END  AS อายุ
       ,SUM ( CASE WHEN  a.er_emergency_type = '1' THEN 1 ELSE 0 END ) AS  Resuscitate,
        SUM ( CASE WHEN  a.er_emergency_type = '2' THEN 1 ELSE 0 END ) AS  Emergency,
        SUM ( CASE WHEN  a.er_emergency_type = '3' THEN 1 ELSE 0 END ) AS  Urgent,
@@ -320,8 +335,8 @@ inner join er_emergency_type    as c on c.er_emergency_type = a.er_emergency_typ
 inner join er_emergency_level   as d on d.er_emergency_level_id = c.er_emergency_type
 INNER JOIN vn_stat as b ON a.vn = b.vn
 WHERE a.vstdate = CURRENT_DATE
-GROUP BY age
-ORDER BY age ASC
+GROUP BY อายุ
+ORDER BY อายุ ASC
  ";
 $result_7 = pg_query($sql_er7);
 
