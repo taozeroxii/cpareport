@@ -14,6 +14,12 @@ $res=mysqli_query($con,$topLevelItems);
          <span>หน้าหลัก</span> 
        </a>
      </li>
+           <li class="">
+        <a href="/report_20190801/" target="_blank" title="รายงานเดิม กำลังปรับปรุงเข้าไปไว้ในหน้าแรก">
+         <i class="fa fa-user text-aqua"></i>
+         <span>REPORT_OLD</span> 
+       </a>
+     </li>
      <?php 
      foreach($res as $item) {
       $id_main = $item['main_name'];
