@@ -169,9 +169,6 @@ $sql_cmi = " SELECT  CASE
          LIMIT 6 ";
 $row_cmi = pg_query($sql_cmi);
 
-
-
-
 //ER 
 
 $sql_er1 = " SELECT CASE
@@ -197,7 +194,6 @@ GROUP BY erpt
 ORDER BY erpt ASC ";
 $result_1 = pg_query($sql_er1);
 
-
 $sql_er2 = " SELECT   es.er_refer_sender_name as sender
       ,SUM ( CASE WHEN  a.er_emergency_type = '1' THEN 1 ELSE 0 END ) AS  Resuscitate,
        SUM ( CASE WHEN  a.er_emergency_type = '2' THEN 1 ELSE 0 END ) AS  Emergency,
@@ -212,7 +208,6 @@ INNER JOIN er_refer_sender as es ON es.er_refer_sender_id = er.er_refer_sender_i
 WHERE b.vstdate = CURRENT_DATE
 GROUP BY sender ";
 $result_2 = pg_query($sql_er2);
-
 
 $sql_er3 = " SELECT CASE
     WHEN er_leave_status_id = '1' THEN 'Admit'
@@ -266,19 +261,12 @@ Semi Urgency (ด่วน)
 Non Urgency (รอได้)
 */
 
-
 $sql_er5 = " SELECT   es.er_refer_hosptype_name as hos
       ,SUM ( CASE WHEN  a.er_emergency_type = '1' THEN 1 ELSE 0 END ) AS  Resuscitate,
        SUM ( CASE WHEN  a.er_emergency_type = '2' THEN 1 ELSE 0 END ) AS  Emergency,
        SUM ( CASE WHEN  a.er_emergency_type = '3' THEN 1 ELSE 0 END ) AS  Urgent,
        SUM ( CASE WHEN  a.er_emergency_type = '4' THEN 1 ELSE 0 END ) AS  Ac_illness,
        SUM ( CASE WHEN  a.er_emergency_type = '5' THEN 1 ELSE 0 END ) AS  Non_Ac_illness
-
-      ,SUM ( CASE WHEN  a.er_emergency_type = '1' THEN 1 ELSE 0 END ) AS  กู้ชีพทันที,
-       SUM ( CASE WHEN  a.er_emergency_type = '2' THEN 1 ELSE 0 END ) AS  ฉุกเฉินเร่งด่วน,
-       SUM ( CASE WHEN  a.er_emergency_type = '3' THEN 1 ELSE 0 END ) AS  ด่วนมาก,
-       SUM ( CASE WHEN  a.er_emergency_type = '4' THEN 1 ELSE 0 END ) AS  ด่วน,
-       SUM ( CASE WHEN  a.er_emergency_type = '5' THEN 1 ELSE 0 END ) AS  รอได้
 FROM er_regist a
 inner join er_emergency_type    as c on c.er_emergency_type = a.er_emergency_type
 INNER JOIN vn_stat as b ON a.vn = b.vn
