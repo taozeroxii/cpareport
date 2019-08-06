@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html>
 <?
- header( "refresh: 200; url=" );
+header( "refresh: 200; url=" );
 ?>
 <?php include"config/pg_con.class.php";
 include"config/func.class.php";
 include"config/time.class.php";
 include"config/sql.class.php";
-include"config/head.class.php"; 
+include"config/head.er.class.php"; 
 
 $bm = new Timer; 
 $bm->start();
@@ -123,6 +123,92 @@ for( $i = 0 ; $i < 100000 ; $i++ )
 													<?php
 													for ($j = 0 ; $j < $i ; $j++) {
 														$fieldname = pg_field_name($result_2, $j);
+														echo '<td class="d-div">' . $row_result[$fieldname] . '</td>';
+													} 
+													?>
+												</tr>
+												<?php  
+											}
+											?>                                   
+										</tbody>
+									</table>
+								</div>                
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="row">
+					<div class="col-md-6">
+						<div class="box">
+							<div class="box-header with-border">
+								<h3 class="box-title">แยกช่วงอายุ<small><?php echo " ข้อมูลวันที่ ".thaidatefull(date('Y-m-d')) ;?></small></h3>
+							</div>
+							<div class="box-body">
+								<table id="example1" class="table table-bordered table-striped">
+									<thead>
+										<tr>
+											<?php
+											$i = pg_num_fields($result_7);
+											for ($j = 0 ; $j < $i ; $j++) {
+												$fieldname = pg_field_name($result_7, $j);
+												echo '<th class="h-div">' . $fieldname . '</th>';
+											}
+											?>
+										</tr> 
+									</thead>
+									<tbody>
+										<? $rw=0;
+										while($row_result = pg_fetch_array($result_7)) 
+										{ 
+											$rw++;
+											?>
+											<tr>
+												<?php
+												for ($j = 0 ; $j < $i ; $j++) {
+													$fieldname = pg_field_name($result_7, $j);
+													echo '<td class="d-div">' . $row_result[$fieldname] . '</td>';
+												} 
+												?>
+											</tr>
+											<?php  
+										}
+										?>                                   
+									</tbody>
+								</table>
+							</div>
+						</div>
+					</div>
+
+					<div class="col-md-6">
+						<div class="box">
+							<div class="box-header with-border">
+								<h3 class="box-title">แยกช่วงเวลา</h3>
+							</div>
+							<div class="box-body">
+								<div id="">
+									<table id="example1" class="table table-bordered table-striped">
+										<thead>
+											<tr>
+												<?php
+												$i = pg_num_fields($result_8);
+												for ($j = 0 ; $j < $i ; $j++) {
+													$fieldname = pg_field_name($result_8, $j);
+													echo '<th class="h-div">' . $fieldname . '</th>';
+												}
+												?>
+											</tr> 
+										</thead>
+										<tbody>
+											<? $rw=0;
+											while($row_result = pg_fetch_array($result_8)) 
+											{ 
+												$rw++;
+												?>
+												<tr>
+													<?php
+													for ($j = 0 ; $j < $i ; $j++) {
+														$fieldname = pg_field_name($result_8, $j);
 														echo '<td class="d-div">' . $row_result[$fieldname] . '</td>';
 													} 
 													?>
@@ -309,113 +395,99 @@ for( $i = 0 ; $i < 100000 ; $i++ )
 						</div>
 					</div>
 				</div>
-	<div class="row">
-					<div class="col-md-6">
-						<div class="box">
-							<div class="box-header with-border">
-								<h3 class="box-title">แยกช่วงอายุ<small><?php echo " ข้อมูลวันที่ ".thaidatefull(date('Y-m-d')) ;?></small></h3>
-							</div>
-							<div class="box-body">
-								<table id="example1" class="table table-bordered table-striped">
-									<thead>
-										<tr>
-											<?php
-											$i = pg_num_fields($result_7);
-											for ($j = 0 ; $j < $i ; $j++) {
-												$fieldname = pg_field_name($result_7, $j);
-												echo '<th class="h-div">' . $fieldname . '</th>';
-											}
-											?>
-										</tr> 
-									</thead>
-									<tbody>
-										<? $rw=0;
-										while($row_result = pg_fetch_array($result_7)) 
-										{ 
-											$rw++;
-											?>
-											<tr>
-												<?php
-												for ($j = 0 ; $j < $i ; $j++) {
-													$fieldname = pg_field_name($result_7, $j);
-													echo '<td class="d-div">' . $row_result[$fieldname] . '</td>';
-												} 
-												?>
-											</tr>
-											<?php  
-										}
-										?>                                   
-									</tbody>
-								</table>
-							</div>
-						</div>
-					</div>
 
+
+<!-- 				<div class="row">
 					<div class="col-md-6">
 						<div class="box">
 							<div class="box-header with-border">
-								<h3 class="box-title">แยกช่วงเวลา</h3>
+								<h3 class="box-title">test</h3>
 							</div>
 							<div class="box-body">
-								<div id="">
-									<table id="example1" class="table table-bordered table-striped">
-										<thead>
-											<tr>
-												<?php
-												$i = pg_num_fields($result_8);
-												for ($j = 0 ; $j < $i ; $j++) {
-													$fieldname = pg_field_name($result_8, $j);
-													echo '<th class="h-div">' . $fieldname . '</th>';
-												}
-												?>
-											</tr> 
-										</thead>
-										<tbody>
-											<? $rw=0;
-											while($row_result = pg_fetch_array($result_8)) 
-											{ 
-												$rw++;
-												?>
-												<tr>
-													<?php
-													for ($j = 0 ; $j < $i ; $j++) {
-														$fieldname = pg_field_name($result_8, $j);
-														echo '<td class="d-div">' . $row_result[$fieldname] . '</td>';
-													} 
-													?>
-												</tr>
-												<?php  
-											}
-											?>                                   
-										</tbody>
-									</table>
-								</div>                
-							</div>
-						</div>
-					</div>
-				</div>
-			</section>
+								<div id="">    -->
+									<script type="text/javascript">
+// 										function getDataFromDb()
+// 										{
+// 											$.ajax({ 
+// 												url: "sql_er/er_r001.php" ,
+// 												type: "GET",
+// 												data: ''
+// 											})
+// 											.success(function(result) { 
+// 												var obj = jQuery.parseJSON(result);
+// 												if(obj != '')
+// 												{
+// 						  $("#myBody").empty();
+// 						  $.each(obj, function(key, val) {
+// 						  	var tr = "<tr>";
+// 						  	tr = tr + "<td>" + val['erpt'] 			 + "</td>";
+// 						  	tr = tr + "<td>" + val['Resuscitate'] 	 + "</td>";
+// 						  	tr = tr + "<td>" + val['Emergency'] 	 + "</td>";
+// 						  	tr = tr + "<td>" + val['Urgent'] 		 + "</td>";
+// 						  	tr = tr + "<td>" + val['Ac_illness"'] 	 + "</td>";
+// 						  	tr = tr + "<td>" + val['Non_Ac_illness'] + "</td>";
+// 						  	tr = tr + "</tr>";
+// 						  	$('#myTable > tbody:last').append(tr);
+// 						  });
+// 						}
+
+// 					});
+
+// 										}
+
+// setInterval(getDataFromDb, 10000);
+</script>
+<!-- </head>
+<body> -->
+<!-- 
+		<table id="myTable" class="table table-bordered table-striped">
+			<thead>
+				<tr>
+					<td > <div align="center">ประเภทผู้ป่วย </div></td>
+					<td > <div align="center">Resuscitate </div></td>
+					<td > <div align="center">Emergency </div></td>
+					<td > <div align="center">Urgent </div></td>
+					<td > <div align="center">Ac_illness </div></td>
+					<td > <div align="center">Non_Ac_illness </div></td>
+
+				</tr>
+			</thead>
+			<tbody id="myBody"></tbody>
+		</table> -->
+
+      
 		</div>
+	</div>
+</div>
+</div>
 
-		<?php include"config/footer.class.php"; ?>
-		<?php include"config/js.class.php" ?>
-		<?php include"modal/modal.class.php" ?>
-		<script src="hchart/js/highcharts.js"></script>
-		<script src="hchart/js/data.js"></script>
-		<script src="hchart/js/exporting.js"></script>  
 
-		<script>
-			$(function () {
-				$('#example1').DataTable()
-				$('#example2').DataTable({
-					'paging'      : true,
-					'lengthChange': false,
-					'searching'   : false,
-					'ordering'    : true,
-					'info'        : true,
-					'autoWidth'   : false
-				})
-			})
-		</script>
-	</body>
-	</html>
+
+
+</section>
+</div>
+
+<?php include"config/footer.class.php"; ?>
+<?php include"config/js.class.php" ?>
+<?php include"modal/modal.class.php" ?>
+<script src="hchart/js/highcharts.js"></script>
+<script src="hchart/js/data.js"></script>
+<script src="hchart/js/exporting.js"></script>  
+
+<script>
+	$(function () {
+		
+		$('#myTable').DataTable()
+		$('#example1').DataTable()
+		$('#example2').DataTable({
+			'paging'      : true,
+			'lengthChange': false,
+			'searching'   : false,
+			'ordering'    : true,
+			'info'        : true,
+			'autoWidth'   : false
+		})
+	})
+</script>
+</body>
+</html>
