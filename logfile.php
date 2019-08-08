@@ -19,23 +19,18 @@ $datelog = date('Y-m-d H:i:s')."<br>";
  $atv_code		= "Y";
  $func_code		= "N";
 
-$objConnect = mysql_connect("172.16.0.251","report","report") or die("Error Connect to Database");
-$objDB = mysql_select_db("cpareportdb");
-$strSQL = "INSERT INTO cpareport_logfile_read ";
-$strSQL .=" (com_name, type_join, ip_addess, mac_addess, datetime_read, atv_code, func_code) ";
-$strSQL .=" VALUES ";
-$strSQL .=" ('".$com_name."','".$type_join."','".$ip_addess."','".$mac_addess."','".$datetime_read."','".$atv_code."','".$func_code."')";
 
-$objQuery = mysql_query($strSQL);
-
-echo $strSQL;
-if($objQuery)
-{
-	echo "Save Done.";
+$servername = "172.16.0.251";
+$usernamez   = "report";
+$password   = "report";
+$database   = "cpareportdb";
+$conn = new mysqli($servername, $usernamez, $password, $database);
+if ($conn->connect_errno) {
+    die( "Failed to connect to MySQL : (" . $conn->connect_errno . ") " . $conn->connect_error);
 }
-else
-{
-	echo "Error Save ";
-} 
-mysql_close($objConnect);
+$conn->set_charset("utf8");
+
+$log = "INSERT INTO cpareport_logfile_read (com_name, type_join, ip_addess, mac_addess, datetime_read, atv_code, func_code) VALUES ('$com_name','$type_join','$ip_addess','$mac_addess','$datetime_read','$atv_code','$func_code')";
+$query = mysqli_query($conn,$log); 
+echo $log;
 ?>
