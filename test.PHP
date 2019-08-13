@@ -15,13 +15,33 @@
     include "config/head.class.php";
     include('config/my_con.class.php');
     ?>
+
+
+    <script src="jquery-1.11.1.min.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('#categories').change(function() {
+                $.ajax({
+                    type: 'POST',
+                    data: {
+                        categories: $(this).val()
+                    },
+                    url: 'select_menu.php',
+                    success: function(data) {
+                        $('#products').html(data);
+                    }
+                });
+                return false;
+            });
+        });
+    </script>
 </head>
 
 <body class="hold-transition skin-blue sidebar-mini">
     <?php if (isset($_SESSION['username']) == "" || isset($_SESSION['username']) == null) {
         echo "<script>window.location ='login.php';</script>";
     } ?>
-    
+
     <?php
     date_default_timezone_set("Asia/Bangkok"); //ตั้งโซนเวลา
     $month = date('m');
@@ -30,8 +50,8 @@
     $TIME = date("H:i:s");   //date("h:i:s a"); แบบมีpm am
     $today = $year . '-' . $month . '-' . $day . '  ' . $TIME;
 
-    $sql = " SELECT * FROM cpareport_mainmenu WHERE main_status = '1' AND main_type != '16' ORDER BY main_order ASC ";
-    $querymenu = mysqli_query($con, $sql);
+    $cpareport_mainmenu = " SELECT * FROM cpareport_mainmenu order by main_id";
+    $mainmenu = mysqli_query($con, $cpareport_mainmenu);
 
     $sql2 = " SELECT * FROM cpareport_report WHERE report_status = '1'  ORDER BY report_id ASC  ";
     $queryform = mysqli_query($con, $sql2);
@@ -134,9 +154,10 @@
                 <span class="logo-lg"><b>Re</b>port Hospital</span>
             </a>
             <nav class="navbar navbar-static-top">
-                <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
+                <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button" style="float:left;width:90%">
                     <span class="sr-only">Toggle navigation</span>
                 </a>
+                <a href="logout.php"><button style="float:right;">ออกจากระบบ</button></a>
             </nav>
         </header>
         <?php include "config/menuleft.class.php"; ?>
@@ -153,7 +174,7 @@
                         <div class="card-body">
                             <h5 class="card-title">ADD QUERYs || SQL file : <?php echo $maxId; ?> DATETIME: <?php echo $today; ?></h5>
                             <hr>
-                            <form action="#" method="POST">
+                            <form action="#" method="POST" name="multilistbox">
                                 <span>ส่วนของ query:cpareport_sql</span>
                                 <div class="row">
                                     <div class="col-lg-3">
@@ -192,11 +213,17 @@
                                 <div class="row">
                                     <div class="col-4 mb-3">
                                         <span class="input-group-text">แฟ้ม</span>
-                                        <select class="form-control" name="mainmenu" id="mainmenu" required>
-                                            <option value="" selected>main_menu</option>
-                                            <?php while ($rmainmenu = mysqli_fetch_assoc($querymenu)) { ?>
-                                                <option value="<?php echo $rmainmenu['main_type']; ?>"><?php echo $rmainmenu['main_name']; ?></option>
-                                            <? } ?>
+                                        <select name="categories" id="categories" class="form-control">
+                                            <option value="">เลือกข้อมูลหมวดหมู่</option>
+                                            <?php
+                                            while ($Result = mysqli_fetch_array($mainmenu)) {
+                                                ?>
+                                                <option value="<?php echo $Result['main_id']; ?>">
+                                                    <?php echo $Result['main_name']; ?>
+                                                </option>
+                                            <?php
+                                            }
+                                            ?>
                                         </select>
                                     </div>
                                     <div class="col-3">
@@ -206,7 +233,7 @@
                                     </div>
                                     <div class="col-1">
                                         <span class="input-group-text">เลขลำดับ</span>
-                                        <input type="number" class="form-control" name="menu_order" required />
+                                        <select class="form-control" name="products" id="products"></select>
                                     </div>
                                     <div class="col-4">
                                         <span class="input-group-text">form</span>
