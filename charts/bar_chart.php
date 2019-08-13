@@ -10,8 +10,6 @@ $data[] = array($result['ward'],(int)$result['name']);
 }
 
 
-
-
 //	$data = array($data);			
 echo json_encode($data);
 ?>
