@@ -147,12 +147,12 @@ foreach($res as $item) {
 		})
 	</script>
 	<script type="text/javascript">
-	//	function export_excel()
-	//	{
-	//		document.location = "export_excel_f002.php?c_department=<?php// echo $c_department; ?>&c_pttype=<?php //echo $c_pttype; ?>&send_excel=<?php //echo $send_excel; ?>//&datepickers=<?php //echo $datepickers; ?>&datepickert=<?php //echo $datepickert; ?>";
-	//	}
-	
-</script>
+		function export_excel()
+		{
+		//	document.location = "export_excel_f009.php?send_excel=<?php //echo $send_excel; ?>";
+		}
+	</script>
+
 
 </body>
 </html>
