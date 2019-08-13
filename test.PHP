@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<?php session_start(); ?>
 <html>
 
 <head>
@@ -17,6 +18,10 @@
 </head>
 
 <body class="hold-transition skin-blue sidebar-mini">
+    <?php if (isset($_SESSION['username']) == "" || isset($_SESSION['username']) == null) {
+        echo "<script>window.location ='login.php';</script>";
+    } ?>
+    
     <?php
     date_default_timezone_set("Asia/Bangkok"); //ตั้งโซนเวลา
     $month = date('m');
@@ -26,17 +31,17 @@
     $today = $year . '-' . $month . '-' . $day . '  ' . $TIME;
 
     $sql = " SELECT * FROM cpareport_mainmenu WHERE main_status = '1' AND main_type != '16' ORDER BY main_order ASC ";
-    $querymenu = mysqli_query($con,$sql);
+    $querymenu = mysqli_query($con, $sql);
 
     $sql2 = " SELECT * FROM cpareport_report WHERE report_status = '1'  ORDER BY report_id ASC  ";
-    $queryform = mysqli_query($con,$sql2);
+    $queryform = mysqli_query($con, $sql2);
     ?>
 
 
 
 
     <?php if (isset($_POST['submit'])) {
-      /*  echo $_POST['id'] . '<br> ';
+        /*  echo $_POST['id'] . '<br> ';
         echo $_POST['sql_names'] . '<br> ';
         echo $_POST['sql_file'] . '<br>';
         echo $_POST['textquery'] . '<br>';
@@ -59,7 +64,7 @@
         VALUES ('" . $_POST["id"] . "'
         ,'" . $_POST["sql_names"] . "'
         ,'" . $_POST["sql_file"] . "'
-        ,'" . addslashes($_POST["textquery"])."'
+        ,'" . addslashes($_POST["textquery"]) . "'
         ,'" . addslashes($_POST["textquerycode1"]) . "'
         ,'" . addslashes($_POST["textquerycode2"]) . "'
         ,'" . addslashes($_POST["textquerycode3"]) . "'
@@ -88,14 +93,15 @@
         $queryInsert = mysqli_query($con, $insertsql);
         $queryInsert2 = mysqli_query($con, $insertsql2);
 
-        if ($queryInsert && $queryInsert2 ) {
+        if ($queryInsert && $queryInsert2) {
             echo "<script>alert('เพิ่มข้อมูลเรียบร้อย');window.location=test.php;</script>";
             //echo "<script>window.location='test.php';</script>";
+        } else  
+            if ($queryInsert) {
+            echo "<script>alert('queryInsert ผิดพลาด');window.location=test.php;</script>";
+        } else if ($queryInsert2) {
+            echo "<script>alert('queryInsert2 ผิดพลาด');window.location=test.php;</script>";
         }
-        else  
-            if($queryInsert){ echo "<script>alert('queryInsert ผิดพลาด');window.location=test.php;</script>";}
-           else if($queryInsert2){ echo "<script>alert('queryInsert2 ผิดพลาด');window.location=test.php;</script>";}
-           
     }
     //กำหนดค่า pk ของการแจ้งซ่อมโดยให้A นำหน้าตามด้วยปีและเดือนที่ลงข้อมูลเลขจะรัน + 1 ต่อจากค่าสุดท้ายใน sql
     $code = "sql_0";
@@ -116,9 +122,10 @@
     //$maxId = substr($rs['last_id'], -4);  //ข้อมูลนี้จะติดรหัสตัวอักษรด้วย ตัดเอาเฉพาะตัวเลขท้ายนะครับ
     //$maxId = 237;   //<--- บรรทัดนี้เป็นเลขทดสอบ ตอนใช้จริงให้ ลบ! ออกด้วยนะครับ
     $maxId = ($maxId + 1);
-    $nextId = 'sql_0'.$maxId;
-    $sql_link = $sqllinkN.$maxId;
+    $nextId = 'sql_0' . $maxId;
+    $sql_link = $sqllinkN . $maxId;
     ?>
+
 
     <div class="wrapper">
         <header class="main-header">
@@ -160,12 +167,12 @@
                                     </div>
                                     <div class="col-lg-3">
                                         <span class="input-group-text">SQL file</span>
-                                        <input type="hidden" class="form-control" name="sql_file" value="<?php echo$nextId; ?>" />
+                                        <input type="hidden" class="form-control" name="sql_file" value="<?php echo $nextId; ?>" />
                                         <input type="text" class="form-control" name="sql_file" value="<?php echo $nextId; ?>" disabled />
                                     </div>
                                     <div class="col-lg-3">
                                         <span class="input-group-text">SQL link</span>
-                                        <input type="hidden" class="form-control" name="sql_link" value="<?php echo$sql_link; ?>" />
+                                        <input type="hidden" class="form-control" name="sql_link" value="<?php echo $sql_link; ?>" />
                                         <input type="text" class="form-control" name="sql_link" value="<?php echo $sql_link; ?>" disabled />
                                     </div>
                                 </div>
@@ -199,7 +206,7 @@
                                     </div>
                                     <div class="col-1">
                                         <span class="input-group-text">เลขลำดับ</span>
-                                        <input type="number" class="form-control" name="menu_order" required/>
+                                        <input type="number" class="form-control" name="menu_order" required />
                                     </div>
                                     <div class="col-4">
                                         <span class="input-group-text">form</span>
