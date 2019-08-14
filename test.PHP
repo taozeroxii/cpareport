@@ -61,7 +61,8 @@
 
 
     <?php if (isset($_POST['submit'])) {
-       /* echo 'id :'.$_POST['id'] . '<br> ';
+        /*  
+        echo 'id :'.$_POST['id'] . '<br> ';
         echo 'sql_names :'.$_POST['sql_names'] . '<br> ';
         echo 'sql_file  :'.$_POST['sql_file'] . '<br>';
         echo 'textquery  :'.$_POST['textquery'] . '<br>';
@@ -77,8 +78,10 @@
         echo 'menuid :'.$_POST['menuid'] . '<br>';
         echo 'mainmenu :'.$_POST['categories'] . '<br>';
         echo 'menu_sub :'.$_POST['menu_sub'] . '<br>';
+        echo 'menu_title : '.$_POST["menu_title"] . '<br>';
         echo 'menu_order :'.$_POST['products'] . '<br>';
-        echo 'menu_link :'.$_POST['menu_link'] . '<br>';*/
+        echo 'menu_link :'.$_POST['menu_link'] . '<br>';
+        */
 
         $insertsql = "INSERT INTO cpareport_sql (sql_id,sql_name,sql_file,sql_code,sql_subcode_1,sql_subcode_2,sql_subcode_3,sql_type,sq_link,sql_head,sql_updatedate,sql_userupdate,sql_status)
         VALUES ('" . $_POST["id"] . "'
@@ -98,12 +101,12 @@
 
 
         $insertsql2 = "INSERT INTO cpareport_menu (id,menu_main,menu_sub,menu_link,menu_file,menu_title,menu_order,menu_status,menu_userupdate,menu_datetimeupdate)
-        VALUES ('" . $_POST["id"] . "'
+        VALUES ('" . $_POST["menuid"] . "'
         ,'" . $_POST["categories"] . "'
         ,'" . $_POST["menu_sub"] . "'
         ,'" . $_POST["menu_link"] . "'
         ,'" . $_POST["sql_file"] . "'
-        ,'" . $_POST["sql_heads"] . "'
+        ,'" . $_POST["menu_title"] . "'
         ,'" . $_POST["products"] . "'
         ,'" . $_POST["sql_status"] . "'
         ,'" . $_POST["sql_userupdate"] . "'
@@ -118,10 +121,10 @@
             //echo "<script>window.location='test.php';</script>";
         } else  
             if ($queryInsert) {
-            echo "<script>alert('queryInsert ผิดพลาด');window.location=test.php;</script>";
-        } else if ($queryInsert2) {
-            echo "<script>alert('queryInsert2 ผิดพลาด');window.location=test.php;</script>";
-        }
+                echo "<script>alert('queryInsert ผิดพลาด');window.location=test.php;</script>";
+            }else if ($queryInsert2) {
+                echo "<script>alert('queryInsert2 ผิดพลาด');window.location=test.php;</script>";
+            }
     }
     //กำหนดค่า pk ของการแจ้งซ่อมโดยให้A นำหน้าตามด้วยปีและเดือนที่ลงข้อมูลเลขจะรัน + 1 ต่อจากค่าสุดท้ายใน sql
     $code = "sql_0";
@@ -172,15 +175,18 @@
                 <div class="container">
                     <div class="card ">
                         <div class="card-body">
-                            <h5 class="card-title">ADD QUERYs || SQL file : <?php echo $maxId; ?> DATETIME: <?php echo $today; ?></h5>
+                            <h5 class="card-title">ADD QUERYs || SQL file : <?php echo $maxId; ?> DATETIME: <?php echo $today; ?>
+                                <a style="float:right" href="./admin/index.php">เข้าสู่หน้าหลัก ADMIN</a>
+                            </h5>
 
-                            <form action="#" method="POST" >
+
+                            <form action="#" method="POST">
                                 <hr><span>ส่วนของเมนูซ้ายมือ cpareport_menu</span>
                                 <div class="row">
                                     <div class="col-4 mb-3">
                                         <span class="input-group-text">แฟ้ม</span>
                                         <select name="categories" id="categories" class="form-control">
-                                            <option value="">เลือกข้อมูลหมวดหมู่</option>
+                                            <option value="">เลือกข้อมูลหมวดหมู่ main_name</option>
                                             <?php
                                             while ($Result = mysqli_fetch_assoc($mainmenu)) {
                                                 ?>
@@ -192,10 +198,13 @@
                                             ?>
                                         </select>
                                     </div>
-                                    <div class="col-3">
-
-                                        <span class="input-group-text">หัวข้อย่อย</span>
+                                    <div class="col-2">
+                                        <span class="input-group-text">ชื่อหัวข้อย่อย</span>
                                         <input type="text" class="form-control" name="menu_sub" placeholder="menu_sub" required>
+                                    </div>
+                                    <div class="col-2">
+                                        <span class="input-group-text">เมื่อเอาเมาส์ชี้หัวข้อย่อย</span>
+                                        <input type="text" class="form-control" name="menu_title" placeholder="menu_title" required>
                                     </div>
                                     <div class="col-1">
                                         <span class="input-group-text">เลขลำดับ</span>
@@ -204,7 +213,7 @@
                                         </select>
 
                                     </div>
-                                    <div class="col-4">
+                                    <div class="col-3">
                                         <span class="input-group-text">form</span>
                                         <select class="form-control" name="menu_link" id="inputGroupSelect01" required>
                                             <option value="" selected>menu_link</option>
@@ -245,19 +254,19 @@
                                     <textarea name='textquerycode1' class="form-control " id="exampleFormControlTextarea1" rows="3" placeholder="sql_code_1  OR B..."></textarea>
                                     <textarea name='textquerycode2' class="form-control " id="exampleFormControlTextarea1" rows="3" placeholder="sql_code_2  OR B..."></textarea>
                                     <textarea name='textquerycode3' class="form-control " id="exampleFormControlTextarea1" rows="3" placeholder="sql_code_3 "></textarea>
-                              
 
-                                <br>
-                                <input type="hidden" class="form-control" name="menuid" value="<?php echo $maxidmenu; ?>" />
-                                <input type="hidden" class="form-control" name="insertdate" value="<?php echo $today; ?>" /><!-- ใส่ค่าใน 2 ตารางวันเวลาที่เพิ่มข้อมูล-->
-                                <input type="hidden" class="form-control" name="sql_userupdate" value="admin" /><!-- เอาชื่อผู้ login ไปใส่ -->
-                                <input type="hidden" class="form-control" name="sql_status" value="1" />
-                                <input type="hidden" class="form-control" name="sql_type" value="1" />
+
+                                    <br>
+                                    <input type="hidden" class="form-control" name="menuid" value="<?php echo $maxidmenu; ?>" />
+                                    <input type="hidden" class="form-control" name="insertdate" value="<?php echo $today; ?>" /><!-- ใส่ค่าใน 2 ตารางวันเวลาที่เพิ่มข้อมูล-->
+                                    <input type="hidden" class="form-control" name="sql_userupdate" value="admin" /><!-- เอาชื่อผู้ login ไปใส่ -->
+                                    <input type="hidden" class="form-control" name="sql_status" value="1" />
+                                    <input type="hidden" class="form-control" name="sql_type" value="1" />
+                                </div>
                         </div>
+                        <hr>
+                        <center> <button class="btn btn-info btn-block" style="font-size:24px" name="submit" type="submit"><i class="fa fa-save"></i> บันทึก </button></center>
                     </div>
-                    <hr>
-                    <center> <button class="btn btn-info btn-block" style="font-size:24px" name="submit" type="submit"><i class="fa fa-save"></i> บันทึก </button></center>
-                </div>
                 </div>
                 </form>
         </div>
