@@ -61,24 +61,24 @@
 
 
     <?php if (isset($_POST['submit'])) {
-        /*  echo $_POST['id'] . '<br> ';
-        echo $_POST['sql_names'] . '<br> ';
-        echo $_POST['sql_file'] . '<br>';
-        echo $_POST['textquery'] . '<br>';
-        echo $_POST['textquerycode1'] . '<br>';
-        echo $_POST['textquerycode2'] . '<br>';
-        echo $_POST['textquerycode3'] . '<br>';
-        echo $_POST['sql_type'] . '<br>';
-        echo $_POST['sql_link'] . '<br>';
-        echo $_POST['sql_heads'] . '<br>';
-        echo $_POST['insertdate'] . '<br>';
-        echo $_POST['sql_status'] . '<br><br>';
+       /* echo 'id :'.$_POST['id'] . '<br> ';
+        echo 'sql_names :'.$_POST['sql_names'] . '<br> ';
+        echo 'sql_file  :'.$_POST['sql_file'] . '<br>';
+        echo 'textquery  :'.$_POST['textquery'] . '<br>';
+        echo 'textquerycode1  :'.$_POST['textquerycode1'] . '<br>';
+        echo 'textquerycode2  :'.$_POST['textquerycode2'] . '<br>';
+        echo 'textquerycode3 : '.$_POST['textquerycode3'] . '<br>';
+        echo 'sql_type :'.$_POST['sql_type'] . '<br>';
+        echo 'sql_link :'.$_POST['sql_link'] . '<br>';
+        echo 'sql_heads :'.$_POST['sql_heads'] . '<br>';
+        echo 'insertdate  :'.$_POST['insertdate'] . '<br>';
+        echo 'sql_status :'.$_POST['sql_status'] . '<br><br>';
 
-        echo $_POST['menuid'] . '<br>';
-        echo $_POST['mainmenu'] . '<br>';
-        echo $_POST['menu_sub'] . '<br>';
-        echo $_POST['menu_order'] . '<br>';
-        echo $_POST['menu_link'] . '<br>'; */
+        echo 'menuid :'.$_POST['menuid'] . '<br>';
+        echo 'mainmenu :'.$_POST['categories'] . '<br>';
+        echo 'menu_sub :'.$_POST['menu_sub'] . '<br>';
+        echo 'menu_order :'.$_POST['products'] . '<br>';
+        echo 'menu_link :'.$_POST['menu_link'] . '<br>';*/
 
         $insertsql = "INSERT INTO cpareport_sql (sql_id,sql_name,sql_file,sql_code,sql_subcode_1,sql_subcode_2,sql_subcode_3,sql_type,sq_link,sql_head,sql_updatedate,sql_userupdate,sql_status)
         VALUES ('" . $_POST["id"] . "'
@@ -99,12 +99,12 @@
 
         $insertsql2 = "INSERT INTO cpareport_menu (id,menu_main,menu_sub,menu_link,menu_file,menu_title,menu_order,menu_status,menu_userupdate,menu_datetimeupdate)
         VALUES ('" . $_POST["id"] . "'
-        ,'" . $_POST["mainmenu"] . "'
+        ,'" . $_POST["categories"] . "'
         ,'" . $_POST["menu_sub"] . "'
         ,'" . $_POST["menu_link"] . "'
         ,'" . $_POST["sql_file"] . "'
         ,'" . $_POST["sql_heads"] . "'
-        ,'" . $_POST["menu_order"] . "'
+        ,'" . $_POST["products"] . "'
         ,'" . $_POST["sql_status"] . "'
         ,'" . $_POST["sql_userupdate"] . "'
         ,'" . $_POST["insertdate"] . "'
@@ -173,8 +173,49 @@
                     <div class="card ">
                         <div class="card-body">
                             <h5 class="card-title">ADD QUERYs || SQL file : <?php echo $maxId; ?> DATETIME: <?php echo $today; ?></h5>
-                            <hr>
-                            <form action="#" method="POST" name="multilistbox">
+
+                            <form action="#" method="POST" >
+                                <hr><span>ส่วนของเมนูซ้ายมือ cpareport_menu</span>
+                                <div class="row">
+                                    <div class="col-4 mb-3">
+                                        <span class="input-group-text">แฟ้ม</span>
+                                        <select name="categories" id="categories" class="form-control">
+                                            <option value="">เลือกข้อมูลหมวดหมู่</option>
+                                            <?php
+                                            while ($Result = mysqli_fetch_assoc($mainmenu)) {
+                                                ?>
+                                            <option value="<?php echo $Result['main_id']; ?>">
+                                                <?php echo $Result['main_name']; ?>
+                                            </option>
+                                            <?php
+                                            }
+                                            ?>
+                                        </select>
+                                    </div>
+                                    <div class="col-3">
+
+                                        <span class="input-group-text">หัวข้อย่อย</span>
+                                        <input type="text" class="form-control" name="menu_sub" placeholder="menu_sub" required>
+                                    </div>
+                                    <div class="col-1">
+                                        <span class="input-group-text">เลขลำดับ</span>
+                                        <select class="form-control" name="products" id="products">
+                                            <option value="0">0</option>
+                                        </select>
+
+                                    </div>
+                                    <div class="col-4">
+                                        <span class="input-group-text">form</span>
+                                        <select class="form-control" name="menu_link" id="inputGroupSelect01" required>
+                                            <option value="" selected>menu_link</option>
+                                            <?php while ($rqueryform = mysqli_fetch_assoc($queryform)) { ?>
+                                            <option value="<?php echo $rqueryform['report_name']; ?>" title="<?php echo $rqueryform['note']; ?>"><?php echo $rqueryform['report_name']; ?></option>
+                                            <? } ?>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <hr>
                                 <span>ส่วนของ query:cpareport_sql</span>
                                 <div class="row">
                                     <div class="col-lg-3">
@@ -198,72 +239,36 @@
                                     </div>
                                 </div>
 
-
                                 <div class="mt-3 mb-3">
                                     <span class="input-group-text" id="">Query *ควรเปลี่ยนค่าตัวแปล Query ที่ต้องมีการเลือกก่อนบันทึก* </span>
                                     <textarea name='textquery' class="form-control " id="exampleFormControlTextarea1" rows="3" placeholder="sql_code MAIN OR A..." required></textarea>
                                     <textarea name='textquerycode1' class="form-control " id="exampleFormControlTextarea1" rows="3" placeholder="sql_code_1  OR B..."></textarea>
                                     <textarea name='textquerycode2' class="form-control " id="exampleFormControlTextarea1" rows="3" placeholder="sql_code_2  OR B..."></textarea>
                                     <textarea name='textquerycode3' class="form-control " id="exampleFormControlTextarea1" rows="3" placeholder="sql_code_3 "></textarea>
-                                </div>
+                              
 
                                 <br>
-
-                                <hr><span>ส่วนของเมนูซ้ายมือ cpareport_menu</span>
-                                <div class="row">
-                                    <div class="col-4 mb-3">
-                                        <span class="input-group-text">แฟ้ม</span>
-                                        <select name="categories" id="categories" class="form-control">
-                                            <option value="">เลือกข้อมูลหมวดหมู่</option>
-                                            <?php
-                                            while ($Result = mysqli_fetch_array($mainmenu)) {
-                                                ?>
-                                                <option value="<?php echo $Result['main_id']; ?>">
-                                                    <?php echo $Result['main_name']; ?>
-                                                </option>
-                                            <?php
-                                            }
-                                            ?>
-                                        </select>
-                                    </div>
-                                    <div class="col-3">
-
-                                        <span class="input-group-text">หัวข้อย่อย</span>
-                                        <input type="text" class="form-control" name="menu_sub" placeholder="menu_sub" required>
-                                    </div>
-                                    <div class="col-1">
-                                        <span class="input-group-text">เลขลำดับ</span>
-                                        <select class="form-control" name="products" id="products"></select>
-                                    </div>
-                                    <div class="col-4">
-                                        <span class="input-group-text">form</span>
-                                        <select class="form-control" name="menu_link" id="inputGroupSelect01" required>
-                                            <option value="" selected>menu_link</option>
-                                            <?php while ($rqueryform = mysqli_fetch_assoc($queryform)) { ?>
-                                                <option value="<?php echo $rqueryform['report_name']; ?>" title="<?php echo $rqueryform['note']; ?>"><?php echo $rqueryform['report_name']; ?></option>
-                                            <? } ?>
-                                        </select>
-                                    </div>
-                                    <input type="hidden" class="form-control" name="menuid" value="<?php echo $maxidmenu; ?>" />
-                                    <input type="hidden" class="form-control" name="insertdate" value="<?php echo $today; ?>" /><!-- ใส่ค่าใน 2 ตารางวันเวลาที่เพิ่มข้อมูล-->
-                                    <input type="hidden" class="form-control" name="sql_userupdate" value="admin" /><!-- เอาชื่อผู้ login ไปใส่ -->
-                                    <input type="hidden" class="form-control" name="sql_status" value="1" />
-                                    <input type="hidden" class="form-control" name="sql_type" value="1" />
-                                </div>
+                                <input type="hidden" class="form-control" name="menuid" value="<?php echo $maxidmenu; ?>" />
+                                <input type="hidden" class="form-control" name="insertdate" value="<?php echo $today; ?>" /><!-- ใส่ค่าใน 2 ตารางวันเวลาที่เพิ่มข้อมูล-->
+                                <input type="hidden" class="form-control" name="sql_userupdate" value="admin" /><!-- เอาชื่อผู้ login ไปใส่ -->
+                                <input type="hidden" class="form-control" name="sql_status" value="1" />
+                                <input type="hidden" class="form-control" name="sql_type" value="1" />
                         </div>
-                        <hr>
-                        <center> <button class="btn btn-info btn-block" style="font-size:24px" name="submit" type="submit"><i class="fa fa-save"></i> บันทึก </button></center>
                     </div>
-                    </form>
+                    <hr>
+                    <center> <button class="btn btn-info btn-block" style="font-size:24px" name="submit" type="submit"><i class="fa fa-save"></i> บันทึก </button></center>
                 </div>
-
-
+                </div>
+                </form>
         </div>
-        <?php include "config/footer.class.php"; ?>
-        <?php include "config/js.class.php" ?>
-        <script src="node_modules/jquery/dist/jquery.min.js"></script>
-        <script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
-        <script src="node_modules/popper.js/dist/umd/popper.min.js"></script>
+
+
+    </div>
+    <?php include "config/footer.class.php"; ?>
+    <?php include "config/js.class.php" ?>
+    <script src="node_modules/jquery/dist/jquery.min.js"></script>
+    <script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="node_modules/popper.js/dist/umd/popper.min.js"></script>
 </body>
 
 </html>
