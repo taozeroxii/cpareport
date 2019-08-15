@@ -164,7 +164,7 @@
                     <div class="card ">
                         <div class="card-body">
                             <h5 class="card-title">ADD QUERYs || SQL file : <?php echo $maxId; ?> DATETIME: <?php echo $today; ?>
-                                <a style="float:right" href="../index.php">เข้าสู่หน้าหลัก Query</a>
+                                <a style="float:right" href="../index.php">เข้าสู่หน้าหลัก REPORT</a>
                             </h5>
 
                             <form action="#" method="POST">
@@ -235,7 +235,7 @@
                                 </div>
 
                                 <div class="mt-3">
-                                    <span class="input-group-text" id="">Query *ควรเปลี่ยนค่าตัวแปล Query ที่ต้องมีการเลือกก่อนบันทึก* </span>
+                                    <span class="input-group-text" id="">Query *ควรเปลี่ยนค่าตัวแปร Query ที่ต้องมีการเลือกก่อนบันทึก* </span>
                                     <textarea name='textquery' class="form-control " id="exampleFormControlTextarea1" rows="3" placeholder="sql_code MAIN OR A..." required></textarea>
                                     <textarea name='textquerycode1' class="form-control " id="exampleFormControlTextarea1" rows="3" placeholder="sql_code_1  OR B..."></textarea>
                                     <textarea name='textquerycode2' class="form-control " id="exampleFormControlTextarea1" rows="3" placeholder="sql_code_2  OR B..."></textarea>
