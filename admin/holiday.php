@@ -61,10 +61,11 @@ $queryr = pg_query($sqlr);
 <html>
 
 <head>
-  <meta charset="utf-8">
+<meta charset="utf-8">
   <meta name="author" content="Yui Nakorn">
   <title></title>
   <link rel="stylesheet" type="text/css" href="css/DT_bst.css">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
   <link rel="stylesheet" type="text/css" href="css/bst.min.css">
   <link href="https://fonts.googleapis.com/css?family=Kanit" rel="stylesheet">
   <script src="js/j182.js"></script>
@@ -76,20 +77,7 @@ $queryr = pg_query($sqlr);
   <?php if (isset($_SESSION['username']) == "" || isset($_SESSION['username']) == null) {
     echo "<script>window.location ='../login.php';</script>";
   } ?>
-  <ul class="nav nav-tabs" id="myTab" role="tablist">
-    <li class="nav-item">
-      <a class="nav-link active" id="home-tab" data-toggle="tab" href="../" role="tab" aria-controls="home" aria-selected="true">หน้าแรก</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" id="profile-tab" data-toggle="tab" href="../test.php" role="tab" aria-controls="profile" aria-selected="false">เพิ่มQuery</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false">Contact</a>
-    </li>
-    <a href="../logout.php"><button class="btn btn-secondary btn-sm" style="float:right; margin-top:0.2em;">ออกจากระบบ</button> </a>
-    <? echo "<span  class='new_sql' style='float:right; margin-top:0.6%; margin-right:2em;'>".'ผู้ใช้งาน : '.$_SESSION['fname'] . ' ' . $_SESSION['lname']; ?> STATUS: <? if ($_SESSION['status'] == '1') { echo "admin"; } ?> </span>
-  </ul>
-
+ <?php include 'menu.php';?>
 
 
 
