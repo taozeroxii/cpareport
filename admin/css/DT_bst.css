@@ -73,7 +73,10 @@ table.table {
 	margin-bottom: 6px !important;
 	max-width: none !important;
 }
-
+.not{
+	color: red;
+	font-weight: bold;
+}
 table.table thead .sorting,
 table.table thead .sorting_asc,
 table.table thead .sorting_desc,
