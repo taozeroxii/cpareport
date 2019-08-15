@@ -9,6 +9,7 @@
   <script src="js/j182.js"></script>
   <script src="js/j-dtb.js"></script>
   <script src="js/DT_bst.js"></script>
+  
     <?php
     include "../config/pg_con.class.php";
     include "../config/func.class.php";
@@ -166,11 +167,10 @@
                                 <a style="float:right" href="../index.php">เข้าสู่หน้าหลัก Query</a>
                             </h5>
 
-
                             <form action="#" method="POST">
                                 <hr><span>ส่วนของเมนูซ้ายมือ cpareport_menu</span>
                                 <div class="row">
-                                    <div class="col-4 mb-3">
+                                    <div class="col-4">
                                         <span class="input-group-text">แฟ้ม</span>
                                         <select name="categories" id="categories" class="form-control">
                                             <option value="">เลือกข้อมูลหมวดหมู่ main_name</option>
@@ -210,7 +210,6 @@
                                         </select>
                                     </div>
                                 </div>
-
                                 <hr>
                                 <span>ส่วนของ query:cpareport_sql</span>
                                 <div class="row">
