@@ -79,11 +79,6 @@ $queryr = pg_query($sqlr);
   } ?>
  <?php include 'menu.php';?>
 
-
-
-
-
-
   <hr>
   <div class="phone_head">วันหยุดในระบบ HosXp <span class="not"><sup>* ถ้ามีประกาศหยุดให้เข้าไปเพิ่มในระบบ HosXp มีผลกับการนัดผู้ป่วย</sup></span>
   </div>
