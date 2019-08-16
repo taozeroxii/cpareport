@@ -88,7 +88,7 @@ foreach($res as $item) {
 									<small><?php echo " เวลาที่ใช้ในการประมวลผล ".$bm->stop()." วินาที "; ?></small>
 								</h3>
 								<button type="" class="btn btn-default pull-right" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal"> Template </button>
-								<!-- <button type="" class="btn btn-default pull-right" class="btn btn-info btn-lg" onclick="export_excel()" > Excel </button> -->
+								<button type="" class="btn btn-default pull-right" class="btn btn-info btn-lg" onclick="export_excel()" > Excel </button>
 							</div>
 							<div class="box-body table-responsive"><span class="fcol"> </span>
 								<table id="example1" class="table table-bordered table-striped">
@@ -147,9 +147,9 @@ foreach($res as $item) {
 		})
 	</script>
 	<script type="text/javascript">
-		function export_excel()
+				function export_excel() 
 		{
-		//	document.location = "export_excel_f009.php?send_excel=<?php //echo $send_excel; ?>";
+			document.location = "export_excel_3.php?send_excel=<?php echo $send_excel; ?>&datepickers=<?php echo $datepickers; ?>&datepickert=<?php echo $datepickert; ?>&dep_dropdown=<?php echo $dep_dropdown; ?>";
 		}
 	</script>
 
