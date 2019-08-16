@@ -171,7 +171,7 @@ ul.DTTT_dropdown.dropdown-menu li:hover a {
 }
 
 /* TableTools information display */
-div.DTTT_print_info.modal {
+div.DTTT_print_info {
 	height: 150px;
 	margin-top: -75px;
 	text-align: center;
