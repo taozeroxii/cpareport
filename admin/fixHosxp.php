@@ -54,7 +54,7 @@ include('../config/my_con.class.php'); ?>
       <div class="col-lg-3 col-12 border " style="margin-left:5px">
         <form class="mt-3" action="#" method="POST">
           <div class="form-group">
-            <h3>เพิ่มรายการ <? echo $maxidmenu; ?></h3>
+            <h3>เพิ่มรายการ <? echo $maxidmenu; ?> <small><a href="https://docs.google.com/document/u/0/?tgif=d" target="blank">สร้างไฟล์เอกสาร คลิ๊ก!!</a> </small></h3>
             <label for="namelist">ชื่อรายการ</label>
             <input type="text" class="form-control" id="namelist" name='namelist' aria-describedby="emailHelp" placeholder="ชื่อรายการ" required />
           </div>
@@ -63,7 +63,7 @@ include('../config/my_con.class.php'); ?>
             <textarea type="text" class="form-control" id="Info" name='Info' placeholder="รายละเอียดปัญหา" required></textarea>
           </div>
           <div class="form-group">
-            <label for="linkdoc">link Google Doc </label>
+            <label for="linkdoc">link Google Doc ที่สร้างด้านบน</label>
             <input type="hidden" name="id" value="<? echo $maxidmenu; ?>">
             <input type="text" class="form-control" id="linkdoc" name='linkdoc' aria-describedby="emailHelp" placeholder="เช่น https://docs.google.com/document/d/1p" required />
           </div>
