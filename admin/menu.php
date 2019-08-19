@@ -12,3 +12,4 @@
     <? echo '<a href="../logout.php" ><button class="btn-secondary btn-sm " >ออกจากระบบ</button> </a>
   </nav>';?>
 
+
