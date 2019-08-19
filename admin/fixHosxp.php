@@ -67,7 +67,7 @@ include('../config/my_con.class.php'); ?>
             <input type="hidden" name="id" value="<? echo $maxidmenu; ?>">
             <input type="text" class="form-control" id="linkdoc" name='linkdoc' aria-describedby="emailHelp" placeholder="เช่น https://docs.google.com/document/d/1p" required />
           </div>
-          <button type="Submit" class="btn btn-primary" name="Submit" value="submit">เพิ่ม</button>
+          <button type="Submit" class="btn btn-secondary btn-block" name="Submit" value="submit">เพิ่ม</button>
         </form>
       </div>
 
