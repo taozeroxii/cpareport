@@ -87,7 +87,7 @@ $sql = " SELECT 'OPD' as oi,count(distinct case when opi.pttype in('23','20','24
                 count(distinct case when opi.pttype in('35','37','34','31','42','39','38','45') then ov.vn else null end) as sss,
                 count(distinct case when opi.pttype in('10') then ov.vn else null end) as finance,
                 count(distinct case when opi.pttype in('47','36') then ov.vn else null end) as ins,
-                count(distinct case when p.nationality in('48','56','57') then ov.vn else null end) as ufo,
+                count(distinct case when p.nationality in('46','48','56','57') then ov.vn else null end) as ufo,
                 count(distinct ov.vn) as all_vn, 
                 count(distinct ov.hn) as all_hn
         from ovst ov    
@@ -106,7 +106,7 @@ $sql_2 = "  SELECT 'IPD' as oi,count(distinct case when opi.pttype in('23','20',
               count(distinct case when opi.pttype in('35','37','34','31','42','39','38','45') then w.an else null end) as sss,
               count(distinct case when opi.pttype in('10') then w.an else null end) as finance,
               count(distinct case when opi.pttype in('47','36') then w.an else null end) as ins,
-              count(distinct case when p.nationality in('48','56','57') then w.an else null end) as ufo,
+              count(distinct case when p.nationality in('46','48','56','57') then w.an else null end) as ufo,
               count(distinct w.an) as all_an, 
               count(distinct opi.hn) as all_hn
         from ipt_bed_stat w
