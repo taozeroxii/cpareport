@@ -1,9 +1,9 @@
 <?php 
- /*include('../config/pg_con.class.php');
+ include('../config/pg_con.class.php');
  	if (!$conn) {
  		die("Connection failed: " . mysqli_connect_error());
  	}
-*/
+
 	$sql = "SELECT b.name AS bward,count(a.an) AS cc 
 		FROM ipt AS a 
 		INNER JOIN ward AS b ON b.ward = a.ward

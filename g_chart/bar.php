@@ -1,30 +1,22 @@
 <?php
+ include('../config/pg_con.class.php');
+ 	if (!$conn) {
+ 		die("Connection failed: " . mysqli_connect_error());
+ 	}
 
-$conn = "host=172.16.11.13 dbname=cpahdb user=iptscanview password=iptscanview";
-$conn = pg_connect($conn);
-pg_set_client_encoding($con, "utf8");
-
-if (pg_connect_errno($conn))
-{
-	echo "Failed to connect to DataBase: " . pg_connect_error();
-}else
-{
-
-	$sql = " SELECT b.name AS bward,count(a.an) AS cc 
-		FROM ipt AS a 
-		INNER JOIN ward AS b ON b.ward = a.ward
-		WHERE  regdate = CURRENT_DATE 
-		GROUP BY bward 
-		LIMIT 10 ";
-	
+	$sql = " SELECT b.name,COUNT(*) AS c_pttype
+                FROM ovst as a
+                INNER JOIN pttype as b ON b.pttype = a.pttype 
+                WHERE a.vstdate = CURRENT_DATE
+                GROUP BY b.name  ";
 	$result = pg_query($conn, $sql);
 	$title = [];
 	$value = [];
 	if (pg_num_rows($result) > 0) {
 		
 		while($row = pg_fetch_assoc($result)) {
-			$title[] = $row['bward'];
-			$value[] = $row['cc'];
+			$title[] = $row['name'];
+			$value[] = $row['c_pttype'];
 		}
 	}
 
@@ -41,7 +33,7 @@ if (pg_connect_errno($conn))
 
 	   <div id="report" style="width:100%;height: 370px"></div>
 		
-       <script type="text/javascript" src="echarts.min.js"></script>
+       <script type="text/javascript" src="js/echarts.min.js"></script>
 	   
        <script type="text/javascript">
 			var dom = document.getElementById("report");
