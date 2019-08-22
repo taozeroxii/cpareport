@@ -105,6 +105,61 @@
         });
 
 
+        $(document).ready(function(){
+            var shownIds = new Array();
+            setInterval(function(){
+                $.get("sql_rt/realtime_age18.php", function(data){
+                    data = $.parseJSON(data);
+                            $("#realtime_age18").html("<span class='rt'>" + data + "</span>");
+                });
+            }, 1000);
+        });
+
+        
+        $(document).ready(function(){
+            var shownIds = new Array();
+            setInterval(function(){
+                $.get("sql_rt/realtime_age40.php", function(data){
+                    data = $.parseJSON(data);
+                            $("#realtime_age40").html("<span class='rt'>" + data + "</span>");
+                });
+            }, 1000);
+        });
+
+        
+        $(document).ready(function(){
+            var shownIds = new Array();
+            setInterval(function(){
+                $.get("sql_rt/realtime_age60.php", function(data){
+                    data = $.parseJSON(data);
+                            $("#realtime_age60").html("<span class='rt'>" + data + "</span>");
+                });
+            }, 1000);
+        });
+
+        
+        $(document).ready(function(){
+            var shownIds = new Array();
+            setInterval(function(){
+                $.get("sql_rt/realtime_age80.php", function(data){
+                    data = $.parseJSON(data);
+                            $("#realtime_age80").html("<span class='rt'>" + data + "</span>");
+                });
+            }, 1000);
+        });
+
+        
+        $(document).ready(function(){
+            var shownIds = new Array();
+            setInterval(function(){
+                $.get("sql_rt/realtime_age80up.php", function(data){
+                    data = $.parseJSON(data);
+                            $("#realtime_age80up").html("<span class='rt'>" + data + "</span>");
+                });
+            }, 1000);
+        });
+
+
   </script>
 
 </head>

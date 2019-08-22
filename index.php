@@ -39,7 +39,7 @@ for( $i = 0 ; $i < 100000 ; $i++ )
       
       <section class="content">
         <div class="row">
-          <div class="col-md-6">
+          <div class="col-md-6 col-lg-2">
             <div class="box">
               <div class="box-header with-border">
                 <h3 class="box-title">Data <small><?php echo " ข้อมูลวันที่ ".thaidatefull(date('Y-m-d')) ;?></small></h3>
@@ -138,7 +138,7 @@ for( $i = 0 ; $i < 100000 ; $i++ )
               </div>
             </div>
 
-            <div class="col-md-6">
+            <div class="col-md-6 col-lg-8">
               <div class="box">
                 <div class="box-header with-border">
                   <h3 class="box-title">ค่า CMI ปี 2562  <small><?php echo " ข้อมูลวันที่ ".thaidatefull(date('Y-m-d')) ;?></small></h3>
@@ -174,18 +174,69 @@ for( $i = 0 ; $i < 100000 ; $i++ )
                 </div>
               </div>
             </div>
-          <!--   <div class="col-md-5">
-              <div class="box">
-                <div class="box-header with-border">
-                  <h3 class="box-title">TEST  <small><?php //echo " ข้อมูลวันที่ ".thaidatefull(date('Y-m-d')) ;?></small></h3>
-                </div>
-                <div class="box-body">
+
+
+            <div class="col-md-6 col-lg-2">
+            <div class="box">
+              <div class="box-header with-border">
+                <h3 class="box-title">ช่วงอายุผู้ป่วยที่เข้ารับบริการ </h3>
+              <br> 
+                <small><?php echo " ข้อมูลวันที่ ".thaidatefull(date('Y-m-d')) ;?></small>
+              </div>
+              <div class="box-body">
+                <table class="table table-bordered table-hover ">
+                  <tr>
+                    <th class="cen">ช่วงอายุ</th>
+                    <th class="cen">จำนวน(คน)</th>
+                  </tr>
+                  <tr class="ffont">
+                    <td>ต่ำกว่า 18 ปี </td>
+                    <td class="cen">
+                        <div class="rt" id="realtime_age18">
+                          <img src="image/loading2.gif" width="40px" height="20px">
+                        </div>
+                      </td>
+                    </tr>
+                    <tr class="ffont">
+                      <td>19-40 ปี </td>
+                      <td class="cen">
+                       <div class="rt" id="realtime_age40">
+                        <img src="image/loading2.gif" width="40px" height="20px">
+                      </div>
+                    </td>
+                  </tr>
+                  <tr class="ffont">
+                    <td>41-60 ปี </td>
+                    <td class="cen">
+                      <div class="rt" id="realtime_age60">
+                        <img src="image/loading2.gif" width="40px" height="20px">
+                      </div>
+                    </td>
+                  </tr>
+                  <tr class="ffont">
+                    <td>60 -80 ปี </td>
+                    <td class="cen">
+                      <div class="rt" id="realtime_age80">
+                        <img src="image/loading2.gif" width="40px" height="20px">
+                      </div>
+                    </td>
+                  </tr>
+                  <tr class="ffont">
+                    <td>มากกว่า 80 ปี  </td>        
+                    <td class="cen">
+                      <div class="rt" id="realtime_age80up">
+                        <img src="image/loading2.gif" width="40px" height="20px">
+                      </div>
+                    </td>
+                    </tr>
+                  </table>
                   <div id=""></div>
                 </div>
               </div>
-            </div> -->
-
+            </div>
           </div>
+
+
           <div class="row">
             <div class="col-md-6">
               <div class="box">
@@ -193,7 +244,7 @@ for( $i = 0 ; $i < 100000 ; $i++ )
                   <h3 class="box-title">ผู้มารับบริการ จำแนกตามสิทธิ์ <small><?php echo " ข้อมูลวันที่ ".thaidatefull(date('Y-m-d')) ;?></small></h3>
                 </div>
                 <div class="box-body">
-                  <div id="ptt"></div>
+                  <div id="ptt" ></div>
                 </div>
               </div>
             </div>
@@ -203,7 +254,7 @@ for( $i = 0 ; $i < 100000 ; $i++ )
                   <h3 class="box-title">ผู้มารับบริการ จำแนกตามเพศ <small><?php echo " ข้อมูลวันที่ ".thaidatefull(date('Y-m-d')) ;?></small></h3>
                 </div>
                 <div class="box-body">
-                  <div id="sex"></div>
+                  <div id="sex" ></div>
                 </div>
               </div>
             </div>
