@@ -29,11 +29,11 @@
             var shownIds = new Array();
 
             setInterval(function(){
-                $.get("realtime_opd.php", function(data){
+                $.get("../sql_rt/realtime_age18.php", function(data){
                     data = $.parseJSON(data);
                             $("#showData").html(data);
                 });
-            }, 5000);
+            }, 1000);
         });
     </script>
 </head>
