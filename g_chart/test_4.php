@@ -1,13 +1,27 @@
 <?php
- 
-$dataPoints = array( 
-	array("y" => 7,"label" => "March" ),
-	array("y" => 12,"label" => "April" ),
-	array("y" => 28,"label" => "May" ),
-	array("y" => 18,"label" => "June" ),
-	array("y" => 41,"label" => "July" )
-);
- 
+        $connstring = "host=172.16.11.13 dbname=cpahdb user=iptscanview password=iptscanview";
+        $conn = pg_connect($connstring);
+        pg_set_client_encoding($conn, "utf8");
+{
+    $data_points = array();
+    
+    $result = pg_query($conn, " SELECT b.name,COUNT(*) AS c_pttype
+                FROM ovst as a
+                INNER JOIN pttype as b ON b.pttype = a.pttype 
+                WHERE a.vstdate = CURRENT_DATE
+                GROUP BY b.name
+                 ");
+    
+    while($row = pg_fetch_array($result))
+    {        
+        $point = array("label" => $row['name'] , "y" => $row['c_pttype']);
+        
+        array_push($data_points, $point);        
+    }
+    
+    $sss =  json_encode($data_points, JSON_NUMERIC_CHECK);
+};
+
 ?>
 <!DOCTYPE HTML>
 <html>
@@ -18,21 +32,21 @@ window.onload = function() {
 var chart = new CanvasJS.Chart("chartContainer", {
 	animationEnabled: true,
 	title:{
-		text: "Revenue Chart of Acme Corporation"
+		text: " ทดสอบ "
 	},
 	axisY: {
-		title: "Revenue (in USD)",
-		prefix: "$",
-		suffix:  "k"
+		title: " จำนวน ",
+		prefix: "",
+		suffix: ""
 	},
 	data: [{
-		type: "bar",
-		yValueFormatString: "$#,##0K",
+		type: "column",
+		yValueFormatString: "",
 		indexLabel: "{y}",
 		indexLabelPlacement: "inside",
 		indexLabelFontWeight: "bolder",
 		indexLabelFontColor: "white",
-		dataPoints: <?php echo json_encode($dataPoints, JSON_NUMERIC_CHECK); ?>
+		dataPoints: <?php echo $sss; ?>
 	}]
 });
 chart.render();
