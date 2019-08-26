@@ -39,7 +39,7 @@ for( $i = 0 ; $i < 100000 ; $i++ )
       
       <section class="content">
         <div class="row">
-          <div class="col-md-6 col-lg-2">
+          <div class="col-md-3 col-lg-2">
             <div class="box">
               <div class="box-header with-border">
                 <h3 class="box-title">Data <small><?php echo " ข้อมูลวันที่ ".thaidatefull(date('Y-m-d')) ;?></small></h3>
@@ -172,7 +172,7 @@ for( $i = 0 ; $i < 100000 ; $i++ )
             </div>
 
 
-            <div class="col-md-6 col-lg-2">
+            <div class="col-md-3 col-lg-2">
             <div class="box">
               <div class="box-header with-border">
                 <h4>ช่วงอายุผู้ป่วยที่เข้ารับบริการ</h4>
