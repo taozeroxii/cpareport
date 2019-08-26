@@ -28,8 +28,9 @@ $sql = " SELECT  CASE
          WHERE i.dchdate between '2019-01-01' AND '2019-12-31'
          GROUP BY md,dm ,yy 
          ORDER BY yy,dm ASC ";
-$query = pg_query($sql);
-
+			$stmt = $con->prepare($sql);
+			$stmt ->execute();
+			$result = $stmt->get_result();
 ?>
 <!-- <!DOCTYPE html>
 <html lang="en">
