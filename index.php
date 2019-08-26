@@ -175,11 +175,12 @@ for( $i = 0 ; $i < 100000 ; $i++ )
             <div class="col-md-6 col-lg-2">
             <div class="box">
               <div class="box-header with-border">
-                <h4 class="box-title">ช่วงอายุผู้ป่วยที่เข้ารับบริการ </h4>
-                <small><?php echo " ข้อมูลวันที่ ".thaidatefull(date('Y-m-d')) ;?></small>
+                <h4>ช่วงอายุผู้ป่วยที่เข้ารับบริการ</h4>
+                <p><?php echo " ข้อมูลวันที่ ".thaidatefull(date('Y-m-d')) ;?></p>
               </div>
               <div class="box-body">
-                <table class="table table-bordered ">
+            
+                <table class="table table-bordered">
                   <tr>
                     <th class="cen">ช่วงอายุ</th>
                     <th class="cen">จำนวน(คน)</th>
@@ -248,12 +249,12 @@ for( $i = 0 ; $i < 100000 ; $i++ )
                     <td>มากกว่า 80 ปี  </td>        
                     <td class="cen">
                       <div class="rt" id="realtime_age80up">
-                        <img src="image/loading2.gif" width="40px" height="20px">
+                        <img src="image/loading2.gif" width="40px" height="25px">
                       </div>
                     </td>
                     </tr>
-                    <br> <br> 
                   </table> 
+                  <br>
                 </div>
               </div>
             </div>
