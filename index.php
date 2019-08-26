@@ -39,7 +39,7 @@ for( $i = 0 ; $i < 100000 ; $i++ )
       
       <section class="content">
         <div class="row">
-          <div class="col-md-6 col-lg-2">
+          <div class="col-md-3 col-lg-2">
             <div class="box">
               <div class="box-header with-border">
                 <h3 class="box-title">Data <small><?php echo " ข้อมูลวันที่ ".thaidatefull(date('Y-m-d')) ;?></small></h3>
@@ -100,8 +100,6 @@ for( $i = 0 ; $i < 100000 ; $i++ )
                         </div>
                       </td>
 
-
-
                     </tr>
                     <tr class="ffont">
                       <td>Refer in</td>
@@ -145,7 +143,6 @@ for( $i = 0 ; $i < 100000 ; $i++ )
                 </div>
                 <div class="box-body">
                   <div id="">  
-
                     <div id="container" style="min-width: 110px; height: 150px; margin: 0 auto"></div>
                     <table class="table" id="datatable">
                       <thead>
@@ -169,44 +166,71 @@ for( $i = 0 ; $i < 100000 ; $i++ )
                         ?>  
                       </tbody>
                     </table>
-
                   </div>                
                 </div>
               </div>
             </div>
 
 
-            <div class="col-md-6 col-lg-2">
+            <div class="col-md-3 col-lg-2">
             <div class="box">
               <div class="box-header with-border">
-                <h3 class="box-title">ช่วงอายุผู้ป่วยที่เข้ารับบริการ </h3>
-              <br> 
-                <small><?php echo " ข้อมูลวันที่ ".thaidatefull(date('Y-m-d')) ;?></small>
+                <h4>ช่วงอายุผู้ป่วยที่เข้ารับบริการ</h4>
+                <p><?php echo " ข้อมูลวันที่ ".thaidatefull(date('Y-m-d')) ;?></p>
               </div>
               <div class="box-body">
-                <table class="table table-bordered table-hover ">
+            
+                <table class="table table-bordered">
                   <tr>
                     <th class="cen">ช่วงอายุ</th>
                     <th class="cen">จำนวน(คน)</th>
                   </tr>
                   <tr class="ffont">
-                    <td>ต่ำกว่า 18 ปี </td>
+                    <td>ต่ำกว่า 16 ปี </td>
+                    <td class="cen">
+                        <div class="rt" id="realtime_age15">
+                          <img src="image/loading2.gif" width="40px" height="20px">
+                        </div>
+                      </td>
+                    </tr>
+
+                  <tr class="ffont">
+                    <td>16-25 ปี </td>
                     <td class="cen">
                         <div class="rt" id="realtime_age18">
                           <img src="image/loading2.gif" width="40px" height="20px">
                         </div>
                       </td>
                     </tr>
+
                     <tr class="ffont">
-                      <td>19-40 ปี </td>
+                      <td>26-30 ปี </td>
+                      <td class="cen">
+                       <div class="rt" id="realtime_age30">
+                        <img src="image/loading2.gif" width="40px" height="20px">
+                      </div>
+                    </td>
+                  </tr>
+
+                  <tr class="ffont">
+                      <td>31-40 ปี </td>
                       <td class="cen">
                        <div class="rt" id="realtime_age40">
                         <img src="image/loading2.gif" width="40px" height="20px">
                       </div>
                     </td>
                   </tr>
+
                   <tr class="ffont">
-                    <td>41-60 ปี </td>
+                    <td>41-50 ปี </td>
+                    <td class="cen">
+                      <div class="rt" id="realtime_age50">
+                        <img src="image/loading2.gif" width="40px" height="20px">
+                      </div>
+                    </td>
+                  </tr>
+                  <tr class="ffont">
+                    <td>51-60 ปี </td>
                     <td class="cen">
                       <div class="rt" id="realtime_age60">
                         <img src="image/loading2.gif" width="40px" height="20px">
@@ -225,12 +249,12 @@ for( $i = 0 ; $i < 100000 ; $i++ )
                     <td>มากกว่า 80 ปี  </td>        
                     <td class="cen">
                       <div class="rt" id="realtime_age80up">
-                        <img src="image/loading2.gif" width="40px" height="20px">
+                        <img src="image/loading2.gif" width="40px" height="25px">
                       </div>
                     </td>
                     </tr>
-                  </table>
-                  <div id="chart_age"></div>
+                  </table> 
+                  <br>
                 </div>
               </div>
             </div>
@@ -331,7 +355,7 @@ for( $i = 0 ; $i < 100000 ; $i++ )
         <div class="col-md-6">
           <div class="box">
             <div class="box-header with-border">
-              <h3 class="box-title">10 ลำดับโรคผู้ป่วยนอก <small><?php echo "ข้อมูล ".thaidate($todate_mback_start)." - ".thaidate($todate_mback_stop); ?></small></h3>
+              <h3 class="box-title">10 ลำดับโรคผู้ป่วยใน <small><?php echo "ข้อมูล ".thaidate($todate_mback_start)." - ".thaidate($todate_mback_stop); ?></small></h3>
             </div>
             <div class="box-body">
               <table class="table table-bordered table-hover">
