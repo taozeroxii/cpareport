@@ -214,7 +214,7 @@ for( $i = 0 ; $i < 100000 ; $i++ )
                     </td>
                   </tr>
                   <tr class="ffont">
-                    <td>60 -80 ปี </td>
+                    <td>61 -80 ปี </td>
                     <td class="cen">
                       <div class="rt" id="realtime_age80">
                         <img src="image/loading2.gif" width="40px" height="20px">
@@ -230,7 +230,7 @@ for( $i = 0 ; $i < 100000 ; $i++ )
                     </td>
                     </tr>
                   </table>
-                  <div id=""></div>
+                  <div id="chart_age"></div>
                 </div>
               </div>
             </div>

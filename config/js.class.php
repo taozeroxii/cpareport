@@ -24,8 +24,22 @@
   google.charts.setOnLoadCallback(top10opd);
   google.charts.setOnLoadCallback(bar_chart);
   google.charts.setOnLoadCallback(line_chart);
+  google.charts.setOnLoadCallback(chart_age);
 
+  function chart_age() { 
+  var jsonData = $.ajax({
+    url: 'charts/chart_age.php',
+    dataType:"json",
+    async: false,
+    success: function(jsonData)
+    {
+      var data  = new google.visualization.arrayToDataTable(jsonData);  
+      var chart = new google.visualization.PieChart(document.getElementById('chart_age'));
+      chart.draw(data);
 
+    } 
+  }).responseText;
+}
 
   function pie_chart() {
     var jsonData = $.ajax({
@@ -128,6 +142,8 @@ function top10opd() {
     } 
   }).responseText;
 }
+
+
 
 
 </script>
