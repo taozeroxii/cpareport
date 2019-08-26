@@ -355,7 +355,7 @@ for( $i = 0 ; $i < 100000 ; $i++ )
         <div class="col-md-6">
           <div class="box">
             <div class="box-header with-border">
-              <h3 class="box-title">10 ลำดับโรคผู้ป่วยนอก <small><?php echo "ข้อมูล ".thaidate($todate_mback_start)." - ".thaidate($todate_mback_stop); ?></small></h3>
+              <h3 class="box-title">10 ลำดับโรคผู้ป่วยใน <small><?php echo "ข้อมูล ".thaidate($todate_mback_start)." - ".thaidate($todate_mback_stop); ?></small></h3>
             </div>
             <div class="box-body">
               <table class="table table-bordered table-hover">
