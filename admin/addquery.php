@@ -62,7 +62,7 @@
 
 
     <?php if (isset($_POST['submit'])) {
-        /*  
+        /*
         echo 'id :'.$_POST['id'] . '<br> ';
         echo 'sql_names :'.$_POST['sql_names'] . '<br> ';
         echo 'sql_file  :'.$_POST['sql_file'] . '<br>';
@@ -82,7 +82,8 @@
         echo 'menu_title : '.$_POST["menu_title"] . '<br>';
         echo 'menu_order :'.$_POST['products'] . '<br>';
         echo 'menu_link :'.$_POST['menu_link'] . '<br>';
-        */
+        echo 'menu_order :'.$_POST['sql_userupdate'] . '<br>';*/
+        
 
         $insertsql = "INSERT INTO cpareport_sql (sql_id,sql_name,sql_file,sql_code,sql_subcode_1,sql_subcode_2,sql_subcode_3,sql_type,sq_link,sql_head,sql_updatedate,sql_userupdate,sql_status)
         VALUES ('" . $_POST["id"] . "'
@@ -220,7 +221,7 @@
                                     </div>
                                     <div class="col-lg-3">
                                         <span class="input-group-text">คำที่แสดงในใบรีพอร์ทในหน้านั้น </span>
-                                        <input type="text" class="form-control" name="sql_heads" placeholder="SQL HEAD" value="" required />
+                                        <input type="text" class="form-control" name="sql_heads" placeholder="SQL HEAD ควรเป็นชื่อรายงานและคำอธิบาย" value="" required />
                                     </div>
                                     <div class="col-lg-3">
                                         <span class="input-group-text">SQL file</span>
@@ -245,7 +246,7 @@
                                     <br>
                                     <input type="hidden" class="form-control" name="menuid" value="<?php echo $maxidmenu; ?>" />
                                     <input type="hidden" class="form-control" name="insertdate" value="<?php echo $today; ?>" /><!-- ใส่ค่าใน 2 ตารางวันเวลาที่เพิ่มข้อมูล-->
-                                    <input type="hidden" class="form-control" name="sql_userupdate" value="admin" /><!-- เอาชื่อผู้ login ไปใส่ -->
+                                    <input type="hidden" class="form-control" name="sql_userupdate" value="<?php echo $_SESSION['niname'];?>" /><!-- เอาชื่อผู้ login ไปใส่ -->
                                     <input type="hidden" class="form-control" name="sql_status" value="1" />
                                     <input type="hidden" class="form-control" name="sql_type" value="1" />
                                 </div>
