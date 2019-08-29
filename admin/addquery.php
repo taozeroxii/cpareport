@@ -215,7 +215,7 @@
                                 <div class="row">
                                     <div class="col-lg-3">
                                         <input type="hidden" class="form-control" name="id" value=" <?php echo $maxId; ?>" />
-                                        <span class="input-group-text">SQL names</span>
+                                        <span class="input-group-text">SQL names(ชื่อQUERY)</span>
                                         <input type="text" class="form-control" name="sql_names" placeholder="เช่น DH0101" required />
                                     </div>
                                     <div class="col-lg-3">
@@ -235,7 +235,7 @@
                                 </div>
 
                                 <div class="mt-3">
-                                    <span class="input-group-text" id="">Query *ควรเปลี่ยนค่าตัวแปร Query ที่ต้องมีการเลือกก่อนบันทึก* </span>
+                                    <span class="input-group-text" id="">Query *ควรเปลี่ยนค่าตัวแปร Query ที่ต้องมีการเลือกก่อนบันทึก* ช่วงวันที่ {datepickers} and {datepickert} คลินิก  {c_department} วอร์ด{ward_dropdown}</span>
                                     <textarea name='textquery' class="form-control " id="exampleFormControlTextarea1" rows="3" placeholder="sql_code MAIN OR A..." required></textarea>
                                     <textarea name='textquerycode1' class="form-control " id="exampleFormControlTextarea1" rows="3" placeholder="sql_code_1  OR B..."></textarea>
                                     <textarea name='textquerycode2' class="form-control " id="exampleFormControlTextarea1" rows="3" placeholder="sql_code_2  OR B..."></textarea>
