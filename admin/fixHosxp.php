@@ -67,6 +67,16 @@ include('../config/my_con.class.php'); ?>
             <input type="hidden" name="id" value="<? echo $maxidmenu; ?>">
             <input type="text" class="form-control" id="linkdoc" name='linkdoc' aria-describedby="emailHelp" placeholder="เช่น https://docs.google.com/document/d/1p" required />
           </div>
+          
+          <!--
+          <div class="input-group mb-3">
+            <div class="custom-file">
+              <input type="file" class="custom-file-input" id="inputGroupFile02">
+              <label class="custom-file-label" for="inputGroupFile02" aria-describedby="inputGroupFileAddon02">Choose file</label>
+            </div>
+          </div>
+            -->
+
           <button type="Submit" class="btn btn-secondary btn-block" name="Submit" value="submit">เพิ่ม</button>
         </form>
       </div>
@@ -96,12 +106,11 @@ include('../config/my_con.class.php'); ?>
               <td><?= $rowr["namelist"] ?></td>
               <td><?= $rowr["list"]; ?></td>
               <td>
-                <button type="Submit" class="btn btn-warning" name="Submit" value="edit">Edit<?= $rowr["fixid"] ?></button>
+                <button type="Submit" class="btn btn-warning" name="Submit" value="edit">Edit</button>
               </td>
               <td>
                 <a href="<? echo  $rowr["link"]; ?>" target="blank">
-                  <button type="Submit" class="btn btn-success" name="Submit" value="edit">
-                    View</button>
+                  <button type="Submit" class="btn btn-success" name="Submit" value="edit">View</button>
                 </a>
               </td>
             </tr>
