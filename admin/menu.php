@@ -5,7 +5,7 @@
       <a class="nav-link " id="home-tab" data-toggle="tab" href="index.php" role="tab" aria-controls="home" aria-selected="true">หน้าแรก</a>
       <a class="nav-link" id="profile-tab" data-toggle="tab" href="addquery.php" role="tab" aria-controls="profile" aria-selected="false">เพิ่มQuery</a>
       <a class="nav-link" id="contact-tab" data-toggle="tab" href="holiday.php" role="tab" aria-controls="contact" aria-selected="false">วันหยุด HOSxp</a>
-      <a class="nav-link" id="contact-tab" data-toggle="tab" href="https://trello.com/abhaihelphos/home" role="tab" aria-controls="contact" aria-selected="false">รวมปัญหาต่างๆ </a>
+      <a class="nav-link" id="contact-tab" data-toggle="tab" target="blank" href="https://trello.com/abhaihelphos/home" role="tab" aria-controls="contact" aria-selected="false">รวมปัญหาต่างๆ </a>
     </ul> ' ?>
     <? echo "<span  class='new_sql mr-4' >" . 'ผู้ใช้งาน : ' . $_SESSION['fname'] . ' ' . $_SESSION['lname'].' STATUS: ';
      if ($_SESSION['status']) { echo "admin  </span>";  } ?>
