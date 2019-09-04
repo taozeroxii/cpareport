@@ -33,6 +33,32 @@ border-radius: 20px;
  }
 
 
+.holiday{
+	width: 98%;
+	text-align: center;
+	padding: 0.1%;
+	margin: 0.1%;
+	color: #A20202;
+	font-weight: bold;
+}
+.ttd{
+	color: red;
+	font-weight: bold;
+	font-size: 1.2em;
+	 	font-family: 'Kanit', sans-serif;
+}
+.ttr{
+	font-weight: bold;
+	color: #0C542B;
+	font-size: 1.0em;
+	 	font-family: 'Kanit', sans-serif;
+}
+.ttl{
+		color: #321065;
+	font-weight: bold;
+	font-size: 1.2em;
+	 	font-family: 'Kanit', sans-serif;
+}
  .fc-day-number {
  	font-size: 1.8em;
  	font-weight: bold;
