@@ -62,8 +62,8 @@
 
 
     <?php if (isset($_POST['submit'])) {
-        /*
-        echo 'id :'.$_POST['id'] . '<br> ';
+        
+        /*echo 'id :'.$_POST['id'] . '<br> ';
         echo 'sql_names :'.$_POST['sql_names'] . '<br> ';
         echo 'sql_file  :'.$_POST['sql_file'] . '<br>';
         echo 'textquery  :'.$_POST['textquery'] . '<br>';
@@ -79,11 +79,13 @@
         echo 'menuid :'.$_POST['menuid'] . '<br>';
         echo 'mainmenu :'.$_POST['categories'] . '<br>';
         echo 'menu_sub :'.$_POST['menu_sub'] . '<br>';
-        echo 'menu_title : '.$_POST["menu_title"] . '<br>';
+     
+        echo 'menu_title : '. $reptitle. '<br>';
         echo 'menu_order :'.$_POST['products'] . '<br>';
         echo 'menu_link :'.$_POST['menu_link'] . '<br>';
-        echo 'menu_order :'.$_POST['sql_userupdate'] . '<br>';*/
-        
+        echo 'menu_order :'.$_POST['sql_userupdate'] . '<br>';
+        */
+        $reptitle = str_replace(' ', '_', $_POST["menu_title"] ); 
 
         $insertsql = "INSERT INTO cpareport_sql (sql_id,sql_name,sql_file,sql_code,sql_subcode_1,sql_subcode_2,sql_subcode_3,sql_type,sq_link,sql_head,sql_updatedate,sql_userupdate,sql_status)
         VALUES ('" . $_POST["id"] . "'
@@ -108,7 +110,7 @@
         ,'" . $_POST["menu_sub"] . "'
         ,'" . $_POST["menu_link"] . "'
         ,'" . $_POST["sql_file"] . "'
-        ,'" . $_POST["menu_title"] . "'
+        ,'" . $reptitle . "'
         ,'" . $_POST["products"] . "'
         ,'" . $_POST["sql_status"] . "'
         ,'" . $_POST["sql_userupdate"] . "'
