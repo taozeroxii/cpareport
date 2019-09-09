@@ -9,7 +9,7 @@ include('g_sql.php');
    </head>
    <body style="height: 50%; margin: 0">
      
-       <div id="admit_cur" style="height: 100%"></div>
+    <!--    <div id="admit_cur" style="height: 100%"></div> -->
 
        <script type="text/javascript" src="js/echarts.min.js"></script>
        <script type="text/javascript">

@@ -80,7 +80,7 @@ for( $i = 0 ; $i < 100000 ; $i++ )
                   <tr class="ffont">
                     <td>จำนวน Admit </td>
                     <td class="cen">
-                      <div class="rt" id="realtime_admit">
+                      <div class="rt" id="realtime_admit" data-toggle="modal" data-target="#myModal_rt_admit">
                         <img src="image/loading2.gif" width="40px" height="20px">
                       </div>
                     </td>
