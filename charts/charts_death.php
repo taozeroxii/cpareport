@@ -53,7 +53,7 @@ END AS md
          LEFT OUTER JOIN patient pt ON pt.hn = d.hn
          LEFT OUTER JOIN rpt_504_name c1 ON c1.ID = CAST ( COALESCE ( d.death_cause, '0' ) AS INTEGER )
          LEFT OUTER JOIN icd101 i1 ON i1.code = d.death_diag_1 
-         WHERE d.death_date between '2018-10-01' AND '2019-05-31'
+         WHERE d.death_date between '2018-10-01' AND '2019-09-30'
          GROUP BY md,dm,dy  
           ORDER BY dy,dm ASC";
 $query = pg_query($sql);

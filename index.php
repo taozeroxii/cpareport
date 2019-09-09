@@ -88,7 +88,7 @@ for( $i = 0 ; $i < 100000 ; $i++ )
                   <tr class="ffont">
                     <td>จำนวน DISc  </td>        
                     <td class="cen">
-                      <div class="rt" id="realtime_dsc">
+                      <div class="rt" id="realtime_dsc" data-toggle="modal" data-target="#myModal_rt_dsc">
                         <img src="image/loading2.gif" width="40px" height="20px">
                       </div>
                     </td>
