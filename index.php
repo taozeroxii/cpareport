@@ -12,9 +12,24 @@ for( $i = 0 ; $i < 100000 ; $i++ )
  $i;
 }
 ?>
+<style type="text/css">
+.header{
+    /*background:#F00;*/
+    /*height:100px;*/
+    position:fixed;
+    top:0;
+    width:100%;
+    z-index:1000;
+}
+.content{
+    /*background:#0C0;*/
+/*    margin-top:100px;
+    height:2000px;
+}*/
+</style>
 <body class="hold-transition skin-blue sidebar-mini">
-  <div class="wrapper">
-    <header class="main-header">
+  <div class="wrapper ">
+    <header class="main-header header ">
       <a href="#" class="logo">
         <span class="logo-mini"><b>r</b>CPA</span>
         <span class="logo-lg"><b>Re</b>port Hospital</span>
@@ -22,12 +37,9 @@ for( $i = 0 ; $i < 100000 ; $i++ )
 <nav class="navbar navbar-inverse">
   <div class="container-fluid">
     <div class="navbar-header">
-       <a href="#" class="logo-mini" data-toggle="push-menu" role="button">
+        <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
           <span class="sr-only">Toggle navigation</span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-        </a> 
+        </a>
     </div>
 
     <ul class="nav navbar-nav navbar-right">
