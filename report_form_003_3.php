@@ -71,13 +71,13 @@ foreach($res as $item) {
 				list($m,$d,$Y)  = split('/',$datepickert); 
 				$datepickert    = trim($Y)."-".trim($m)."-".trim($d);
 
-				$dep_dropdown   = $_POST['pct_dropdown'];    
+				$pct_dropdown   = $_POST['pct_dropdown'];    
 
 				if($datepickers != "--") {
 					$sql = " $sql_detail ";
 					$sql = str_replace("{datepickers}", "'$datepickers'", $sql);
 					$sql = str_replace("{datepickert}", "'$datepickert'", $sql);
-					$sql = str_replace("{c_department}", "'$dep_dropdown'", $sql);
+					$sql = str_replace("{pct_dropdown}", "'$dep_dropdown'", $sql);
 					$result = pg_query($sql);
 					?>
 					<div class="row">
