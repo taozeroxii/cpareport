@@ -22,6 +22,12 @@ foreach($res as $item) {
 	$sql_head   = $item['sql_head'];
 }
 ?>
+<style type="text/css">
+	.diagshowinput{
+		color: red;
+		font-weight: bold;
+	}
+</style>
 <body class="hold-transition skin-blue sidebar-mini">
 	<div class="wrapper">
 		<header class="main-header">
@@ -89,74 +95,76 @@ foreach($res as $item) {
 						<div class="col-xs-12">
 							<div class="box">
 								<div class="box-header">
-									<h3 class="box-title co_dep"><?php echo " ข้อมูลช่วงวันที่ ".thaiDatefull($datepickers)." ถึงวันที่ ".thaiDatefull($datepickert) ?> 
-									<small><?php echo " เวลาที่ใช้ในการประมวลผล ".$bm->stop()." วินาที "; ?></small>
-								</h3>
-								<button type="" class="btn btn-default pull-right" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal"> Template </button>
-								<button type="" class="btn btn-default pull-right" class="btn btn-info btn-lg" onclick="export_excel()" > Excel </button>
-							</div>
-							<div class="box-body table-responsive"><span class="fcol"> </span>
-								<table id="example1" class="table table-bordered table-striped">
-									<thead>
-										<tr>
-											<?php
-											$i = pg_num_fields($result);
-											for ($j = 0 ; $j < $i ; $j++) {
-												$fieldname = pg_field_name($result, $j);
-												echo '<th>' . $fieldname . '</th>';
-											}
-											?>
-										</tr> 
-									</thead>
-									<tbody>
-										<? $rw=0;
-										while($row_result = pg_fetch_array($result)) 
-										{ 
-											$rw++;
-											?>
+									<h3 class="box-title co_dep">
+										<?php echo " ข้อมูลช่วงวันที่ ".thaiDatefull($datepickers)." ถึงวันที่ ".thaiDatefull($datepickert);?> 
+										<?php echo "<span class='diagshowinput' > | DIagCOde >> ".$diag_1." - ".$diag_2."</span>" ;?>
+										<small><?php echo " เวลาที่ใช้ในการประมวลผล ".$bm->stop()." วินาที "; ?></small>
+									</h3>
+									<button type="" class="btn btn-default pull-right" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal"> Template </button>
+									<button type="" class="btn btn-default pull-right" class="btn btn-info btn-lg" onclick="export_excel()" > Excel </button>
+								</div>
+								<div class="box-body table-responsive"><span class="fcol"> </span>
+									<table id="example1" class="table table-bordered table-striped">
+										<thead>
 											<tr>
 												<?php
+												$i = pg_num_fields($result);
 												for ($j = 0 ; $j < $i ; $j++) {
 													$fieldname = pg_field_name($result, $j);
-													echo '<td>' . $row_result[$fieldname] . '</td>';
-												} 
+													echo '<th>' . $fieldname . '</th>';
+												}
 												?>
-											</tr>
-											<?php  
-										}
-										?>                                   
-									</tbody>
-								</table>			
+											</tr> 
+										</thead>
+										<tbody>
+											<? $rw=0;
+											while($row_result = pg_fetch_array($result)) 
+											{ 
+												$rw++;
+												?>
+												<tr>
+													<?php
+													for ($j = 0 ; $j < $i ; $j++) {
+														$fieldname = pg_field_name($result, $j);
+														echo '<td>' . $row_result[$fieldname] . '</td>';
+													} 
+													?>
+												</tr>
+												<?php  
+											}
+											?>                                   
+										</tbody>
+									</table>			
+								</div>
 							</div>
 						</div>
-					</div>
-				</div>  
-				<?php 
-			}
-			?>
-		</section>
-	</div>
-	<?php include"config/footer.class.php"; ?>
-	<?php include"config/js.class.php" ?>
-	<script>
-		$(function () {
-			$('#example1').DataTable()
-			$('#example2').DataTable({
-				'paging'      : true,
-				'lengthChange': false,
-				'searching'   : false,
-				'ordering'    : true,
-				'info'        : true,
-				'autoWidth'   : false
+					</div>  
+					<?php 
+				}
+				?>
+			</section>
+		</div>
+		<?php include"config/footer.class.php"; ?>
+		<?php include"config/js.class.php" ?>
+		<script>
+			$(function () {
+				$('#example1').DataTable()
+				$('#example2').DataTable({
+					'paging'      : true,
+					'lengthChange': false,
+					'searching'   : false,
+					'ordering'    : true,
+					'info'        : true,
+					'autoWidth'   : false
+				})
 			})
-		})
-	</script>
-	<script type="text/javascript">
-		function export_excel()
-		{
-			document.location = "export_excel_f001.php?send_excel=<?php echo $send_excel; ?>&datepickers=<?php echo $datepickers; ?>&datepickert=<?php echo $datepickert; ?>";
-		}
-	</script>
+		</script>
+		<script type="text/javascript">
+			function export_excel()
+			{
+				document.location = "export_excel_f001.php?send_excel=<?php echo $send_excel; ?>&datepickers=<?php echo $datepickers; ?>&datepickert=<?php echo $datepickert; ?>";
+			}
+		</script>
 
-</body>
-</html>
+	</body>
+	</html>
