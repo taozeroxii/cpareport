@@ -91,7 +91,7 @@ foreach($res as $item) {
 								<!-- <button type="" class="btn btn-default pull-right" class="btn btn-info btn-lg" onclick="export_excel()" > Excel </button> -->
 							</div>
 							<div class="box-body table-responsive"><span class="fcol"> </span>
-								<table id="example1" class="table table-bordered table-striped">
+								<table  class="table table-striped" >
 									<thead>
 										<tr>
 											<?php
