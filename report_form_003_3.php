@@ -77,7 +77,7 @@ foreach($res as $item) {
 					$sql = " $sql_detail ";
 					$sql = str_replace("{datepickers}", "'$datepickers'", $sql);
 					$sql = str_replace("{datepickert}", "'$datepickert'", $sql);
-					$sql = str_replace("{pct_dropdown}", "'$dep_dropdown'", $sql);
+					$sql = str_replace("{pct_dropdown}", "'$pct_dropdown'", $sql);
 					$result = pg_query($sql);
 					?>
 					<div class="row">
