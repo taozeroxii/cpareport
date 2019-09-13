@@ -258,6 +258,23 @@ function top10opd() {
   }
   load_pct();
 
+function load_icd(){
+    $.ajax({
+      url: "config/icd9cm.class.php",
+      method: 'GET',
+      data: {'selector':'icd'},
+      success: function(result){
+        var htmlOption = "";
+        data = JSON.parse(result);
+        $.each(data, function(i, item) {
+          htmlOption += "<option value='"+ item.code +"'>"+ item.code + " "+ item.name + "</option>";
+        });
+        $('#icd_dropdown').html(htmlOption);
+
+      }});
+  }
+  load_pct();
+
   function load_cli(){
     $.ajax({
       url: "config/clinic.class.php",
