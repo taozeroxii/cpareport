@@ -273,7 +273,7 @@ function load_icd(){
 
       }});
   }
-  load_pct();
+  load_icd();
 
   function load_cli(){
     $.ajax({
