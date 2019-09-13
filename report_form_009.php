@@ -149,7 +149,7 @@ foreach($res as $item) {
 	<script type="text/javascript">
 				function export_excel() 
 		{
-			document.location = "export_excel_3.php?send_excel=<?php echo $send_excel; ?>&datepickers=<?php echo $datepickers; ?>&datepickert=<?php echo $datepickert; ?>&icd_dropdown=<?php echo $dep_dropdown; ?>";
+			document.location = "export_excel_3.php?send_excel=<?php echo $send_excel; ?>&datepickers=<?php echo $datepickers; ?>&datepickert=<?php echo $datepickert; ?>&dep_dropdown=<?php echo $dep_dropdown; ?>";
 		}
 	</script>
 
