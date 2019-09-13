@@ -158,7 +158,7 @@ for( $i = 0 ; $i < 100000 ; $i++ )
             </div>
           </div>
 
-          <div class="col-md-6 col-lg-8">
+          <div class="col-md-6 col-lg-7">
             <div class="box">
               <div class="box-header with-border">
                 <h3 class="box-title">ค่า CMI ปี 2562  <small><?php echo " ข้อมูลวันที่ ".thaidatefull(date('Y-m-d')) ;?></small></h3>
@@ -194,7 +194,7 @@ for( $i = 0 ; $i < 100000 ; $i++ )
           </div>
 
 
-          <div class="col-md-3 col-lg-2">
+          <div class="col-md-4 col-lg-3">
             <div class="box">
               <div class="box-header with-border">
                 <h4>ช่วงอายุผู้ป่วยที่เข้ารับบริการ</h4>
@@ -440,6 +440,7 @@ for( $i = 0 ; $i < 100000 ; $i++ )
   </div>
 </div>
 </div>
+
 
 
 

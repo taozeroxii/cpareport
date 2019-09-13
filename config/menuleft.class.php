@@ -6,7 +6,15 @@ $res=mysqli_query($con,$topLevelItems);
 <aside class="main-sidebar">
   <section class="sidebar">
     <ul class="sidebar-menu" data-widget="tree">
-      <li class="header">เมนูรายงาน MENU REPORT</li>
+      <!-- <li class="header">เมนูรายงาน MENU REPORT</li> -->
+<li class="header">
+      <div class="search-container">
+        <form action="report/../s_report.php" name="s" id="s" method="get">
+          <input type="text" placeholder=" ! ค้นหารายงาน... " name="search_menu">
+          <button type="submit"><i class="fa fa-search"></i></button>
+        </form>
+      </div>
+    </li>
 
       <li class="">
         <a href="index.php">
@@ -14,57 +22,57 @@ $res=mysqli_query($con,$topLevelItems);
          <span>หน้าหลัก</span> 
        </a>
      </li>
-           <li class="">
-        <a href="/report_20190801/" target="_blank" title="รายงานเดิม กำลังปรับปรุงเข้าไปไว้ในหน้าแรก">
-         <i class="fa fa-user text-aqua"></i>
-         <span>REPORT_OLD</span> 
-       </a>
-     </li>
-     <?php 
-     foreach($res as $item) {
-      $id_main = $item['main_name'];
-      $id_sub  = $item['main_id'];
+<!--      <li class="">
+      <a href="/report_20190801/" target="_blank" title="รายงานเดิม กำลังปรับปรุงเข้าไปไว้ในหน้าแรก">
+       <i class="fa fa-user text-aqua"></i>
+       <span>REPORT_OLD</span> 
+     </a>
+   </li> -->
+   <?php 
+   foreach($res as $item) {
+    $id_main = $item['main_name'];
+    $id_sub  = $item['main_id'];
+    ?>
+    <li class="treeview">
+      <a href="#">
+        <i class="fa fa-folder text-aqua"></i>
+        <span><?php echo $id_main; ?></span> 
+        <span class="pull-right-container">
+          <i class="fa fa-angle-left pull-right text-aqua"></i>
+        </span>
+      </a>
+      <?php
+      $subItems =" SELECT *  FROM cpareport_menu WHERE menu_main = '".$id_sub."' AND menu_status = '1' ORDER BY menu_order ASC ";
+      $res2=mysqli_query($con,$subItems);
       ?>
-      <li class="treeview">
-        <a href="#">
-          <i class="fa fa-folder text-aqua"></i>
-          <span><?php echo $id_main; ?></span> 
-          <span class="pull-right-container">
-            <i class="fa fa-angle-left pull-right text-aqua"></i>
-          </span>
-        </a>
+      <ul class="treeview-menu">
         <?php
-        $subItems =" SELECT *  FROM cpareport_menu WHERE menu_main = '".$id_sub."' AND menu_status = '1' ORDER BY menu_order ASC ";
-        $res2=mysqli_query($con,$subItems);
-        ?>
-        <ul class="treeview-menu">
-          <?php
-          foreach($res2 as $subItem) {
-            $sub_menu   = $subItem['menu_sub'];
-            $title      = $subItem['menu_title'];
-            $mk         = $subItem['menu_link'];
-            $mf         = $subItem['menu_file'];
-            ?>
-            <li>
-              <?php
-              if ($mf <> "") {
-               $link_mk =   "<a href=".$mk."?sql=".$mf." title=".$title."><i class='fa fa-files-o text-aqua' ></i>".$sub_menu."</a>";
-             }else
-             if($mf == ""){
-               $link_mk =   "<a href=".$mk." title=".$title." target='_blank'><i class='fa fa-files-o text-aqua' ></i>".$sub_menu."</a>";
-             }
-             echo  $link_mk;
-             ?>
+        foreach($res2 as $subItem) {
+          $sub_menu   = $subItem['menu_sub'];
+          $title      = $subItem['menu_title'];
+          $mk         = $subItem['menu_link'];
+          $mf         = $subItem['menu_file'];
+          ?>
+          <li>
+            <?php
+            if ($mf <> "") {
+             $link_mk =   "<a href=".$mk."?sql=".$mf." title=".$title."><i class='fa fa-files-o text-aqua' ></i>".$sub_menu."</a>";
+           }else
+           if($mf == ""){
+             $link_mk =   "<a href=".$mk." title=".$title." target='_blank'><i class='fa fa-files-o text-aqua' ></i>".$sub_menu."</a>";
+           }
+           echo  $link_mk;
+           ?>
 
-           </li>
-           <?php
-         }
-         ?> 
-       </ul> 
-     </li>
-     <?php 
-   }
-   ?>
- </ul>  
+         </li>
+         <?php
+       }
+       ?> 
+     </ul> 
+   </li>
+   <?php 
+ }
+ ?>
+</ul>  
 </section>
 </aside>
