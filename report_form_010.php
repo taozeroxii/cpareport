@@ -55,10 +55,16 @@ foreach($res as $item) {
 											<input type="text" class="form-control" id="datepickert" placeholder="ถึงวันที่" name="datepickert" data-provide="datepicker" data-date-language="th" autocomplete="off" >
 											<select class="select2" name="lab_p" id="lab_p" 
 											style="width: 20%;" placeholder="" title="">
-											<option value="1">Pathology</option>
-											<option value="2">FNA&Cytology</option>
-											<option value="3">Cytology</option>
-											<option value="4">Papsmear</option>
+											<option value="2">11 Pathology</option>
+											<option value="5">13 Pap Smear</option>
+											<option value="3">12 FNA & CYTOLOGY & NON-NGN</option>
+											<option value="8">15 Immunohistochemistry</option>
+
+
+
+
+
+
 											</select>
 											<button type="submit" class="btn btn-default">Submit</button>
 										</form>
@@ -77,7 +83,7 @@ foreach($res as $item) {
 				list($m,$d,$Y)  = split('/',$datepickert); 
 				$datepickert    = trim($Y)."-".trim($m)."-".trim($d);
 
-				$dep_dropdown   = $_POST['lab_p'];    
+				 $dep_dropdown   = $_POST['lab_p'];    
 
 				if($datepickers != "--") {
 					$sql = " $sql_detail ";
@@ -85,6 +91,7 @@ foreach($res as $item) {
 					$sql = str_replace("{datepickert}", "'$datepickert'", $sql);
 					$sql = str_replace("{dep_dropdown}", "'$dep_dropdown'", $sql);
 					$result = pg_query($sql);
+					//echo $sql;
 					?>
 					<div class="row">
 						<div class="col-xs-12">
