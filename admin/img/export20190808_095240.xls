@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Report</title>
+  <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+  <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.min.css">
+  <link rel="stylesheet" href="bower_components/Ionicons/css/ionicons.min.css">
+  <link rel="stylesheet" href="bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css">
+  <link rel="stylesheet" href="plugins/select2/select2.min.css">
+  <link rel="stylesheet" href="dist/css/AdminLTE.min.css">
+  <link rel="stylesheet" href="dist/css/skins/_all-skins.min.css">
+  <link rel="stylesheet" href="plugins/datepicker/datepicker3.css">
+  <link rel="stylesheet" href="css/estyle.css">
+  <link href="https://fonts.googleapis.com/css?family=Prompt" rel="stylesheet">
+      <script type="text/javascript" src="http://code.jquery.com/jquery-1.7.1.js"></script>
+</head><br />
+<font size='1'><table class='xdebug-error xe-warning' dir='ltr' border='1' cellspacing='0' cellpadding='1'>
+<tr><th align='left' bgcolor='#f57900' colspan="5"><span style='background-color: #cc0000; color: #fce94f; font-size: x-large;'>( ! )</span> Warning: pg_query(): Query failed:  in D:\Ampps\www\report\export_excel_f009.php on line <i>40</i></th></tr>
+<tr><th align='left' bgcolor='#e9b96e' colspan='5'>Call Stack</th></tr>
+<tr><th align='center' bgcolor='#eeeeec'>#</th><th align='left' bgcolor='#eeeeec'>Time</th><th align='left' bgcolor='#eeeeec'>Memory</th><th align='left' bgcolor='#eeeeec'>Function</th><th align='left' bgcolor='#eeeeec'>Location</th></tr>
+<tr><td bgcolor='#eeeeec' align='center'>1</td><td bgcolor='#eeeeec' align='center'>0.0003</td><td bgcolor='#eeeeec' align='right'>141776</td><td bgcolor='#eeeeec'>{main}(  )</td><td title='D:\Ampps\www\report\export_excel_f009.php' bgcolor='#eeeeec'>...\export_excel_f009.php<b>:</b>0</td></tr>
+<tr><td bgcolor='#eeeeec' align='center'>2</td><td bgcolor='#eeeeec' align='center'>0.0332</td><td bgcolor='#eeeeec' align='right'>194576</td><td bgcolor='#eeeeec'><a href='http://www.php.net/function.pg-query' target='_new'>pg_query</a>
+(  )</td><td title='D:\Ampps\www\report\export_excel_f009.php' bgcolor='#eeeeec'>...\export_excel_f009.php<b>:</b>40</td></tr>
+</table></font>
+                                <table id="example1" class="table table-bordered table-striped">
+                                    <thead>
+                                        <tr>
+                                            <br />
+<font size='1'><table class='xdebug-error xe-warning' dir='ltr' border='1' cellspacing='0' cellpadding='1'>
+<tr><th align='left' bgcolor='#f57900' colspan="5"><span style='background-color: #cc0000; color: #fce94f; font-size: x-large;'>( ! )</span> Warning: pg_num_fields() expects parameter 1 to be resource, boolean given in D:\Ampps\www\report\export_excel_f009.php on line <i>46</i></th></tr>
+<tr><th align='left' bgcolor='#e9b96e' colspan='5'>Call Stack</th></tr>
+<tr><th align='center' bgcolor='#eeeeec'>#</th><th align='left' bgcolor='#eeeeec'>Time</th><th align='left' bgcolor='#eeeeec'>Memory</th><th align='left' bgcolor='#eeeeec'>Function</th><th align='left' bgcolor='#eeeeec'>Location</th></tr>
+<tr><td bgcolor='#eeeeec' align='center'>1</td><td bgcolor='#eeeeec' align='center'>0.0003</td><td bgcolor='#eeeeec' align='right'>141776</td><td bgcolor='#eeeeec'>{main}(  )</td><td title='D:\Ampps\www\report\export_excel_f009.php' bgcolor='#eeeeec'>...\export_excel_f009.php<b>:</b>0</td></tr>
+<tr><td bgcolor='#eeeeec' align='center'>2</td><td bgcolor='#eeeeec' align='center'>0.0339</td><td bgcolor='#eeeeec' align='right'>194664</td><td bgcolor='#eeeeec'><a href='http://www.php.net/function.pg-num-fields' target='_new'>pg_num_fields</a>
+(  )</td><td title='D:\Ampps\www\report\export_excel_f009.php' bgcolor='#eeeeec'>...\export_excel_f009.php<b>:</b>46</td></tr>
+</table></font>
+                                        </tr> 
+                                    </thead>
+                                    <tbody>
+                                        <br />
+<font size='1'><table class='xdebug-error xe-warning' dir='ltr' border='1' cellspacing='0' cellpadding='1'>
+<tr><th align='left' bgcolor='#f57900' colspan="5"><span style='background-color: #cc0000; color: #fce94f; font-size: x-large;'>( ! )</span> Warning: pg_fetch_array() expects parameter 1 to be resource, boolean given in D:\Ampps\www\report\export_excel_f009.php on line <i>56</i></th></tr>
+<tr><th align='left' bgcolor='#e9b96e' colspan='5'>Call Stack</th></tr>
+<tr><th align='center' bgcolor='#eeeeec'>#</th><th align='left' bgcolor='#eeeeec'>Time</th><th align='left' bgcolor='#eeeeec'>Memory</th><th align='left' bgcolor='#eeeeec'>Function</th><th align='left' bgcolor='#eeeeec'>Location</th></tr>
+<tr><td bgcolor='#eeeeec' align='center'>1</td><td bgcolor='#eeeeec' align='center'>0.0003</td><td bgcolor='#eeeeec' align='right'>141776</td><td bgcolor='#eeeeec'>{main}(  )</td><td title='D:\Ampps\www\report\export_excel_f009.php' bgcolor='#eeeeec'>...\export_excel_f009.php<b>:</b>0</td></tr>
+<tr><td bgcolor='#eeeeec' align='center'>2</td><td bgcolor='#eeeeec' align='center'>0.0340</td><td bgcolor='#eeeeec' align='right'>194864</td><td bgcolor='#eeeeec'><a href='http://www.php.net/function.pg-fetch-array' target='_new'>pg_fetch_array</a>
+(  )</td><td title='D:\Ampps\www\report\export_excel_f009.php' bgcolor='#eeeeec'>...\export_excel_f009.php<b>:</b>56</td></tr>
+</table></font>
+                                   
+                                    </tbody>
+                                </table>            
+
+                
+    <script type="text/javascript">
+        function export_excel()
+        {
+            document.location = "export_excel_f009.php?send_excel=";
+        }
+    </script>
+
+
+</body>
+</html>

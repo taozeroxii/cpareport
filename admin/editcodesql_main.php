@@ -1,7 +1,7 @@
 <?php
 include('../config/my_con.class.php');
 $s = $_GET['search_menu'];
-$topLevelItems = " SELECT * FROM cpareport_menu WHERE menu_status = '1' AND menu_sub LIKE '%%$s%%'  ";
+$topLevelItems = " SELECT * FROM cpareport_sql  ";
 $res=mysqli_query($con,$topLevelItems);
 ?>
 
@@ -15,7 +15,7 @@ $res=mysqli_query($con,$topLevelItems);
 		body{
 			font-family: 'Kanit', sans-serif;
 		}
-		#stepsContainer {
+/*		#stepsContainer {
 			text-align: center;
 		}
 		.claimSteps {
@@ -65,7 +65,7 @@ $res=mysqli_query($con,$topLevelItems);
 	text-align: center;
 }
 .button {
-  background-color: #4CAF50; /* Green */
+  background-color: #4CAF50; 
   border: none;
   color: white;
   padding: 15px 32px;
@@ -92,7 +92,7 @@ input[type=text] {
 
 input[type=text]:focus {
   width: 20%;
-}
+}*/
 	</style>
 
 </head>
@@ -101,33 +101,33 @@ input[type=text]:focus {
 
 <body>
 
- <div class="search">
+<!--  <div class="search">
         <form action="" name="s" id="s" method="get">
           <input type="text" placeholder=" ! ค้นหารายงาน... " name="search_menu">
           <button class="button" type="submit">ค้นหารายงาน</button>
         </form>
-</div>
+</div> -->
 	<div class="container">
 		<div class="claimHead col-md-12">
 			<div class="submitHeader" style="margin-top: 60px; margin-bottom: 60px; margin-left: 30px;">
-				<h1 style="font-size: 36px;">รายการคำที่ค้นหารายงานของคุณคือ - - >   <span class="sss"><?php echo $s; ?></span></h1>
-				<p style="font-size: 18px;">Report Search...</p>
+				<!-- <h1 style="font-size: 36px;">EDIT - - >   <span class="sss"><?php //echo $s; ?></span></h1> -->
+				<!-- <p style="font-size: 18px;">Report Search...</p> -->
 			</div>
 
 
 			<?php
 			foreach($res as $item) {
-				$mk    = $item['menu_link'];
-				$mf    = $item['menu_file'];
-				$ms    = $item['menu_sub'];
-				$title = $item['title'];
+				// $mk    = $item['menu_link'];
+				// $mf    = $item['menu_file'];
+				// $ms    = $item['menu_sub'];
+				// $title = $item['title'];
 
-				if ($mf <> "") {
-					$link_mk =   " <a href=".$mk."?sql=".$mf." title=".$title.">".$ms."</a> ";
-				}else
-				if($mf == ""){
-					$link_mk =   " <a href=".$mk." title=".$title." target='_blank'>".$ms."</a> ";
-				}
+				// if ($mf <> "") {
+				// 	$link_mk =   " <a href=".$mk."?sql=".$mf." title=".$title.">".$ms."</a> ";
+				// }else
+				// if($mf == ""){
+				// 	$link_mk =   " <a href=".$mk." title=".$title." target='_blank'>".$ms."</a> ";
+				// }
 				?>
 				<table width="100%">
 					<tr>
@@ -137,7 +137,7 @@ input[type=text]:focus {
 
 				<div id="stepsContainer">
 					<div class="col-md-12 stepsBox">
-						<div class="claimSteps" id="stepOne" title="edit"><?php echo $link_mk; ?>
+						<div class="claimSteps" id="stepOne" title="edit"><?php echo $item['sql_code'];; ?>
 
 					</div>
 				</div>
