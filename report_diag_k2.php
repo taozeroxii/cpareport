@@ -87,7 +87,7 @@ foreach($res as $item) {
 					$sql = " $sql_detail ";
 					$sql = str_replace("{datepickers}", "'$datepickers'", $sql);
 					$sql = str_replace("{datepickert}", "'$datepickert'", $sql);
-					$sql = str_replace("{diag_1}", "'$diag_2'", $sql);
+					$sql = str_replace("{diag_1}", "'$diag_1'", $sql);
 					$sql = str_replace("{diag_2}", "'$diag_2'", $sql);
 					$result = pg_query($sql);
 					?>
