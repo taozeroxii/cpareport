@@ -146,19 +146,6 @@ input[type=text]:focus {
 	</div>
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
 	<?php 
 }
 ?>
