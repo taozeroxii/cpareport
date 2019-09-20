@@ -16,6 +16,7 @@ $res=mysqli_query($con,$topLevelItems);
 			font-family: 'Kanit', sans-serif;
 			/*background: #000;*/
 			/*color: #A93226;*/
+			background-image: url("img/giphy.gif");
 		}
 		.aaa{
 
@@ -48,10 +49,10 @@ $res=mysqli_query($con,$topLevelItems);
 			text-align: center;
 		}
 		.button1 {
-			background-color: #0F0F0F; /* Green */
-			border: 2px solid #ddd;
+			background-color: #0519C1;
+			border: 2px solid #0DE931;
 			border: none;
-			color: white;
+			color: #0DE931;
 			padding: 15px 32px;
 			text-align: center;
 			text-decoration: none;
@@ -63,10 +64,10 @@ $res=mysqli_query($con,$topLevelItems);
 
 		}
 		.button1:hover {
-			background-color: #5DADE2; /* Green */
+			background-color: #5DADE2; 
 			border: 2px solid #000;
 			border: none;
-			color: #000;
+			color: #E40E0E;
 			padding: 15px 32px;
 			text-align: center;
 			text-decoration: none;
@@ -78,8 +79,8 @@ $res=mysqli_query($con,$topLevelItems);
 			font-weight: bold;
 		}
 		.button {
-			background-color: #D35400; /* Green */
-			border: 2px solid #000;
+			background-color: #A006AA; 
+			border: 2px solid #E40E0E;
 			border: none;
 			color: white;
 			padding: 15px 32px;
@@ -119,7 +120,7 @@ $res=mysqli_query($con,$topLevelItems);
 			text-align: center;
 		}
 		.bbb{
-			color: #8E44AD;
+			color: #E40E0E;
 			font-size: 1.4em;
 			font-weight: bold;
 		}
@@ -127,9 +128,16 @@ $res=mysqli_query($con,$topLevelItems);
 			text-align: center;
 			font-weight: bold;
 			font-size: 1.2em;
+			color: #E40E0E;
+			/*background:#F8F1F9;*/
+		}
+		.www{
+			background:#F8F1F9;
+			text-align: center;
 		}
 		.c{
 			font-weight: bold;
+			color: #E40E0E;
 		}
 	</style>
 
@@ -147,7 +155,7 @@ $res=mysqli_query($con,$topLevelItems);
 
 	</div>
 	<hr>
-	<div class="">
+	<div class="www">
 		<span class="aaa" >* Parameter NOT : </span>
 		<span class="c">{datepickers} AND {datepickert} </span>
 		<span class="bbb" >	| </span>
