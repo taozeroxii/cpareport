@@ -20,15 +20,16 @@ $res = mysqli_query($con, $topLevelItems);
 	<link href="https://fonts.googleapis.com/css?family=Kanit&display=swap" rel="stylesheet">
 	<style type="text/css">
 		body {
-		
+
 			background: #0B5345;
 		}
 
 		.aaa {
-			width: 100%;
-			padding: 1%;
+			margin-left:3%;
+			margin-right:-32px;
+			width: 15%;
 			color: #fff;
-			padding: 0.8%;
+			display: inline-block;
 		}
 
 		a:link {
@@ -59,7 +60,6 @@ $res = mysqli_query($con, $topLevelItems);
 		.button {
 			background-color: #D35400;
 			/* Green */
-			border: 2px solid #000;
 			border: none;
 			color: white;
 			padding: 15px 32px;
@@ -67,7 +67,7 @@ $res = mysqli_query($con, $topLevelItems);
 			text-decoration: none;
 			display: inline-block;
 			font-size: 16px;
-			cursor: pointer;
+			margin-top: -10px;
 		}
 
 		input[type=text] {
@@ -110,27 +110,24 @@ $res = mysqli_query($con, $topLevelItems);
 	</div>
 	<hr>
 
-			<?php
-			$rw == 0;
-			foreach ($res as $item) {
-				$rw++;
-				$mk    = $item['menu_link'];
-				$mf    = $item['menu_file'];
-				$ms    = $item['menu_sub'];
-				$title = "Edit SQL Report";
-				$sqlup = "sqlupdate.php";
-				$link_mk =   " <a target='_blank' href=" . $sqlup . "?sql=" . $mf . " title=" . $title . ">" . $ms . "</a> ";
-				?>
-
-				<div id="aaa">
-					<div class="bbb">
-						<div class="ccc" id="stepOne" title="<?php echo $title; ?>"><?php echo "<span class='rw'> " . $rw . ". </span> " . $link_mk; ?>
-
-						</div>
-					</div>
-				</div>
-			<?php }?>
-
+	<div class="container-fulid">
+		<?php
+		$rw == 0;
+		foreach ($res as $item) {
+			$rw++;
+			$mk    = $item['menu_link'];
+			$mf    = $item['menu_file'];
+			$ms    = $item['menu_sub'];
+			$title = "Edit SQL Report";
+			$sqlup = "sqlupdate.php";
+			$link_mk =   " <a target='_blank' href=" . $sqlup . "?sql=" . $mf . " title=" . $title . ">" . $ms . "</a> ";
+			?>
+			<div class="aaa">
+				<div title="<?php echo $title; ?>"><?php echo "<span class='rw'> " . $rw . ". </span> " . $link_mk; ?></div>
+			</div>
+		<?php } ?>
+	</div>
+	<hr>
 </body>
 
 </html>
