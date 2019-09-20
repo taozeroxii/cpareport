@@ -28,7 +28,10 @@
     if(isset($_POST['submit'])){
         $username = $_POST['username'];
         $password = $con->real_escape_string ($_POST['password']);
-
+        /*
+        $hash = password_hash($password,PASSWORD_BCRYPT);
+        echo  $hash;
+        */
         $sql = "SELECT * FROM `cpareport_userlogin` WHERE `username` =  '".$username."'  AND `password` = '".$password."'";//query เช็ค user password ตรงไหม
 
         $result = $con->query($sql);
@@ -43,7 +46,8 @@
             $_SESSION['status'] =  $accoutUsser['status'];
             header('location:admin/index.php');
    
-        }else{  echo "<script>alert('Username หรือ password ผิดพลาด');window.location ='login.php';</script>"; }
+        }else{  echo "<script>alert('Username หรือ password ผิดพลาด');window.location ='login.php';</script>";
+         }
     }
     ?>
 
