@@ -61,8 +61,8 @@ foreach($res as $item) {
 											<input type="text" class="form-control" id="datepickers" name="datepickers" data-provide="datepicker" data-date-language="th" autocomplete="off" placeholder="วันที่เริ่มต้น" title="คลิก">
 											<input type="text" class="form-control" id="datepickert" name="datepickert" data-provide="datepicker" data-date-language="th" autocomplete="off" placeholder="วันที่สิ้นสุด" title="คลิก">
 											<select class="select2" name="pct_dropdown" id="pct_dropdown" placeholder="แผนก" title="แผนก" style="width: 20%;"></select>
-											<input type="text" class="form-control" id="diag_1" name="diag_1" placeholder="ระบุรหัสโรคที่เริ่มต้น" title="ใส่รหัสโรคตัวแรกที่ต้องการค้นหา โดย ตัวอักษรพิมพ์ใหญ่ และไม่มีจุด ตัวอย่าง J450" >
-											<input type="text" class="form-control" id="diag_2" name="diag_2" placeholder="ระบุรหัสโรคที่สิ้นสุด" title="ใส่รหัสโรคสุดท้าย ที่ต้องการค้นหา โดย ตัวอักษรพิมพ์ใหญ่ และไม่มีจุด ตัวอย่าง J46">
+											<input type="text" class="form-control" id="diag_1" name="diag_1" placeholder="ระบุรหัสโรคที่เริ่มต้น" title="ใส่รหัสโรคตัวแรกที่ต้องการค้นหา โดย ตัวอักษรพิมพ์ใหญ่ และไม่มีจุด ตัวอย่าง J450"  style="width: 10%;" >
+											<input type="text" class="form-control" id="diag_2" name="diag_2" placeholder="ระบุรหัสโรคที่สิ้นสุด" title="ใส่รหัสโรคสุดท้าย ที่ต้องการค้นหา โดย ตัวอักษรพิมพ์ใหญ่ และไม่มีจุด ตัวอย่าง J46"  style="width: 10%;">
 											<button type="submit" class="btn btn-default">ตกลง</button>
 										</form>
 									</div>
