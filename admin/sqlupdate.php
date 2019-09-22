@@ -106,6 +106,7 @@ $res = mysqli_query($con, $topLevelItems);
 		//echo $_POST['code'];
 		$update = "UPDATE  cpareport_sql  SET sql_code = '" . addslashes($_POST['code']) . "' where sql_file =  '" . $_POST['file_sql'] . "' ";
 		$Qupdate = mysqli_query($con, $update);
+		date_default_timezone_set("Asia/Bangkok");
 		$Indate = date("Y-m-d H:i:s");
 		$insertlog = "INSERT INTO sqlupdate_log (sql_edit_user,sql_file,old_sql,new_sql,update_datetime)
         VALUES ('" . $_SESSION['username'] . "'
@@ -189,7 +190,7 @@ $res = mysqli_query($con, $topLevelItems);
 
 
 		<?php	
-			$selectlog = "select * from sqlupdate_log where sql_file = '".$file."'";
+			$selectlog = "select * from sqlupdate_log where sql_file = '".$file."' ORDER BY update_datetime desc";
 			$querylog =  mysqli_query($con,$selectlog);
 		?>
 
@@ -204,7 +205,7 @@ $res = mysqli_query($con, $topLevelItems);
 						</button>
 					</div>
 					<div class="modal-body">
-						<table class="table">
+						<table class="table table-responsive" >
 							<th>ผู้แก้ไข</th>
 							<th>sql-file</th>
 							<th>sql เก่า</th>
@@ -216,9 +217,9 @@ $res = mysqli_query($con, $topLevelItems);
 								<tr>
 									<td><?echo $data['sql_edit_user']; ?></td>
 									<td><?echo $data['sql_file']; ?></td>
-									<td><?echo $data['old_sql']; ?></td>
-									<td><?echo $data['new_sql']; ?></td>
-									<td><?echo $data['update_datetime']; ?></td>
+									<td class= "text-nowrap"><?echo $data['old_sql']; ?></td>
+									<td class= "text-nowrap"><?echo $data['new_sql']; ?></td>
+									<td class= "text-nowrap"><?echo $data['update_datetime']; ?></td>
 								</tr>
 							<?php $ii++;
 							} ?>
