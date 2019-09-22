@@ -144,7 +144,24 @@ $res = mysqli_query($con, $topLevelItems);
 <body>
 	<?php if (isset($_SESSION['username']) == "" || isset($_SESSION['username']) == null) {
 		echo "<script>window.location ='../login.php';</script>";
-	} ?>
+	}
+	
+	
+	if (isset($_POST['submit'])) {
+		echo $_POST['code'];
+        $update = "UPDATE  cpareport_sql  SET sql_code= '" . $_POST["sql"] . "' where sql_file =  '" .$file. "' ";
+        $Qupdate = mysqli_query($con, $update);
+
+        if ($Qupdate) {
+            echo "<script>alert('แก้ไขเรียบร้อย');window.close();</script>";
+        } else  
+            if ($Qupdate) {
+                echo "<script>alert('queryInsert ผิดพลาด');window.location=sqlupdate.php;</script>";
+			}
+    }
+
+	?>
+
 	
 	<div class="container">
 		<?php
@@ -155,7 +172,7 @@ $res = mysqli_query($con, $topLevelItems);
 			<marquee direction="down"><span>
 				</span></marquee>
 			<button class="button1" onclick="myFunction()">คัดลอก S Q L</button>
-			<?php echo "ชุดคำสั่งที่ " . $item['sql_file'] . " | รายงาน | " . $item['sql_head']; ?>
+			<?php echo "ชุดคำสั่งที่ " . $item['sql_file'] . " | รายงาน | " . $item['sql_head'];  $file =  $item['sql_file']?>
 
 		</div>
 		<hr>
@@ -183,17 +200,14 @@ $res = mysqli_query($con, $topLevelItems);
 			</span>
 		</div>
 		<hr>
+
 		<div class="search">
-			<form action="" name="s" id="s" method="get">
-				<textarea class="tx" rows="25" cols="100" name="sql" id="sql" value=""><?php echo $code; ?></textarea>
+			<form action="#" name="s" id="s" method="POST">
+				<textarea class="tx" rows="25" cols="100" name="code" id="sql" value=""><?php echo $code; ?></textarea>
 				<br>
 				<div class="row">
-					<div class="col-1"></div>
-					<div class="col-10"><button class="btn btn-outline-success btn-block" type="submit">Update</button></div>
-					<div class="col-1"></div>
+					<div class="col-1"></div><div class="col-10"><button  name= "submit"class="btn btn-outline-success btn-block" type="submit" value="submit">Update</button></div><div class="col-1"></div>
 				</div>
-			
-
 			</form>
 		</div>
 

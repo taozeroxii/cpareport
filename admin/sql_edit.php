@@ -23,14 +23,41 @@ $res = mysqli_query($con, $topLevelItems);
 
 			background: #0B5345;
 		}
-
-		.aaa {
-			margin-left:3%;
-			margin-right:-32px;
-			width: 15%;
-			color: #fff;
-			display: inline-block;
+		@media screen and (min-width: 320px), print and (min-width: 320px){
+			.aaa {
+				margin-left:3%;
+				margin-right:-32px;
+				width: 100%;
+				color: #fff;
+				display: inline-block;
+			}
 		}
+
+		@media screen and (min-width: 568px), print and (min-width: 568px){
+			.aaa {
+				margin-left:3%;
+				margin-right:-32px;
+				width: 50%;
+				color: #fff;
+				display: inline-block;
+			}
+		}
+		
+
+		@media screen and (min-width: 1000px), print and (min-width: 1000px){
+			.aaa {
+				margin-left:3%;
+				margin-right:-32px;
+				width: 15%;
+				color: #fff;
+				display: inline-block;
+			}
+		}
+
+		@media screen and (min-width: 769px) {
+    /* STYLES HERE */
+		}
+
 
 		a:link {
 			text-decoration: none;
@@ -68,7 +95,10 @@ $res = mysqli_query($con, $topLevelItems);
 			display: inline-block;
 			font-size: 16px;
 			margin-top: -10px;
+			border-radius: 8px;
+			box-shadow: 5px 7px black;
 		}
+
 
 		input[type=text] {
 			width: 40%;
