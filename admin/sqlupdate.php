@@ -181,7 +181,7 @@ $res = mysqli_query($con, $topLevelItems);
 				<input type="hidden" name="file_sql" value="<? echo $file ?>">
 				<br>
 				<div class="row">
-					<div class="col-12"><button name="submit" class="btn btn-success btn-block" type="submit" value="submit">แก้ไข</button></div>
+					<div class="col-12"><button name="submit" class="btn btn-success btn-block" type="submit" value="submit" onclick="return confirm('ยืนยันการแก้ไข');">แก้ไข</button></div>
 				</div>
 			</form>
 		</div>
