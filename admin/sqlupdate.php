@@ -12,6 +12,7 @@ $res = mysqli_query($con, $topLevelItems);
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 	<title>s_report.php</title>
 	<link href="https://fonts.googleapis.com/css?family=Kanit&display=swap" rel="stylesheet">
+
 	<style type="text/css">
 		body {
 			font-family: 'Kanit', sans-serif;
@@ -95,14 +96,12 @@ $res = mysqli_query($con, $topLevelItems);
 			text-align: center;
 		}
 	</style>
-
 </head>
 
 <body>
 	<?php if (isset($_SESSION['username']) == "" || isset($_SESSION['username']) == null) {
 		echo "<script>window.location ='../login.php';</script>";
 	}
-
 	if (isset($_POST['submit'])) {
 		//echo $_POST['code'];
 		$update = "UPDATE  cpareport_sql  SET sql_code = '" . addslashes($_POST['code']) . "' where sql_file =  '" . $_POST['file_sql'] . "' ";
@@ -118,13 +117,12 @@ $res = mysqli_query($con, $topLevelItems);
 		$Qinsertlog = mysqli_query($con, $insertlog);
 
 		if ($Qupdate) {
-			//echo "<script>alert('แก้ไขเรียบร้อย');window.close();</script>";
+			echo "<script>alert('แก้ไขเรียบร้อย');window.close();</script>";
 		} else  
             if ($Qupdate) {
 			echo "<script>alert('queryInsert ผิดพลาด');window.location=sqlupdate.php;</script>";
 		}
 	}
-
 	?>
 
 
@@ -137,7 +135,7 @@ $res = mysqli_query($con, $topLevelItems);
 		<div class="hhh">
 			<marquee direction="down"><span></span></marquee>
 			<?php echo "ชุดคำสั่งที่ " . $item['sql_file'] . " | รายงาน | " . $item['sql_head'];
-			$file =  $item['sql_file'] ?>
+			$file =  $item['sql_file']; ?>
 			<a href='javascript:if(confirm("ต้องการปิดหน้านี้หรือไม่?"))self.close( )' style="float:right"><button class="btn btn-outline-danger">X</button></a>
 		</div>
 		<hr>
@@ -188,6 +186,13 @@ $res = mysqli_query($con, $topLevelItems);
 		</div>
 
 
+
+
+		<?php	
+			$selectlog = "select * from sqlupdate_log where sql_file = '".$file."'";
+			$querylog =  mysqli_query($con,$selectlog);
+		?>
+
 		<!-- Modal -->
 		<div class="modal fade bd-example-modal-xl" tabindex="-1" role="dialog" aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">
 			<div class="modal-dialog modal-xl">
@@ -205,7 +210,18 @@ $res = mysqli_query($con, $topLevelItems);
 							<th>sql เก่า</th>
 							<th>sql ใหม่</th>
 							<th>วัน-เวลา</th>
-
+							<?php
+							while ($data = mysqli_fetch_assoc($querylog)) {
+								?>
+								<tr>
+									<td><?echo $data['sql_edit_user']; ?></td>
+									<td><?echo $data['sql_file']; ?></td>
+									<td><?echo $data['old_sql']; ?></td>
+									<td><?echo $data['new_sql']; ?></td>
+									<td><?echo $data['update_datetime']; ?></td>
+								</tr>
+							<?php $ii++;
+							} ?>
 
 
 						</table>
