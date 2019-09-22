@@ -20,7 +20,6 @@ $res = mysqli_query($con, $topLevelItems);
 	<link href="https://fonts.googleapis.com/css?family=Kanit&display=swap" rel="stylesheet">
 	<style type="text/css">
 		body {
-
 			background: #0B5345;
 		}
 		@media screen and (min-width: 320px), print and (min-width: 320px){

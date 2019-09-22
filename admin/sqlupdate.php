@@ -16,8 +16,6 @@ $res = mysqli_query($con, $topLevelItems);
 		body {
 			font-family: 'Kanit', sans-serif;
 			/*background: #000;*/
-			/*color: #A93226;*/
-
 		}
 
 		.aaa {
@@ -53,35 +51,6 @@ $res = mysqli_query($con, $topLevelItems);
 			text-align: center;
 		}
 
-		.button1 {
-			background-color: #1E90FF;
-			border: 2px solid #0DE931;
-			border: none;
-			color: white;
-			padding: 15px 32px;
-			text-align: center;
-			text-decoration: none;
-			display: inline-block;
-			font-size: 10px;
-			cursor: pointer;
-			border-radius: 15px 50px;
-		}
-
-		.button1:hover {
-			background-color: #0000F1;
-			border: 2px solid #0DE931;
-			border: none;
-			color: white;
-			padding: 15px 32px;
-			text-align: center;
-			text-decoration: none;
-			display: inline-block;
-			font-size: 10px;
-			cursor: pointer;
-			font-weight: bold;
-			border-radius: 15px 50px;
-		}
-
 
 		input[type=text] {
 			width: 40%;
@@ -102,12 +71,6 @@ $res = mysqli_query($con, $topLevelItems);
 			width: 20%;
 		}
 
-		.tx {
-			color: white;
-			background: #000;
-			font-size: 100%;
-		}
-
 		.aaa {
 			color: #C0392B;
 			font-weight: bold;
@@ -124,18 +87,12 @@ $res = mysqli_query($con, $topLevelItems);
 			text-align: center;
 			font-weight: bold;
 			font-size: 1.2em;
-			color: GRAY;
-			/*background:#F8F1F9;*/
+			color: black;
+
 		}
 
 		.www {
-			background: #F8F1F9;
 			text-align: center;
-		}
-
-		.c {
-			font-weight: bold;
-			color: #E40E0E;
 		}
 	</style>
 
@@ -145,38 +102,47 @@ $res = mysqli_query($con, $topLevelItems);
 	<?php if (isset($_SESSION['username']) == "" || isset($_SESSION['username']) == null) {
 		echo "<script>window.location ='../login.php';</script>";
 	}
-	
-	
-	if (isset($_POST['submit'])) {
-		echo $_POST['code'];
-        $update = "UPDATE  cpareport_sql  SET sql_code= '" . $_POST["sql"] . "' where sql_file =  '" .$file. "' ";
-        $Qupdate = mysqli_query($con, $update);
 
-        if ($Qupdate) {
-            echo "<script>alert('แก้ไขเรียบร้อย');window.close();</script>";
-        } else  
+	if (isset($_POST['submit'])) {
+		//echo $_POST['code'];
+		$update = "UPDATE  cpareport_sql  SET sql_code = '" . addslashes($_POST['code']) . "' where sql_file =  '" . $_POST['file_sql'] . "' ";
+		$Qupdate = mysqli_query($con, $update);
+		$Indate = date("Y-m-d H:i:s");
+		$insertlog = "INSERT INTO sqlupdate_log (sql_edit_user,sql_file,old_sql,new_sql,update_datetime)
+        VALUES ('" . $_SESSION['username'] . "'
+        ,'" . $_POST['file_sql'] . "'
+        ,'" . addslashes($_POST["old_code"]) . "'
+        ,'" . addslashes($_POST["code"]) . "'
+        ,'" . $Indate . "'
+		)";
+		$Qinsertlog = mysqli_query($con, $insertlog);
+
+		if ($Qupdate) {
+			//echo "<script>alert('แก้ไขเรียบร้อย');window.close();</script>";
+		} else  
             if ($Qupdate) {
-                echo "<script>alert('queryInsert ผิดพลาด');window.location=sqlupdate.php;</script>";
-			}
-    }
+			echo "<script>alert('queryInsert ผิดพลาด');window.location=sqlupdate.php;</script>";
+		}
+	}
 
 	?>
 
-	
-	<div class="container">
+
+	<div class="container border">
 		<?php
 		foreach ($res as $item);
 		$code =  $item['sql_code'];
 		?>
-		<div class="hhh">
-			<marquee direction="down"><span>
-				</span></marquee>
-			<button class="button1" onclick="myFunction()">คัดลอก S Q L</button>
-			<?php echo "ชุดคำสั่งที่ " . $item['sql_file'] . " | รายงาน | " . $item['sql_head'];  $file =  $item['sql_file']?>
 
+		<div class="hhh">
+			<marquee direction="down"><span></span></marquee>
+			<?php echo "ชุดคำสั่งที่ " . $item['sql_file'] . " | รายงาน | " . $item['sql_head'];
+			$file =  $item['sql_file'] ?>
+			<a href='javascript:if(confirm("ต้องการปิดหน้านี้หรือไม่?"))self.close( )' style="float:right"><button class="btn btn-outline-danger">X</button></a>
 		</div>
 		<hr>
-		<div class="www">
+
+		<div class="www border">
 			<span class="aaa">* Parameter NOT : </span>
 			<span class="c">{datepickers} AND {datepickert} </span>
 			<span class="bbb"> | </span>
@@ -200,15 +166,52 @@ $res = mysqli_query($con, $topLevelItems);
 			</span>
 		</div>
 		<hr>
+		<div class="row">
+			<div class="col-12">
+				<div class="btnbar" style="float:right">
+					<button class="btn btn-primary" onclick="myFunction()">คัดลอก S Q L</button>
+					<button class="btn btn-secondary" data-toggle="modal" data-target=".bd-example-modal-xl">log</button>
+				</div>
+			</div>
+		</div>
 
 		<div class="search">
 			<form action="#" name="s" id="s" method="POST">
-				<textarea class="tx" rows="25" cols="100" name="code" id="sql" value=""><?php echo $code; ?></textarea>
+				<textarea style="background: black;color:white" class="input-group" rows="25" cols="100" name="code" id="sql" value=""><?php echo $code; ?></textarea>
+				<input type="hidden" name="old_code" value="<? echo $code ?>">
+				<input type="hidden" name="file_sql" value="<? echo $file ?>">
 				<br>
 				<div class="row">
-					<div class="col-1"></div><div class="col-10"><button  name= "submit"class="btn btn-outline-success btn-block" type="submit" value="submit">Update</button></div><div class="col-1"></div>
+					<div class="col-12"><button name="submit" class="btn btn-success btn-block" type="submit" value="submit">แก้ไข</button></div>
 				</div>
 			</form>
+		</div>
+
+
+		<!-- Modal -->
+		<div class="modal fade bd-example-modal-xl" tabindex="-1" role="dialog" aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">
+			<div class="modal-dialog modal-xl">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" id="exampleModalLabel">ประวัติการแก้ไข</h5>
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div class="modal-body">
+						<table class="table">
+							<th>ผู้แก้ไข</th>
+							<th>sql-file</th>
+							<th>sql เก่า</th>
+							<th>sql ใหม่</th>
+							<th>วัน-เวลา</th>
+
+
+
+						</table>
+					</div>
+				</div>
+			</div>
 		</div>
 
 		<script>
