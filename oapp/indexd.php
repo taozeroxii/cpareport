@@ -7,6 +7,14 @@ $data = array();
 $query = " SELECT clinic,name FROM clinic WHERE active_status = 'Y' ";
 $result = pg_query($query);
 
+$querydoc = " SELECT * 
+              FROM doctor 
+              WHERE active = 'Y' 
+              AND name NOT LIKE ('BMS%%') 
+              AND position_id in('1','2')
+              AND name NOT LIKE ('(ยกเลิก)%%')  ";
+$result_doc = pg_query($querydoc);
+
 date_default_timezone_set('asia/bangkok');
 function thaiDate($datetime)
 {
@@ -98,7 +106,8 @@ $queryr = pg_query($sqlr);
               navLinks: true, 
               selectable: true,
               selectHelper: true,
-              events: 'load.php?cli=คลินิกอายุรกรรม',
+              //events: 'loadd.php?cli=คลินิกอายุรกรรม',
+              events: 'loadd.php',
               select: function(start) {
                 console.log(start);
                //location.reload();
@@ -111,12 +120,14 @@ $queryr = pg_query($sqlr);
 <!--   <br>
 
   <br /> -->
-  <h2 align="center"><a href="#" ><span class="hdd">ปฎิทินแสดงรายการตารางนัด</span>&nbsp;<span class='hdd' id="clinic">คลินิกอายุรกรรม</span></a></h2>
-
+  <!-- <h2 align="center"><a href="#" ><span class="hdd">ปฎิทินแสดงรายการตารางนัด</span>&nbsp;<span class='hdd' id="clinic">คลินิกอายุรกรรม</span></a></h2> -->
+   <!-- <marquee width="50%">width="50% คือวิ่งครึ่งหน้ากระดาษ</marquee> -->
+  <h2 align="center"><a href="#" ><span class="hdd">ปฎิทินแสดงรายการตารางนัด</span>&nbsp;<span class='hdd' id="clinic"> </span>&nbsp;<span class='hdd' id="doctor"> </span></a></h2>
+  <hr>
   <div class="row">
     <div class="col-lg-12">  
      <form name="myForm" id="myForm"  class="form-group" action="" method="GET">
-       <div class="col-lg-3"> </div>
+       <div class="col-lg-1"> </div>
        <div class="col-lg-3">      
         <select id="cli" name="cli" class="select2 form-control">
           <?php
@@ -127,13 +138,27 @@ $queryr = pg_query($sqlr);
           ?>
         </select>
       </div>
+      <div class="col-lg-3">      
+        <select id="dname" name="dname" class="select2 form-control">
+          <?php
+          while($row_c = pg_fetch_array($result_doc)) {
+            $doc = $row_c['code']; 
+            $dname = $row_c['name']; 
+            $licenseno = $row_c['licenseno']; 
+            echo "<option value='".$dname."'>$dname $licenseno</option>";
+          }
+          ?>
+        </select>
+        <hr>
+      </div>
       <div class="col-lg-4">
-        <div onclick="formSubmit()" class="btn btn-default">ค้นหาตามคลินิกที่เลือก</div>
+        <div onclick="formSubmit()" class="btn btn-default">ค้นหาตามคลินิกและแพทย์ที่เลือก</div>
         <div onclick="funcholiday()" class="btn btn-danger" data-toggle="modal" data-target="#myModal" title="ตรวจสอบวันหยุดราขการ">วันหยุดราชการ</div>
-                <div onclick="funclinicdoctor()" class="btn btn-info" title="">ปฏิทินนัด แยกแพทย์ แยกคลินิก</div>
+           <div onclick="funclinicdoctor()" class="btn btn-info" title="">กลับปฏิทินนัดรวมคลินิก</div>
       </div>
     </div>
   </div>
+
   <br />
   <div class="container">
    <div id="calendar"></div>
@@ -143,11 +168,15 @@ $queryr = pg_query($sqlr);
  <script>
   function formSubmit(){
     var cli = document.getElementById("cli").value;
-    var dataString = '&cli=' + cli;
+    var dname = document.getElementById("dname").value;
+
+    var dataString = '&cli=' + cli + '&dname=' + dname;
     $('#clinic').html(cli);
+    $('#doctor').html(dname);
+
     console.log(dataString);
     jQuery.ajax({
-      url: "load.php",
+      url: "loadd.php",
       data: dataString,
       type: "GET",
       success: function(data){
@@ -205,10 +234,9 @@ $queryr = pg_query($sqlr);
 
   </div>
 </div>
-
 <script type="text/javascript">
   function funclinicdoctor(){
-   window.location = "indexd.php";
+   window.location = "index.php";
   }
 </script>
 </body>
