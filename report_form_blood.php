@@ -84,7 +84,7 @@ foreach($res as $item) {
         $sql_a = str_replace("{datepickers}", "'$datepickers'", $sql_a);
         $sql_a = str_replace("{datepickert}", "'$datepickert'", $sql_a);
         $result_a = pg_query($sql_a);
- 
+        $row_result_a = pg_num_rows($result_a);
 
         $sql_b = " $sql_detail_1 ";
         $sql_b = str_replace("{datepickers}", "'$datepickers'", $sql_b);
@@ -92,7 +92,6 @@ foreach($res as $item) {
         $result_b = pg_query($sql_b);
 
 
- 
         ?>
 
         <div class="row">
@@ -104,7 +103,7 @@ foreach($res as $item) {
                   <?php echo "ข้อมูลวันที่ ".thaidate($datepickers)." - ".thaidate($datepickert); ?>
                   <small><?php echo " เวลาที่ใช้ในการประมวลผล ".$bm->stop()." วินาที "; ?></small>
                 </h3>
-                <button type="" class="btn btn-default pull-right" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal"> SQL </button>
+                <!--<button type="" class="btn btn-default pull-right" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal"> SQL </button> -->
                 <!-- <a href="config/excel.class.php?sql=<?php //echo $sql; ?>" class="btn btn-default pull-right" class="btn btn-info btn-lg" > Excel </a> -->
               </div>  
             </div>
