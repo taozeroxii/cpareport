@@ -84,20 +84,15 @@ foreach($res as $item) {
         $sql_a = str_replace("{datepickers}", "'$datepickers'", $sql_a);
         $sql_a = str_replace("{datepickert}", "'$datepickert'", $sql_a);
         $result_a = pg_query($sql_a);
-        $row_result_a = pg_num_rows($result_a);
+ 
 
         $sql_b = " $sql_detail_1 ";
         $sql_b = str_replace("{datepickers}", "'$datepickers'", $sql_b);
         $sql_b = str_replace("{datepickert}", "'$datepickert'", $sql_b);
         $result_b = pg_query($sql_b);
-        $row_result_b = pg_fetch_array($result_b);
 
-        $sql = " $sql_detail_2 ";
-        $sql = str_replace("{datepickers}", "'$datepickers'", $sql);
-        $sql = str_replace("{datepickert}", "'$datepickert'", $sql);
-        $result = pg_query($sql);
-        $total = pg_num_rows($result);      
 
+ 
         ?>
 
         <div class="row">
@@ -110,7 +105,7 @@ foreach($res as $item) {
                   <small><?php echo " เวลาที่ใช้ในการประมวลผล ".$bm->stop()." วินาที "; ?></small>
                 </h3>
                 <button type="" class="btn btn-default pull-right" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal"> SQL </button>
-              <a href="config/excel.class.php?sql=<?php //echo $sql; ?>" class="btn btn-default pull-right" class="btn btn-info btn-lg" > Excel </a> 
+                <!-- <a href="config/excel.class.php?sql=<?php //echo $sql; ?>" class="btn btn-default pull-right" class="btn btn-info btn-lg" > Excel </a> -->
               </div>  
             </div>
           </div>
@@ -171,7 +166,7 @@ foreach($res as $item) {
                   <?php
                   $i = pg_num_fields($result_b);
                   for ($j = 0 ; $j < $i ; $j++) {
-                    $fieldname = pg_field_name($result, $j);
+                    $fieldname = pg_field_name($result_b, $j);
                     echo '<th>' . $fieldname . '</th>';
                   }
                   ?>
