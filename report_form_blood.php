@@ -158,7 +158,7 @@ foreach($res as $item) {
       <div class="col-xs-12">
         <div class="box">
           <div class="box-body table-responsive">
-         <div class="box-body table-responsive "><span class="fcol">ข้อมูลการจ่ายโลหิตแบบละเอียด</span>
+         <div class="box-body table-responsive "><span class="fcol">ข้อมูลแบบละเอียด</span>
             <table id="example3" class="table table-bordered  table-hover table-striped ">
               <thead>
                 <tr>
