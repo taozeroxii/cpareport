@@ -46,17 +46,24 @@ $res = mysqli_query($con, $topLevelItems);
 		@media screen and (min-width: 1000px), print and (min-width: 1000px){
 			.aaa {
 				margin-left:3%;
+				margin-right:-25px;
+				width: 30%;
+				color: #fff;
+				display: inline-block;
+			}
+			
+		}
+
+	
+		@media screen and (min-width: 1200px), print and (min-width:  1200px){
+			.aaa {
+				margin-left:3%;
 				margin-right:-32px;
 				width: 15%;
 				color: #fff;
 				display: inline-block;
 			}
 		}
-
-		@media screen and (min-width: 769px) {
-    /* STYLES HERE */
-		}
-
 
 		a:link {
 			text-decoration: none;
