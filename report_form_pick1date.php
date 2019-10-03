@@ -95,7 +95,7 @@ foreach($row as $item) {
         $result_a = pg_query($sql_a);
         $row_result_a = pg_num_rows($result_a);
 
-        $sql = " $sql_detail_2 ";
+        $sql = " $sql_detail_1 ";
         $sql = str_replace("{datepickers}", "'$datepickers'", $sql);
         $result = pg_query($sql);
         $total = pg_num_rows($result);      
@@ -111,8 +111,8 @@ foreach($row as $item) {
                   <small><?php echo " เวลาที่ใช้ในการประมวลผล ".$bm->stop()." วินาที "; ?></small>&nbsp;&nbsp;
                 </h3>
                 &nbsp;&nbsp;
-                 ผู้ป่วยในโรค J <span class="pdx_s"><?php echo $row_result_a ." คน  ";?></span>&nbsp;&nbsp;
-               ผู้ป่วยทั้งหมด <span class="pdx"><?php echo $total ." คน  "; ?></span>
+                 ผู้ป่วยในโรค  <span class="pdx_s"><?php echo $row_result_a ." คน  ";?></span>&nbsp;&nbsp;
+                 ผู้ป่วยทั้งหมด <span class="pdx"><?php echo $total ." คน  "; ?></span>
              </div>
               </div>
             </div>
