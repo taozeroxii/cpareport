@@ -116,7 +116,7 @@ foreach($res as $item) {
       <div class="col-xs-12">
         <div class="box">
           <div class="box-body table-responsive">
-         <div class="box-body table-responsive "><span class="fcol">สรุปสถิติ</span>
+         <div class="box-body table-responsive ">   <?php if($sql   == 'sql_0121'){ echo '<span class="fcol">เบิกโลหิต</span>'; }else echo '<span class="fcol">สรุปสถิติ</span>';?> 
             <table id="example3" class="table table-bordered  table-hover table-striped ">
               <thead>
                 <tr>
@@ -158,7 +158,7 @@ foreach($res as $item) {
       <div class="col-xs-12">
         <div class="box">
           <div class="box-body table-responsive">
-         <div class="box-body table-responsive "><span class="fcol">ข้อมูลแบบละเอียด</span>
+         <div class="box-body table-responsive "> <?php if($sql  == 'sql_0121'){ echo '<span class="fcol">จ่ายโลหิต</span>'; }else echo '<span class="fcol">ข้อมูลแบบละเอียด</span>';?>  
             <table id="example3" class="table table-bordered  table-hover table-striped ">
               <thead>
                 <tr>
