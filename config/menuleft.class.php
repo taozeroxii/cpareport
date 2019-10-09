@@ -2,6 +2,7 @@
 include('my_con.class.php');
 $topLevelItems = " SELECT * FROM cpareport_mainmenu WHERE main_status = '1' ORDER BY main_order ASC ";
 $res=mysqli_query($con,$topLevelItems);
+session_start();
 ?>
   <div class="wrapper ">
     <header class="main-header header ">
@@ -18,9 +19,13 @@ $res=mysqli_query($con,$topLevelItems);
     </div>
 
     <ul class="nav navbar-nav navbar-right">
-      <li><a href="login.php"  target="_blank"  title="ADMIN LOGIN "><span class="glyphicon glyphicon-log-in"></span> Admin </a></li>
-      <li><a href="loginuser.php"  target="_blank"  title="ADMIN LOGIN "><span class="glyphicon glyphicon-log-in"></span> LOGIN </a></li>
-      <li><a href="logout.php"  target="_blank"  title="ADMIN LOGIN "><span class="glyphicon glyphicon-log-in"></span> LOGOUT </a></li>
+    <?php  if (isset($_SESSION['username']) == "" || isset($_SESSION['username']) == null) {
+         echo 
+         '<li><a href="login.php"  target="_blank"  title="ADMIN LOGIN "><span class="glyphicon glyphicon-log-in"></span> Admin </a></li>
+         <li><a href="loginuser.php"  target="_blank"  title="ADMIN LOGIN "><span class="glyphicon glyphicon-log-in"></span> LOGIN </a></li>';
+       }else echo  '<li><a title="ADMIN LOGIN "><span class="glyphicon"></span>'.$_SESSION['fname'].' '.$_SESSION['lname'].'</a></li> 
+       <li><a href="logout.php"  title="ADMIN LOGIN "><span class="glyphicon glyphicon-log-in"></span> LOGOUT </a></li>';
+         ?>
     </ul>
   </div>
 </nav>
