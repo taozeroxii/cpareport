@@ -44,7 +44,7 @@
             $_SESSION['lname'] =  $accoutUsser['lname'];
             $_SESSION['niname'] =  $accoutUsser['niname'];
             $_SESSION['status'] =  $accoutUsser['status'];
-            header('location:index.php');
+            echo '<script>self.close();</script>';
    
         }else{  echo "<script>alert('Username หรือ password ผิดพลาด');header('location:userlogin.php');</script>";
          }
