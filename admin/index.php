@@ -91,11 +91,11 @@ $new_nuer = $r['name'] . " | " . $r['loginname'] . " | " . $r['computername'] . 
 </head>
 
 <body>
-  <?php if (isset($_SESSION['username']) == "" || isset($_SESSION['username']) == null) {
+  <?php if ((isset($_SESSION['username']) == "" || isset($_SESSION['username']) == null)|| $_SESSION['status']!='1') {
     echo "<script>window.location ='../login.php';</script>";
   } ?>
 
-  <?php include "menu.php"; ?>
+  <?php include "menu.php"; echo $_SESSION['status']?>
 
   <hr>
   <div class="phone_head">USER ON LINE HOSXP <br>

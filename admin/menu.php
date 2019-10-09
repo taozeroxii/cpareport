@@ -10,7 +10,7 @@
 <a class="nav-link" id="contact-tab" data-toggle="tab" target="blank" href="http://172.16.0.251/monitor/" role="tab" aria-controls="contact" aria-selected="false">Network Monitor </a>
 </ul> ' ?>
 <? echo "<span  class='new_sql mr-4' >" . 'ผู้ใช้งาน : ' . $_SESSION['fname'] . ' ' . $_SESSION['lname'].' STATUS: ';
-if ($_SESSION['status']) { echo "admin  </span>";  } ?>
+if ($_SESSION['status']=='1') { echo "admin  </span>";  } ?>
 <? echo '<a href="../logout.php" ><button class="btn-secondary btn-sm " >ออกจากระบบ</button> </a>
 </nav>';?>
 
