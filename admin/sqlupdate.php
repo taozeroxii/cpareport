@@ -137,7 +137,7 @@ $res = mysqli_query($con, $topLevelItems);
 			<marquee direction="down"><span></span></marquee>
 			<?php echo "ชุดคำสั่งที่ " . $item['sql_file'] . " | รายงาน | " . $item['sql_head'];
 			$file =  $item['sql_file']; ?>
-			<a href='javascript:if(confirm("ต้องการปิดหน้านี้หรือไม่?"))self.close( )' style="float:right"><button class="btn btn-outline-danger">X</button></a>
+			<a href='javascript:if(confirm("ต้องการปิดหน้านี้หรือไม่?"))self.close()' style="float:right"><button class="btn btn-outline-danger">X</button></a>
 		</div>
 		<hr>
 

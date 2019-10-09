@@ -46,7 +46,7 @@
             $_SESSION['status'] =  $accoutUsser['status'];
 
             if($_SESSION['status'] =='1'){header('location:admin/index.php');}
-            else {  echo '<script>self.close();</script>';}
+            else { header('location:index.php');}
          
    
         }else{  echo "<script>alert('Username หรือ password ผิดพลาด');window.location ='login.php';</script>";
