@@ -46,7 +46,7 @@
             $_SESSION['status'] =  $accoutUsser['status'];
 
             if($_SESSION['status'] =='1'){header('location:admin/index.php');}
-            else if ($_SESSION['status'] !='1'){  echo '<script>self.close();</script>';}
+            else {  echo '<script>self.close();</script>';}
          
    
         }else{  echo "<script>alert('Username หรือ password ผิดพลาด');window.location ='login.php';</script>";
@@ -62,7 +62,7 @@
             <div class="col-10 col-sm-10 col-md-6 col-lg-6 col-xl-3 mx-auto mt-5 shadow p-3 bg-white rounded">
                 <form action="login.php" method="POST">
                     <div class="card">
-                        <div class="card-header text-center">เข้าสู่ระบบ ADMIN </div>
+                        <div class="card-header text-center">เข้าสู่ระบบ</div>
                         <div class="card-body">
                             <div class="form-group">
                                 <label for="username">USER NAME</label>

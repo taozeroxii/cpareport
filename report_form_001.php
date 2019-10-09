@@ -24,7 +24,7 @@ foreach($res as $item) {
 }
 
  if ((isset($_SESSION['username']) == "" || isset($_SESSION['username']) == null)&& $sql == 'sql_0123' ) {
-    echo "<script>window.location ='loginuser.php';</script>";
+    echo "<script>window.location ='login.php';</script>";
 } 
 
 ?>
