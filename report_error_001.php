@@ -22,6 +22,8 @@ foreach($res as $item) {
 	$sql_detail_1 = $item['sql_subcode_1'];
 	$sql_head   = $item['sql_head']; 
 }
+
+
 ?>
 <body class="hold-transition skin-blue sidebar-mini">
 	<div class="wrapper">

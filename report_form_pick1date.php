@@ -181,7 +181,9 @@ foreach ($res as $item) {
 
     <script type="text/javascript">
       function export_excel() {
-        document.location = "export_excel_k22.php?send_excel=<?php echo $send_excel; ?>&datepickers=<?php echo $datepickers; ?>&datepickert=<?php echo $datepickert; ?>&diag_1=<?php echo $diag_1; ?>&diag_2=<?php echo $diag_2; ?>";
+        document.location = "export_excel_k22.php?send_excel=<?php echo $send_excel; ?>
+        &datepickers=<?php echo $datepickers; ?>&datepickert=<?php echo $datepickert; ?>
+        &diag_1=<?php echo $diag_1; ?>&diag_2=<?php echo $diag_2; ?>";
       }
     </script>
 </body>

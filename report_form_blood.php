@@ -196,8 +196,6 @@ foreach($res as $item) {
     </div>
   </div>
 
-
-
   <?php 
 }
 ?>
@@ -220,5 +218,6 @@ foreach($res as $item) {
     })
   })
 </script>
+
 </body>
 </html>

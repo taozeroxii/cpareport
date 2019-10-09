@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <?php
+session_start();
 include"config/pg_con.class.php";
 include"config/func.class.php";
 include"config/time.class.php";
@@ -21,6 +22,11 @@ foreach($res as $item) {
 	$sql_detail = $item['sql_code'];
 	$sql_head   = $item['sql_head'];
 }
+
+ if ((isset($_SESSION['username']) == "" || isset($_SESSION['username']) == null) && ($_SESSION['status'] == '1'||   $_SESSION['status'] == '2') && $sql == 'sql_0123' ) {
+    echo "<script>window.location ='loginuser.php';</script>";
+} 
+
 ?>
 <body class="hold-transition skin-blue sidebar-mini">
 	<div class="wrapper">
