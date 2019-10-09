@@ -29,28 +29,7 @@ for( $i = 0 ; $i < 100000 ; $i++ )
 }*/
 </style>
 <body class="hold-transition skin-blue sidebar-mini">
-  <div class="wrapper ">
-    <header class="main-header header ">
-      <a href="#" class="logo">
-        <span class="logo-mini"><b>r</b>CPA</span>
-        <span class="logo-lg"><b>Re</b>port Hospital</span>
-      </a>
-<nav class="navbar navbar-inverse">
-  <div class="container-fluid">
-    <div class="navbar-header">
-        <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
-          <span class="sr-only">Toggle navigation</span>
-        </a>
-    </div>
 
-    <ul class="nav navbar-nav navbar-right">
-      <li><a href="login.php"  target="_blank"  title="ADMIN LOGIN "><span class="glyphicon glyphicon-log-in"></span> Admin </a></li>
-    </ul>
-  </div>
-</nav>
-
-    <!--Navbar -->
-  </header>
   <?php include "config/menuleft.class.php"; ?>
   <div class="content-wrapper">
     <section class="content-header">

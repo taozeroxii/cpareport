@@ -3,6 +3,30 @@ include('my_con.class.php');
 $topLevelItems = " SELECT * FROM cpareport_mainmenu WHERE main_status = '1' ORDER BY main_order ASC ";
 $res=mysqli_query($con,$topLevelItems);
 ?>
+  <div class="wrapper ">
+    <header class="main-header header ">
+      <a href="#" class="logo">
+        <span class="logo-mini"><b>r</b>CPA</span>
+        <span class="logo-lg"><b>Re</b>port Hospital</span>
+      </a>
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+        <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
+          <span class="sr-only">Toggle navigation</span>
+        </a>
+    </div>
+
+    <ul class="nav navbar-nav navbar-right">
+      <li><a href="login.php"  target="_blank"  title="ADMIN LOGIN "><span class="glyphicon glyphicon-log-in"></span> Admin </a></li>
+      <li><a href="loginuser.php"  target="_blank"  title="ADMIN LOGIN "><span class="glyphicon glyphicon-log-in"></span> LOGIN </a></li>
+      <li><a href="logout.php"  target="_blank"  title="ADMIN LOGIN "><span class="glyphicon glyphicon-log-in"></span> LOGOUT </a></li>
+    </ul>
+  </div>
+</nav>
+
+    <!--Navbar -->
+  </header>
 <aside class="main-sidebar">
   <section class="sidebar">
     <ul class="sidebar-menu" data-widget="tree">
