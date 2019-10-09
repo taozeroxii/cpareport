@@ -23,7 +23,7 @@ foreach($res as $item) {
 	$sql_head   = $item['sql_head'];
 }
 
- if ((isset($_SESSION['username']) == "" || isset($_SESSION['username']) == null) && ($_SESSION['status'] == '1'||   $_SESSION['status'] == '2') && $sql == 'sql_0123' ) {
+ if ((isset($_SESSION['username']) == "" || isset($_SESSION['username']) == null)&& $sql == 'sql_0123' ) {
     echo "<script>window.location ='loginuser.php';</script>";
 } 
 
