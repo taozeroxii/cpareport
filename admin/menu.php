@@ -8,6 +8,7 @@
 <a class="nav-link" id="contact-tab" data-toggle="tab" href="holiday.php" role="tab" aria-controls="contact" aria-selected="false">วันหยุด HOSxp</a>
 <a class="nav-link" id="contact-tab" data-toggle="tab" target="blank" href="https://trello.com/abhaihelphos/home" role="tab" aria-controls="contact" aria-selected="false">รวมปัญหาต่างๆ </a>
 <a class="nav-link" id="contact-tab" data-toggle="tab" target="blank" href="http://172.16.0.251/monitor/" role="tab" aria-controls="contact" aria-selected="false">Network Monitor </a>
+<a class="nav-link" id="contact-tab" data-toggle="tab" target="blank" href="f43/" role="tab" aria-controls="contact" aria-selected="false"> Code F43 Error </a>
 </ul> ' ?>
 <? echo "<span  class='new_sql mr-4' >" . 'ผู้ใช้งาน : ' . $_SESSION['fname'] . ' ' . $_SESSION['lname'].' STATUS: ';
 if ($_SESSION['status']=='1') { echo "admin  </span>";  } ?>
