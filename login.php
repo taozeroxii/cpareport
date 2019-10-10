@@ -44,47 +44,14 @@
             $_SESSION['lname'] =  $accoutUsser['lname'];
             $_SESSION['niname'] =  $accoutUsser['niname'];
             $_SESSION['status'] =  $accoutUsser['status'];
-          
-            $useronline = session_id();
-            $time = time();
-            $timecheck = time() - 900;//ทุก 15 นาที
-        
-            $sql2 = "SELECT * FROM useronline where session = '".$useronline."' AND  username = '".$username."' ";
-            $result2 = mysqli_query($con,$sql2);
-            $num = mysqli_num_rows($result2);
-        
-            if($num > 0){
-                $ud = ("UPDATE useronline set time_online = '" . $time. "'where session = '".$useronline."'AND  username = '".$username."'");
-                $uf = mysqli_query($con, $ud);
 
-                mysqli_query($con, $uf);
-            }
-            else{
-                 $insertlog = ("INSERT INTO useronline (session,time_online,username) VALUES ('" . $useronline. "','" . $time. "','" .$accoutUsser['username'] . "')");
-                 $Qinsertlog = mysqli_query($con, $insertlog);
-            }
-        
-            $sql2 = "select * from useronline where time_online > '".$timecheck."'";
-            $result2 = mysqli_query($con,$sql2);
-            $countuseronline = mysqli_num_rows($result2);
-            $_SESSION['useronline'] = $countuseronline;
-
-        if($_SESSION['status'] =='1'){ header('location:admin/index.php'); }
-            else { header('location:index.php');}
-         
-   
+            if($_SESSION['status'] =='1'){ header('location:admin/index.php'); }
+                else { header('location:index.php');}
         }else{  echo "<script>alert('Username หรือ password ผิดพลาด');window.location ='login.php';</script>";
          }
     }
     ?>
-
-    <?php
-
-
-    ?>
-
-
-
+    
     <div class="cotainer mt-5" style=" opacity: 1;">
         <br><br><br>
         <div class="row mt-5">
