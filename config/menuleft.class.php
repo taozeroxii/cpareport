@@ -19,7 +19,7 @@ if($num > 0){
     mysqli_query($con, $uf);
 }
 else{
-     echo $insertlog = ("INSERT INTO useronline (session,time_online,username) VALUES ('" . $useronline. "','" . $time. "','" . $_SESSION['username'] . "')");
+    $insertlog = ("INSERT INTO useronline (session,time_online,username) VALUES ('" . $useronline. "','" . $time. "','" . $_SESSION['username'] . "')");
      $Qinsertlog = mysqli_query($con, $insertlog);
 }
 
