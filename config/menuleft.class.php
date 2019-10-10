@@ -3,6 +3,7 @@ include('my_con.class.php');
 $topLevelItems = " SELECT * FROM cpareport_mainmenu WHERE main_status = '1' ORDER BY main_order ASC ";
 $res=mysqli_query($con,$topLevelItems);
 session_start();
+
 ?>
   <div class="wrapper ">
     <header class="main-header header ">
@@ -15,6 +16,9 @@ session_start();
     <div class="navbar-header">
         <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
           <span class="sr-only">Toggle navigation</span>
+          <? if (isset($_SESSION['username']) != "" || isset($_SESSION['username']) != null) {?>
+          จำนวนผู้ใช้งาน <?echo $_SESSION['useronline'];?> ท่าน <small>update 15 นาที</small>
+          <?}?>
         </a>
     </div>
 
