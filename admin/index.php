@@ -95,7 +95,7 @@ $new_nuer = $r['name'] . " | " . $r['loginname'] . " | " . $r['computername'] . 
     echo "<script>window.location ='../login.php';</script>";
   } ?>
 
-  <?php include "menu.php"; echo $_SESSION['status']?>
+  <?php include "menu.php"; ?>
 
   <hr>
   <div class="phone_head">USER ON LINE HOSXP <br>

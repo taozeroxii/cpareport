@@ -25,11 +25,12 @@ session_start();
     <ul class="nav navbar-nav navbar-right">
     <script> function closeWin() {  window.close()} </script>
     <?php  if (isset($_SESSION['username']) == "" || isset($_SESSION['username']) == null) {
-      
-         echo 
-         ' <li><a href="login.php" onclick="closeWin()" target="_blank"  title="ADMIN LOGIN "><span class="glyphicon glyphicon-log-in"></span> LOGIN </a></li>';
-         }else echo  '<li><a title="ADMIN LOGIN "><span class="glyphicon"></span>ผู้ใช้งาน: '.$_SESSION['fname'].' '.$_SESSION['lname'].'</a></li> 
-        <li><a href="logout.php"  title="ADMIN LOGIN "><span class="glyphicon glyphicon-log-in"></span> LOGOUT </a></li>';
+              echo  ' <li><a href="login.php" onclick="closeWin()" target="_blank"  title="ADMIN LOGIN "><span class="glyphicon glyphicon-log-in"></span> LOGIN </a></li>';
+            }else {
+              if(($_SESSION['status']) == "1"){echo '<li><a href="admin/"  title="ADMIN LOGIN "><span class="glyphicon glyphicon-log-in"></span> ADMIN </a></li>';}
+              echo  '  <li><a title="ADMIN LOGIN "><span class="glyphicon"></span>ผู้ใช้งาน: '.$_SESSION['fname'].' '.$_SESSION['lname'].'</a></li> 
+              <li><a href="logout.php"  title="ADMIN LOGIN "><span class="glyphicon glyphicon-log-in"></span> LOGOUT </a></li>';
+            }
          ?>
     </ul>
   </div>
