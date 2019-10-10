@@ -4,31 +4,29 @@ $topLevelItems = " SELECT * FROM cpareport_mainmenu WHERE main_status = '1' ORDE
 $res=mysqli_query($con,$topLevelItems);
 session_start();
 
+if (isset($_SESSION['username']) != "" || isset($_SESSION['username']) != null) {
+  $useronline = session_id();
+  $time = time();
+  $sql2 = "SELECT * FROM useronline where session = '".$useronline."'";
+  $result2 = mysqli_query($con,$sql2);
+  $num = mysqli_num_rows($result2);
 
-$useronline = session_id();
-$time = time();
+  if($num > 0){
+      $ud = ("UPDATE useronline set time_online = '" . $time. "'where session = '".$useronline."' AND  username = '".$_SESSION['username'] ."'");
+      $uf = mysqli_query($con, $ud);
 
-$sql2 = "SELECT * FROM useronline where session = '".$useronline."'";
-$result2 = mysqli_query($con,$sql2);
-$num = mysqli_num_rows($result2);
+      mysqli_query($con, $uf);
+  }
+  else{
+      echo $insertlog = ("INSERT INTO useronline (session,time_online,username) VALUES ('" . $useronline. "','" . $time. "','" .$_SESSION['username']. "')");
+      $Qinsertlog = mysqli_query($con, $insertlog);
+  }
 
-if($num > 0){
-    $ud = ("UPDATE useronline set time_online = '" . $time. "'where session = '".$useronline."'AND  username = '".$_SESSION['username'] ."'");
-    $uf = mysqli_query($con, $ud);
-
-    mysqli_query($con, $uf);
+  $timecheck = time() - 900;//ทุก 15 นาที
+  $sql2 = "select * from useronline where time_online > '".$timecheck."'";
+  $result2 = mysqli_query($con,$sql2);
+  $countuseronline = mysqli_num_rows($result2);
 }
-else{
-    $insertlog = ("INSERT INTO useronline (session,time_online,username) VALUES ('" . $useronline. "','" . $time. "','" . $_SESSION['username'] . "')");
-     $Qinsertlog = mysqli_query($con, $insertlog);
-}
-
-$timecheck = time() - 900;//ทุก 15 นาที
-$sql2 = "select * from useronline where time_online > '".$timecheck."'";
-$result2 = mysqli_query($con,$sql2);
-$countuseronline = mysqli_num_rows($result2);
-$_SESSION['useronline'] = $countuseronline;
-
 ?>
   <div class="wrapper ">
     <header class="main-header header ">
