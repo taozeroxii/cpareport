@@ -7,23 +7,27 @@ session_start();
 if (isset($_SESSION['username']) != "" || isset($_SESSION['username']) != null) {
   $useronline = session_id();
   $time = time();
-  $sql2 = "SELECT * FROM useronline where session = '".$useronline."'";
+  $statusOnOf = 'online';
+  $sql2 = "SELECT * FROM useronline where username = '".$_SESSION['username']."'";
   $result2 = mysqli_query($con,$sql2);
   $num = mysqli_num_rows($result2);
 
   if($num > 0){
-      $ud = ("UPDATE useronline set time_online = '" . $time. "'where session = '".$useronline."' AND  username = '".$_SESSION['username'] ."'");
-      $uf = mysqli_query($con, $ud);
-
-      mysqli_query($con, $uf);
+      $checkuseronline = ("UPDATE useronline set status = '" .$statusOnOf . "' where  username = '".$_SESSION['username'] ."'");
+      $Qstatus = mysqli_query($con, $checkuseronline);
+      mysqli_query($con, $Qstatus);
+      //$ud = ("UPDATE useronline set time_online = '" . $time. "'where session = '".$useronline."' AND  username = '".$_SESSION['username'] ."'");
+      //$uf = mysqli_query($con, $ud);
+      // mysqli_query($con, $uf);
   }
   else{
-      echo $insertlog = ("INSERT INTO useronline (session,time_online,username) VALUES ('" . $useronline. "','" . $time. "','" .$_SESSION['username']. "')");
-      $Qinsertlog = mysqli_query($con, $insertlog);
+     echo $insertstatus = ("INSERT INTO useronline (username,status) VALUES ('" .$_SESSION['username']. "','online')");
+      $Qinsertstatus = mysqli_query($con, $insertstatus);
+      //$insertlog = ("INSERT INTO useronline (session,time_online,username) VALUES ('" . $useronline. "','" . $time. "','" .$_SESSION['username']. "')");
+      //$Qinsertlog = mysqli_query($con, $insertlog);
   }
-
-  $timecheck = time() - 900;//ทุก 15 นาที
-  $sql2 = "select * from useronline where time_online > '".$timecheck."'";
+  //$timecheck = time() - 900;//ทุก 15 นาที
+  $selectuserstatusonline = "select * from useronline where status = 'online'";
   $result2 = mysqli_query($con,$sql2);
   $countuseronline = mysqli_num_rows($result2);
 }
