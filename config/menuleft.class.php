@@ -28,8 +28,8 @@ if (isset($_SESSION['username']) != "" || isset($_SESSION['username']) != null) 
   }
   //$timecheck = time() - 900;//ทุก 15 นาที
   $selectuserstatusonline = "select * from useronline where status = 'online'";
-  $result2 = mysqli_query($con,$sql2);
-  $countuseronline = mysqli_num_rows($result2);
+  $Rsonline = mysqli_query($con,$selectuserstatusonline);
+  $countuseronline = mysqli_num_rows($Rsonline);
 }
 ?>
   <div class="wrapper ">
