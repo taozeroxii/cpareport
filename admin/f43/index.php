@@ -23,6 +23,15 @@
       font-size: 1.2em;
       font-weight: bold;
     }
+    .mainh{
+      text-align: center;
+      font-size: 1.6em;
+    }
+    .iim{
+      width: 80px;
+      height: 58px;
+      font-weight: bold;
+    }
   </style>
 </head>
 <?php 
@@ -34,11 +43,21 @@ $res = mysqli_query($con, $sql);
 <body>
   <div id="jquery-script-menu">
     <div class="jquery-script-center">
-<!-- <ul>
-<li><a href="https://www.jqueryscript.net/table/table-rows-search.html">Download This Plugin</a></li>
-<li><a href="https://www.jqueryscript.net/">Back To jQueryScript.Net</a></li>
-</ul> -->
-<div class="jquery-script-ads"><script type="text/javascript"><!--
+<!-- <ul> -->
+<!-- <li><a href="https://www.jqueryscript.net/table/table-rows-search.html">Download This Plugin</a></li> -->
+<!-- <li><a href="https://www.jqueryscript.net/">Back To jQueryScript.Net</a></li> -->
+<!-- <li class="mainh"> -->
+  <br>
+  <div class="mainh">
+    <a href="eror0962/" target="_blank" title="คลิกเพื่อดาวน์โหลดไฟล์ เพื่อนำไปแก้ไขข้อมูล">
+      <img src="img/IjTw.gif" class="iim">  ดาวโหลดไฟล์ EXCEL ข้อมูล ERROR เดือน กันยายน 2562  
+      <img src="img/IjTw.gif" class="iim">
+    </a>
+    </div>
+  <!-- </li> -->
+
+<!-- </ul> -->
+<div class="jquery-script-ads"><script type="text/javascript">
   google_ad_client = "ca-pub-2783044520727903";
   google_ad_slot = "2780937993";
   google_ad_width = 728;
