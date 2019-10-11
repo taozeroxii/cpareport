@@ -21,7 +21,7 @@ if (isset($_SESSION['username']) != "" || isset($_SESSION['username']) != null) 
       // mysqli_query($con, $uf);
   }
   else{
-     echo $insertstatus = ("INSERT INTO useronline (username,status) VALUES ('" .$_SESSION['username']. "','online')");
+      $insertstatus = ("INSERT INTO useronline (username,status) VALUES ('" .$_SESSION['username']. "','online')");
       $Qinsertstatus = mysqli_query($con, $insertstatus);
       //$insertlog = ("INSERT INTO useronline (session,time_online,username) VALUES ('" . $useronline. "','" . $time. "','" .$_SESSION['username']. "')");
       //$Qinsertlog = mysqli_query($con, $insertlog);
