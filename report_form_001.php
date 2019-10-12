@@ -13,7 +13,6 @@ for( $i = 0 ; $i < 100000 ; $i++ )
 {
 	$i;
 }
-
 $sql 		=  $_GET['sql'];
 $send_excel =  $_GET['sql'];
 $topLevelItems = " SELECT sql_code,sql_head FROM cpareport_sql WHERE sql_file = '".$sql."'";
@@ -22,18 +21,43 @@ foreach($res as $item) {
 	$sql_detail = $item['sql_code'];
 	$sql_head   = $item['sql_head'];
 }
-
- if ((isset($_SESSION['username']) == "" || isset($_SESSION['username']) == null)&& $sql == 'sql_0123' ) {
+/////////////////// เช็คlogin  //////////////////////////////
+if ((isset($_SESSION['username']) == "" || isset($_SESSION['username']) == null)&& $sql == 'sql_0123' ) {
     echo "<script>alert('โปรดเข้าสู่ระบบเพื่อดูข้อมูล');window.location ='index.php';</script>";
 } 
-
+/////////////////// เช็คเก็บข้อมูลผู้เข้าชม sql นั้นๆ เพื่อเก็บ session นับจำนวน view  //////////////////////////////
+  $useronline = session_id();
+  $userlogin = $_SESSION['username'];
+  if(isset($_SESSION['username'])==''||isset($_SESSION['username'])==null){ $userlogin='ผู้เยี่ยมชมทั่วไป';}
+  $time = time();
+  $datenow = date("Y-m-d H:i:s");
+  $sql2 = "SELECT * FROM viewer where session = '".$useronline."' AND sql_file = '$sql'";
+  $result2 = mysqli_query($con,$sql2);
+  $num = mysqli_num_rows($result2);
+  if($num > 0){
+      $ud = ("UPDATE viewer set time_online = '" .$time. "',username = '".$userlogin."' where session = '".$useronline."'");
+      $uf = mysqli_query($con, $ud);
+      mysqli_query($con, $uf);
+  }
+  else{
+      $insertlog = ("INSERT INTO viewer (session,username,sql_file,time_online,datetime) VALUES ('" . $useronline. "', '".$userlogin ."','" . $sql. " ',' " .$time. "' ,' " .$datenow. " ')");
+      $Qinsertlog = mysqli_query($con, $insertlog);
+  }
+  //$timecheck = time() - 900;//ทุก 15 นาที
+  $selectuserstatusonline = "select * from viewer where sql_file = '".$sql."'";
+  $Rsonline = mysqli_query($con,$selectuserstatusonline);
+  $countview = mysqli_num_rows($Rsonline);
 ?>
+
+
+
 <body class="hold-transition skin-blue sidebar-mini">
 		<?php include "config/menuleft.class.php"; ?>
 		<div class="content-wrapper">
 			<section class="content-header">
 				<h1>
 					<?php echo $sql_head; ?>
+					<small><?php echo 'Viewer: '.$countview; ?></small>
 				</h1>
 			</section>
 			<section class="content">
@@ -47,7 +71,7 @@ foreach($res as $item) {
 										<form class="form-inline" method="POST" action="#">
 											<input type="text" class="form-control" id="datepickers" name="datepickers" data-provide="datepicker" data-date-language="th" autocomplete="off" >
 											<input type="text" class="form-control" id="datepickert" name="datepickert" data-provide="datepicker" data-date-language="th" autocomplete="off" >
-											<button type="submit" class="btn btn-default">ตกลง</button>
+											<button type="submit" class="btn btn-default" vaule = 'submit'>ตกลง</button>
 										</form>
 									</div>
 								</h3>
