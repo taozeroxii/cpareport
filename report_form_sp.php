@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <?php
+session_start();
 include"config/iswin_con.class.php";
 include"config/func.class.php";
 include"config/time.class.php";
@@ -22,6 +23,7 @@ foreach($res as $item) {
 	$sql_head   	= $item['sql_head'];
 	$sql_subcode_1	= $item['sql_subcode_1'];
 }
+include "config/timestampviewer.php";//เรียกไฟล์ในส่วนที่ทำงานนับจำนวนผู้กดเข้ามาหน้า sql นั้นๆ
 ?>
 <body class="hold-transition skin-blue sidebar-mini">
 		<?php include "config/menuleft.class.php"; ?>
@@ -29,6 +31,7 @@ foreach($res as $item) {
 			<section class="content-header">
 				<h1>
 					<?php echo $sql_head; ?>
+					<?php echo '<small>Viewer: '.$countview.'</small>';//แสดงยอดผู้เข้า sql นั้นๆ ?>
 				</h1>
 			</section>
 			<section class="content">

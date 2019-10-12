@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <?php
+session_start();
 include"config/pg_con.class.php";
 include"config/func.class.php";
 include"config/time.class.php";
@@ -22,7 +23,9 @@ foreach($res as $item) {
 	$sql_head   = $item['sql_head']; 
 	$todate    = date('Y-m-d');
 }
+include "config/timestampviewer.php";//เรียกไฟล์ในส่วนที่ทำงานนับจำนวนผู้กดเข้ามาหน้า sql นั้นๆ
 ?>
+
 <body class="hold-transition skin-blue sidebar-mini">
 		<?php include "config/menuleft.class.php"; ?>
 		<div class="content-wrapper">
@@ -30,6 +33,7 @@ foreach($res as $item) {
 				<h1>
 					<?php echo $sql_head; ?> 
 					<small><?php echo " เวลาที่ใช้ในการประมวลผล ".$bm->stop()." วินาที "; ?></small>
+					<small><?php echo 'Viewer: '.$countview; ?></small>
 				</h1>
 			</section>
 			<section class="content">         

@@ -6,6 +6,7 @@ include"config/func.class.php";
 include"config/time.class.php";
 include"config/head.class.php"; 
 include('config/my_con.class.php');
+session_start();
 $bm = new Timer; 
 $bm->start();
 for( $i = 0 ; $i < 100000 ; $i++ )
@@ -21,6 +22,8 @@ foreach($res as $item) {
 	$sql_detail = $item['sql_code'];
 	$sql_head   = $item['sql_head'];
 }
+include "config/timestampviewer.php";//เรียกไฟล์ในส่วนที่ทำงานนับจำนวนผู้กดเข้ามาหน้า sql นั้นๆ
+
 ?>
 <style type="text/css">
 	.diagshowinput{
@@ -35,6 +38,7 @@ foreach($res as $item) {
 			<section class="content-header">
 				<h1>
 					<?php echo $sql_head; ?>
+					<small><?php echo 'Viewer: '.$countview; ?></small>
 				</h1>
 			</section>
 			<section class="content">

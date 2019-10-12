@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <?php
+session_start();
 include"config/pg_con.class.php";
 include"config/func.class.php";
 include"config/time.class.php";
@@ -21,6 +22,7 @@ foreach($res as $item) {
 	$sql_detail = $item['sql_code'];
 	$sql_head   = $item['sql_head'];
 }
+include "config/timestampviewer.php";//เรียกไฟล์ในส่วนที่ทำงานนับจำนวนผู้กดเข้ามาหน้า sql นั้นๆ
 ?>
 <body class="hold-transition skin-blue sidebar-mini">
 
@@ -29,6 +31,7 @@ foreach($res as $item) {
 			<section class="content-header">
 				<h1>
 					<?php echo $sql_head; ?>
+					<small><?php echo 'Viewer: '.$countview; ?></small>
 				</h1>
 			</section>
 			<section class="content">
