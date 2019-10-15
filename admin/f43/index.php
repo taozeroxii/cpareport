@@ -32,6 +32,31 @@
       height: 58px;
       font-weight: bold;
     }
+    .hm{
+      width: 100%;
+    }
+    .hs{
+      width: 20;
+      float: left;
+    }
+    .cccc{
+      padding: 0.1%;
+      margin: 0.1%;
+      color:#0B5345; 
+      float: right;
+      background-color: #EAF2F8;
+      border-radius: 10px;
+      font-size: 0.8em;
+    }
+    .bbbb{
+      font-size: 0.4em;
+      color: #8A0876;
+    }
+    .aaaa{
+      font-size: 0.6em;
+      color: #A04000;
+    }
+
   </style>
 </head>
 <?php 
@@ -43,61 +68,81 @@ $res = mysqli_query($con, $sql);
 <body>
   <div id="jquery-script-menu">
     <div class="jquery-script-center">
-<!-- <ul> -->
-<!-- <li><a href="https://www.jqueryscript.net/table/table-rows-search.html">Download This Plugin</a></li> -->
-<!-- <li><a href="https://www.jqueryscript.net/">Back To jQueryScript.Net</a></li> -->
-<!-- <li class="mainh"> -->
-  <br>
-  <div class="mainh">
-    <a href="eror0962/" target="_blank" title="คลิกเพื่อดาวน์โหลดไฟล์ เพื่อนำไปแก้ไขข้อมูล">
-      <img src="img/IjTw.gif" class="iim">  ดาวโหลดไฟล์ EXCEL ข้อมูล ERROR เดือน กันยายน 2562  
-      <img src="img/IjTw.gif" class="iim">
-    </a>
+      <!-- <ul> -->
+        <!-- <li><a href="https://www.jqueryscript.net/table/table-rows-search.html">Download This Plugin</a></li> -->
+        <!-- <li><a href="https://www.jqueryscript.net/">Back To jQueryScript.Net</a></li> -->
+        <!-- <li class="mainh"> -->
+          <br>
+          <div class="hm">
+            <!-- <div class="hs">โครงสร้างมาตรฐานข้อมูลด้านการแพทย์และสุขภาพ กระทรวงสาธารณสุข V 2.3 </div> -->
+<!--             <div class="hs">1</div>
+            <div class="hs">1</div>
+            <div class="hs">1</div>
+            <div class="hs">1</div> -->
+
+          </div>
+
+
+          <div class="mainh">
+            <a href="eror0962/" target="_blank" title="คลิกเพื่อดาวน์โหลดไฟล์ เพื่อนำไปแก้ไขข้อมูล">
+              <img src="img/IjTw.gif" class="iim"> 
+              ดาวโหลดไฟล์ EXCEL ข้อมูล ERROR เดือน กันยายน 2562  
+              <img src="img/IjTw.gif" class="iim">
+            </a>
+          </div>
+
+          <!-- </li> -->
+
+          <!-- </ul> -->
+          <div class="jquery-script-ads"><script type="text/javascript">
+            google_ad_client = "ca-pub-2783044520727903";
+            google_ad_slot = "2780937993";
+            google_ad_width = 728;
+            google_ad_height = 90;
+          </script>
+          <script type="text/javascript"
+          src="https://pagead2.googlesyndication.com/pagead/show_ads.js">
+        </script>
+      </div>
+      <div class="jquery-script-clear"></div>
     </div>
-  <!-- </li> -->
+  </div>
+  <div class="container">
+    <h1 class="">
+      <span class="aaaa">Check Code Error F43</span> 
+      <sup class="bbbb">โค้ด Error F43 แฟ้มส่งออก </sup>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      <div class="cccc">
+        <a href="file/f43.pdf" target="_blank" title="โครงสร้างมาตรฐานข้อมูลด้านการแพทย์และสุขภาพ กระทรวงสาธารณสุข">โครงสร้างมาตรฐาน 43 แฟ้ม V 2.3</a>
+      </div>
 
-<!-- </ul> -->
-<div class="jquery-script-ads"><script type="text/javascript">
-  google_ad_client = "ca-pub-2783044520727903";
-  google_ad_slot = "2780937993";
-  google_ad_width = 728;
-  google_ad_height = 90;
-</script>
-<script type="text/javascript"
-src="https://pagead2.googlesyndication.com/pagead/show_ads.js">
-</script>
-</div>
-<div class="jquery-script-clear"></div>
-</div>
-</div>
-<div class="container">
-  <h1>Check Code Error F43 <sup>โค้ด Error F43 แฟ้มส่งออก </sup></h1>
-  <input type="text" id="input" placeholder="Search " class="form-control">
-  <table id="table" class="table table-bordered table-striped">
-    <thead>
-      <tr>
-        <th class="hh">Id_Code</th>
-        <th class="hh">Code_Name</th>
-        <th class="hh">File_name</th>
-      </tr>
-    </thead>
-    <tbody>
-      <?php
-      $rw == 0;
-      foreach ($res as $item) {
-        $rw++;
-        ?>
+    </h1>
+    <input type="text" id="input" placeholder="Search " class="form-control">
+    <table id="table" class="table table-bordered table-striped">
+      <thead>
         <tr>
-          <td><?php echo $item['id_code']; ?></td>
-          <td><?php echo $item['code_name']; ?></td>
-          <td><?php echo $item['file_name']; ?></td>
+          <th class="hh">Id_Code</th>
+          <th class="hh">Code_Name</th>
+          <th class="hh">File_name</th>
         </tr>
+      </thead>
+      <tbody>
         <?php
-      } ?>
-    </tbody>
+        $rw == 0;
+        foreach ($res as $item) {
+          $rw++;
+          ?>
+          <tr>
+            <td><?php echo $item['id_code']; ?></td>
+            <td><?php echo $item['code_name']; ?></td>
+            <td><?php echo $item['file_name']; ?></td>
+          </tr>
+          <?php
+        } ?>
+      </tbody>
 
-  </table>
-</div>
+    </table>
+  </div>
 </body>
 <script  src="table_search.js"></script>
 <script>
