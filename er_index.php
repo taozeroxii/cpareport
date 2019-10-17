@@ -9,6 +9,7 @@ include"config/func.class.php";
 include"config/time.class.php";
 include"config/sql.class.php";
 include"config/head.er.class.php"; 
+include"config/my_con.class.php"; 
 
 $bm = new Timer; 
 $bm->start();
@@ -16,7 +17,7 @@ for( $i = 0 ; $i < 100000 ; $i++ )
 {
 	$i;
 }
-include "config/timestampviewer.php";//เรียกไฟล์ในส่วนที่ทำงานนับจำนวนผู้กดเข้ามาหน้า sql นั้นๆ
+include "config/timestampviewer.php";//เรียกไฟล์ในส่วนที่ทำงานนับจำนวนผู้กดเข้ามาหน้า sql นั้นๆ 
 ?>
 <style type="text/css">
 	.h-div{
@@ -29,7 +30,7 @@ include "config/timestampviewer.php";//เรียกไฟล์ในส่�
 
 
 <body class="hold-transition skin-blue sidebar-mini">
-		<?php include "config/menuleft.class.php"; ?>
+		<?php include "config/menuleft.class.php";?>
 		<div class="content-wrapper">
 			<section class="content-header">
 				<h1>
