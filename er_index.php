@@ -33,6 +33,7 @@ for( $i = 0 ; $i < 100000 ; $i++ )
 				<h1>
 					ข้อมูลฉุกเฉิน ข้อมูล ณ วันที่ <?php echo thaidatefull(date('Y-m-d'))." เวลา ".date('H:i:s')." น. ";?>
 					<small><?php echo " เวลาที่ใช้ในการประมวลผล ".$bm->stop()." วินาที "; ?></small>
+					<small><?php echo 'Viewer: '.$countview; ?></small>
 				</h1>
 			</section>
 
