@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <?
+session_start();
 header( "refresh: 200; url=" );
 ?>
 <?php include"config/pg_con.class.php";
