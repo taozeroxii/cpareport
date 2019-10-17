@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <?
+session_start();
 header( "refresh: 200; url=" );
 ?>
 <?php include"config/pg_con.class.php";
@@ -8,6 +9,7 @@ include"config/func.class.php";
 include"config/time.class.php";
 include"config/sql.class.php";
 include"config/head.er.class.php"; 
+include"config/my_con.class.php"; 
 
 $bm = new Timer; 
 $bm->start();
@@ -15,6 +17,7 @@ for( $i = 0 ; $i < 100000 ; $i++ )
 {
 	$i;
 }
+include "config/timestampviewer.php";//เรียกไฟล์ในส่วนที่ทำงานนับจำนวนผู้กดเข้ามาหน้า sql นั้นๆ 
 ?>
 <style type="text/css">
 	.h-div{
@@ -27,27 +30,13 @@ for( $i = 0 ; $i < 100000 ; $i++ )
 
 
 <body class="hold-transition skin-blue sidebar-mini">
-	<div class="wrapper">
-		<header class="main-header">
-			<a href="#" class="logo">
-				<span class="logo-mini"><b>r</b>CPA</span>
-				<span class="logo-lg"><b>Re</b>port Hospital</span>
-			</a>
-			<nav class="navbar navbar-static-top">
-				<a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
-					<span class="sr-only">Toggle navigation</span>
-					<span class="icon-bar"></span>
-					<span class="icon-bar"></span>
-					<span class="icon-bar"></span>
-				</a>
-			</nav>
-		</header>
-		<?php include "config/menuleft.class.php"; ?>
+		<?php include "config/menuleft.class.php";?>
 		<div class="content-wrapper">
 			<section class="content-header">
 				<h1>
 					ข้อมูลฉุกเฉิน ข้อมูล ณ วันที่ <?php echo thaidatefull(date('Y-m-d'))." เวลา ".date('H:i:s')." น. ";?>
 					<small><?php echo " เวลาที่ใช้ในการประมวลผล ".$bm->stop()." วินาที "; ?></small>
+					<small><?php echo 'Viewer: '.$countview; ?></small>
 				</h1>
 			</section>
 
