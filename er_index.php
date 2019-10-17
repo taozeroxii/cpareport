@@ -16,6 +16,7 @@ for( $i = 0 ; $i < 100000 ; $i++ )
 {
 	$i;
 }
+include "config/timestampviewer.php";//เรียกไฟล์ในส่วนที่ทำงานนับจำนวนผู้กดเข้ามาหน้า sql นั้นๆ
 ?>
 <style type="text/css">
 	.h-div{
