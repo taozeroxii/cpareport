@@ -107,13 +107,15 @@ $res = mysqli_query($con, $sql);
       <div class="jquery-script-clear"></div>
     </div>
   </div>
+
   <div class="container">
     <h1 class="">
       <span class="aaaa">Check Code Error F43</span> 
       <sup class="bbbb">โค้ด Error F43 แฟ้มส่งออก </sup>
       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
       <div class="cccc">
-        <a href="file/f43.pdf" target="_blank" title="โครงสร้างมาตรฐานข้อมูลด้านการแพทย์และสุขภาพ กระทรวงสาธารณสุข">โครงสร้างมาตรฐาน 43 แฟ้ม V 2.3</a>
+        <!-- <a href="file/f43.pdf" target="_blank" title="โครงสร้างมาตรฐานข้อมูลด้านการแพทย์และสุขภาพ กระทรวงสาธารณสุข">โครงสร้างมาตรฐาน 43 แฟ้ม V 2.3</a> -->
+            <a href="document.php" target="_blank" title="แนวทางการเก็บข้อมูลที่เชื่อมโยงกลับ 43 แฟ้ม">คู่มือการบันทึกข้อมูล</a>
       </div>
 
     </h1>
