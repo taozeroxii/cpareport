@@ -219,7 +219,7 @@
                                     <div class="col-lg-3">
                                         <input type="hidden" class="form-control" name="id" value=" <?php echo $maxId; ?>" />
                                         <span class="input-group-text">SQL names(ชื่อQUERY)</span>
-                                        <input type="text" class="form-control" name="sql_names" placeholder="เช่น DH0101" required />
+                                        <input type="text" class="form-control" name="sql_names" placeholder="เช่น DH0101 หากเป็นตัวชี้วัดให้ใส่รหัสตัวชี้วัด" required />
                                     </div>
                                     <div class="col-lg-3">
                                         <span class="input-group-text">คำที่แสดงในใบรีพอร์ทในหน้านั้น </span>

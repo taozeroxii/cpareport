@@ -20,8 +20,10 @@ $res=mysqli_query($con,$topLevelItems);
 foreach($res as $item) {
   $sql_detail   = $item['sql_code'];
   $sql_detail_1 = $item['sql_subcode_1'];
+  $sql_detail_2 = $item['sql_subcode_2'];
   $sql_head     = $item['sql_head'];
   $menu_sub     = $item['menu_sub'];
+  $sql_namekpi  = $item['sql_name'];
 }
 
 

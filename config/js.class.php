@@ -319,53 +319,19 @@ function load_icd(){
 </div>
 
 
-<div class="modal fade" id="myModalpdf_dn0101" role="dialog">
+<div class="modal fade" id="myModalpdf_<?php echo  strtolower($sql_namekpi);?>" role="dialog">
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
       <div class="graph-outline">
-        <object style="width:100%; height:800px;" data="image/dn0101.pdf?#zoom=85&scrollbar=0&toolbar=0&navpanes=0" type="application/pdf">
-          <embed src="image/dn0101.pdf?#zoom=85&scrollbar=0&toolbar=0&navpanes=0" type="application/pdf" />
+
+        <object style="width:100%; height:800px;" data="image/thip/<?php echo strtolower($sql_namekpi);?>.pdf?#zoom=85&scrollbar=0&toolbar=0&navpanes=0" type="application/pdf">
+          <embed src="image/thip/<?php echo strtolower($sql_namekpi);?>.pdf#zoom=85&scrollbar=0&toolbar=0&navpanes=0" type="application/pdf" />
         </object>
       </div>
     </div>
   </div>
 </div>
 
-<div class="modal fade" id="myModalpdf_dn0107" role="dialog">
-  <div class="modal-dialog modal-lg">
-    <div class="modal-content">
-      <div class="graph-outline">
-        <object style="width:100%; height:800px;" data="image/dn0107.pdf?#zoom=85&scrollbar=0&toolbar=0&navpanes=0" type="application/pdf">
-          <embed src="image/dn0107.pdf?#zoom=85&scrollbar=0&toolbar=0&navpanes=0" type="application/pdf" />
-        </object>
-      </div>
-    </div>
-  </div>
-</div>
-
-<div class="modal fade" id="myModalpdf_dc0107" role="dialog">
-  <div class="modal-dialog modal-lg">
-    <div class="modal-content">
-      <div class="graph-outline">
-        <object style="width:100%; height:800px;" data="image/dc0107.pdf?#zoom=85&scrollbar=0&toolbar=0&navpanes=0" type="application/pdf">
-          <embed src="image/dc0107.pdf?#zoom=85&scrollbar=0&toolbar=0&navpanes=0" type="application/pdf" />
-        </object>
-      </div>
-    </div>
-  </div>
-</div>
-
-<div class="modal fade" id="myModalpdf_dr0101" role="dialog">
-  <div class="modal-dialog modal-lg">
-    <div class="modal-content">
-      <div class="graph-outline">
-        <object style="width:100%; height:800px;" data="image/dr0101.pdf?#zoom=85&scrollbar=0&toolbar=0&navpanes=0" type="application/pdf">
-          <embed src="image/dr0101.pdf?#zoom=85&scrollbar=0&toolbar=0&navpanes=0" type="application/pdf" />
-        </object>
-      </div>
-    </div>
-  </div>
-</div>
 
 <script>
   function Fcopy_code() {

@@ -71,7 +71,7 @@ a:hover{
 /*--main--*/
 /*--header start here--*/
 .w3ls-header {
-    padding: 0em 0 0;
+	padding: 0em 0 0;
 }
 h1 {
     text-align: center;
@@ -130,12 +130,23 @@ i.fa.fa-facebook, i.fa.fa-twitter, i.fa.fa-google-plus {
 }
 .header-main {
     padding: 2em 3em;
-    width: 25%;
+    width: 30%;
     margin: 0 auto;
     background: rgba(0, 0, 0, 0.6);
     background: #fff;
-
 }
+@media only screen and (max-width: 600px) {
+	.header-main {
+		padding: 2em 3em;
+		width: 100%;
+		margin: 0 auto;
+		background: rgba(0, 0, 0, 0.6);
+		background: #fff;
+	
+	}
+  }
+
+
 .header-main h2 {
     font-size: 2em;
     color: #fff;
