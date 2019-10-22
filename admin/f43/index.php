@@ -95,18 +95,18 @@
 
 
           <div class="mainh">
-<!--             <a href="eror0962/" target="_blank" title="คลิกเพื่อดาวน์โหลดไฟล์ เพื่อนำไปแก้ไขข้อมูล">
+            <a href="eror0962/" target="_blank" title="คลิกเพื่อดาวน์โหลดไฟล์ เพื่อนำไปแก้ไขข้อมูล">
               <img src="img/IjTw.gif" class="iim"> 
               ดาวโหลดไฟล์ EXCEL ข้อมูล ERROR เดือน กันยายน 2562  
               <img src="img/IjTw.gif" class="iim">
-            </a> -->
+            </a>
 
             <div class="cccc">
               <a href="document.php" target="_blank" title="แนวทางการเก็บข้อมูลที่เชื่อมโยงกลับ 43 แฟ้ม" class="button">คู่มือการบันทึกข้อมูล</a> 
 
-              <a href="document.php" target="_blank" title="แนวทางการเก็บข้อมูลที่เชื่อมโยงกลับ 43 แฟ้ม" class="button">คู่มือการบันทึกข้อมูล</a> 
+           <!--    <a href="document.php" target="_blank" title="แนวทางการเก็บข้อมูลที่เชื่อมโยงกลับ 43 แฟ้ม" class="button">คู่มือการบันทึกข้อมูล</a> 
 
-              <a href="document.php" target="_blank" title="แนวทางการเก็บข้อมูลที่เชื่อมโยงกลับ 43 แฟ้ม" class="button">คู่มือการบันทึกข้อมูล</a> 
+              <a href="document.php" target="_blank" title="แนวทางการเก็บข้อมูลที่เชื่อมโยงกลับ 43 แฟ้ม" class="button">คู่มือการบันทึกข้อมูล</a>  -->
 
 
           </div>
