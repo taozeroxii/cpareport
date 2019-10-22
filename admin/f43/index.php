@@ -39,7 +39,7 @@
       width: 20;
       float: left;
     }
-    .cccc{
+/*    .cccc{
       padding: 0.1%;
       margin: 0.1%;
       color:#0B5345; 
@@ -47,34 +47,45 @@
       background-color: #EAF2F8;
       border-radius: 10px;
       font-size: 0.8em;
-    }
-    .bbbb{
-      font-size: 0.4em;
-      color: #8A0876;
-    }
-    .aaaa{
-      font-size: 0.6em;
-      color: #A04000;
-    }
-
-  </style>
-</head>
-<?php 
-$con = new mysqli("172.16.0.251", "report", "report", "cpareportdb");
-mysqli_set_charset($con,"utf8");
-$sql = " SELECT * FROM f43_check_code_error Order BY id ASC";
-$res = mysqli_query($con, $sql);
-?>
-<body>
-  <div id="jquery-script-menu">
-    <div class="jquery-script-center">
-      <!-- <ul> -->
-        <!-- <li><a href="https://www.jqueryscript.net/table/table-rows-search.html">Download This Plugin</a></li> -->
-        <!-- <li><a href="https://www.jqueryscript.net/">Back To jQueryScript.Net</a></li> -->
-        <!-- <li class="mainh"> -->
-          <br>
-          <div class="hm">
-            <!-- <div class="hs">โครงสร้างมาตรฐานข้อมูลด้านการแพทย์และสุขภาพ กระทรวงสาธารณสุข V 2.3 </div> -->
+      }*/
+      .bbbb{
+        font-size: 0.4em;
+        color: #8A0876;
+      }
+      .aaaa{
+        font-size: 0.6em;
+        color: #A04000;
+      }
+      .button {
+        /*width: 30%;*/
+        background-color: #4CAF50; /* Green */
+        border: none;
+        color: white;
+        padding: 15px 32px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        
+      }
+    </style>
+  </head>
+  <?php 
+  $con = new mysqli("172.16.0.251", "report", "report", "cpareportdb");
+  mysqli_set_charset($con,"utf8");
+  $sql = " SELECT * FROM f43_check_code_error Order BY id ASC";
+  $res = mysqli_query($con, $sql);
+  ?>
+  <body>
+    <div id="jquery-script-menu">
+      <div class="jquery-script-center">
+        <!-- <ul> -->
+          <!-- <li><a href="https://www.jqueryscript.net/table/table-rows-search.html">Download This Plugin</a></li> -->
+          <!-- <li><a href="https://www.jqueryscript.net/">Back To jQueryScript.Net</a></li> -->
+          <!-- <li class="mainh"> -->
+            <br>
+            <div class="hm">
+              <!-- <div class="hs">โครงสร้างมาตรฐานข้อมูลด้านการแพทย์และสุขภาพ กระทรวงสาธารณสุข V 2.3 </div> -->
 <!--             <div class="hs">1</div>
             <div class="hs">1</div>
             <div class="hs">1</div>
@@ -84,11 +95,20 @@ $res = mysqli_query($con, $sql);
 
 
           <div class="mainh">
-            <a href="eror0962/" target="_blank" title="คลิกเพื่อดาวน์โหลดไฟล์ เพื่อนำไปแก้ไขข้อมูล">
+<!--             <a href="eror0962/" target="_blank" title="คลิกเพื่อดาวน์โหลดไฟล์ เพื่อนำไปแก้ไขข้อมูล">
               <img src="img/IjTw.gif" class="iim"> 
               ดาวโหลดไฟล์ EXCEL ข้อมูล ERROR เดือน กันยายน 2562  
               <img src="img/IjTw.gif" class="iim">
-            </a>
+            </a> -->
+
+            <div class="cccc">
+              <a href="document.php" target="_blank" title="แนวทางการเก็บข้อมูลที่เชื่อมโยงกลับ 43 แฟ้ม" class="button">คู่มือการบันทึกข้อมูล</a> 
+
+              <a href="document.php" target="_blank" title="แนวทางการเก็บข้อมูลที่เชื่อมโยงกลับ 43 แฟ้ม" class="button">คู่มือการบันทึกข้อมูล</a> 
+
+              <a href="document.php" target="_blank" title="แนวทางการเก็บข้อมูลที่เชื่อมโยงกลับ 43 แฟ้ม" class="button">คู่มือการบันทึกข้อมูล</a> 
+
+
           </div>
 
           <!-- </li> -->
@@ -111,13 +131,7 @@ $res = mysqli_query($con, $sql);
   <div class="container">
     <h1 class="">
       <span class="aaaa">Check Code Error F43</span> 
-      <sup class="bbbb">โค้ด Error F43 แฟ้มส่งออก </sup>
-      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-      <div class="cccc">
-        <!-- <a href="file/f43.pdf" target="_blank" title="โครงสร้างมาตรฐานข้อมูลด้านการแพทย์และสุขภาพ กระทรวงสาธารณสุข">โครงสร้างมาตรฐาน 43 แฟ้ม V 2.3</a> -->
-            <a href="document.php" target="_blank" title="แนวทางการเก็บข้อมูลที่เชื่อมโยงกลับ 43 แฟ้ม">คู่มือการบันทึกข้อมูล</a>
-      </div>
-
+      <sup class="bbbb"><a href="file/f43.pdf" target="_blank" title="โครงสร้างมาตรฐานข้อมูลด้านการแพทย์และสุขภาพ กระทรวงสาธารณสุข">โครงสร้างมาตรฐาน 43 แฟ้ม V 2.3</a></sup>
     </h1>
     <input type="text" id="input" placeholder="Search " class="form-control">
     <table id="table" class="table table-bordered table-striped">

@@ -12,7 +12,7 @@
 	<?php 
 	$con = new mysqli("172.16.0.251", "report", "report", "cpareportdb");
 	mysqli_set_charset($con,"utf8");
-	$sql = " SELECT * FROM f43_imgdoc ";
+	$sql = " SELECT * FROM f43_imgdoc ORDER BY id DESC ";
 	$res = mysqli_query($con, $sql);
 	?>
 	<div></div>
