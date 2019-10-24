@@ -162,6 +162,9 @@ $res = mysqli_query($con, $topLevelItems);
 			<span class="c"> {icd_dropdown} </span>
 			<span class="bbb"> |</span>
 			<span class="c"> {c_department[]} </span>
+			<span class="bbb"> |</span>
+			<span class="c"> สิทธิ  {i_dropdown} </span>
+			
 			</span>
 		</div>
 		<hr>

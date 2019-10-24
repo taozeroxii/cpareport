@@ -27,7 +27,7 @@
     <?php
     if(isset($_POST['submit'])){
         $username = $_POST['username'];
-        $password = $con->real_escape_string ($_POST['password']);
+        $password = $con->real_escape_string (md5($_POST['password']));
         /*
         $hash = password_hash($password,PASSWORD_BCRYPT);
         echo  $hash;
