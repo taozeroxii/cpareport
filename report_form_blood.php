@@ -12,7 +12,7 @@ $bm->start();
 for( $i = 0 ; $i < 100000 ; $i++ )
 {
  $i;
-}
+} 
 $sql            =  $_GET['sql'];
 $send_excel     =  $_GET['sql'];
 $topLevelItems  = " SELECT *  FROM cpareport_sql WHERE sql_file = '".$sql."'";
@@ -102,6 +102,7 @@ include "config/timestampviewer.php";//เรียกไฟล์ในส่�
         <div class="box">
           <div class="box-body table-responsive">
          <div class="box-body table-responsive ">   <?php if($sql   == 'sql_0121'){ echo '<span class="fcol">เบิกโลหิต</span>'; }else echo '<span class="fcol">สรุปสถิติ</span>';?> 
+         <button type="" class="btn btn-default pull-right" class="btn btn-info btn-lg" onclick="export_excel()" > Excel </button>
             <table id="example3" class="table table-bordered  table-hover table-striped ">
               <thead>
                 <tr>
@@ -144,6 +145,7 @@ include "config/timestampviewer.php";//เรียกไฟล์ในส่�
         <div class="box">
           <div class="box-body table-responsive">
          <div class="box-body table-responsive "> <?php if($sql  == 'sql_0121'){ echo '<span class="fcol">จ่ายโลหิต</span>'; }else echo '<span class="fcol">ข้อมูลแบบละเอียด</span>';?>  
+         <button type="" class="btn btn-default pull-right" class="btn btn-info btn-lg" onclick="export_excel1()" > Excel </button>
             <table id="example3" class="table table-bordered  table-hover table-striped ">
               <thead>
                 <tr>
@@ -204,5 +206,18 @@ include "config/timestampviewer.php";//เรียกไฟล์ในส่�
   })
 </script>
 
+<script type="text/javascript">
+		function export_excel()
+		{
+			document.location = "export_excel_f001.php?send_excel=<?php echo $send_excel; ?>&datepickers=<?php echo $datepickers; ?>&datepickert=<?php echo $datepickert; ?>";
+		}
+  </script>
+  
+  <script type="text/javascript">
+		function export_excel1()
+		{
+			document.location = "export_excel_f001_sql2.php?send_excel=<?php echo $send_excel; ?>&datepickers=<?php echo $datepickers; ?>&datepickert=<?php echo $datepickert; ?>";
+		}
+	</script>
 </body>
 </html>
