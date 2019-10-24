@@ -12,6 +12,7 @@ header("Content-Disposition: attachment; filename=export".$todate.".xls");
 $sql            = $_GET['send_excel'];
 $datepickers    = $_GET['datepickers'];
 $datepickert    = $_GET['datepickert'];
+$i_dropdown    = $_GET['i_dropdown'];
 
 $topLevelItems = " SELECT sql_code,sql_head FROM cpareport_sql WHERE sql_file = '".$sql."'";
 $res=mysqli_query($con,$topLevelItems);
@@ -21,6 +22,7 @@ foreach($res as $item) {
                     $sql = " $sql_detail ";
                     $sql = str_replace("{datepickers}", "'$datepickers'", $sql);
                     $sql = str_replace("{datepickert}", "'$datepickert'", $sql);
+                    $sql = str_replace("{i_dropdown}", "$i_dropdown", $sql);
                     $result = pg_query($sql);
     ?>
     <table width="100%" border="1">
