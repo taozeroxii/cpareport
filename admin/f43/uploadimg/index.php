@@ -29,14 +29,25 @@
   <hr>
     <button class="file-upload-btn" type="submit">Upload</button>
 </div>
+<?php
 
+  //set up basic connection
+ $ftp_server = "172.16.0.251";
+ $ftp_user_name = "report";
+ $ftp_user_pass = "report";
 
+ $conn_id = ftp_connect($ftp_server);
+?>
 <!-- <form name="form1" method="post" action="" enctype="multipart/form-data">
 	<input type="file" name="filUpload"><br>
 	<input name="btnSubmit" type="submit" value="Submit">
 </form> -->
 </body>
+<?php
 
+ $login_result = ftp_login($conn_id, $ftp_user_name, $ftp_user_pass); 
+
+?>
 <?php
 	   $fname  = DATE('YmdHis').".jpg";
 	  //$fname   = $_FILES["filUpload"]["name"];
