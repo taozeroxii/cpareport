@@ -62,7 +62,7 @@
         )";
         $queryInsert = mysqli_query($con, $insertsql);
         if ($queryInsert) {
-            echo "<script>alert('เพิ่มข้อมูลเรียบร้อย');window.reload=test.php;</script>";
+            echo "<script>alert('เพิ่มข้อมูลเรียบร้อย');window.close();</script>";
             //echo "<script>window.location='test.php';</script>";
         } else  {echo "<script>alert('มีข้อมูลอยู่แล้ว');window.location=test.php;</script>"; } 
         
@@ -71,7 +71,7 @@
 
 
     <div class="w3ls-header">
-    <a href="index.php"><input class="btn  btn-secondary btn-block" type="submit" name='กลับหน้าหลัก' value='กลับหน้าหลัก' /></a>
+    <a href='javascript:if(confirm("ต้องการปิดหน้านี้หรือไม่?"))self.close()'><input class="btn  btn-secondary btn-block" type="submit" name='กลับหน้าหลัก' value='ปิด' /></a>
         <br> <br><br> <br>
         <div class="header-main" style="  box-shadow: 10px 10px grey;">
             <h2>เพิ่มผู้เข้าใช้งาน</h2>
