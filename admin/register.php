@@ -69,7 +69,6 @@
     }
     ?>
 
-
     <div class="w3ls-header">
     <a href='javascript:if(confirm("ต้องการปิดหน้านี้หรือไม่?"))self.close()'><input class="btn  btn-secondary btn-block" type="submit" name='กลับหน้าหลัก' value='ปิด' /></a>
         <br> <br><br> <br>

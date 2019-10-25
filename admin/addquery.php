@@ -3,39 +3,55 @@
 <html>
 
 <link rel="stylesheet" type="text/css" href="css/DT_bst.css">
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-  <link rel="stylesheet" type="text/css" href="css/bst.min.css">
-  <link href="https://fonts.googleapis.com/css?family=Kanit" rel="stylesheet">
-  <script src="js/j182.js"></script>
-  <script src="js/j-dtb.js"></script>
-  <script src="js/DT_bst.js"></script>
-  
-    <?php
-    include "../config/pg_con.class.php";
-    include "../config/func.class.php";
-    include "../config/head.class.php";
-    include('../config/my_con.class.php');
-    ?>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<link rel="stylesheet" type="text/css" href="css/bst.min.css">
+<link href="https://fonts.googleapis.com/css?family=Kanit" rel="stylesheet">
+<script src="js/j182.js"></script>
+<script src="js/j-dtb.js"></script>
+<script src="js/DT_bst.js"></script>
+
+<?php
+include "../config/pg_con.class.php";
+include "../config/func.class.php";
+include "../config/head.class.php";
+include('../config/my_con.class.php');
+?>
 
 
-    <script src="jquery-1.11.1.min.js" type="text/javascript"></script>
-    <script type="text/javascript">
-        $(document).ready(function() {
-            $('#categories').change(function() {
-                $.ajax({
-                    type: 'POST',
-                    data: {
-                        categories: $(this).val()
-                    },
-                    url: 'select_menu.php',
-                    success: function(data) {
-                        $('#products').html(data);
-                    }
-                });
-                return false;
+<script src="jquery-1.11.1.min.js" type="text/javascript"></script>
+<script type="text/javascript">
+    $(document).ready(function() {
+        $('#categories').change(function() {
+            $.ajax({
+                type: 'POST',
+                data: {
+                    categories: $(this).val()
+                },
+                url: 'select_menu.php',
+                success: function(data) {
+                    $('#products').html(data);
+                }
             });
+            return false;
         });
-    </script>
+    });
+
+    $(document).ready(function() {
+        $('#menu_link').change(function() {
+            $.ajax({
+                type: 'POST',
+                data: {
+                    menu_link: $(this).val()
+                },
+                url: 'select_menu_type.php',
+                success: function(data) {
+                    $('#summenutype').html(data);
+                }
+            });
+            return false;
+        });
+    });
+</script>
 </head>
 
 <body class="hold-transition skin-blue sidebar-mini">
@@ -56,13 +72,16 @@
 
     $sql2 = " SELECT * FROM cpareport_report WHERE report_status = '1'  ORDER BY report_id ASC  ";
     $queryform = mysqli_query($con, $sql2);
+
+    $querymenutype = " SELECT * FROM cpareport_menu_type WHERE menu_type_status = '1'  ORDER BY menu_type_id ASC  ";
+    $Qmenutype = mysqli_query($con, $querymenutype);
     ?>
 
 
 
 
     <?php if (isset($_POST['submit'])) {
-        
+
         /*echo 'id :'.$_POST['id'] . '<br> ';
         echo 'sql_names :'.$_POST['sql_names'] . '<br> ';
         echo 'sql_file  :'.$_POST['sql_file'] . '<br>';
@@ -85,7 +104,7 @@
         echo 'menu_link :'.$_POST['menu_link'] . '<br>';
         echo 'menu_order :'.$_POST['sql_userupdate'] . '<br>';
         */
-        $reptitle = str_replace(' ', '_', $_POST["menu_title"] ); 
+        $reptitle = str_replace(' ', '_', $_POST["menu_title"]);
 
         $insertsql = "INSERT INTO cpareport_sql (sql_id,sql_name,sql_file,sql_code,sql_subcode_1,sql_subcode_2,sql_subcode_3,sql_type,sq_link,sql_head,sql_updatedate,sql_userupdate,sql_status)
         VALUES ('" . $_POST["id"] . "'
@@ -104,7 +123,8 @@
         )";
 
 
-        $insertsql2 = "INSERT INTO cpareport_menu (id,menu_main,menu_sub,menu_link,menu_file,menu_title,menu_order,menu_status,menu_userupdate,menu_datetimeupdate)
+
+        $insertsql2 = "INSERT INTO cpareport_menu (id,menu_main,menu_sub,menu_link,menu_file,menu_title,menu_order,menu_type,menu_status,menu_userupdate,menu_datetimeupdate)
         VALUES ('" . $_POST["menuid"] . "'
         ,'" . $_POST["categories"] . "'
         ,'" . $_POST["menu_sub"] . "'
@@ -112,6 +132,7 @@
         ,'" . $_POST["sql_file"] . "'
         ,'" . $reptitle . "'
         ,'" . $_POST["products"] . "'
+        ,'" . $_POST["menu_type"] . "'
         ,'" . $_POST["sql_status"] . "'
         ,'" . $_POST["sql_userupdate"] . "'
         ,'" . $_POST["insertdate"] . "'
@@ -125,10 +146,10 @@
             //echo "<script>window.location='test.php';</script>";
         } else  
             if ($queryInsert) {
-                echo "<script>alert('queryInsert ผิดพลาด');window.location=test.php;</script>";
-            }else if ($queryInsert2) {
-                echo "<script>alert('queryInsert2 ผิดพลาด');window.location=test.php;</script>";
-            }
+            echo "<script>alert('queryInsert ผิดพลาด');window.location=test.php;</script>";
+        } else if ($queryInsert2) {
+            echo "<script>alert('queryInsert2 ผิดพลาด');window.location=test.php;</script>";
+        }
     }
     //กำหนดค่า pk ของการแจ้งซ่อมโดยให้A นำหน้าตามด้วยปีและเดือนที่ลงข้อมูลเลขจะรัน + 1 ต่อจากค่าสุดท้ายใน sql
     $code = "sql_0";
@@ -180,9 +201,9 @@
                                             <?php
                                             while ($Result = mysqli_fetch_assoc($mainmenu)) {
                                                 ?>
-                                            <option value="<?php echo $Result['main_id']; ?>">
-                                                <?php echo $Result['main_name']; ?>
-                                            </option>
+                                                <option value="<?php echo $Result['main_id']; ?>">
+                                                    <?php echo $Result['main_name']; ?>
+                                                </option>
                                             <?php
                                             }
                                             ?>
@@ -205,10 +226,10 @@
                                     </div>
                                     <div class="col-3">
                                         <span class="input-group-text">form</span>
-                                        <select class="form-control" name="menu_link" id="inputGroupSelect01" required>
+                                        <select class="form-control" name="menu_link"  id="menu_link" required>
                                             <option value="" selected>menu_link</option>
                                             <?php while ($rqueryform = mysqli_fetch_assoc($queryform)) { ?>
-                                            <option value="<?php echo $rqueryform['report_name']; ?>" title="<?php echo $rqueryform['note']; ?>"><?php echo $rqueryform['report_name']; ?></option>
+                                                <option value="<?php echo $rqueryform['report_name']; ?>" title="<?php echo $rqueryform['note']; ?>"><?php echo $rqueryform['report_name']; ?></option>
                                             <? } ?>
                                         </select>
                                     </div>
@@ -225,12 +246,21 @@
                                         <span class="input-group-text">คำที่แสดงในใบรีพอร์ทในหน้านั้น </span>
                                         <input type="text" class="form-control" name="sql_heads" placeholder="SQL HEAD ควรเป็นชื่อรายงานและคำอธิบาย" value="" required />
                                     </div>
-                                    <div class="col-lg-3">
+                                    <div class="col-lg-2">
+                                        <span class="input-group-text">menu_type </span>
+                                        <select class="form-control" name="menu_type" >
+                                            <option value="" selected>menu_type</option>
+                                            <?php while ($menut = mysqli_fetch_assoc($Qmenutype)) { ?>
+                                                <option value="<?php echo $menut['menu_type']; ?>"><?php echo $menut['menu_type_name_th']; ?></option>
+                                            <? } ?>
+                                        </select>
+                                    </div>
+                                    <div class="col-lg-2">
                                         <span class="input-group-text">SQL file</span>
                                         <input type="hidden" class="form-control" name="sql_file" value="<?php echo $nextId; ?>" />
                                         <input type="text" class="form-control" name="sql_file" value="<?php echo $nextId; ?>" disabled />
                                     </div>
-                                    <div class="col-lg-3">
+                                    <div class="col-lg-2">
                                         <span class="input-group-text">SQL link</span>
                                         <input type="hidden" class="form-control" name="sql_link" value="<?php echo $sql_link; ?>" />
                                         <input type="text" class="form-control" name="sql_link" value="<?php echo $sql_link; ?>" disabled />
@@ -238,17 +268,15 @@
                                 </div>
 
                                 <div class="mt-3">
-                                    <span class="input-group-text" id="">Query *ควรเปลี่ยนค่าตัวแปร Query ที่ต้องมีการเลือกก่อนบันทึก* ช่วงวันที่ {datepickers} and {datepickert} คลินิก  {c_department} วอร์ด{ward_dropdown} สิทธิ{i_dropdown}</span>
+                                    <span class="input-group-text">Query *ควรเปลี่ยนค่าตัวแปร Query ที่ต้องมีการเลือกก่อนบันทึก*   <p  id="summenutype"></p> </span>
                                     <textarea name='textquery' class="form-control " id="exampleFormControlTextarea1" rows="3" placeholder="sql_code MAIN OR A..." required></textarea>
                                     <textarea name='textquerycode1' class="form-control " id="exampleFormControlTextarea1" rows="3" placeholder="sql_code_1  OR B..."></textarea>
                                     <textarea name='textquerycode2' class="form-control " id="exampleFormControlTextarea1" rows="3" placeholder="sql_code_2  OR B..."></textarea>
                                     <textarea name='textquerycode3' class="form-control " id="exampleFormControlTextarea1" rows="3" placeholder="sql_code_3 "></textarea>
-
-
                                     <br>
                                     <input type="hidden" class="form-control" name="menuid" value="<?php echo $maxidmenu; ?>" />
                                     <input type="hidden" class="form-control" name="insertdate" value="<?php echo $today; ?>" /><!-- ใส่ค่าใน 2 ตารางวันเวลาที่เพิ่มข้อมูล-->
-                                    <input type="hidden" class="form-control" name="sql_userupdate" value="<?php echo $_SESSION['niname'];?>" /><!-- เอาชื่อผู้ login ไปใส่ -->
+                                    <input type="hidden" class="form-control" name="sql_userupdate" value="<?php echo $_SESSION['niname']; ?>" /><!-- เอาชื่อผู้ login ไปใส่ -->
                                     <input type="hidden" class="form-control" name="sql_status" value="1" />
                                     <input type="hidden" class="form-control" name="sql_type" value="1" />
                                 </div>
@@ -261,7 +289,7 @@
 
 
     </div>
- 
+
     <script src="node_modules/jquery/dist/jquery.min.js"></script>
     <script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
     <script src="node_modules/popper.js/dist/umd/popper.min.js"></script>
