@@ -30,6 +30,10 @@
 <body style="background-color:rgb(146, 235, 149)">
     <!-- main -->
     <?
+    $remembername  = '' ;
+    $rememberlname  = '';
+    $rememberniname  = '';
+
     $cpareport_depcode = " SELECT * FROM cpareport_department where status_active <> 'N' order by department_id";
     $depcode = mysqli_query($con, $cpareport_depcode);
 
@@ -49,6 +53,9 @@
         echo 'spclty :' . $_POST['spclty'] . '<br> ';
         echo 'menuid :'.$_POST['menuid'].'<br>';
         */
+        $remembername  = $_POST['fname'] ;
+        $rememberlname  = $_POST['lname'];
+        $rememberniname  = $_POST['niname'];
 
         //เช็ค usermane ห้ามซ้ำ
         $searchuser = " SELECT * FROM cpareport_userlogin where  username = '".$_POST['username'] ."'";
@@ -90,9 +97,9 @@
                             <div class="icon1">
                                 <i class="fa fa-envelope" aria-hidden="true"></i>
                                 <div class="row">
-                                    <div class="col-4"> <input class="form-control" type="text" placeholder="ชื่อ" name="fname" required="" /></div>
-                                    <div class="col-4"> <input class="form-control" type="text" placeholder="นามสกุล" name="lname" /></div>
-                                    <div class="col-4"> <input class="form-control" type="text" placeholder="ชื่อเล่น" name="niname" /></div>
+                                    <div class="col-4"> <input class="form-control" type="text" placeholder="ชื่อ" name="fname" value="<? echo $remembername;?>" required="" /></div>
+                                    <div class="col-4"> <input class="form-control" type="text" placeholder="นามสกุล" name="lname" value="<? echo $rememberlname;?>"/></div>
+                                    <div class="col-4"> <input class="form-control" type="text" placeholder="ชื่อเล่น" name="niname" value="<? echo $rememberniname;?>"/></div>
                                 </div>
                             </div>
 
