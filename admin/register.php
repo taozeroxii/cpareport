@@ -49,23 +49,32 @@
         echo 'spclty :' . $_POST['spclty'] . '<br> ';
         echo 'menuid :'.$_POST['menuid'].'<br>';
         */
- 
-        $insertsql = "INSERT INTO cpareport_userlogin (PKID,username,password,fname,lname,niname,department,status)
-        VALUES ('" . $_POST['menuid'] . "'
-        ,'" . $_POST["username"] . "'
-        ,'" . md5($_POST["password"]) . "'
-        ,'" . $_POST["fname"] . "'
-        ,'" . $_POST["lname"] . "'
-        ,'" . $_POST["niname"] . "'
-        ,'" . $_POST["spclty"] . "'
-        ,'" . $_POST["status"] . "'
-        )";
-        $queryInsert = mysqli_query($con, $insertsql);
-        if ($queryInsert) {
-            echo "<script>alert('เพิ่มข้อมูลเรียบร้อย');window.close();</script>";
-            //echo "<script>window.location='test.php';</script>";
-        } else  {echo "<script>alert('มีข้อมูลอยู่แล้ว');window.location=test.php;</script>"; } 
-        
+
+        //เช็ค usermane ห้ามซ้ำ
+        $searchuser = " SELECT * FROM cpareport_userlogin where  username = '".$_POST['username'] ."'";
+        $have_user_yet = mysqli_query($con, $searchuser);
+        $reshave_user_yet = mysqli_fetch_assoc($have_user_yet);
+        $reshave_user_yet['PKID'];
+
+        if($reshave_user_yet['PKID'] == null || $reshave_user_yet['PKID']=='')
+        {
+            $insertsql = "INSERT INTO cpareport_userlogin (PKID,username,password,fname,lname,niname,department,status)
+            VALUES ('" . $_POST['menuid'] . "'
+            ,'" . $_POST["username"] . "'
+            ,'" . md5($_POST["password"]) . "'
+            ,'" . $_POST["fname"] . "'
+            ,'" . $_POST["lname"] . "'
+            ,'" . $_POST["niname"] . "'
+            ,'" . $_POST["spclty"] . "'
+            ,'" . $_POST["status"] . "'
+            )";
+            $queryInsert = mysqli_query($con, $insertsql);
+    
+            if ($queryInsert) {
+                echo "<script>alert('เพิ่มข้อมูลเรียบร้อย');window.close();</script>";
+            }
+        }
+        else{echo "<script>alert('มี username นี้อยู่ในระบบแล้ว');</script>";} 
     }
     ?>
 
@@ -96,7 +105,7 @@
                                 <input type="password" placeholder="password" name="password" required="" />
                             </div>
                             <select class="custom-select" name='spclty' required="">
-                                <option selected>แผนก ...</option>
+                                <option selecte value=''>แผนก ...</option>
                                 <?php
                                 while ($Result = mysqli_fetch_assoc($depcode)) {
                                     ?>
@@ -108,7 +117,7 @@
                             <hr>
 
                             <select class="custom-select" name='status' required="">
-                                <option selected>การเข้าถึง ...</option>
+                                <option selected value=''>การเข้าถึง ...</option>
                                 <option value="1">Admin ดูแลจัดการข้อมูลได้</option>
                                 <option value="2">super user เข้าดูหน้าข้อมูลลับได้ทั้งหมด</option>
                                 <option value="3">users เข้าดูข้อมูลได้ตามแผนก</option>
