@@ -268,7 +268,7 @@ include('../config/my_con.class.php');
                                 </div>
 
                                 <div class="mt-3">
-                                    <span class="input-group-text">Query *ควรเปลี่ยนค่าตัวแปร Query ที่ต้องมีการเลือกก่อนบันทึก*   <p  id="summenutype"></p> </span>
+                                    <span class="input-group-text">Query *ควรเปลี่ยนค่าตัวแปร Query ที่ต้องมีการเลือกก่อนบันทึก * <p  id="summenutype"></p> </span>
                                     <textarea name='textquery' class="form-control " id="exampleFormControlTextarea1" rows="3" placeholder="sql_code MAIN OR A..." required></textarea>
                                     <textarea name='textquerycode1' class="form-control " id="exampleFormControlTextarea1" rows="3" placeholder="sql_code_1  OR B..."></textarea>
                                     <textarea name='textquerycode2' class="form-control " id="exampleFormControlTextarea1" rows="3" placeholder="sql_code_2  OR B..."></textarea>

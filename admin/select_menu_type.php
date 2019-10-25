@@ -15,5 +15,5 @@ include '../config/my_con.class.php';
 $qry = mysqli_query($con, $menut);
 $menutypeRes = mysqli_fetch_assoc($qry);
 
-echo $menutypeRes['paramitor1'].' '.$menutypeRes['paramitor2'].' '.$menutypeRes['paramitor3'].$menutypeRes['paramitor4'];
+echo '<small style = "color:orange">'.$menutypeRes['paramitor1'].' '.$menutypeRes['paramitor2'].' '.$menutypeRes['paramitor3'].$menutypeRes['paramitor4'].'</small>';
 ?>
