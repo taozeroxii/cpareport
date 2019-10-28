@@ -45,6 +45,12 @@
 			font-size: 1.4em;
 			text-align: center;
 		}
+		.sss{
+			font-size: 1.4em;
+			font-weight: bold;
+			color: #744AC3; 
+			cursor: pointer;
+		}
 
 	</style>
 </head>
@@ -68,6 +74,7 @@
 				?>
 				<!-- <tr> -->
 					<!-- <td class="ttd"> -->
+						<span class="sss" title="<?php echo $file; ?> "><?php echo "No.".$rw."";?></span>
 						<div class="cen" ><img class="ddddddd" src="uploadimg/fileupload/<?php echo $item['file_name']; ?>" title="<?php echo $file ?>"></div>
 						<!-- </td> -->
 
