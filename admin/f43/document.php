@@ -71,7 +71,6 @@
 			foreach ($res as $item) {
 				$file =  $item['file_name'];
 				$udate =  $item['dateupdate'];
-				dateupdate
 				$rw++;
 				?>
 				<!-- <tr> -->
