@@ -56,6 +56,7 @@
 </head>
 <body>
 	<?php 
+	date_default_timezone_set("Asia/Bangkok");
 	$con = new mysqli("172.16.0.251", "report", "report", "cpareportdb");
 	mysqli_set_charset($con,"utf8");
 	$sql = " SELECT * FROM f43_imgdoc WHERE status_id = '1' ORDER BY id DESC ";
