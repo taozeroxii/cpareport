@@ -79,7 +79,7 @@ include "config/timestampviewer.php";//เรียกไฟล์ในส่�
 									<small><?php echo " เวลาที่ใช้ในการประมวลผล ".$bm->stop()." วินาที "; ?></small>
 								</h3>
 								<button type="" class="btn btn-default pull-right" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal"> Template </button>
-								<!-- <button type="" class="btn btn-default pull-right" class="btn btn-info btn-lg" onclick="export_excel()" > Excel </button> -->
+								<<button type="" class="btn btn-default pull-right" class="btn btn-info btn-lg" onclick="export_excel()" > Excel </button>
 							</div>
 							<div class="box-body table-responsive"><span class="fcol"> </span>
 								<table id="example1" class="table table-bordered table-striped">
@@ -137,13 +137,13 @@ include "config/timestampviewer.php";//เรียกไฟล์ในส่�
 			})
 		})
 	</script>
+
 	<script type="text/javascript">
-	//	function export_excel()
-	//	{
-	//		document.location = "export_excel_f002.php?c_department=<?php// echo $c_department; ?>&c_pttype=<?php //echo $c_pttype; ?>&send_excel=<?php //echo $send_excel; ?>//&datepickers=<?php //echo $datepickers; ?>&datepickert=<?php //echo $datepickert; ?>";
-	//	}
-	
-</script>
+		function export_excel()
+		{
+			document.location = "export_excel_f001.php?send_excel=<?php echo $send_excel; ?>&datepickers=<?php echo $datepickers; ?>&datepickert=<?php echo $datepickert; ?>&ward_dropdown=<?php echo $ward_dropdown; ?>";
+		}
+	</script>
 
 </body>
 </html>
