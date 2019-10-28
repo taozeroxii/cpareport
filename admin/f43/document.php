@@ -76,7 +76,7 @@
 				?>
 				<!-- <tr> -->
 					<!-- <td class="ttd"> -->
-						<span class="sss" title="<?php echo " Update :: ".$udate; ?> "><?php echo "No.".$rw."";?></span>
+						<span class="sss" title="<?php echo " Update :: ".$udate.""; ?> "><?php echo "No.".$rw."";?></span>
 						<div class="cen" ><img class="ddddddd" src="uploadimg/fileupload/<?php echo $item['file_name']; ?>" title="<?php echo $file ?>"></div>
 						<!-- </td> -->
 
