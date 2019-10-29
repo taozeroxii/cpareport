@@ -8,15 +8,16 @@ header("Content-Disposition: attachment; filename=export".$todate.".xls");
     <?php
     require "config/pg_con.class.php";
     include('config/my_con.class.php');
-
+//รับค่าตัวแปรจากform ดึงค่ามา
 $sql            = $_GET['send_excel'];
 $datepickers    = $_GET['datepickers'];
 $datepickert    = $_GET['datepickert'];
-$i_dropdown    = $_GET['i_dropdown'];
-$ward_dropdown    = $_GET['ward_dropdown'];
+$i_dropdown     = $_GET['i_dropdown'];
+$ward_dropdown  = $_GET['ward_dropdown'];
 
 $topLevelItems = " SELECT sql_code,sql_head FROM cpareport_sql WHERE sql_file = '".$sql."'";
 $res=mysqli_query($con,$topLevelItems);
+//วนหา sql จากไฟล์ที่กดเข้ามาและแทนที่ตัวแปรใน query กับค่าที่ส่งมา
 foreach($res as $item) {
     $sql_detail = $item['sql_code'];
 }
