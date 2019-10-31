@@ -9,8 +9,9 @@ $datenow = date("Y-m-d H:i:s");
 $sql2 = "SELECT * FROM viewer where session = '".$useronline."' AND sql_file = '$sql'";
 $result2 = mysqli_query($con,$sql2);
 $num = mysqli_num_rows($result2);
-if($num > 0 && $userlogin='ผู้เยี่ยมชมทั่วไป'){
-        $ud = ("UPDATE viewer set time_online = '" .$time. "',username = '".$userlogin."' where session = '".$useronline."'");
+if($num > 0 ){
+
+        $ud = ("UPDATE viewer set time_online = '" .$time. "',username = '".$userlogin."' where session = '".$useronline."' AND sql_file = '$sql'");
         $uf = mysqli_query($con, $ud);
         mysqli_query($con, $uf);
 }
