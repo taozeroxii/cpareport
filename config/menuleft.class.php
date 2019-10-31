@@ -4,6 +4,12 @@ $topLevelItems = " SELECT * FROM cpareport_mainmenu WHERE main_status = '1' ORDE
 $res=mysqli_query($con,$topLevelItems);
 session_start();
 
+$AllvisitInthiswebsite = " SELECT count(*) FROM viewer group by session";
+$ResAllvisit=mysqli_query($con,$AllvisitInthiswebsite);
+$countVisitorWeb = mysqli_num_rows($ResAllvisit);
+
+
+
 if (isset($_SESSION['username']) != "" || isset($_SESSION['username']) != null) {
   $useronline = session_id();
   $time = time();
@@ -42,9 +48,9 @@ if (isset($_SESSION['username']) != "" || isset($_SESSION['username']) != null) 
   <div class="container-fluid">
     <div class="navbar-header">
         <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
-          <span class="sr-only">Toggle navigation</span>
+          <span class="sr-only">Toggle navigation</span> <? echo 'ผู้เยี่ยมชม '.$countVisitorWeb.' ครั้ง ';//นับผู้เข้าดูเก็บ session ต่อการเปิดเว็บ1ครั้งต้อง ปิด browserแล้วเปิดใหม่ถึงจะนับเพิ่ม และต้องมีการเข้าดูหน้ารายงานใดซักหน้าถึงจะนับว่าเป็น 1 visit ?>
           <? if (isset($_SESSION['username']) != "" || isset($_SESSION['username']) != null) {?>
-          จำนวนผู้ใช้งาน <?echo $countuseronline?> ท่าน 
+          Online <?echo $countuseronline?> ท่าน 
           <?}?>
         </a>
     </div>
