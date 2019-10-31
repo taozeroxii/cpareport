@@ -19,23 +19,27 @@ if (isset($_SESSION['username']) != "" || isset($_SESSION['username']) != null) 
   $num = mysqli_num_rows($result2);
 
   if($num > 0){
+     /*
       $checkuseronline = ("UPDATE useronline set status = '" .$statusOnOf . "' where  username = '".$_SESSION['username'] ."'");
       $Qstatus = mysqli_query($con, $checkuseronline);
       mysqli_query($con, $Qstatus);
-      //$ud = ("UPDATE useronline set time_online = '" . $time. "'where session = '".$useronline."' AND  username = '".$_SESSION['username'] ."'");
-      //$uf = mysqli_query($con, $ud);
-      // mysqli_query($con, $uf);
+      */
+      $ud = ("UPDATE useronline set time_online = '" . $time. "',status = 'online' where session = '".$useronline."' AND  username = '".$_SESSION['username'] ."'");
+      $uf = mysqli_query($con, $ud);
+      mysqli_query($con, $uf);
   }
   else{
-      $insertstatus = ("INSERT INTO useronline (username,status) VALUES ('" .$_SESSION['username']. "','online')");
-      $Qinsertstatus = mysqli_query($con, $insertstatus);
-      //$insertlog = ("INSERT INTO useronline (session,time_online,username) VALUES ('" . $useronline. "','" . $time. "','" .$_SESSION['username']. "')");
-      //$Qinsertlog = mysqli_query($con, $insertlog);
+      /*$insertstatus = ("INSERT INTO useronline (username,status) VALUES ('" .$_SESSION['username']. "','online')");
+      $Qinsertstatus = mysqli_query($con, $insertstatus);*/
+      $insertlog = ("INSERT INTO useronline (session,time_online,username,status) VALUES ('" . $useronline. "','" . $time. "','" .$_SESSION['username']. "','online')");//เก็บเป็นsession user ด้วยเพื่อหากต้องการเช็คว่าuserนี้เคยเข้าใช้งานกี่ครั้ง
+      $Qinsertlog = mysqli_query($con, $insertlog);
   }
-  //$timecheck = time() - 900;//ทุก 15 นาที
-  $selectuserstatusonline = "select * from useronline where status = 'online'";
-  $Rsonline = mysqli_query($con,$selectuserstatusonline);
-  $countuseronline = mysqli_num_rows($Rsonline);
+  $timecheck = time() - 900;//ทุก 15 นาที
+  $checkactivein15minut = "select * from useronline where time_online > '$timecheck' AND STATUS = 'online'";
+  $resultCtime = mysqli_query($con,$checkactivein15minut);
+  $countuseronline = mysqli_num_rows($resultCtime);
+
+
 }
 ?>
   <div class="wrapper ">
@@ -50,7 +54,7 @@ if (isset($_SESSION['username']) != "" || isset($_SESSION['username']) != null) 
         <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
           <span class="sr-only">Toggle navigation</span> <? echo 'ผู้เยี่ยมชม '.$countVisitorWeb.' ครั้ง ';//นับผู้เข้าดูเก็บ session ต่อการเปิดเว็บ1ครั้งต้อง ปิด browserแล้วเปิดใหม่ถึงจะนับเพิ่ม และต้องมีการเข้าดูหน้ารายงานใดซักหน้าถึงจะนับว่าเป็น 1 visit ?>
           <? if (isset($_SESSION['username']) != "" || isset($_SESSION['username']) != null) {?>
-          Online <?echo $countuseronline?> ท่าน 
+          Online <?echo $countuseronline ?> ท่าน 
           <?}?>
         </a>
     </div>
