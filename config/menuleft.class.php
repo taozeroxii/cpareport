@@ -14,8 +14,8 @@ if (isset($_SESSION['username']) != "" || isset($_SESSION['username']) != null) 
   $useronline = session_id();
   $time = time();
   $statusOnOf = 'online';
-  $sql2 = "SELECT * FROM useronline where username = '".$_SESSION['username']."'";
-  $result2 = mysqli_query($con,$sql2);
+  $sql = "select * from useronline where session = '$useronline'";
+  $result2 = mysqli_query($con,$sql);
   $num = mysqli_num_rows($result2);
 
   if($num > 0){
@@ -35,11 +35,9 @@ if (isset($_SESSION['username']) != "" || isset($_SESSION['username']) != null) 
       $Qinsertlog = mysqli_query($con, $insertlog);
   }
   $timecheck = time() - 900;//ทุก 15 นาที
-  $checkactivein15minut = "select * from useronline where time_online > '$timecheck' AND STATUS = 'online'";
+  $checkactivein15minut = "select * from useronline where session = '$useronline' AND time_online > '$timecheck' AND STATUS = 'online'";
   $resultCtime = mysqli_query($con,$checkactivein15minut);
   $countuseronline = mysqli_num_rows($resultCtime);
-
-
 }
 ?>
   <div class="wrapper ">
@@ -54,9 +52,10 @@ if (isset($_SESSION['username']) != "" || isset($_SESSION['username']) != null) 
         <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
           <span class="sr-only">Toggle navigation</span> <? echo 'ผู้เยี่ยมชม '.$countVisitorWeb.' ครั้ง ';//นับผู้เข้าดูเก็บ session ต่อการเปิดเว็บ1ครั้งต้อง ปิด browserแล้วเปิดใหม่ถึงจะนับเพิ่ม และต้องมีการเข้าดูหน้ารายงานใดซักหน้าถึงจะนับว่าเป็น 1 visit ?>
           <? if (isset($_SESSION['username']) != "" || isset($_SESSION['username']) != null) {?>
-          Online <?echo $countuseronline ?> ท่าน 
+          Online <?echo $countuseronline;?> ท่าน 
           <?}?>
         </a>
+        <? //echo $checkactivein15minut.' '.$ud;?>
     </div>
 
     <ul class="nav navbar-nav navbar-right">
