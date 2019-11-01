@@ -55,7 +55,7 @@ if (isset($_SESSION['username']) != "" || isset($_SESSION['username']) != null) 
           Online <?echo $countuseronline;?> ท่าน 
           <?}?>
         </a>
-        <? echo $checkactivein15minut.' '.$ud;?>
+        <? //echo $checkactivein15minut.' '.$ud;?>
     </div>
 
     <ul class="nav navbar-nav navbar-right">
