@@ -24,7 +24,7 @@ if (isset($_SESSION['username']) != "" || isset($_SESSION['username']) != null) 
       $Qstatus = mysqli_query($con, $checkuseronline);
       mysqli_query($con, $Qstatus);
       */
-      $ud = ("UPDATE useronline set time_online = '" . $time. "',status = 'online' where session = '".$useronline."' AND  username = '".$_SESSION['username'] ."'");
+      $ud = ("UPDATE useronline set time_online = '" . $time. "',status = 'online',username = '".$_SESSION['username']."'  where session = '".$useronline."'");
       $uf = mysqli_query($con, $ud);
       mysqli_query($con, $uf);
   }
