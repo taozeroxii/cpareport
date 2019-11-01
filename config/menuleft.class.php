@@ -35,7 +35,7 @@ if (isset($_SESSION['username']) != "" || isset($_SESSION['username']) != null) 
       $Qinsertlog = mysqli_query($con, $insertlog);
   }
   $timecheck = time() - 900;//ทุก 15 นาที
-  $checkactivein15minut = "select username from useronline where session = '$useronline' AND time_online > '$timecheck' AND STATUS = 'online' GROUP BY username";
+  $checkactivein15minut = "select username from useronline where  time_online > '$timecheck' AND STATUS = 'online' GROUP BY username";
   $resultCtime = mysqli_query($con,$checkactivein15minut);
   $countuseronline = mysqli_num_rows($resultCtime);
 }
@@ -55,7 +55,7 @@ if (isset($_SESSION['username']) != "" || isset($_SESSION['username']) != null) 
           Online <?echo $countuseronline;?> ท่าน 
           <?}?>
         </a>
-        <? //echo $checkactivein15minut.' '.$ud;?>
+        <? echo $checkactivein15minut.' '.$ud;?>
     </div>
 
     <ul class="nav navbar-nav navbar-right">
