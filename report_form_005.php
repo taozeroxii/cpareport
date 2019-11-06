@@ -62,8 +62,12 @@ include "config/timestampviewer.php";//เรียกไฟล์ในส่�
 				list($m,$d,$Y)  = split('/',$datepickert); 
 				$datepickert    = trim($Y)."-".trim($m)."-".trim($d);
 
-				$ward_dropdown   = $_POST['c_ward'];    
+				$ward_dropdown   = $_POST['c_ward'];   
 
+				$qward = " SELECT * FROM ward WHERE ward = '".$ward_dropdown ."'";
+				$selectnameward = pg_query($qward);
+				$resqward = pg_fetch_array($selectnameward);
+				
 				if($datepickers != "--") {
 					$sql = " $sql_detail ";
 					$sql = str_replace("{datepickers}", "'$datepickers'", $sql);
@@ -75,11 +79,11 @@ include "config/timestampviewer.php";//เรียกไฟล์ในส่�
 						<div class="col-xs-12">
 							<div class="box">
 								<div class="box-header">
-									<h3 class="box-title co_dep"><?php echo " ข้อมูลช่วงวันที่ ".thaiDatefull($datepickers)." ถึงวันที่ ".thaiDatefull($datepickert) ?> 
+									<h3 class="box-title co_dep"><?php echo " ข้อมูลช่วงวันที่ ".thaiDatefull($datepickers)." ถึงวันที่ ".thaiDatefull($datepickert) ." Ward :".$resqward['name']?> 
 									<small><?php echo " เวลาที่ใช้ในการประมวลผล ".$bm->stop()." วินาที "; ?></small>
 								</h3>
 								<button type="" class="btn btn-default pull-right" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal"> Template </button>
-								<<button type="" class="btn btn-default pull-right" class="btn btn-info btn-lg" onclick="export_excel()" > Excel </button>
+								<button type="" class="btn btn-default pull-right" class="btn btn-info btn-lg" onclick="export_excel()" > Excel </button>
 							</div>
 							<div class="box-body table-responsive"><span class="fcol"> </span>
 								<table id="example1" class="table table-bordered table-striped">
