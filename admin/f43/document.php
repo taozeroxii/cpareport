@@ -68,11 +68,18 @@
 	<!-- <table id="table" class="table table-bordered table-striped"> -->
 		<!-- <tbody> -->
 			<?php
+
+			        $get = true;
+                    $firstId = 0;
+                    
 			$rw == 0;
 			foreach ($res as $item) {
 				$file =  $item['file_name'];
 				$udate =  $item['dateupdate'];
 				$rw++;
+
+				    if($get) $firstId = $id;
+                    $get = false;
 				?>
 				<!-- <tr> -->
 					<!-- <td class="ttd"> -->
