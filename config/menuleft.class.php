@@ -31,7 +31,9 @@ if (isset($_SESSION['username']) != "" || isset($_SESSION['username']) != null) 
   else{
       /*$insertstatus = ("INSERT INTO useronline (username,status) VALUES ('" .$_SESSION['username']. "','online')");
       $Qinsertstatus = mysqli_query($con, $insertstatus);*/
-      $insertlog = ("INSERT INTO useronline (session,time_online,username,status) VALUES ('" . $useronline. "','" . $time. "','" .$_SESSION['username']. "','online')");//เก็บเป็นsession user ด้วยเพื่อหากต้องการเช็คว่าuserนี้เคยเข้าใช้งานกี่ครั้ง
+      date_default_timezone_set("Asia/Bangkok");
+      $now =  date('Y/m/d h:i:s a');
+      $insertlog = ("INSERT INTO useronline (session,time_online,username,status,logindate_time) VALUES ('" . $useronline. "','" . $time. "','" .$_SESSION['username']. "','online','" . $now . "')");//เก็บเป็นsession user ด้วยเพื่อหากต้องการเช็คว่าuserนี้เคยเข้าใช้งานกี่ครั้ง
       $Qinsertlog = mysqli_query($con, $insertlog);
   }
   $timecheck = time() - 900;//ทุก 15 นาที
@@ -55,7 +57,7 @@ if (isset($_SESSION['username']) != "" || isset($_SESSION['username']) != null) 
           Online <?echo $countuseronline;?> ท่าน 
           <?}?>
         </a>
-        <? //echo $checkactivein15minut.' '.$ud;?>
+        <? //echo $insertlog.' '.$ud;?>
     </div>
 
     <ul class="nav navbar-nav navbar-right">
