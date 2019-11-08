@@ -20,7 +20,7 @@ $result = mysqli_query($con, $sql);
 .col-lg-2{padding-left:100px;}
 </style>
 <body>
-  <table class="table  table-bordered  ">
+  <table class="table  table-bordered  table-hover">
     <div class="header" style=' background-color: #0B5345;font:blod;'>
       <small>KPI THIP ABHAI BHUBAJHR HOSPITAL</small>
       <hr>

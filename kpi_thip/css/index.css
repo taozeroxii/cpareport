@@ -20,13 +20,17 @@
 
 
 html {
-  /*font-family: "Lucida Sans", sans-serif;*/
   font-family: 'Kanit', sans-serif;
   
 }
 .main{
   width: 100%;
+<<<<<<< HEAD
   margin-top: 104px;
+=======
+  margin-top: 30px;
+  z-index: 999;
+>>>>>>> 52d53f6c19078464d03fb5b7d4b861087244f36a
 }
 .header {
   background-color: #0B5345;
