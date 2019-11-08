@@ -15,12 +15,12 @@
 .col-12 {width: 100%;}
 
 html {
-  /*font-family: "Lucida Sans", sans-serif;*/
   font-family: 'Kanit', sans-serif;
 }
 .main{
   width: 100%;
   margin-top: 30px;
+  z-index: 999;
 }
 .header {
   background-color: #9933cc;
