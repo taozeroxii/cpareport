@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html>
 <?php
+session_start();
 include"config/pg_con.class.php";
 include"config/func.class.php";
 include"config/time.class.php";
 include"config/head.class.php"; 
 include('config/my_con.class.php');
-session_start();
 $bm = new Timer; 
 $bm->start();
 for( $i = 0 ; $i < 100000 ; $i++ )
@@ -25,6 +25,7 @@ foreach($res as $item) {
 include "config/timestampviewer.php";//เรียกไฟล์ในส่วนที่ทำงานนับจำนวนผู้กดเข้ามาหน้า sql นั้นๆ
 ?>
 <body class="hold-transition skin-blue sidebar-mini">
+
 		<?php include "config/menuleft.class.php"; ?>
 		<div class="content-wrapper">
 			<section class="content-header">
@@ -44,7 +45,7 @@ include "config/timestampviewer.php";//เรียกไฟล์ในส่�
 										<form class="form-inline" method="POST" action="#">
 											<input type="text" class="form-control" id="datepickers" placeholder="ช่วงวันที่เริ่ม" name="datepickers" data-provide="datepicker" data-date-language="th" autocomplete="off" >
 											<input type="text" class="form-control" id="datepickert" placeholder="ถึงวันที่" name="datepickert" data-provide="datepicker" data-date-language="th" autocomplete="off" >
-											<select class="select2" name="d_dropdown" id="d_dropdown" style="width: 20%;" placeholder="แพทย์" title="แพทย์"></select>
+											<select class="select2" name="d_dropdown" id="d_dropdown" style="width: 20%;" placeholder="ICD9CM" title="เลือก icd9cm"></select>
 											<button type="submit" class="btn btn-default">Submit</button>
 										</form>
 									</div>
@@ -62,24 +63,20 @@ include "config/timestampviewer.php";//เรียกไฟล์ในส่�
 				list($m,$d,$Y)  = split('/',$datepickert); 
 				$datepickert    = trim($Y)."-".trim($m)."-".trim($d);
 
-				$ward_dropdown   = $_POST['d_dropdown'];   
+				$dep_dropdown   = $_POST['d_dropdown'];    
 
-				$qward = " SELECT * FROM ward WHERE ward = '".$ward_dropdown ."'";
-				$selectnameward = pg_query($qward);
-				$resqward = pg_fetch_array($selectnameward);
-				
 				if($datepickers != "--") {
 					$sql = " $sql_detail ";
 					$sql = str_replace("{datepickers}", "'$datepickers'", $sql);
 					$sql = str_replace("{datepickert}", "'$datepickert'", $sql);
-					$sql = str_replace("{ward_dropdown}", "'$ward_dropdown'", $sql);
+					$sql = str_replace("{dep_dropdown}", "'$dep_dropdown'", $sql);
 					$result = pg_query($sql);
 					?>
 					<div class="row">
 						<div class="col-xs-12">
 							<div class="box">
 								<div class="box-header">
-									<h3 class="box-title co_dep"><?php echo " ข้อมูลช่วงวันที่ ".thaiDatefull($datepickers)." ถึงวันที่ ".thaiDatefull($datepickert) ." Ward :".$resqward['name']?> 
+									<h3 class="box-title co_dep"><?php echo " ข้อมูลช่วงวันที่ ".thaiDatefull($datepickers)." ถึงวันที่ ".thaiDatefull($datepickert) ?> 
 									<small><?php echo " เวลาที่ใช้ในการประมวลผล ".$bm->stop()." วินาที "; ?></small>
 								</h3>
 								<button type="" class="btn btn-default pull-right" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal"> Template </button>
@@ -141,13 +138,13 @@ include "config/timestampviewer.php";//เรียกไฟล์ในส่�
 			})
 		})
 	</script>
-
 	<script type="text/javascript">
-		function export_excel()
+				function export_excel() 
 		{
-			document.location = "export_excel_f001.php?send_excel=<?php echo $send_excel; ?>&datepickers=<?php echo $datepickers; ?>&datepickert=<?php echo $datepickert; ?>&ward_dropdown=<?php echo $ward_dropdown; ?>";
+			document.location = "export_excel_3.php?send_excel=<?php echo $send_excel; ?>&datepickers=<?php echo $datepickers; ?>&datepickert=<?php echo $datepickert; ?>&dep_dropdown=<?php echo $dep_dropdown; ?>";
 		}
 	</script>
+
 
 </body>
 </html>
