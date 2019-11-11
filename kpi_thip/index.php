@@ -8,6 +8,7 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+  <script type="text/javascript" src="js/echarts.min.js"></script>
 </head>
 <?php
 date_default_timezone_set("Asia/Bangkok");
@@ -50,8 +51,9 @@ $result = mysqli_query($con, $sql);
       <tr class='tr-hovers'>
         <th style="color:green"><?= '&nbsp;&nbsp;&nbsp' . $rw ?></th>
         <td style="text-align:center;"><? echo $kpicode ?></td>
-        <td><?= $kpiname; echo '<sub>  ' . $kpi_ym . '</sub>'; ?> </td>
-        <td style="text-align:center;"><? if ($a && $b != null) echo number_format(($a / $b) * 100, 2); else echo 'NULL'; ?></td>
+        <td><?= $kpiname;
+              echo '<sub>  ' . $kpi_ym . '</sub>'; ?> </td>
+        <td style="text-align:center;"><? if ($a && $b != null) echo number_format(($a / $b) * 100, 2);else echo 'NULL'; ?></td>
         <td><? if ($a != null) echo $a;
               else echo 'NULL'; ?></td>
         <td><? if ($b != null) echo $b;
@@ -71,36 +73,90 @@ $result = mysqli_query($con, $sql);
       <div class="modal-dialog modal-lg">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLongTitle"><h5><?= $kpicode.' : '. $kpiname ; ?> </h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
+            <h5 class="modal-title" id="exampleModalLongTitle">
+              <h5><?= $kpicode . ' : ' . $kpiname; ?> </h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
           </div>
           <div class="modal-body">
-          <table class="table table-hover">
-            <thead>
-              <tr>
-                <th scope="col">รายการ</th>
-                <th scope="col">ค่าตัวชี้วัด</th>
-                <th scope="col">ตัวตั้ง A</th>
-                <th scope="col">ตัวหาร B</th>
-              </tr>
-            </thead>
-            <tbody>
-              <?
-                $sql = " SELECT * FROM cpareport_kpi_data WHERE kpi_code = '$kpicode' ORDER BY kpi_ym DESC limit 10 ";
-                $result1 = mysqli_query($con, $sql);
-                foreach ($result1 as $resultkpi) {
-              ?>
-              <tr>
-                <th scope="row"><?echo $resultkpi['kpi_ym'];?></th>
-                <td><?echo number_format(($resultkpi['kpi_cal_a']/ $resultkpi['kpi_cal_b'])*100,2);?></td>
-                <td><?echo $resultkpi['kpi_cal_a'];?></td>
-                <td><?echo $resultkpi['kpi_cal_b'];?></td>
-              </tr>
-                <?}?>
-            </tbody>
-          </table>
+          <center> <div id="report<?= $kpicode ?>" style="width:800px;height: 200px"></div></center><hr>
+          <?php
+            $sqlchart = " SELECT * FROM cpareport_kpi_data WHERE kpi_code = '$kpicode' ORDER BY kpi_ym DESC  ";
+            $resultsqlchart = mysqli_query($con, $sqlchart);
+            $title = [];
+            $value = [];
+            if (mysqli_num_rows($resultsqlchart) > 0) {
+              while ($row = mysqli_fetch_assoc($resultsqlchart)) {
+                $title[] = ($row['kpi_ym']);
+                $value[] = $row['kpi_cal_c'];
+              }
+            }
+            ?>
+            
+            <script type="text/javascript">
+              var dom = document.getElementById("report<?= $kpicode ?>");
+              var myChart = echarts.init(dom);
+              option = {
+                title: {
+                  text: '<?= $kpicode; ?>',
+                  subtext: '<?= $kpiname; ?>',
+                  left: 'center'
+                },
+                color: ['#3398DB'],
+                tooltip: {
+                  trigger: 'axis',
+                  axisPointer: {
+                    type: 'shadow'
+                  }
+                },
+                grid: {
+                  left: '3%',
+                  right: '4%',
+                  bottom: '3%',
+                  containLabel: true
+                },
+                xAxis: {
+                  type: 'category',
+                  data: <?= json_encode($title); ?>
+                },
+                yAxis: {
+                  type: 'value'
+                },
+                series: [{
+                  data: <?= json_encode($value); ?>,
+                  type: 'bar'
+                }]
+              };;
+              if (option && typeof option === "object") {
+                myChart.setOption(option, true);
+              }
+            </script>
+
+            <table class="table table-hover">
+              <thead>
+                <tr>
+                  <th scope="col">รายการ</th>
+                  <th scope="col">ค่าตัวชี้วัด</th>
+                  <th scope="col">ตัวตั้ง A</th>
+                  <th scope="col">ตัวหาร B</th>
+                </tr>
+              </thead>
+              <tbody>
+                <?
+                  $sql = " SELECT * FROM cpareport_kpi_data WHERE kpi_code = '$kpicode' ORDER BY kpi_ym DESC limit 10 ";
+                  $result1 = mysqli_query($con, $sql);
+                  foreach ($result1 as $resultkpi) {
+                    ?>
+                  <tr>
+                    <th scope="row"><? echo $resultkpi['kpi_ym']; ?></th>
+                    <td><? echo number_format(($resultkpi['kpi_cal_a'] / $resultkpi['kpi_cal_b']) * 100, 2); ?></td>
+                    <td><? echo $resultkpi['kpi_cal_a']; ?></td>
+                    <td><? echo $resultkpi['kpi_cal_b']; ?></td>
+                  </tr>
+                <? } ?>
+              </tbody>
+            </table>
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
