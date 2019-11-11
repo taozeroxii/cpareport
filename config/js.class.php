@@ -205,7 +205,7 @@ function top10opd() {
         $('#d_dropdown').html(htmlOption);
       }});
   }
-  loadct();
+  load_doctor();
 
   function loadct(){
     $.ajax({
