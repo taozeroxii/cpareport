@@ -49,48 +49,66 @@ $result = mysqli_query($con, $sql);
     <tbody>
       <tr class='tr-hovers'>
         <th style="color:green"><?= '&nbsp;&nbsp;&nbsp' . $rw ?></th>
-        <td style="text-align:center;"><?echo $kpicode ?></td>
-        <td><?= $kpiname; echo '<sub>  '.$kpi_ym.'</sub>'; ?> </td>
-        <td style="text-align:center;"><?if($a && $b!= null) echo number_format(($a/$b)*100,2) ;else echo 'NULL';?></td>
-        <td><?if($a != null) echo $a;else echo 'NULL';?></td>
-        <td><?if($b != null) echo $b;else echo 'NULL';?></td>
+        <td style="text-align:center;"><? echo $kpicode ?></td>
+        <td><?= $kpiname; echo '<sub>  ' . $kpi_ym . '</sub>'; ?> </td>
+        <td style="text-align:center;"><? if ($a && $b != null) echo number_format(($a / $b) * 100, 2); else echo 'NULL'; ?></td>
+        <td><? if ($a != null) echo $a;
+              else echo 'NULL'; ?></td>
+        <td><? if ($b != null) echo $b;
+              else echo 'NULL'; ?></td>
         <td data-toggle="modal" data-target="#<?= $kpicode ?>"><button class="btn btn-danger">!</button></td>
       </tr>
-
-
-      <!-- Modal -->
-      <div class="modal fade modal-xl" id="<?= $kpicode ?>" tabindex="-1" role="dialog" aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-lg">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLongTitle"><?= $kpicode ?> </h5>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-            <div class="modal-body">
-                <?
-                $sql = " SELECT * FROM cpareport_kpi_data WHERE kpi_code = '$kpicode' ORDER BY kpi_ym DESC  ";
-                $result1 = mysqli_query($con, $sql);
-                $resultMd = mysqli_fetch_assoc($result1);
-
-                echo 'ปี '.$resultMd['kpi_ym'];
-                echo '<br>a '.$resultMd['kpi_cal_a'];
-                echo '<br>b '.$resultMd['kpi_cal_b'];
-                ?>
-                
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-              <button type="button" class="btn btn-primary">Save changes</button>
-            </div>
-          </div>
-        </div>
-      </div>
     <?php } ?>
     </tbody>
   </table>
 
+
+  <!-- Modal -->
+  <? foreach ($result as $item) {
+    $kpiname  =  $item['kpi_name'];
+    $kpicode  =  $item['kpi_code']; ?>
+    <div class="modal fade modal-xl" id="<?= $kpicode ?>" tabindex="-1" role="dialog" aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLongTitle"><h5><?= $kpicode.' : '. $kpiname ; ?> </h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+          <table class="table table-hover">
+            <thead>
+              <tr>
+                <th scope="col">รายการ</th>
+                <th scope="col">ค่าตัวชี้วัด</th>
+                <th scope="col">ตัวตั้ง A</th>
+                <th scope="col">ตัวหาร B</th>
+              </tr>
+            </thead>
+            <tbody>
+              <?
+                $sql = " SELECT * FROM cpareport_kpi_data WHERE kpi_code = '$kpicode' ORDER BY kpi_ym DESC limit 10 ";
+                $result1 = mysqli_query($con, $sql);
+                foreach ($result1 as $resultkpi) {
+              ?>
+              <tr>
+                <th scope="row"><?echo $resultkpi['kpi_ym'];?></th>
+                <td><?echo number_format(($resultkpi['kpi_cal_a']/ $resultkpi['kpi_cal_b'])*100,2);?></td>
+                <td><?echo $resultkpi['kpi_cal_a'];?></td>
+                <td><?echo $resultkpi['kpi_cal_b'];?></td>
+              </tr>
+                <?}?>
+            </tbody>
+          </table>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  <? } ?>
 
 
 
@@ -99,4 +117,4 @@ $result = mysqli_query($con, $sql);
 
 </body>
 
-</html> 
+</html>
