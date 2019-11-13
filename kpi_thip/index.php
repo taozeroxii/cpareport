@@ -167,6 +167,8 @@ $result = mysqli_query($con, $sql);
           </div>
           <div class="modal-body">
             <img src="PDF_THIP/imagethip/<?=$kpicode?>.jpg" alt="" width="100%"> 
+            <img src="PDF_THIP/imagethip/<?=$kpicode?>-0.jpg" alt="" width="100%"> 
+            <img src="PDF_THIP/imagethip/<?=$kpicode?>-1.jpg" alt="" width="100%"> 
           </div>
           <div class="modal-footer">
               <div id="pdfplace<?=$kpicode;?>"> ไม่ได้ติดตั้งโปรแกรม Adobe Reader หรือบราวเซอร์ไม่รองรับการแสดงผล PDF <a href="PDF_THIP/<?=$kpicode?>.pdf" target="blank">คลิกที่นี้เพื่อดาวน์โหลดไฟล์ PDF</a>
