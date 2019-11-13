@@ -17,11 +17,65 @@
 
 <?php
 date_default_timezone_set("Asia/Bangkok");
+date_default_timezone_set("Asia/Bangkok");
+function thaiDate($datetime)
+{
+	if(!is_null($datetime))
+	{
+		list($date,$time) = split('T',$datetime);
+		list($Y,$m,$d) = split('-',$date);
+		$Y = $Y+543-2500;
+		switch($m)
+		{
+			case "01":$m = "ม.ค."; break;
+			case "02":$m = "ก.พ."; break;
+			case "03":$m = "มี.ค."; break;
+			case "04":$m = "เม.ย."; break;
+			case "05":$m = "พ.ค."; break;
+			case "06":$m = "มิ.ย."; break;
+			case "07":$m = "ก.ค."; break;
+			case "08":$m = "ส.ค."; break;
+			case "09":$m = "ก.ย."; break;
+			case "10":$m = "ต.ค."; break;
+			case "11":$m = "พ.ย."; break;
+			case "12":$m = "ธ.ค."; break;
+		}
+		return $d." ".$m." ".$Y."";
+	}
+	return "";
+}
+function thaiDateFULL($datetime)
+{
+	if(!is_null($datetime))
+	{
+		list($date,$time) = split('T',$datetime);
+		list($Y,$m,$d) = split('-',$date);
+		$Y = $Y+543;
+		switch($m)
+		{
+			case "01":$m = "มกราคม"; break;
+			case "02":$m = "กุมภาพันธ์"; break;
+			case "03":$m = "มีนาคม"; break;
+			case "04":$m = "เมษายน"; break;
+			case "05":$m = "พฤษภาคม"; break;
+			case "06":$m = "มิถุนายน"; break;
+			case "07":$m = "กรกฎาคม"; break;
+			case "08":$m = "สิงหาคม"; break;
+			case "09":$m = "กันยายน"; break;
+			case "10":$m = "ตุลาคม"; break;
+			case "11":$m = "พฤศจิกายน"; break;
+			case "12":$m = "ธันวาคม"; break;
+		}
+		return $d." ".$m." ".$Y."";
+	}
+	return "";
+}
 $con = new mysqli("172.16.0.251", "report", "report", "cpareportdb");
 mysqli_set_charset($con, "utf8");
 $sql = "SELECT ct.kpi_code,kpi_name,kpi_cal_a,kpi_cal_b,kpi_ym,kpi_dateupdate FROM cpareport_kpi_thip ct  left join  cpareport_kpi_data cd on cd.kpi_code = ct.kpi_code and kpi_ym = (SELECT max(kpi_ym) FROM cpareport_kpi_data )
  group by ct.kpi_code,kpi_name,kpi_cal_a,kpi_cal_b,kpi_ym,kpi_dateupdate order by ct.id ";
 $result = mysqli_query($con, $sql);
+
 ?>
 <style>
   .col-lg-2 {
@@ -132,10 +186,10 @@ $result = mysqli_query($con, $sql);
         <div class="modal-content">
           <div class="modal-header">
             <h5 class="modal-title" id="exampleModalLongTitle">
-              <h5><?= $kpicode . ' : ' . $kpiname; ?> </h5>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
               </button>
+              <h5><?= $kpicode . ' : ' . $kpiname; ?> </h5>
           </div>
           <div class="modal-body">
           <center> <div id="report<?= $kpicode ?>" style="width:800px;height: 200px"></div></center><hr>
@@ -146,7 +200,7 @@ $result = mysqli_query($con, $sql);
             $value = [];
             if (mysqli_num_rows($resultsqlchart) > 0) {
               while ($row = mysqli_fetch_assoc($resultsqlchart)) {
-                $title[] = ($row['kpi_ym']);
+                $title[] = thaiDateFULL($row['kpi_ym']);
                 $value[] = $row['kpi_cal_c'];
               }
             }
@@ -207,7 +261,7 @@ $result = mysqli_query($con, $sql);
                   foreach ($result1 as $resultkpi) {
                     ?>
                   <tr>
-                    <th scope="row"><? echo $resultkpi['kpi_ym']; ?></th>
+                    <th scope="row"><? echo thaiDateFULL($resultkpi['kpi_ym']); ?></th>
                     <td><? echo number_format(($resultkpi['kpi_cal_a'] / $resultkpi['kpi_cal_b']) * 100, 2); ?></td>
                     <td><? echo $resultkpi['kpi_cal_a']; ?></td>
                     <td><? echo $resultkpi['kpi_cal_b']; ?></td>
