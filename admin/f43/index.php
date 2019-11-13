@@ -95,9 +95,9 @@
 
 
           <div class="mainh">
-            <a href="eror0962/" target="_blank" title="คลิกเพื่อดาวน์โหลดไฟล์ เพื่อนำไปแก้ไขข้อมูล">
+            <a href="eror1062/" target="_blank" title="คลิกเพื่อดาวน์โหลดไฟล์ เพื่อนำไปแก้ไขข้อมูล">
               <img src="img/IjTw.gif" class="iim"> 
-              ดาวโหลดไฟล์ EXCEL ข้อมูล ERROR เดือน กันยายน 2562  
+              ดาวโหลดไฟล์ EXCEL ข้อมูล ERROR เดือน ตุลาคม 2562  
               <img src="img/IjTw.gif" class="iim">
             </a>
 
