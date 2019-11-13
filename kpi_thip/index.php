@@ -9,8 +9,10 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
   <script type="text/javascript" src="js/echarts.min.js"></script>
+  <script type="text/javascript" src="js/pdfobject.js"></script>
   <link href="https://fonts.googleapis.com/css?family=Prompt&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  
 </head>
 
 <?php
@@ -25,10 +27,35 @@ $result = mysqli_query($con, $sql);
   .col-lg-2 {
     padding-left: 70px;
   }
+  #overlay {   
+    position: absolute;  
+    top: 0px;   
+    left: 0px;  
+    background: #ccc;   
+    width: 100%;   
+    height: 100%;   
+    opacity: .75;   
+    filter: alpha(opacity=75);   
+    -moz-opacity: .75;  
+    z-index: 999;  
+    background: #fff url(http://i.imgur.com/KUJoe.gif) 50% 50% no-repeat;
+}
+.main-contain{
+    position: absolute;  
+    top: 0px;   
+    left: 0px;  
+    width: 100%;   
+    height: 100%;   
+    overflow: hidden;
+}
 </style>
 
 
 <body style="font-family: 'Prompt', sans-serif;">
+<!-- id ใช้แสดงตัวโหลดหมุนๆบนหน้าจอ -->
+<div id="overlay"></div>
+
+<div class="main-contain">
   <table class="table  table-bordered  table-hover">
     <div class="header" style=' background-color: #0B5345;font:blod;'>
       <small>KPI THIP ABHAI BHUBAJHR HOSPITAL</small>
@@ -70,7 +97,33 @@ $result = mysqli_query($con, $sql);
   </table>
 
 
-  <!-- Modal -->
+    <!-- Modal image-->
+    <? foreach ($result as $item) {
+    $kpiname  =  $item['kpi_name'];
+    $kpicode  =  $item['kpi_code']; ?>
+    <div class="modal fade modal-xl" id="niyam<?= $kpicode ?>" tabindex="-1" role="dialog" aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLongTitle">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+              <h5><?= $kpicode . ' : ' . $kpiname; ?> </h5>
+          </div>
+          <div class="modal-body">
+            <img src="PDF_THIP/imagethip/<?=$kpicode?>.jpg" alt="" width="100%"> 
+          </div>
+          <div class="modal-footer">
+              <div id="pdfplace<?=$kpicode;?>"> ไม่ได้ติดตั้งโปรแกรม Adobe Reader หรือบราวเซอร์ไม่รองรับการแสดงผล PDF <a href="PDF_THIP/<?=$kpicode?>.pdf" target="blank">คลิกที่นี้เพื่อดาวน์โหลดไฟล์ PDF</a>
+          </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  <? } ?>
+
+  <!-- Modal chart-->
   <? foreach ($result as $item) {
     $kpiname  =  $item['kpi_name'];
     $kpicode  =  $item['kpi_code']; ?>
@@ -172,35 +225,16 @@ $result = mysqli_query($con, $sql);
   <? } ?>
 
 
+  <!-- Script ทำการโหลดหนาเพจให้เสร็จก่อนแสดงผล-->
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>  
+    <script type="text/javascript">
+    $(function(){
+        $("#overlay").fadeOut();
+        $(".main-contain").removeClass("main-contain");
+    });
+    </script>    
+  </div>
 
-  <!-- Modal -->
-
-  <!-- Modal -->
-  <? foreach ($result as $item) {
-    $kpiname  =  $item['kpi_name'];
-    $kpicode  =  $item['kpi_code']; ?>
-    <div class="modal fade modal-xl" id="niyam<?= $kpicode ?>" tabindex="-1" role="dialog" aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">
-      <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLongTitle">
-              <h5><?= $kpicode . ' : ' . $kpiname; ?> </h5>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
-          </div>
-          <div class="modal-body">
-          <center> <div id="report<?= $kpicode ?>" style="width:800px;height: 200px"></div></center><hr>
-          <img src="PDF_THIP/<?=$kpicode;?>.pdf" alt="">
-        
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          </div>
-        </div>
-      </div>
-    </div>
-  <? } ?>
-
+ 
 </body>
 </html>
