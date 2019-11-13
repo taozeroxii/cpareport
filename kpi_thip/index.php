@@ -9,7 +9,9 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
   <script type="text/javascript" src="js/echarts.min.js"></script>
+  <link href="https://fonts.googleapis.com/css?family=Prompt&display=swap" rel="stylesheet">
 </head>
+
 <?php
 date_default_timezone_set("Asia/Bangkok");
 $con = new mysqli("172.16.0.251", "report", "report", "cpareportdb");
@@ -24,7 +26,7 @@ $result = mysqli_query($con, $sql);
 </style>
 
 
-<body>
+<body style="font-family: 'Prompt', sans-serif;">
   <table class="table  table-bordered  table-hover">
     <div class="header" style=' background-color: #0B5345;font:blod;'>
       <small>KPI THIP ABHAI BHUBAJHR HOSPITAL</small>
