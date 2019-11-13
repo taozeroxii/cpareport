@@ -191,6 +191,7 @@ $result = mysqli_query($con, $sql);
           </div>
           <div class="modal-body">
           <center> <div id="report<?= $kpicode ?>" style="width:800px;height: 200px"></div></center><hr>
+          <img src="PDF_THIP/<?=$kpicode;?>.pdf" alt="">
         
           </div>
           <div class="modal-footer">
