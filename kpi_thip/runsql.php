@@ -65,7 +65,7 @@ foreach ($ronetimepermonth as $sql1time) {
     if( $Rsuma != null && $RsumB != null ||$Rsuma != 0 && $RsumB != 0 )
     { 
         if( $kpi_cal = 1){
-            $resultkpi = ($Rsuma/$RsumB)*100;
+            @$resultkpi = ($Rsuma/$RsumB)*100;
             $resultkpisub = number_format($resultkpi,2);
             //echo 'Kpi :'.number_format($resultkpi1,2) .'<br>';
         }
