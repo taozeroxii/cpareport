@@ -138,7 +138,7 @@ $result = mysqli_query($con, $sql);
       <tr class='tr-hovers'>
         <th style="color:green"><?= '&nbsp;&nbsp;&nbsp' . $rw ?></th>
         <td style="text-align:center;"><? echo $kpicode ?></td>
-        <td><?= $kpiname; echo '<sub>  ' . $kpi_ym . '</sub>'; ?> </td>
+        <td><?= $kpiname; echo '<sub style="color:red;text-decoration:blink">  ' . $kpi_ym . '</sub>'; ?> </td>
         <td style="text-align:center;"><? if ($a && $b != null) echo $c;else echo 'NULL'; ?></td>
         <td><? if ($a != null) echo $a;
               else echo 'NULL'; ?></td>
