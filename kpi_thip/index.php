@@ -72,7 +72,7 @@ function thaiDateFULL($datetime)
 }
 $con = new mysqli("172.16.0.251", "report", "report", "cpareportdb");
 mysqli_set_charset($con, "utf8");
-$sql = "SELECT ct.kpi_code,kpi_name,kpi_cal_a,kpi_cal_b,kpi_ym,kpi_dateupdate FROM cpareport_kpi_thip ct  left join  cpareport_kpi_data cd on cd.kpi_code = ct.kpi_code and kpi_ym = (SELECT max(kpi_ym) FROM cpareport_kpi_data )
+$sql = "SELECT ct.kpi_code,kpi_name,kpi_cal_a,kpi_cal_b,kpi_cal_c,kpi_ym,kpi_dateupdate FROM cpareport_kpi_thip ct  left join  cpareport_kpi_data cd on cd.kpi_code = ct.kpi_code and kpi_ym = (SELECT max(kpi_ym) FROM cpareport_kpi_data )
  group by ct.kpi_code,kpi_name,kpi_cal_a,kpi_cal_b,kpi_ym,kpi_dateupdate order by ct.id ";
 $result = mysqli_query($con, $sql);
 
@@ -113,7 +113,7 @@ $result = mysqli_query($con, $sql);
   <table class="table  table-bordered  table-hover">
     <div class="header" style=' background-color: #0B5345;font:blod;'>
       <small>KPI THIP ABHAI BHUBAJHR HOSPITAL</small>
-       <small style="float:right"><button class="btn btn-warning btn-sm"><i class='fa fa-refresh'></i> Update</button></small>
+       <small style="float:right"><button class="btn btn-warning btn-sm" ><i class='fa fa-refresh'></i> Update</button></small>
       <hr>
       <div class="row">
         <div class="col-lg-1 col-md-2 col-1 " style="margin-top:-30px;">NO. &nbsp;&nbsp;&nbsp;&nbsp; KPICODE</div>
@@ -131,6 +131,7 @@ $result = mysqli_query($con, $sql);
         $kpi_ym =  $item['kpi_ym'];
         $a = $item['kpi_cal_a'];
         $b = $item['kpi_cal_b'];
+        $c = $item['kpi_cal_c'];
         $rw++;
         ?>
     <tbody>
@@ -138,7 +139,7 @@ $result = mysqli_query($con, $sql);
         <th style="color:green"><?= '&nbsp;&nbsp;&nbsp' . $rw ?></th>
         <td style="text-align:center;"><? echo $kpicode ?></td>
         <td><?= $kpiname; echo '<sub>  ' . $kpi_ym . '</sub>'; ?> </td>
-        <td style="text-align:center;"><? if ($a && $b != null) echo number_format(($a / $b) * 100, 2);else echo 'NULL'; ?></td>
+        <td style="text-align:center;"><? if ($a && $b != null) echo $c;else echo 'NULL'; ?></td>
         <td><? if ($a != null) echo $a;
               else echo 'NULL'; ?></td>
         <td><? if ($b != null) echo $b;
@@ -264,7 +265,7 @@ $result = mysqli_query($con, $sql);
                     ?>
                   <tr>
                     <th scope="row"><? echo thaiDateFULL($resultkpi['kpi_ym']); ?></th>
-                    <td><? echo number_format(($resultkpi['kpi_cal_a'] / $resultkpi['kpi_cal_b']) * 100, 2); ?></td>
+                    <td><? echo $resultkpi['kpi_cal_c']; ?></td>
                     <td><? echo $resultkpi['kpi_cal_a']; ?></td>
                     <td><? echo $resultkpi['kpi_cal_b']; ?></td>
                   </tr>

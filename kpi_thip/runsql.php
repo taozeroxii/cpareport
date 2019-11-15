@@ -27,7 +27,7 @@ $end_date_of_month = $enddate['end_of_month'] ;//เ็บค่าวันท�
 $serch1timepermonth = " SELECT * FROM cpareport_kpi_sql WHERE kpi_type = 'Y';";
 $ronetimepermonth = mysqli_query($con, $serch1timepermonth);
 $kpi_ym = $Y.'-'.$M;
-echo $kpi_dateupdate = date("Y-m-d h:i:s");
+$kpi_dateupdate = date("Y-m-d h:i:s");
 $kpi_status   = 1;
 
 foreach ($ronetimepermonth as $sql1time) {
@@ -78,7 +78,7 @@ foreach ($ronetimepermonth as $sql1time) {
     $reshave_kpi_yet = mysqli_fetch_assoc($have_checkkpi_yet);
     $reshave_kpi_yet['kpi_ym'];
     if( $reshave_kpi_yet['kpi_ym'] == null ||  $reshave_kpi_yet['kpi_ym']==''){
-        echo $QueryInsertkpi_data = "INSERT INTO cpareport_kpi_data SET
+         $QueryInsertkpi_data = "INSERT INTO cpareport_kpi_data SET
          kpi_code =   '" . $kpicode. "',
          kpi_ym = '" .$kpi_ym. "',
          kpi_year = '" .$Y. "',
