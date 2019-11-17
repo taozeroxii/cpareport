@@ -15,7 +15,7 @@ echo $y.' '.$m;
 date_default_timezone_set("Asia/Bangkok");
 $Y  =  date("Y");
 $M  = date("m")-1;
-if($M < 1){$M = date("m"); $Y = date("Y")-1; }
+if($M < 1){$M = '12'; $Y = date("Y")-1; }
 $D  =  date("dd");
 $YMDbegin = $Y.'-'.$M.'-01'; // วันที่เริ่ม
 $enddayofmonth = "SELECT (date_trunc('month', '$YMDbegin'::date) + interval '1 month' - interval '1 day')::date AS end_of_month"; //คำสั่งรัน query เพื่อเอาค่าวันที่เดือนที่แล้วไปหาวันสุดท้ายของเดือน
@@ -62,7 +62,7 @@ foreach ($ronetimepermonth as $sql1time) {
         //echo  'cal_B:'.$RsumB .'<br>';
     }
 
-    if( $Rsuma != null && $RsumB != null ||$Rsuma != 0 && $RsumB != 0 )
+    if( $Rsuma != null && $RsumB != null ||$Rsuma != '' && $RsumB != '' )
     { 
         if( $kpi_cal = 1){
             @$resultkpi = ($Rsuma/$RsumB)*100;
