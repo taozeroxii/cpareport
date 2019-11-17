@@ -8,36 +8,22 @@
 
 }
 .tr-hovers:hover{
-  font:bold;
   color:#D35400;
- cursor: pointer;
 }
 
 [class*="col-"] {
   float: left;
   padding: 15px;
 }
-
+.main{  
+  width: 100%;
+  margin-top: 110px;
+}
 
 html {
   font-family: 'Kanit', sans-serif;
   
 }
-.main{
-  width: 100%;
-  margin-top: 104px;
-}
-.header {
-  background-color: black;
-  color: #ffffff;
-  padding: 0.8em;
-  position: fixed;
-  overflow: hidden;
-  top: 0;
-  width: 100%;
-}
-
-
 .menu ul {
   list-style-type: none;
   margin: 0;
