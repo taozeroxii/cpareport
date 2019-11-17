@@ -17,7 +17,6 @@
 
 <?php
 date_default_timezone_set("Asia/Bangkok");
-date_default_timezone_set("Asia/Bangkok");
 function thaiDate($datetime)
 {
 	if(!is_null($datetime))
@@ -138,7 +137,7 @@ $result = mysqli_query($con, $sql);
       <tr class='tr-hovers'>
         <th style="color:green"><?= '&nbsp;&nbsp;&nbsp' . $rw ?></th>
         <td style="text-align:center;"><? echo $kpicode ?></td>
-        <td><?= $kpiname; echo '<sub style="color:red;text-decoration:blink">  ' . $kpi_ym . '</sub>'; ?> </td>
+        <td><?= $kpiname.' <sub style = "color:#0B5345">'.$kpi_ym.'</sub>';?> </td>
         <td style="text-align:center;"><? if ($a && $b != null) echo $c;else echo 'NULL'; ?></td>
         <td><? if ($a != null) echo $a;
               else echo 'NULL'; ?></td>
@@ -197,7 +196,7 @@ $result = mysqli_query($con, $sql);
           <div class="modal-body">
           <center> <div id="report<?= $kpicode ?>" style="width:800px;height: 200px"></div></center><hr>
           <?php
-            $sqlchart = " SELECT * FROM cpareport_kpi_data WHERE kpi_code = '$kpicode' ORDER BY kpi_ym DESC  limit 10";
+            $sqlchart = " SELECT * FROM cpareport_kpi_data WHERE kpi_code = '$kpicode' ORDER BY kpi_ym   limit 10";
             $resultsqlchart = mysqli_query($con, $sqlchart);
             $title = [];
             $value = [];

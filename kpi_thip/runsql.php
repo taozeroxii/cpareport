@@ -13,21 +13,19 @@ if($m<1){$m = 12; $y--;}
 echo $y.' '.$m;
 */
 date_default_timezone_set("Asia/Bangkok");
-$Y  =  date("Y");
-$M  = date("m")-1;
-if($M < 1){$M = '12'; $Y = date("Y")-1; }
-$D  =  date("dd");
-$YMDbegin = $Y.'-'.$M.'-01'; // วันที่เริ่ม
-$enddayofmonth = "SELECT (date_trunc('month', '$YMDbegin'::date) + interval '1 month' - interval '1 day')::date AS end_of_month"; //คำสั่งรัน query เพื่อเอาค่าวันที่เดือนที่แล้วไปหาวันสุดท้ายของเดือน
+$Y  =  date(("Y"),strtotime("previous month"));
+$M  = date(("m"),strtotime("previous month"));
+$YMDbegin = date("Y-m-d", strtotime("first day of previous month")); // วันที่เริ่ม strtotime("first day of previous month")
+$enddayofmonth = "SELECT (date_trunc('month', '$YMDbegin'::date) + interval '1 month' - interval '1 day')::date AS end_of_month"; //คำสั่งรัน query เพื่อเอาค่าวันที่เดือนที่แล้วไปหาวันสุดท้ายของเดือน หรือใช้ strtotime("last day of previous month") ก็ได้
 $resultenddayofmonth = pg_query($conn,$enddayofmonth);
 $enddate = pg_fetch_assoc($resultenddayofmonth);
 $end_date_of_month = $enddate['end_of_month'] ;//เ็บค่าวันที่สุดท้ายของเดือน
 
 //---------------- query ดึชุดคำสั่ง SQL จ่ก DB และแทนที่วันเดือนปีเป็นเดือนก่อนหน้าของวันที่กดป่มปัจจุบันอัพเดททุกๆ 1 เดือน------
-$serch1timepermonth = " SELECT * FROM cpareport_kpi_sql WHERE kpi_type = 'Y';";
+$serch1timepermonth = " SELECT * FROM cpareport_kpi_sql WHERE kpi_type = 'Y' AND kpi_event = '1';";
 $ronetimepermonth = mysqli_query($con, $serch1timepermonth);
 $kpi_ym = $Y.'-'.$M;
-$kpi_dateupdate = date("Y-m-d h:i:s");
+$kpi_dateupdate = date("Y-m-d H:i:s");
 $kpi_status   = 1;
 
 foreach ($ronetimepermonth as $sql1time) {
@@ -62,7 +60,7 @@ foreach ($ronetimepermonth as $sql1time) {
         //echo  'cal_B:'.$RsumB .'<br>';
     }
 
-    if( $Rsuma != null && $RsumB != null ||$Rsuma != '' && $RsumB != '' )
+    if( $Rsuma != null && $RsumB != null || $Rsuma != ' ' && $RsumB != ' ' )
     { 
         if( $kpi_cal = 1){
             @$resultkpi = ($Rsuma/$RsumB)*100;
@@ -73,12 +71,12 @@ foreach ($ronetimepermonth as $sql1time) {
     echo 'kpicode: '.$kpicode.' kpi_a: '.$Rsuma.' kpi_b: '.$RsumB.' kpi_c a/b*100: '.number_format($resultkpi,2).' inserttime: '.$kpi_dateupdate.' kpi_ym: '.$kpi_ym.' kpi_year: '.$Y.' status: '.$kpi_status.'<br>';
 
     //ใช้คำสั่ง Insert ข้อมูลในเดือนก่อนหน้าของเดือนที่กด Update 
-    $checkkpi = " SELECT * FROM cpareport_kpi_data where  kpi_code = '".$kpicode."'"; // queryดูใน kpicodeว่าเดือนนั้นๆเคย insert ไปรึยัง หากยังให้เพิ่มลงฐาน
+    $checkkpi = " SELECT * FROM cpareport_kpi_data where  kpi_code = '".$kpicode."' AND kpi_ym = '$kpi_ym' "; // queryดูใน kpicodeว่าเดือนนั้นๆเคย insert ไปรึยัง หากยังให้เพิ่มลงฐาน
     $have_checkkpi_yet = mysqli_query($con, $checkkpi);
     $reshave_kpi_yet = mysqli_fetch_assoc($have_checkkpi_yet);
     $reshave_kpi_yet['kpi_ym'];
     if( $reshave_kpi_yet['kpi_ym'] == null ||  $reshave_kpi_yet['kpi_ym']==''){
-         $QueryInsertkpi_data = "INSERT INTO cpareport_kpi_data SET
+        $QueryInsertkpi_data = "INSERT INTO cpareport_kpi_data SET
          kpi_code =   '" . $kpicode. "',
          kpi_ym = '" .$kpi_ym. "',
          kpi_year = '" .$Y. "',
@@ -91,4 +89,8 @@ foreach ($ronetimepermonth as $sql1time) {
          $ResultInsert = mysqli_query($con,$QueryInsertkpi_data);
     }
 }
+
+
+
+
 ?>
