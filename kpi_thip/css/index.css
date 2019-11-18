@@ -8,27 +8,19 @@
 
 }
 .tr-hovers:hover{
-  font:bold;
   color:#D35400;
- cursor: pointer;
 }
 
 [class*="col-"] {
   float: left;
   padding: 15px;
 }
-
-
-html {
-  font-family: 'Kanit', sans-serif;
-  
-}
-.main{
+.main{  
   width: 100%;
-  margin-top: 104px;
+  margin-top: 112px;
 }
+
 .header {
-  background-color: black;
   color: #ffffff;
   padding: 0.8em;
   position: fixed;
@@ -37,7 +29,10 @@ html {
   width: 100%;
 }
 
-
+html {
+  font-family: 'Kanit', sans-serif;
+  
+}
 .menu ul {
   list-style-type: none;
   margin: 0;
