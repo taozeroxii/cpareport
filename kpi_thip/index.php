@@ -113,8 +113,23 @@ function thaiDateFULL($datetime)
 }
 $con = new mysqli("172.16.0.251", "report", "report", "cpareportdb");
 mysqli_set_charset($con, "utf8");
-$sql = "SELECT ct.kpi_code,kpi_name,kpi_cal_a,kpi_cal_b,kpi_cal_c,kpi_ym,kpi_dateupdate FROM cpareport_kpi_thip ct  left join  cpareport_kpi_data cd on cd.kpi_code = ct.kpi_code and kpi_ym = (SELECT max(kpi_ym) FROM cpareport_kpi_data )
- group by ct.kpi_code,kpi_name,kpi_cal_a,kpi_cal_b,kpi_ym,kpi_dateupdate order by ct.id ";
+$sql = "			
+SELECT ct.id,ct.kpi_code,kpi_name,kpi_cal_a,kpi_cal_b,kpi_cal_c,kpi_ym,kpi_dateupdate 
+FROM cpareport_kpi_thip ct  
+left join  cpareport_kpi_data cd on cd.kpi_code = ct.kpi_code and kpi_ym = (SELECT max(kpi_ym) FROM cpareport_kpi_data )
+where ct.kpi_event is null
+UNION
+SELECT ct.id,ct.kpi_code,kpi_name,kpi_cal_a,kpi_cal_b,kpi_cal_c,kpi_ym,kpi_dateupdate 
+FROM cpareport_kpi_thip ct  
+left join  cpareport_kpi_data cd on cd.kpi_code = ct.kpi_code and kpi_ym = (SELECT max(kpi_ym) FROM cpareport_kpi_data )
+where ct.kpi_event = '1'
+UNION ALL 
+SELECT ct.id ,ct.kpi_code,kpi_name,cd.kpi_cal_a,cd.kpi_cal_b,cd.kpi_cal_c,cd.kpi_ym,cd.kpi_dateupdate 
+FROM cpareport_kpi_thip ct  
+left join  cpareport_kpi_data cd on cd.kpi_code = ct.kpi_code and kpi_ym = 
+(SELECT max(kpi_ym) FROM cpareport_kpi_data cd inner join cpareport_kpi_thip ct on ct.kpi_code = cd.kpi_code where ct.kpi_event = '6')
+where ct.kpi_event ='6'
+order by id ";
 $result = mysqli_query($con, $sql);
 ?>
 
@@ -184,12 +199,9 @@ $result = mysqli_query($con, $sql);
             <th style="color:green"><?= '&nbsp;&nbsp;&nbsp' . $rw ?></th>
             <td style="text-align:center;"><? echo $kpicode ?></td>
             <td><?= $kpiname . '  <span class="badge badge-primary badge-pill">' . $kpi_ym . '</span>'; ?> </td>
-            <td style="text-align:center;"><? if ($a && $b != null) echo $c;
-                                              else echo 'NULL'; ?></td>
-            <td><? if ($a != null) echo $a;
-                  else echo 'NULL'; ?></td>
-            <td><? if ($b != null) echo $b;
-                  else echo 'NULL'; ?></td>
+            <td style="text-align:center;"><? if ($a && $b != null) echo $c; else echo 'NULL'; ?></td>
+            <td><? if ($a != null) echo $a; else echo 'NULL'; ?></td>
+            <td><? if ($b != null) echo $b;else echo 'NULL'; ?></td>
             <td data-toggle="modal" data-target="#niyam<?= $kpicode ?>"><button class="btn btn-primary">?</button></td>
             <td data-toggle="modal" data-target="#<?= $kpicode ?>"><button class="btn btn-danger">!</button></td>
           </tr>
