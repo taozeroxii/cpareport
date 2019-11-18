@@ -1,0 +1,94 @@
+.fth{
+    font-family: 'Prompt', sans-serif;
+}
+
+.team-section {
+    font-family: arial;
+    text-align: center;
+    padding: 70px 0px;
+}
+.team-section h2 {
+    color: #3b5997;
+    font-size: 40px;
+}
+.team-section p {
+    font-size: 16px;
+    color: #656565;
+    margin: 0px 0px 20px;
+}
+.team-member {
+    width: 100%;
+    float: left;
+    padding: 25px 15px;
+    background-color: #fff;
+    border-radius: 10px;
+    border: 1px solid #eee;
+    margin-top: 30px;
+    box-shadow: 0px 8px 0px 0px #9E9E9E;
+    transition: 0.5s;
+}
+.team-member:hover {
+    box-shadow: 0px -8px 0px 0px #9e9e9e;
+}
+.team-member h3 {
+    font-size: 24px;
+    margin: 15px 0px 0px;
+}
+.team-member h5 {
+    margin: 10px 0px 10px;
+    color: #8a8a8a;
+    display: inline-block;
+}
+.team-member p {
+    font-size: 16px;
+    color: #8a8a8a;
+}
+.team-member .photo {
+    width: 90px;
+    height: 90px;
+    border-radius: 100%;
+    overflow: hidden;
+    border: 1px solid #9E9E9E;
+    margin: 0 auto;
+    background-color: #ffffff;
+    padding: 4px;
+}
+.follow-on ul{
+    padding: 0px;
+    margin: 0px;
+}
+.follow-on ul li {
+    float: left;
+    list-style: none;
+    font-size: 20px;
+    text-align: center;
+    margin: 10px 0px 10px;
+    width: 20%;
+}
+.follow-on ul li a i {
+    color: #fff;
+    border-radius: 100%;
+    height: 30px;
+    width: 30px;
+    line-height: 31px;
+    font-size: 16px;
+}
+.follow-on ul li a i:hover{
+    opacity: 0.8;
+}
+.follow-on ul li a i.fa.fa-facebook {
+    background-color: #3b5997;
+}
+.follow-on ul li a i.fa.fa-twitter {
+    background-color: #57aced;
+}
+.follow-on ul li a i.fa.fa-pinterest-p {
+    background-color: #cb2026;
+}
+.follow-on ul li a i.fa.fa-instagram {
+    background-color: #3e729a;
+}
+.follow-on ul li a i.fa.fa-google-plus {
+    background-color: #db4d41;
+}
+
