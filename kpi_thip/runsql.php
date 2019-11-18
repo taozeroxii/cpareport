@@ -90,14 +90,15 @@ foreach ($ronetimepermonth as $sql1time) {
 
 //---------------- query ดึชุดคำสั่ง SQL จ่ก DB และแทนที่วันเดือนปีเป็นเดือนก่อนหน้าของวันที่กดป่มปัจจุบันอัพเดททุกๆ 6 เดือน------
 $Y6 = date("Y");
-$M6 = date("m");
+$M6 = date(("m"),strtotime("last month"));
 $sixmonthm = date("m");//Update ทุกๆ เดือนที่ 10 
-$kpi_ym6 = $Y6.'-'.$M6;
 //echo $sixmonthEnddate  = date(("Y-m-d"),strtotime("2019-04-01 last day of 5 month ")) ;echo '<br>';   // ให้เช็ควันสุดท้ายของอีก 5 เดือนถัดไปรวมเดือนที่ปัจจุบันด้วยเป็น 6 เดือน
+$sixmonthBegindate  = date(("Y-m-d"),strtotime("first day of -6 month ")) ;echo '<br>';   // ให้เช็ควันสุดท้ายของอีก 5 เดือนถัดไปรวมเดือนที่ปัจจุบันด้วยเป็น 6 เดือน   // ให้เช็ควันแรกของเดือนที่10
+$sixmonthEnddate = date(("Y-m-d"),strtotime("last day of last month"));echo '<br>'; // ให้เช็ควันแรกของเดือนที่10
 
-if($sixmonthm == "10"||$sixmonthm == "04"){// ในรอบปีงบ เดือน 4 ถึง เดือน 9 และ เดือน 10 ปีเก่า ถึง เดือน 3 ปีใหม่ 
-    $sixmonthBegindate = date(("Y-m-d"),strtotime("first day of this month"));echo '<br>'; // ให้เช็ควันแรกของเดือนที่10
-    $sixmonthEnddate  = date(("Y-m-d"),strtotime("last day of 5 month ")) ;echo '<br>';   // ให้เช็ควันสุดท้ายของอีก 5 เดือนถัดไปรวมเดือนที่ปัจจุบันด้วยเป็น 6 เดือน
+if($sixmonthm == "11"||$sixmonthm == "05"){// ในรอบปีงบ เดือน 4 ถึง เดือน 9 และ เดือน 10 ปีเก่า ถึง เดือน 3 ปีใหม่ 
+    $sixmonthBegindate  = date(("Y-m-d"),strtotime("first day of -6 month ")) ;echo '<br>';   // ให้เช็ควันสุดท้ายของอีก 5 เดือนถัดไปรวมเดือนที่ปัจจุบันด้วยเป็น 6 เดือน   // ให้เช็ควันแรกของเดือนที่10
+    $sixmonthEnddate = date(("Y-m-d"),strtotime("last day of last month"));echo '<br>'; // ให้เช็ควันแรกของเดือนที่10
     $serch1timeperyear = " SELECT * FROM cpareport_kpi_sql WHERE kpi_type = 'Y' AND kpi_event = '6';"; // query เช็คค่าในฐานว่า query sql ตัวไหนเป็นแบบราย 6 เดือน 
     $ronetimeperyear = mysqli_query($con, $serch1timeperyear);
     $kpi_status   = 1;
@@ -144,12 +145,13 @@ if($sixmonthm == "10"||$sixmonthm == "04"){// ในรอบปีงบ เด
 
         echo 'kpicode: '.$kpi_code.' kpi_a: '.$Rsuma.' kpi_b: '.$RsumB.' kpi_c a/b*100: '.number_format($resultkpi,2).' inserttime: '.$kpi_dateupdate.' kpi_ym: '.$kpi_ym.' kpi_year: '.$Y.' status: '.$kpi_status.'<br>';
         //ใช้คำสั่ง Insert ข้อมูลในเดือนก่อนหน้าของเดือนที่กด Update 
-        echo $checkkpi = " SELECT * FROM cpareport_kpi_data where  kpi_code = '".$kpi_code."' AND kpi_ym = '$kpi_ym6' "; // queryดูใน kpicodeว่าเดือนนั้นๆเคย insert ไปรึยัง หากยังให้เพิ่มลงฐาน
+        $kpi_ym6 = date(("Y-m"),strtotime("first day of -6 month "));
+        $checkkpi = " SELECT * FROM cpareport_kpi_data where  kpi_code = '".$kpi_code."' AND kpi_ym = '$kpi_ym6' "; // queryดูใน kpicodeว่าเดือนนั้นๆเคย insert ไปรึยัง หากยังให้เพิ่มลงฐาน
         $have_checkkpi_yet = mysqli_query($con, $checkkpi);
         $reshave_kpi_yet = mysqli_fetch_assoc($have_checkkpi_yet);
         $reshave_kpi_yet['kpi_ym'];
         if( $reshave_kpi_yet['kpi_ym'] == null ||  $reshave_kpi_yet['kpi_ym']==''){
-            echo $QueryInsertkpi_data = "INSERT INTO cpareport_kpi_data SET
+             $QueryInsertkpi_data = "INSERT INTO cpareport_kpi_data SET
              kpi_code =   '" . $kpi_code. "',
              kpi_ym = '" .$kpi_ym6. "',
              kpi_endym = '" .$sixmonthEnddate. "',
