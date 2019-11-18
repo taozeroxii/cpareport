@@ -241,7 +241,9 @@ $result = mysqli_query($con, $sql);
       <!-- Modal chart-->
       <? foreach ($result as $item) {
         $kpiname  =  $item['kpi_name'];
-        $kpicode  =  $item['kpi_code']; ?>
+        $kpicode  =  $item['kpi_code'];
+        $kpievent  =  $item['kpi_event'];
+         ?>
         <div class="modal fade modal-xl" id="<?= $kpicode ?>" tabindex="-1" role="dialog" aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">
           <div class="modal-dialog modal-lg">
             <div class="modal-content">
@@ -325,7 +327,7 @@ $result = mysqli_query($con, $sql);
                       foreach ($result1 as $resultkpi) {
                         ?>
                       <tr>
-                        <th scope="row"><? echo thaiDateFULL($resultkpi['kpi_ym']); ?></th>
+                        <th scope="row"><? echo thaiDateFULL($resultkpi['kpi_ym']).'&nbsp;' ; if($resultkpi['kpi_endym']!='' || $resultkpi['kpi_endym'] != null) {echo 'ถึง '.thaiDateFULL($resultkpi['kpi_endym']); }?></th>
                         <td><? echo $resultkpi['kpi_cal_c']; ?></td>
                         <td><? echo $resultkpi['kpi_cal_a']; ?></td>
                         <td><? echo $resultkpi['kpi_cal_b']; ?></td>
