@@ -22,28 +22,28 @@
 
 
 <script>
-$(function () {
-  $(".select2").select2({
-   placeholder: 'ถ้าไม่เลือกจะแสดงข้อมูลทั้งหมด'
- });
-  $(".select3").select2({
-   placeholder: 'ทั้งหมด'
- });
-  $(".select4").select2({
-   placeholder: 'ถ้าไม่เลือกจะแสดงข้อมูลคลินิกทั้งหมด'
- });
-  $(".select5").select2({
-   placeholder: 'ถ้าไม่เลือกจะแสดงข้อมูลสิทธิ์ทั้งหมด'
- });
-  $(".select6").select2({
-   placeholder: 'ถ้าไม่เลือกจะแสดงข้อมูลแพทย์ทั้งหมด'
- });
-  $(".select7").select2({
-   placeholder: 'ถ้าไม่เลือกจะแสดงข้อมูลทุกสถานะ'
- });
-  $(".select8").select2({
-   placeholder: 'ถ้าไม่เลือกจะแสดงข้อมูลทุก Type'
- });
+  $(function () {
+    $(".select2").select2({
+     placeholder: 'ถ้าไม่เลือกจะแสดงข้อมูลทั้งหมด'
+   });
+    $(".select3").select2({
+     placeholder: 'ทั้งหมด'
+   });
+    $(".select4").select2({
+     placeholder: 'ถ้าไม่เลือกจะแสดงข้อมูลคลินิกทั้งหมด'
+   });
+    $(".select5").select2({
+     placeholder: 'ถ้าไม่เลือกจะแสดงข้อมูลสิทธิ์ทั้งหมด'
+   });
+    $(".select6").select2({
+     placeholder: 'ถ้าไม่เลือกจะแสดงข้อมูลแพทย์ทั้งหมด'
+   });
+    $(".select7").select2({
+     placeholder: 'ถ้าไม่เลือกจะแสดงข้อมูลทุกสถานะ'
+   });
+    $(".select8").select2({
+     placeholder: 'ถ้าไม่เลือกจะแสดงข้อมูลทุก Type'
+   });
 
     //Datemask dd/mm/yyyy
     $("#datemask").inputmask("dd/mm/yyyy", {"placeholder": "dd/mm/yyyy"});
@@ -118,14 +118,14 @@ $(function () {
 </script>
 
 <script type="text/javascript">                
-function loadct(){
-  $.ajax({
+  function loadct(){
+    $.ajax({
    // url: "clinic.php",
-    url: "department.class.php",
-    method: 'GET',
-    data: {'selector':'ct'},
-    success: function(result){
-      var htmlOption = "";
+   url: "department.class.php",
+   method: 'GET',
+   data: {'selector':'ct'},
+   success: function(result){
+    var htmlOption = "";
                       var option = [];                                           // GG select //
                       data = JSON.parse(result);
                        //console.log(result);
@@ -139,132 +139,150 @@ function loadct(){
                      $('#c_dropdown').html(htmlOption);
                      //   $('#c_dropdown').select2({data:option});          // GG select //                 
                    }});
-}
-loadct();
+  }
+  loadct();
 
 </script>
 
 <script type="text/javascript">                
-function loadct(){
-  $.ajax({
-    url: "doctor.class.php",
-    method: 'GET',
-    data: {'selector':'doctor'},
-    success: function(result){
-      var htmlOption = "";
-      data = JSON.parse(result);
-      $.each(data, function(i, item) {
-        htmlOption += "<option value='"+ item.code +"'>"+ item.name +" "+ item.licenseno +"</option>";
-      });
-      $('#d_dropdown').html(htmlOption);
+  function loadct(){
+    $.ajax({
+      url: "doctor.class.php",
+      method: 'GET',
+      data: {'selector':'doctor'},
+      success: function(result){
+        var htmlOption = "";
+        data = JSON.parse(result);
+        $.each(data, function(i, item) {
+          htmlOption += "<option value='"+ item.code +"'>"+ item.name +" "+ item.licenseno +"</option>";
+        });
+        $('#d_dropdown').html(htmlOption);
 
-    }});
-}
-loadct();
-
-</script>
-
-<script type="text/javascript">                
-function loadct(){
-  $.ajax({
-    url: "pttype.class.php",
-    method: 'GET',
-    data: {'selector':'ins'},
-    success: function(result){
-      var htmlOption = "";
-      data = JSON.parse(result);
-      $.each(data, function(i, item) {
-        htmlOption += "<option value='"+ item.pttype +"'>"+ item.pttype + " "+ item.name + "</option>";
-      });
-      $('#i_dropdown').html(htmlOption);
-      
-    }});
-}
-loadct();
+      }});
+  }
+  loadct();
 
 </script>
 
 <script type="text/javascript">                
-function loadct(){
-  $.ajax({
-    url: "diag.class.php",
-    method: 'GET',
-    data: {'selector':'icd101'},
-    success: function(result){
-      var htmlOption = "";
-      data = JSON.parse(result);
-      $.each(data, function(i, item) {
-        htmlOption += "<option value='"+ item.code +"'>"+ item.code + " "+ item.name + "</option>";
-      });
-      $('#diag_dropdown').html(htmlOption);
-      
-    }});
-}
-loadct();
+  function loadct(){
+    $.ajax({
+      url: "pttype.class.php",
+      method: 'GET',
+      data: {'selector':'ins'},
+      success: function(result){
+        var htmlOption = "";
+        data = JSON.parse(result);
+        $.each(data, function(i, item) {
+          htmlOption += "<option value='"+ item.pttype +"'>"+ item.pttype + " "+ item.name + "</option>";
+        });
+        $('#i_dropdown').html(htmlOption);
+
+      }});
+  }
+  loadct();
+
+</script>
+
+<script type="text/javascript">                
+  function loadct(){
+    $.ajax({
+      url: "diag.class.php",
+      method: 'GET',
+      data: {'selector':'icd101'},
+      success: function(result){
+        var htmlOption = "";
+        data = JSON.parse(result);
+        $.each(data, function(i, item) {
+          htmlOption += "<option value='"+ item.code +"'>"+ item.code + " "+ item.name + "</option>";
+        });
+        $('#diag_dropdown').html(htmlOption);
+
+      }});
+  }
+  loadct();
+
+<script type="text/javascript">                
+  function loadclinic(){
+    $.ajax({
+      url: "clinic.class.php",
+      method: 'GET',
+      data: {'selector':'icd101'},
+      success: function(result){
+        var htmlOption = "";
+        data = JSON.parse(result);
+        $.each(data, function(i, item) {
+          htmlOption += "<option value='"+ item.code +"'>"+ item.code + " "+ item.name + "</option>";
+        });
+        $('#clinic_dropdown').html(htmlOption);
+        
+      }});
+  }
+  loadclinic();
 
 </script>
 <style>
-.tt-query,
-.tt-hint {
-  width: 396px;
-  height: 30px;
-  padding: 8px 12px;
-  font-size: 24px;
-  line-height: 30px;
-  border: 2px solid #ccc;
-  -webkit-border-radius: 8px;
-  -moz-border-radius: 8px;
-  border-radius: 8px;
-  outline: none;
-}
+  .tt-query,
+  .tt-hint {
+    width: 396px;
+    height: 30px;
+    padding: 8px 12px;
+    font-size: 24px;
+    line-height: 30px;
+    border: 2px solid #ccc;
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+    border-radius: 8px;
+    outline: none;
+  }
 
-.tt-query {
-  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
-  -moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
-  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
-}
+  .tt-query {
+    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+    -moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+  }
 
-.tt-hint {
-  color: #999
-}
+  .tt-hint {
+    color: #999
+  }
 
-.tt-dropdown-menu {
-  width: 422px;
-  margin-top: 12px;
-  padding: 8px 0;
-  background-color: #fff;
-  border: 1px solid #ccc;
-  border: 1px solid rgba(0, 0, 0, 0.2);
-  -webkit-border-radius: 8px;
-  -moz-border-radius: 8px;
-  border-radius: 8px;
-  -webkit-box-shadow: 0 5px 10px rgba(0,0,0,.2);
-  -moz-box-shadow: 0 5px 10px rgba(0,0,0,.2);
-  box-shadow: 0 5px 10px rgba(0,0,0,.2);
-}
+  .tt-dropdown-menu {
+    width: 422px;
+    margin-top: 12px;
+    padding: 8px 0;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+    border-radius: 8px;
+    -webkit-box-shadow: 0 5px 10px rgba(0,0,0,.2);
+    -moz-box-shadow: 0 5px 10px rgba(0,0,0,.2);
+    box-shadow: 0 5px 10px rgba(0,0,0,.2);
+  }
 
-.tt-suggestion {
-  padding: 3px 20px;
-  font-size: 18px;
-  line-height: 24px;
-}
+  .tt-suggestion {
+    padding: 3px 20px;
+    font-size: 18px;
+    line-height: 24px;
+  }
 
-.tt-suggestion.tt-is-under-cursor {
-  color: #fff;
-  background-color: #0097cf;
+  .tt-suggestion.tt-is-under-cursor {
+    color: #fff;
+    background-color: #0097cf;
 
-}
+  }
 </style>
 <script>
-$(document).ready(function(){
-  $("#search").typeahead({
-    name : 'search',
-    remote: {
-      url : 'helpdiag.php?query=%QUERY'
-    }
+  $(document).ready(function(){
+    $("#search").typeahead({
+      name : 'search',
+      remote: {
+        url : 'helpdiag.php?query=%QUERY'
+      }
 
+    });
   });
-});
 </script>
 
 
@@ -279,17 +297,17 @@ $(document).ready(function(){
       </div>
       <div class="modal-body">
         <p><B>ตัวอย่าง กรณีต้องการหลายโรคให้ใส่เครื่องหมาย , ระหว่าง Code ที่ต้องการ<input type="text" value=" J45.0,E11,I10.9,E11.9 " readonly></p>
-        <p>  หรือ ต้องการแค่โรคเดียว ให้ระบุ Code ที่ต้องการ <input type="text" value=" Z80.0" readonly></B></p>
-        <P> </P>
-        <center><p><B> ตรวจสอบข้อมูล รหัสโรค </B></p></center>
-        <center>
-          <input type="text" name="search" id="search">
-        </center>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          <p>  หรือ ต้องการแค่โรคเดียว ให้ระบุ Code ที่ต้องการ <input type="text" value=" Z80.0" readonly></B></p>
+          <P> </P>
+          <center><p><B> ตรวจสอบข้อมูล รหัสโรค </B></p></center>
+          <center>
+            <input type="text" name="search" id="search">
+          </center>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
       </div>
     </div>
   </div>
-</div>
 
