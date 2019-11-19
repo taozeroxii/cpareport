@@ -89,7 +89,7 @@ foreach ($ronetimepermonth as $sql1time) {
 
 
 //---------------- query ดึชุดคำสั่ง SQL จ่ก DB และแทนที่วันเดือนปีเป็นเดือนก่อนหน้าของวันที่กดป่มปัจจุบันอัพเดททุกๆ 6 เดือน------
-$Y6 = date("Y");
+$Y6 = date(("Y"),strtotime("last month"));
 $M6 = date(("m"),strtotime("last month"));
 $sixmonthm = date("m");//Update ทุกๆ เดือนที่ 10 
 //echo $sixmonthEnddate  = date(("Y-m-d"),strtotime("2019-04-01 last day of 5 month ")) ;echo '<br>';   // ให้เช็ควันสุดท้ายของอีก 5 เดือนถัดไปรวมเดือนที่ปัจจุบันด้วยเป็น 6 เดือน
