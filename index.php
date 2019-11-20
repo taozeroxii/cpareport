@@ -145,7 +145,7 @@ for( $i = 0 ; $i < 100000 ; $i++ )
               </div>
               <div class="box-body">
                 <div id="">  
-                  <div id="container" style="min-width: 110px; height: 150px; margin: 0 auto"></div>
+                  <div id="container" style="min-width: 110px; height: 200px; margin: 0 auto"></div>
                   <table class="table" id="datatable">
                     <thead>
                       <tr>
