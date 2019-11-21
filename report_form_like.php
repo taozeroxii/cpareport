@@ -44,7 +44,7 @@ include "config/timestampviewer.php";//เรียกไฟล์ในส่�
 										<form class="form-inline" method="POST" action="#">
 											<input type="text" class="form-control" id="datepickers" placeholder="ช่วงวันที่เริ่ม" name="datepickers" data-provide="datepicker" data-date-language="th" autocomplete="off" >
 											<input type="text" class="form-control" id="datepickert" placeholder="ถึงวันที่" name="datepickert" data-provide="datepicker" data-date-language="th" autocomplete="off" >
-											<input type="text" class="form-control"  name="c_department"style="width: 40%;" placeholder="พิมพิ์บางคำที่ค้นหา ใน cc" title="พิมพิ์บางคำที่ค้นหา">
+											<input type="text" class="form-control" id="kd"   name="kd" style="width: 40%;" placeholder="พิมพิ์บางคำที่ค้นหา ใน cc" title="พิมพิ์บางคำที่ค้นหา">
 											<button type="submit" class="btn btn-default">ค้นหาข้อมูล</button>
 										</form>
 									</div>
@@ -62,7 +62,7 @@ include "config/timestampviewer.php";//เรียกไฟล์ในส่�
 				list($m,$d,$Y)  = split('/',$datepickert); 
 				$datepickert    = trim($Y)."-".trim($m)."-".trim($d);
 
-				$dep_dropdown   = $_POST['c_department'];    
+				$dep_dropdown   = "%%".$_POST['kd']."%%";      
 
 				if($datepickers != "--") {
 					$sql = " $sql_detail ";
@@ -70,6 +70,8 @@ include "config/timestampviewer.php";//เรียกไฟล์ในส่�
 					$sql = str_replace("{datepickert}", "'$datepickert'", $sql);
 					$sql = str_replace("{dep_dropdown}", "'$dep_dropdown'", $sql);
 					$result = pg_query($sql);
+
+					//echo $sql;
 					?>
 					<div class="row">
 						<div class="col-xs-12">
@@ -136,7 +138,7 @@ include "config/timestampviewer.php";//เรียกไฟล์ในส่�
 				'autoWidth'   : false
 			})
 		})
-	</script>
+	</script> 
 	<script type="text/javascript">
 				function export_excel() 
 		{
