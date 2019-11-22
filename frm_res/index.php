@@ -23,6 +23,37 @@
 </head>
 
 <body>
+
+<?php
+include('../config/my_con.class.php');
+include('../config/pg_con.class.php');
+$doctorposition = " SELECT * FROM frm_res_doctorposition ORDER BY position_name";
+$doctorpositions = mysqli_query($con, $doctorposition);
+
+$spclty = " SELECT * FROM frm_res_spclty order by frm_res_id";
+$spcltys = mysqli_query($con, $spclty);
+
+$doctor_department = " SELECT * FROM doctor_department ";
+$doctor_departments = pg_query($conn, $doctor_department);
+
+$income = " SELECT * FROM income ";
+$incomes = pg_query($conn, $income);
+
+$adp_type = " SELECT * FROM frm_res_adp_type ";
+$adp_types = mysqli_query($con, $adp_type);
+
+$adp_code = " SELECT * FROM frm_res_adp_code ";
+$adp_codes = mysqli_query($con, $adp_code);
+
+
+/*
+ทำเช็ค  เวลากดเลือกหมวดค่ารักษาพยาบาลที่เป็น lab แล้ว ให้เพิ่มช่องใส่พวกชื่อlab e code specimen กลุ่ม
+หากเพิ่มค่ารักษาพยาบาลที่ต้องเช็คราคาผานศูนย์สิทธิให้แสดงปุ่ม print form เพื่อเอาลายเซ็นว่าผ่านตรวจสอบแล้ว
+สามารถเช็คตาม ID ใบได้
+*/
+?>
+
+
   <style>
     .nameofinput {
       font-size: 12px;
@@ -49,8 +80,7 @@
         <nav>
           <ul>
             <li><a href="#section-bar-1" class="icon icon-tools"><span> ขอเพิ่มชื่อเข้าใช้งานในระบบ HosXp </span></a></li>
-            <li><a href="#section-bar-2" class="icon icon-tools"><span> ขอเพิ่มหัตถการใช้งานในระบบ HosXp </span></a></li>
-            <li><a href="#section-bar-3" class="icon icon-tools"><span>ขอเพิ่มLab HosXp</span></a></li>
+            <li><a href="#section-bar-2" class="icon icon-tools"><span> ขอเพิ่มค่ารักษาพยาบาลใช้งานในระบบ HosXp </span></a></li>
             <!-- <li><a href="#section-bar-4" class="icon icon-tools"><span>Upload</span></a></li>
 							<li><a href="#section-bar-5" class="icon icon-tools"><span>Settings</span></a></li> -->
           </ul>
@@ -68,23 +98,23 @@
                     <div class="col-sm-1">
                       <span class="nameofinput">คำนำหน้า</span>
                       <select class="form-control" id="inputGroupSelect01" name="pname" require>
-                        <option selected> ...</option>
-                        <option value="1">นาย</option>
-                        <option value="2">นาง</option>
-                        <option value="3">น.ส.</option>
-                        <option value="4">นพ.</option>
-                        <option value="5">นศพ.</option>
-                        <option value="6">พญ.</option>
-                        <option value="7">พทป.</option>
+                        <option selected>pname</option>
+                        <option value="นาย">นาย</option>
+                        <option value="นาง">นาง</option>
+                        <option value="น.ส.">น.ส.</option>
+                        <option value="นพ.">นพ.</option>
+                        <option value="นศพ.">นศพ.</option>
+                        <option value="พญ.">พญ.</option>
+                        <option value="พทป.">พทป.</option>
                       </select>
                     </div>
                     <div class="col-sm-3">
                       <span class="nameofinput">ชื่อ</span>
-                      <input class="form-control" type="text" placeholder="ชื่อ" name="fname" require>
+                      <input class="form-control" type="text" placeholder="fname" name="fname" require>
                     </div>
                     <div class="col-sm-3">
                       <span class="nameofinput">นามสกุล</span>
-                      <input class="form-control" type="text" placeholder="นามสกุล" name="lname" require>
+                      <input class="form-control" type="text" placeholder="lname" name="lname" require>
                     </div>
                     <div class="col-sm-4">
                       <span class="nameofinput">ชื่อภาษาอังกฤษ</span>
@@ -96,7 +126,7 @@
                     <div class="col-sm-1">
                       <span class="nameofinput">เพศ</span>
                       <select class="form-control" name="gender" require>
-                        <option selected> ...</option>
+                        <option selected> gender </option>
                         <option value="1">ชาย</option>
                         <option value="2">หญิง</option>
                       </select>
@@ -107,29 +137,41 @@
                     </div>
                     <div class="col-sm-2">
                       <span class="nameofinput">เลขที่บัตรประชาชน</span>
-                      <input class="form-control" type="text" placeholder="เลขที่บัตรประชาชน" name="cid" require>
+                      <input class="form-control" type="text" placeholder="เลขที่บัตรประชาชน(cid)" name="cid" require>
                     </div>
 
                     <div class="col-sm-2">
                       <span class="nameofinput">ตำแหน่งหลัก</span>
-                      <select class="form-control" id="inputGroupSelect01" name="jclass" require>
-                        <option selected> โปรดเลือก ..</option>
-                        <option value="1">แพทย์</option>
+                      <select class="form-control" name="jclass" require>
+                        <option value="" selected>โปรดเลือก ..</option>
+                            <?php while ($Result = mysqli_fetch_assoc($doctorpositions)) {?>
+                                      <option value="<?php echo $Result['id']; ?>">
+                                       <?php echo $Result['position_name']; ?>
+                                       </option>
+                            <?php } ?>
                       </select>
                     </div>
                     <div class="col-sm-2">
-                      <span class="nameofinput">แผนกสาขา</span>
-                      <select class="form-control" id="inputGroupSelect01" name="jclass" require>
-                        <option selected> แผนกสาขา ...</option>
-                        <option value="1">Er</option>
+                      <span class="nameofinput">แผนกสาขา(sp)</span>
+                      <select class="form-control" name="spcltys" require>
+                      <option value="" selected>โปรดเลือก ..</option>
+                            <?php while ($Result = mysqli_fetch_assoc($spcltys)) {?>
+                                      <option value="<?php echo $Result['frm_res_id']; ?>">
+                                       <?php echo $Result['frm_res_spclty']; ?>
+                                       </option>
+                            <?php } ?>
                       </select>
                     </div>
                     <div class="col-sm-2">
                       <span class="nameofinput">เฉพาะทาง</span>
                       <select class="form-control" name="specialty" require>
-                        <option selected> ...</option>
-                        <option value="1">ชาย</option>
-                        <option value="2">หญิง</option>
+                        <option selected> เฉพาะทาง specialty</option>
+                         <option value="" selected>โปรดเลือก ..</option>
+                         <?php while ($Result = pg_fetch_assoc($doctor_departments)) {?>
+                                      <option value="<?php echo $Result['doctor_department_name']; ?>">
+                                       <?php echo $Result['doctor_department_name']; ?>
+                                       </option>
+                            <?php } ?>
                       </select>
                     </div>
                   </div>
@@ -171,38 +213,41 @@
                     <div class="col-sm-3">
                       <span class="nameofinput">หมวดค่ารักษาพยาบาล</span>
                       <select class="form-control" require>
-                        <option selected> ...</option>
-                        <option value="1">ab</option>
-                        <option value="2">abc</option>
+                        <option selected>หมวดค่ารักษาพยาบาล(income)...</option>
+                        <?php while ($Result = pg_fetch_assoc($incomes)) {?>
+                              <option value="<?php echo $Result['name']; ?>">
+                               <?php echo $Result['name']; ?>
+                              </option>
+                        <?php } ?>
                       </select>
                     </div>
-                    <div class="col-sm-4">
+                    <div class="col-6 col-sm-4">
                       <span class="nameofinput">ชื่อภาษาไทย</span>
                       <input class="form-control" type="text" placeholder="ชื่อ(ไทย)" name="doctorcert">
                     </div>
-                    <div class="col-sm-4">
+                    <div class="col-6 col-sm-4">
                       <span class="nameofinput">ชื่อภาษาอังกฤษ</span>
                       <input class="form-control" type="text" placeholder="ชื่อ(อังกฤษ)" name="doctorcert">
                     </div>
                   </div>
                   <div class="row mt-3">
-                    <div class="col-sm-1">
+                    <div class="col-6 col-sm-1">
                       <span class="nameofinput">ราคาขาย</span>
                       <input class="form-control" type="text" placeholder="default" name="doctorcert">
                     </div>
-                    <div class="col-sm-1">
+                    <div class="col-6 col-sm-1">
                       <span class="nameofinput">ราคาทุน</span>
                       <input class="form-control" type="text" placeholder="" name="doctorcert">
                     </div>
-                    <div class="col-sm-1">
+                    <div class="col-6 col-sm-1">
                       <span class="nameofinput"> Bill code</span>
                       <input class="form-control" type="text" placeholder="" name="doctorcert">
                     </div>
-                    <div class="col-sm-1">
+                    <div class="col-6 col-sm-1">
                       <span class="nameofinput"> Bill number</span>
                       <input class="form-control" type="text" placeholder="" name="doctorcert">
                     </div>
-                    <div class="col-sm-3">
+                    <div class="col-6 col-sm-3">
                       <span class="nameofinput">ADP:code</span>
                       <select class="form-control" require>
                         <option selected> ...</option>
@@ -210,18 +255,21 @@
                         <option value="2">abc</option>
                       </select>
                     </div>
-                    <div class="col-sm-4">
+                    <div class="col-6 col-sm-4">
                       <span class="nameofinput">ADP:TYPE</span>
-                      <select class="form-control" require>
-                        <option selected> ...</option>
-                        <option value="1">ab</option>
-                        <option value="2">abc</option>
+                      <select class="form-control" require>   
+                        <option selected>nhso_adp_type </option>
+                        <?php while ($Result = mysqli_fetch_assoc($adp_types)) {?>
+                                      <option value="<?php echo $Result['nhso_adp_type_name']; ?>">
+                                       <?php echo $Result['nhso_adp_type_name']; ?>
+                                       </option>
+                            <?php } ?>
                       </select>
                     </div>
                   </div>
 
                   <div class="row mt-3">
-                    <div class="col-sm-6">
+                    <div class="col-6 col-sm-6">
                       <span class="nameofinput">Product category (สกส.)</span>
                       <select class="form-control" require>
                         <option selected> ...</option>
@@ -230,7 +278,7 @@
                       </select>
                     </div>
 
-                    <div class="col-sm-5">
+                    <div class="col-6 col-sm-5">
                       <span class="nameofinput">กลุ่มการรักษา</span>
                       <select class="form-control" require>
                         <option selected> ...</option>
@@ -242,13 +290,13 @@
 
                   <hr>
                   <div class="row mt-5">
-                    <div class="col-2">
+                    <div class="col-6 col-lg-2">
                       <fieldset>
                         <legend>ข้าราชการ:</legend>
                         <span class="nameofinput">ข้าราช(ราคา)</span>
                         <input class="form-control" type="text" placeholder="ตามสิทธิใส่ราคาที่เบิกได้" name="doctorcert">
                         <span class="nameofinput">ประเภท</span>
-                        <select class="form-control" require>
+                        <select class="form-control" name="tepe1" require>
                           <option selected> ...</option>
                           <option value="1">ตามสิทธิ</option>
                           <option value="2">ชำระเงินเอง(เบิกได้)</option>
@@ -257,13 +305,13 @@
                       </fieldset>
                     </div>
 
-                    <div class="col-2">
+                    <div class="col-6 col-lg-2">
                       <fieldset>
                         <legend>UCบัตรทอง:</legend>
                         <span class="nameofinput">UC(ราคา)</span>
                         <input class="form-control" type="text" placeholder="ตามสิทธิใส่ราคาที่เบิกได้" name="doctorcert">
                         <span class="nameofinput">ประเภท</span>
-                        <select class="form-control" require>
+                        <select class="form-control" name="tepe2" require>
                           <option selected> ...</option>
                           <option value="1">ตามสิทธิ</option>
                           <option value="2">ชำระเงินเอง(เบิกได้)</option>
@@ -271,13 +319,13 @@
                         </select>
                       </fieldset>
                     </div>
-                    <div class="col-2">
+                    <div class="col-6 col-lg-2">
                       <fieldset>
                         <legend>ประกันสังคม:</legend>
                         <span class="nameofinput">ประกันสังคม(ราคา)</span>
                         <input class="form-control" type="text" placeholder="ตามสิทธิใส่ราคาที่เบิกได้" name="doctorcert">
                         <span class="nameofinput">ประเภท</span>
-                        <select class="form-control" require>
+                        <select class="form-control" name="tepe3" require>
                           <option selected> ...</option>
                           <option value="1">ตามสิทธิ</option>
                           <option value="2">ชำระเงินเอง(เบิกได้)</option>
@@ -285,13 +333,13 @@
                         </select>
                       </fieldset>
                     </div>
-                    <div class="col-2">
+                    <div class="col-6 col-lg-2">
                       <fieldset>
                         <legend>พรบ:</legend>
                         <span class="nameofinput">พรบ(ราคา)</span>
                         <input class="form-control" type="text" placeholder="ตามสิทธิใส่ราคาที่เบิกได้" name="doctorcert">
                         <span class="nameofinput">ประเภท</span>
-                        <select class="form-control" require>
+                        <select class="form-control" name="tepe4" require>
                           <option selected> ...</option>
                           <option value="1">ตามสิทธิ</option>
                           <option value="2">ชำระเงินเอง(เบิกได้)</option>
@@ -299,13 +347,13 @@
                         </select>
                       </fieldset>
                     </div>
-                    <div class="col-2">
+                    <div class="col-6 col-lg-2">
                       <fieldset>
                         <legend>ชำระเงินเอง:</legend>
                         <span class="nameofinput">ชำระเงินเอง(ราคา)</span>
                         <input class="form-control" type="text" placeholder="ตามสิทธิใส่ราคาที่เบิกได้" name="doctorcert">
                         <span class="nameofinput">ประเภท</span>
-                        <select class="form-control" require>
+                        <select class="form-control" name="tepe5" require>
                           <option selected> ...</option>
                           <option value="1">ตามสิทธิ</option>
                           <option value="2">ชำระเงินเอง(เบิกได้)</option>
@@ -313,13 +361,13 @@
                         </select>
                       </fieldset>
                     </div>
-                    <div class="col-1">
+                    <div class="col-6 col-lg-1">
                       <fieldset>
                         <legend>อื่นๆ:</legend>
                         <span class="nameofinput">อื่นๆ(ราคา)</span>
                         <input class="form-control" type="text" placeholder="อื่นๆ" name="doctorcert">
                         <span class="nameofinput">ประเภท</span>
-                        <select class="form-control" require>
+                        <select class="form-control" name="tepe6" require>
                           <option selected> ...</option>
                           <option value="1">ตามสิทธิ</option>
                           <option value="2">ชำระเงินเอง(เบิกได้)</option>
@@ -336,11 +384,6 @@
     </section>
 
 
-
-    
-    <section id="section-bar-3">
-      <p>3</p>
-    </section>
 
     <!-- 	<section id="section-bar-4"><p>4</p></section>
 						<section id="section-bar-5"><p>5</p></section> -->
