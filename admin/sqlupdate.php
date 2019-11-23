@@ -89,16 +89,19 @@ $res = mysqli_query($con, $topLevelItems);
 			font-weight: bold;
 			font-size: 1.2em;
 			color: black;
+			
 
 		}
 
 		.www {
 			text-align: center;
+			background: #ffe57e;
 		}
+		hr{box-shadow: 0.5px 2px 2px 2px;}
 	</style>
 </head>
 
-<body>
+<body  style="background-color:#0B5345">
 	<?php if (isset($_SESSION['username']) == "" || isset($_SESSION['username']) == null) {
 		echo "<script>window.location ='../login.php';</script>";
 	}
@@ -127,7 +130,7 @@ $res = mysqli_query($con, $topLevelItems);
 	?>
 
 
-	<div class="container border">
+	<div class="container border mt-1"  style="background-color:white;  border-radius: 25px; box-shadow: 3px 3px 3px 3px;">
 		<?php
 		foreach ($res as $item);
 		$code =  $item['sql_code'];
@@ -172,6 +175,7 @@ $res = mysqli_query($con, $topLevelItems);
 			<div class="col-12">
 				<div class="btnbar" style="float:right">
 					<button class="btn btn-primary" onclick="myFunction()">คัดลอก S Q L</button>
+					<button class="btn btn-danger" >ลบ sql</button>
 					<button class="btn btn-secondary" data-toggle="modal" data-target=".bd-example-modal-xl">log</button>
 				</div>
 			</div>
@@ -186,6 +190,7 @@ $res = mysqli_query($con, $topLevelItems);
 				<div class="row">
 					<div class="col-12"><button name="submit" class="btn btn-success btn-block" type="submit" value="submit" onclick="return confirm('ยืนยันการแก้ไข');">แก้ไข</button></div>
 				</div>
+				<hr>
 			</form>
 		</div>
 
