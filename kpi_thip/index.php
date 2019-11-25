@@ -140,7 +140,7 @@ $result = mysqli_query($con, $sql);
       }
 
       #overlay {
-        position: absolute;
+        position: fixed;
         top: 0px;
         left: 0px;
         background: #ccc;
@@ -150,7 +150,7 @@ $result = mysqli_query($con, $sql);
         filter: alpha(opacity=75);
         -moz-opacity: .75;
         z-index: 999;
-        background: #fff url(http://i.imgur.com/KUJoe.gif) 50% 50% no-repeat;
+        background: #fff url(http://i.imgur.com/KUJoe.gif) 50% 50% no-repeat;    
       }
 
       .main-contain {
