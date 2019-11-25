@@ -129,6 +129,12 @@ FROM cpareport_kpi_thip ct
 left join  cpareport_kpi_data cd on cd.kpi_code = ct.kpi_code and kpi_ym = 
 (SELECT max(kpi_ym) FROM cpareport_kpi_data cd inner join cpareport_kpi_thip ct on ct.kpi_code = cd.kpi_code where ct.kpi_event = '6')
 where ct.kpi_event ='6'
+UNION ALL 
+SELECT ct.id ,ct.kpi_code,kpi_name,cd.kpi_cal_a,cd.kpi_cal_b,cd.kpi_cal_c,cd.kpi_ym,cd.kpi_dateupdate 
+FROM cpareport_kpi_thip ct  
+left join  cpareport_kpi_data cd on cd.kpi_code = ct.kpi_code and kpi_ym = 
+(SELECT max(kpi_ym) FROM cpareport_kpi_data cd inner join cpareport_kpi_thip ct on ct.kpi_code = cd.kpi_code where ct.kpi_event = '12')
+where ct.kpi_event ='12'
 order by id ";
 $result = mysqli_query($con, $sql);
 ?>
