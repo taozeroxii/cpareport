@@ -105,6 +105,12 @@ $res = mysqli_query($con, $topLevelItems);
 	<?php if (isset($_SESSION['username']) == "" || isset($_SESSION['username']) == null) {
 		echo "<script>window.location ='../login.php';</script>";
 	}
+			
+	$searchstatus = " SELECT menu_status FROM cpareport_menu WHERE menu_file = '" . $s . "'  ";
+	$statusmenu = mysqli_query($con, $searchstatus);
+	$statusis = mysqli_fetch_assoc($statusmenu);
+	$statusis['menu_status'];
+
 	if (isset($_POST['submit'])) {
 		//echo $_POST['code'];
 		$update = "UPDATE  cpareport_sql  SET sql_code = '" . addslashes($_POST['code']) . "' where sql_file =  '" . $_POST['file_sql'] . "' ";
@@ -120,6 +126,28 @@ $res = mysqli_query($con, $topLevelItems);
 		)";
 		$Qinsertlog = mysqli_query($con, $insertlog);
 
+		if ($Qupdate) {
+			echo "<script>alert('แก้ไขเรียบร้อย');window.close();</script>";
+		} else  
+            if ($Qupdate) {
+			echo "<script>alert('queryInsert ผิดพลาด');window.location=sqlupdate.php;</script>";
+		}
+	}
+
+	if (isset($_POST['closesql'])) {
+		echo $_post['closesql'];
+		$update = "UPDATE  cpareport_menu  SET menu_status = '0' where menu_file =  '" . $_POST['file_sql1'] . "' ";
+		$Qupdate = mysqli_query($con, $update);
+		if ($Qupdate) {
+			echo "<script>alert('แก้ไขเรียบร้อย');window.close();</script>";
+		} else  
+            if ($Qupdate) {
+			echo "<script>alert('queryInsert ผิดพลาด');window.location=sqlupdate.php;</script>";
+		}
+	}
+	if (isset($_POST['openesql'])) {
+		$update = "UPDATE  cpareport_menu  SET menu_status = '1' where menu_file =  '" . $_POST['file_sql1'] . "' ";
+		$Qupdate = mysqli_query($con, $update);
 		if ($Qupdate) {
 			echo "<script>alert('แก้ไขเรียบร้อย');window.close();</script>";
 		} else  
@@ -173,10 +201,16 @@ $res = mysqli_query($con, $topLevelItems);
 		<hr>
 		<div class="row">
 			<div class="col-12">
-				<div class="btnbar" style="float:right">
-					<button class="btn btn-primary" onclick="myFunction()">คัดลอก S Q L</button>
-					<button class="btn btn-danger" >ลบ sql</button>
-					<button class="btn btn-secondary" data-toggle="modal" data-target=".bd-example-modal-xl">log</button>
+				<div class="btnbar" style="float:right;margin-right:15px">
+					<div class="row">
+						<button class="btn btn-primary" onclick="myFunction()">คัดลอก S Q L</button>
+						<form action="#" method="POST"> 
+							<input type="hidden" name="file_sql1" value="<? echo $file ?>">
+							<?if($statusis['menu_status'] == '1'){?><button class="btn btn-danger" name="closesql" value="closesql">ปิดการใช้งานเมนูนี้</button><?}?>
+							<?if($statusis['menu_status'] == '0'){?><button class="btn btn-success" name="openesql" value="openesql" >เปิดการใช้งานเมนูนี้</button><?}?>
+						</form>	
+						<button class="btn btn-secondary" data-toggle="modal" data-target=".bd-example-modal-xl">log</button>
+					</div>	
 				</div>
 			</div>
 		</div>
@@ -245,7 +279,7 @@ $res = mysqli_query($con, $topLevelItems);
 				copyText.select();
 				copyText.setSelectionRange(0, 99999)
 				document.execCommand("copy");
-				alert("Copied the text: " + copyText.value);
+				//alert("Copied the text: " + copyText.value);
 			}
 		</script>
 	</div>
