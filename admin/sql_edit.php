@@ -1,7 +1,7 @@
 <?php
 include('../config/my_con.class.php');
 $s = $_GET['search_menu'];
-$topLevelItems = " SELECT * FROM cpareport_menu WHERE menu_status = '1' AND menu_sub LIKE '%%$s%%'  ";
+$topLevelItems = " SELECT * FROM cpareport_menu WHERE menu_status in ('1','2') and menu_sub LIKE '%%$s%%'  ";
 $res = mysqli_query($con, $topLevelItems);
 ?>
 <?php session_start(); ?>
@@ -128,6 +128,12 @@ $res = mysqli_query($con, $topLevelItems);
 		.rw {
 			color: #D35400;
 		}
+		a.statuscolor1{
+			color: white;
+		}
+		a.statuscolor2{
+			color: red;
+		}
 	</style>
 
 </head>
@@ -154,12 +160,15 @@ $res = mysqli_query($con, $topLevelItems);
 			$mk    = $item['menu_link'];
 			$mf    = $item['menu_file'];
 			$ms    = $item['menu_sub'];
+			$menustatus  = $item['menu_status'];
 			$title = "Edit SQL Report";
 			$sqlup = "sqlupdate.php";
-			$link_mk =   " <a target='_blank' href=" . $sqlup . "?sql=" . $mf . " title=" . $title . ">" . $ms . "</a> ";
+			if($menustatus == '1'){$statuscolor = 'statuscolor1';}else $statuscolor = 'statuscolor2';
+			$link_mk =   " <a class = '$statuscolor' target='_blank'  href=" . $sqlup . "?sql=" . $mf . " title=" . $title . ">" . $ms . "</a> ";
 			?>
 			<div class="aaa">
-				<div title="<?php echo $title; ?>"><?php echo "<span class='rw'> " . $rw . ". </span> " . $link_mk; ?></div>
+			
+				<div title="<?php echo $title; ?>"><?php echo "<span class='rw'> " . $rw . ". </span> " .$link_mk; ?></div>
 			</div>
 		<?php } ?>
 	</div>
