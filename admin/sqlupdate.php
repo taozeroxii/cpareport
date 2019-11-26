@@ -138,6 +138,8 @@ $res = mysqli_query($con, $topLevelItems);
 		echo $_post['closesql'];
 		$update = "UPDATE  cpareport_menu  SET menu_status = '2' where menu_file =  '" . $_POST['file_sql1'] . "' ";
 		$Qupdate = mysqli_query($con, $update);
+		$update2 = "UPDATE  cpareport_sql  SET sql_status = '2' where sql_file = '" . $_POST['file_sql1'] . "' ";
+		$Qupdate2 = mysqli_query($con, $update2);
 		if ($Qupdate) {
 			echo "<script>alert('แก้ไขเรียบร้อย');window.close();</script>";
 		} else  
@@ -148,6 +150,8 @@ $res = mysqli_query($con, $topLevelItems);
 	if (isset($_POST['openesql'])) {
 		$update = "UPDATE  cpareport_menu  SET menu_status = '1' where menu_file =  '" . $_POST['file_sql1'] . "' ";
 		$Qupdate = mysqli_query($con, $update);
+		$update2 = "UPDATE  cpareport_sql  SET sql_status = '1' where sql_file = '" . $_POST['file_sql1'] . "' ";
+		$Qupdate2 = mysqli_query($con, $update2);
 		if ($Qupdate) {
 			echo "<script>alert('แก้ไขเรียบร้อย');window.close();</script>";
 		} else  

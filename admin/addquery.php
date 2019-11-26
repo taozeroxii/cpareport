@@ -16,7 +16,7 @@ include "../config/func.class.php";
 include "../config/head.class.php";
 include('../config/my_con.class.php');
 ?>
-
+ 
 
 <script src="jquery-1.11.1.min.js" type="text/javascript"></script>
 <script type="text/javascript">

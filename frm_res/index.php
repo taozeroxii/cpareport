@@ -20,6 +20,42 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
 
+  
+<script src="jquery-1.11.1.min.js" type="text/javascript"></script>
+<script type="text/javascript">
+    $(document).ready(function() {
+        $('#incomes').change(function() {
+            $.ajax({
+                type: 'POST',
+                data: {
+                  incomes: $(this).val()
+                },
+                url: 'submenu/select_menu_income.php',
+                success: function(data) {
+                    $('#menuincomes').html(data);
+                }
+            });
+            return false;
+        });
+    });
+
+    $(document).ready(function() {
+        $('#menu_link').change(function() {
+            $.ajax({
+                type: 'POST',
+                data: {
+                    menu_link: $(this).val()
+                },
+                url: 'select_menu_type.php',
+                success: function(data) {
+                    $('#summenutype').html(data);
+                }
+            });
+            return false;
+        });
+    });
+</script>
+
 </head>
 
 <body>
@@ -36,14 +72,20 @@ $spcltys = mysqli_query($con, $spclty);
 $doctor_department = " SELECT * FROM doctor_department ";
 $doctor_departments = pg_query($conn, $doctor_department);
 
-$income = " SELECT * FROM income ";
-$incomes = pg_query($conn, $income);
+$income = " SELECT * FROM frm_res_income ";
+$incomes = mysqli_query($con, $income);
 
 $adp_type = " SELECT * FROM frm_res_adp_type ";
 $adp_types = mysqli_query($con, $adp_type);
 
 $adp_code = " SELECT * FROM frm_res_adp_code ";
 $adp_codes = mysqli_query($con, $adp_code);
+
+$product_category = " SELECT * FROM frm_res_product_category ";
+$product_categorys = mysqli_query($con, $product_category);
+
+$nondrugitems_type = " SELECT * FROM nondrugitems_type";
+$nondrug_item_type_names = pg_query($conn, $nondrugitems_type);
 
 
 /*
@@ -206,58 +248,63 @@ $adp_codes = mysqli_query($con, $adp_code);
 
 
           <section id="section-bar-2">
+          <span style="font-size:14px;float:left">**หากราคาเท่ากันทุกสิทธิใส่แค่ราคาขายอย่างเดียว**</span><br>
             <div class="container">
               <form action="" class="form-horizontal">
+
                 <div class="form-group">
                   <div class="row">
                     <div class="col-sm-3">
                       <span class="nameofinput">หมวดค่ารักษาพยาบาล</span>
-                      <select class="form-control" require>
+                      <select class="form-control" name ='incomes'  id="incomes" require>
                         <option selected>หมวดค่ารักษาพยาบาล(income)...</option>
-                        <?php while ($Result = pg_fetch_assoc($incomes)) {?>
-                              <option value="<?php echo $Result['name']; ?>">
-                               <?php echo $Result['name']; ?>
+                        <?php while ($Result = mysqli_fetch_assoc($incomes)) {?>
+                              <option value="<?php echo $Result['frm_res_income_id']; ?>">
+                               <?php echo $Result['frm_res_name']; ?>
                               </option>
                         <?php } ?>
                       </select>
                     </div>
                     <div class="col-6 col-sm-4">
                       <span class="nameofinput">ชื่อภาษาไทย</span>
-                      <input class="form-control" type="text" placeholder="ชื่อ(ไทย)" name="doctorcert">
+                      <input class="form-control" type="text" placeholder="ชื่อ(ไทย)" name="incomenameth">
                     </div>
                     <div class="col-6 col-sm-4">
                       <span class="nameofinput">ชื่อภาษาอังกฤษ</span>
-                      <input class="form-control" type="text" placeholder="ชื่อ(อังกฤษ)" name="doctorcert">
+                      <input class="form-control" type="text" placeholder="ชื่อ(อังกฤษ)" name="incomenameen">
                     </div>
                   </div>
                   <div class="row mt-3">
                     <div class="col-6 col-sm-1">
                       <span class="nameofinput">ราคาขาย</span>
-                      <input class="form-control" type="text" placeholder="default" name="doctorcert">
+                      <input class="form-control" type="text" placeholder="default" name="sell" require>
                     </div>
                     <div class="col-6 col-sm-1">
                       <span class="nameofinput">ราคาทุน</span>
-                      <input class="form-control" type="text" placeholder="" name="doctorcert">
+                      <input class="form-control" type="text" placeholder="" name="budget">
                     </div>
                     <div class="col-6 col-sm-1">
                       <span class="nameofinput"> Bill code</span>
-                      <input class="form-control" type="text" placeholder="" name="doctorcert">
+                      <input class="form-control" type="text" placeholder="" name="billcode">
                     </div>
                     <div class="col-6 col-sm-1">
                       <span class="nameofinput"> Bill number</span>
-                      <input class="form-control" type="text" placeholder="" name="doctorcert">
+                      <input class="form-control" type="text" placeholder="" name="billnumber">
                     </div>
                     <div class="col-6 col-sm-3">
                       <span class="nameofinput">ADP:code</span>
-                      <select class="form-control" require>
-                        <option selected> ...</option>
-                        <option value="1">ab</option>
-                        <option value="2">abc</option>
+                      <select class="form-control" name="nhso_apd_code_name">   
+                      <option selected>nhso_adp_code_name </option>
+                        <?php while ($Result = mysqli_fetch_assoc($adp_codes)) {?>
+                                      <option value="<?php echo $Result['nhso_adp_code'].' '.$Result['nhso_adp_code_name']; ?>">
+                                       <?php echo $Result['nhso_adp_code'].' '.$Result['nhso_adp_code_name']; ?>
+                                       </option>
+                            <?php } ?>
                       </select>
                     </div>
                     <div class="col-6 col-sm-4">
                       <span class="nameofinput">ADP:TYPE</span>
-                      <select class="form-control" require>   
+                      <select class="form-control"  name="nhso_apd_type_name">   
                         <option selected>nhso_adp_type </option>
                         <?php while ($Result = mysqli_fetch_assoc($adp_types)) {?>
                                       <option value="<?php echo $Result['nhso_adp_type_name']; ?>">
@@ -271,22 +318,33 @@ $adp_codes = mysqli_query($con, $adp_code);
                   <div class="row mt-3">
                     <div class="col-6 col-sm-6">
                       <span class="nameofinput">Product category (สกส.)</span>
-                      <select class="form-control" require>
-                        <option selected> ...</option>
-                        <option value="1">ab</option>
-                        <option value="2">abc</option>
+                      <select class="form-control" name="sks_product_category_name" >
+                      <option selected>sks_product_category_name </option>
+                      <?php while ($Result = mysqli_fetch_assoc($product_categorys)) {?>
+                                      <option value="<?php echo $Result['sks_product_category_name']; ?>">
+                                       <?php echo $Result['sks_product_category_name']; ?>
+                                       </option>
+                            <?php } ?>
                       </select>
                     </div>
 
                     <div class="col-6 col-sm-5">
                       <span class="nameofinput">กลุ่มการรักษา</span>
                       <select class="form-control" require>
-                        <option selected> ...</option>
-                        <option value="1">ab</option>
-                        <option value="2">abc</option>
+                      <option selected>non_drug_item_type_names </option>
+                      <?php while ($Result = pg_fetch_assoc($nondrug_item_type_names)) {?>
+                                      <option value="<?php echo $Result['nondrugitems_type_name']; ?>">
+                                       <?php echo $Result['nondrugitems_type_name']; ?>
+                                       </option>
+                            <?php } ?>
                       </select>
                     </div>
                   </div>
+
+
+                    <?// รับค่าจากช่อง income ส่งค่า id income ไปหน้า select menuincome เพื่อเช็คค่า่ในตารางว่าป็น lab ไหมหากใช่ห้แสดงข้อมูลที่ต้องกรอกเพิ่มเติมและีเทรินข้อมูลหน้านั้นกลับมาที่ if menuincomes?>
+                    <div class="row" id="menuincomes"></div>
+                    <?// รับค่าจากช่อง income ส่งค่า id income ไปหน้า select menuincome เพื่อเช็คค่า่ในตารางว่าป็น lab ไหมหากใช่ห้แสดงข้อมูลที่ต้องกรอกเพิ่มเติมและีเทรินข้อมูลหน้านั้นกลับมาที่ if menuincomes?>
 
                   <hr>
                   <div class="row mt-5">
@@ -376,9 +434,24 @@ $adp_codes = mysqli_query($con, $adp_code);
                       </fieldset>
                     </div>
                   </div>
+                  <div class="row mt-5">
+                      <div class="col-11 col-lg-11">
+                        <span class="nameofinput" >หมายเหตุ</span>
+                        <input class="form-control" type="text" placeholder="รายละเอียดเพิ่มเติม เช่น ขอเพิ่ม outlab,ขอเพิ่มหัตถการ ฯลฯ" name="note">
+                      </div>
+                  </div>
+                  <div class="row mt-5 ">
+                    <div class="col-11 col-lg-5">
+                       <input type="checkbox" name="vehicle11" id="vehicle11" value="ส่งเบิกสกสOPD" style=" width: 25px;  height: 25px; "> 
+                        <label for="vehicle11">ส่งเบิก สกส.OPD </label>&nbsp;
+                       <input type="checkbox" name="vehicle12" id="vehicle12" value="ส่งเบิกสกสIPD" style=" width: 25px;  height: 25px; ">
+                       <label for="vehicle12">ส่งเบิก สกส.IPD</label>&nbsp;
+                      </div>
+                  </div>
+
                 </div>
-            <hr>
-            <button type="button" class="btn btn-success">แจ้งขอเพิ่มรายการหัตถการ</button>
+                <hr>
+            <button type="button" class="btn btn-success" name="submitform2">แจ้งขอเพิ่มรายการ</button>
             </form>
         </div>
     </section>
