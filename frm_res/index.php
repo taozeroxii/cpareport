@@ -5,7 +5,7 @@
   <meta charset="UTF-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Tab Styles Inspiration</title>
+  <title>แบบฟอร์มแจ้งขอเพิ่มรายการในHosxp</title>
   <meta name="description" content="Tab Styles Inspiration: A small collection of styles for tabs" />
   <meta name="keywords" content="tabs, inspiration, web design, css, modern, effects, svg" />
   <meta name="author" content="Codrops" />
@@ -20,46 +20,27 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
 
-  
-<script src="jquery-1.11.1.min.js" type="text/javascript"></script>
-<script type="text/javascript">
-    $(document).ready(function() {
-        $('#incomes').change(function() {
-            $.ajax({
-                type: 'POST',
-                data: {
-                  incomes: $(this).val()
-                },
-                url: 'submenu/select_menu_income.php',
-                success: function(data) {
-                    $('#menuincomes').html(data);
-                }
-            });
-            return false;
-        });
-    });
-
-    $(document).ready(function() {
-        $('#menu_link').change(function() {
-            $.ajax({
-                type: 'POST',
-                data: {
-                    menu_link: $(this).val()
-                },
-                url: 'select_menu_type.php',
-                success: function(data) {
-                    $('#summenutype').html(data);
-                }
-            });
-            return false;
-        });
-    });
-</script>
-
+  <script src="jquery-1.11.1.min.js" type="text/javascript"></script>
+  <script type="text/javascript">
+      $(document).ready(function() {
+          $('#incomes').change(function() {
+              $.ajax({
+                  type: 'POST',
+                  data: {
+                    incomes: $(this).val()
+                  },
+                  url: 'submenu/select_menu_income.php',
+                  success: function(data) {
+                      $('#menuincomes').html(data);
+                  }
+              });
+              return false;
+          });
+      });
+  </script>
 </head>
 
 <body>
-
 <?php
 include('../config/my_con.class.php');
 include('../config/pg_con.class.php');
@@ -255,7 +236,7 @@ $nondrug_item_type_names = pg_query($conn, $nondrugitems_type);
                 <div class="form-group">
                   <div class="row">
                     <div class="col-sm-3">
-                      <span class="nameofinput">หมวดค่ารักษาพยาบาล</span>
+                      <span class="nameofinput">หมวดค่ารักษาพยาบาล **</span>
                       <select class="form-control" name ='incomes'  id="incomes" require>
                         <option selected>หมวดค่ารักษาพยาบาล(income)...</option>
                         <?php while ($Result = mysqli_fetch_assoc($incomes)) {?>
@@ -266,8 +247,8 @@ $nondrug_item_type_names = pg_query($conn, $nondrugitems_type);
                       </select>
                     </div>
                     <div class="col-6 col-sm-4">
-                      <span class="nameofinput">ชื่อภาษาไทย</span>
-                      <input class="form-control" type="text" placeholder="ชื่อ(ไทย)" name="incomenameth">
+                      <span class="nameofinput">ชื่อภาษาไทย **</span>
+                      <input class="form-control" type="text" placeholder="ชื่อ(ไทย)" name="incomenameth" require>
                     </div>
                     <div class="col-6 col-sm-4">
                       <span class="nameofinput">ชื่อภาษาอังกฤษ</span>
@@ -276,7 +257,7 @@ $nondrug_item_type_names = pg_query($conn, $nondrugitems_type);
                   </div>
                   <div class="row mt-3">
                     <div class="col-6 col-sm-1">
-                      <span class="nameofinput">ราคาขาย</span>
+                      <span class="nameofinput">ราคาขาย **</span>
                       <input class="form-control" type="text" placeholder="default" name="sell" require>
                     </div>
                     <div class="col-6 col-sm-1">
@@ -437,7 +418,7 @@ $nondrug_item_type_names = pg_query($conn, $nondrugitems_type);
                   <div class="row mt-5">
                       <div class="col-11 col-lg-11">
                         <span class="nameofinput" >หมายเหตุ</span>
-                        <input class="form-control" type="text" placeholder="รายละเอียดเพิ่มเติม เช่น ขอเพิ่ม outlab,ขอเพิ่มหัตถการ ฯลฯ" name="note">
+                        <input class="form-control" type="text" placeholder="รายละเอียดเพิ่มเติม หรือ lab profile ระบุ รายการ เป็นข้อๆ ฯลฯ " name="note">
                       </div>
                   </div>
                   <div class="row mt-5 ">
