@@ -81,7 +81,7 @@
             'วันที่ขอเพิ่ม :'.$_POST['begindate']."\r\n".
             'ชื่อ :'.$_POST["userregis"]."\r\n".
             'สถานะ : ดำเนินการแล้ว '."  ".  $_POST["txtassisadmin"]."\r\nเวลา: ".  $_POST["enddate_time"];
-            $token = 'JM1KlQ87yxrkoRZ1bGpyHscYMiiqMO4rzyBC5EBzkhj';
+            $token = 'd5zh3iN8q18hw1cTYxIJc2eS4OlZBOCMq6VOySo2u3z';
             send_line_notify($message, $token);
             echo "<script>alert('บันทึกสำเร็จ');window.location = 'checkreg_hosxp.php'</script>";
         } else {
