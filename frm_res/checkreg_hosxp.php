@@ -200,6 +200,7 @@
                                             <p>วันที่เริ่มงาน: <?php echo $result['first_day_in_job']; ?> </p>
                                             <p>user.: <?php echo $result['username']; ?> </p>
                                             <p>password.: <?php echo $result['password']; ?> </p>
+                                            <p>หมายเหตุ.: <?php echo $result['note']; ?> </p>
                                             <hr>
                                             <h4 class="modal-title">ข้อมูลเพิ่มเติม</h4>
                                             <hr>

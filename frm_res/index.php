@@ -2,7 +2,7 @@
 <html lang="en" class="no-js">
 
 <head>
-  <?php session_start();?>
+  <?php session_start(); ?>
   <meta charset="UTF-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -50,10 +50,20 @@
       font-size: 12px;
       float: left;
     }
+
+    .btn-circle {
+      width: 30px;
+      height: 30px;
+      text-align: center;
+      padding: 6px 0;
+      font-size: 12px;
+      line-height: 1.428571429;
+      border-radius: 15px;
+    }
   </style>
 
- <br><br>
-   <a href="../index.php">กลับหน้าแรก</a>
+  <br><br>
+  <a href="../index.php">กลับหน้าแรก</a>
 
   <?php
   include('../config/my_con.class.php');
@@ -109,19 +119,19 @@
      */
     date_default_timezone_set("Asia/Bangkok");
     $datenow  =  date("Y/m/d H:i:s");
-    $checkcid = "select * from frm_res_require_login_hosxp where cid = '" .$_POST['cid']."'";
+    $checkcid = "select * from frm_res_require_login_hosxp where cid = '" . $_POST['cid'] . "'";
     $querycheckcid = mysqli_query($con, $checkcid);
-    $havecid = mysqli_fetch_assoc( $querycheckcid);
-    $checkusername = "select * from officer where officer_login_name = '" .$_POST['username']."'";
+    $havecid = mysqli_fetch_assoc($querycheckcid);
+    $checkusername = "select * from officer where officer_login_name = '" . $_POST['username'] . "'";
     $checkusernames = pg_query($conn, $checkusername);
-    $haveusers = pg_fetch_assoc( $checkusernames);
+    $haveusers = pg_fetch_assoc($checkusernames);
 
-    if($havecid == null && $haveusers == null){
+    if ($havecid == null && $haveusers == null) {
       $insertsql = "INSERT INTO frm_res_require_login_hosxp (pname,fname,lname,engfullname,gender,birthday,cid,jobclass,spclty,speciality,doctor_cert,first_day_in_job,emailaddress,username,password,status,insertdate_time)
       VALUES ('" . $_POST["pname"] . "'
       ,'" . $_POST["fname"] . "'
       ,'" . $_POST["lname"] . "'
-      ,'" . $_POST["engfullname"]. "'
+      ,'" . $_POST["engfullname"] . "'
       ,'" . $_POST["gender"] . "'
       ,'" . $_POST["birthday"] . "'
       ,'" . $_POST["cid"] . "'
@@ -134,34 +144,40 @@
       ,'" . $_POST["username"] . "'
       ,'1234'
       ,'waiting'
-      ,'".$datenow ."'
+      ,'" . $datenow . "'
       )";
-  
+
       $queryInsert = mysqli_query($con, $insertsql);
-  
+
       if ($queryInsert) {
-          echo "<script>alert('แจ้งข้อมูลไปยังผู้ดูแลระบบเรียบร้อย');window.location=index.php;</script>";
-          //echo "<script>window.location='test.php';</script>";
-            // LINE API NOTIFY//
-            function send_line_notify($message, $token)
-            { $ch = curl_init(); curl_setopt( $ch, CURLOPT_URL, "https://notify-api.line.me/api/notify"); 
-               curl_setopt( $ch, CURLOPT_SSL_VERIFYHOST, 0); curl_setopt( $ch, CURLOPT_SSL_VERIFYPEER, 0);
-               curl_setopt( $ch, CURLOPT_POST, 1); curl_setopt( $ch, CURLOPT_POSTFIELDS, "message=$message");
-               curl_setopt( $ch, CURLOPT_FOLLOWLOCATION, 1); 
-               $headers = array( "Content-type: application/x-www-form-urlencoded", "Authorization: Bearer $token", ); 
-               curl_setopt($ch, CURLOPT_HTTPHEADER, $headers); curl_setopt( $ch, CURLOPT_RETURNTRANSFER, 1); 
-               $result = curl_exec( $ch ); curl_close( $ch ); return $result;
-            }
+        echo "<script>alert('แจ้งข้อมูลไปยังผู้ดูแลระบบเรียบร้อย');window.location=index.php;</script>";
+        //echo "<script>window.location='test.php';</script>";
+        // LINE API NOTIFY//
+        function send_line_notify($message, $token)
+        {
+          $ch = curl_init();
+          curl_setopt($ch, CURLOPT_URL, "https://notify-api.line.me/api/notify");
+          curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
+          curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
+          curl_setopt($ch, CURLOPT_POST, 1);
+          curl_setopt($ch, CURLOPT_POSTFIELDS, "message=$message");
+          curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
+          $headers = array("Content-type: application/x-www-form-urlencoded", "Authorization: Bearer $token",);
+          curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+          curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+          $result = curl_exec($ch);
+          curl_close($ch);
+          return $result;
+        }
 
-            $message = 'ขอเพิ่ม user hosxp '."\r\n".
-            'วันที่ขอเพิ่ม :'.date("Y/m/d H:i:s")."\r\n".
-            'ชื่อ :'.$_POST["pname"]." ".  $_POST["fname"] ."  ".  $_POST["lname"] ."\r\n".
-            'สถานะ : รอดำเนินการ';
-            $token = 'JM1KlQ87yxrkoRZ1bGpyHscYMiiqMO4rzyBC5EBzkhj';
-            send_line_notify($message, $token);
-
+        $message = 'ขอเพิ่ม user hosxp ' . "\r\n" .
+          'วันที่ขอเพิ่ม :' . date("Y/m/d H:i:s") . "\r\n" .
+          'ชื่อ :' . $_POST["pname"] . " " .  $_POST["fname"] . "  " .  $_POST["lname"] . "\r\n" .
+          'สถานะ : รอดำเนินการ';
+        $token = 'JM1KlQ87yxrkoRZ1bGpyHscYMiiqMO4rzyBC5EBzkhj';
+        send_line_notify($message, $token);
       } else   echo "<script>alert('มีการแจ้งข้อมูลนี้ไปแล้ว');window.location=index.php;</script>";
-    }else   echo "<script>alert('มีข้อมูลในระบบแล้วหรือเคยแจ้งไปแล้ว');window.location=index.php;</script>";
+    } else   echo "<script>alert('มีข้อมูลในระบบแล้วหรือเคยแจ้งไปแล้ว');window.location=index.php;</script>";
   }
   ?>
 
@@ -250,7 +266,7 @@
 
                     <div class="col-sm-2">
                       <span class="nameofinput">ตำแหน่งหลัก</span>
-                      <select class="form-control" name="jclass" required>  
+                      <select class="form-control" name="jclass" required>
                         <option value="" selected>โปรดเลือก ..</option>
                         <?php while ($Result = mysqli_fetch_assoc($doctorpositions)) { ?>
                           <option value="<?php echo $Result['position_name']; ?>">
@@ -261,7 +277,7 @@
                     </div>
                     <div class="col-sm-2">
                       <span class="nameofinput">แผนกสาขา(sp)</span>
-                      <select class="form-control" name="spcltys" require>   
+                      <select class="form-control" name="spcltys" require>
                         <option value="" selected>โปรดเลือก ..</option>
                         <?php while ($Result = mysqli_fetch_assoc($spcltys)) { ?>
                           <option value="<?php echo $Result['frm_res_spclty']; ?>">
@@ -272,7 +288,7 @@
                     </div>
                     <div class="col-sm-2">
                       <span class="nameofinput">เฉพาะทาง</span>
-                      <select class="form-control" name="specialty" require>  
+                      <select class="form-control" name="specialty" require>
                         <option selected> เฉพาะทาง specialty</option>
                         <option value="" selected>โปรดเลือก ..</option>
                         <?php while ($Result = pg_fetch_assoc($doctor_departments)) { ?>
@@ -287,23 +303,29 @@
                   <div class="row mt-3">
                     <div class="col-sm-2">
                       <span class="nameofinput">เลขที่ใบประกอบวิชาชีพ</span>
-                      <input class="form-control" type="text" placeholder="เลขที่ใบประกอบวิชาชีพ" name="doctorcert"> 
+                      <input class="form-control" type="text" placeholder="เลขที่ใบประกอบวิชาชีพ" name="doctorcert">
                     </div>
                     <div class="col-sm-2">
                       <span class="nameofinput">วันที่เข้าเริ่มงาน</span>
-                      <input class="form-control" type="date" placeholder="" name="firstdayonjob" require> 
+                      <input class="form-control" type="date" placeholder="" name="firstdayonjob" require>
                     </div>
                     <div class="col-sm-2">
                       <span class="nameofinput">email</span>
-                      <input class="form-control" type="email" name="emailaddress"> 
+                      <input class="form-control" type="email" name="emailaddress">
                     </div>
-                    <div class="col-sm-2">
+                    <div class="col-sm-3">
                       <span class="nameofinput">ชื่อเข้าใช้งาน Hosxp</span>
-                      <input class="form-control" type="text" placeholder="๊User name" name="username" required>  
+                      <input class="form-control" type="text" placeholder="๊User name" name="username" required>
                     </div>
                     <div class="col-sm-2">
                       <span class="nameofinput">รหัสผ่าน Hosxp</span>
                       <input class="form-control" type="text" placeholder="๊1234" name="" disabled>
+                    </div>
+                  </div>
+                  <div class="row mt-3">
+                    <div class="col-sm-4">
+                      <span class="nameofinput">เลขห้องที่เข้าใช้งาน วิธีดูเลขที่ห้องคลิกปุ่ม -><button type="button" class="btn btn-primary btn-circle" data-toggle="modal" data-target="#imginfo"><i class="glyphicon glyphicon-list"></i></button></span>
+                      <input class="form-control" type="text" placeholder="ระบุ.. ห้องที่ต้องการใช้งานระบุรหัสแต่ละห้อง " name="note"></input>
                     </div>
                   </div>
                 </div>
@@ -314,221 +336,240 @@
           </section>
 
 
+          <div class="modal fade" id="imginfo" tabindex="-1" role="dialog" aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-xl" role="document" style="width:70%;">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title">รูปตัวอย่าง</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                  <img src="../admin/img/detailroom.png" width="100%" alt="ไม่สามารถโหลดภาพได้">
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+              </div>
+            </div>
 
+
+          </div>
 
 
           <section id="section-bar-2">
-          <?if( $_SESSION['status'] =='1'){?>
-            <span style="font-size:14px;float:left">**หากราคาเท่ากันทุกสิทธิใส่แค่ราคาขายอย่างเดียว**</span><br>
-            <div class="container">
-              <form action="#" class="form-horizontal">
+            <? if ($_SESSION['status'] == '1') { ?>
+              <span style="font-size:14px;float:left">**หากราคาเท่ากันทุกสิทธิใส่แค่ราคาขายอย่างเดียว**</span><br>
+              <div class="container">
+                <form action="#" class="form-horizontal">
 
-                <div class="form-group">
-                  <div class="row">
-                    <div class="col-sm-3">
-                      <span class="nameofinput">หมวดค่ารักษาพยาบาล **</span>
-                      <select class="form-control" name='incomes' id="incomes" require>
-                        <option selected>หมวดค่ารักษาพยาบาล(income)...</option>
-                        <?php while ($Result = mysqli_fetch_assoc($incomes)) { ?>
-                          <option value="<?php echo $Result['frm_res_income_id']; ?>">
-                            <?php echo $Result['frm_res_name']; ?>
-                          </option>
-                        <?php } ?>
-                      </select>
+                  <div class="form-group">
+                    <div class="row">
+                      <div class="col-sm-3">
+                        <span class="nameofinput">หมวดค่ารักษาพยาบาล **</span>
+                        <select class="form-control" name='incomes' id="incomes" require>
+                          <option selected>หมวดค่ารักษาพยาบาล(income)...</option>
+                          <?php while ($Result = mysqli_fetch_assoc($incomes)) { ?>
+                            <option value="<?php echo $Result['frm_res_income_id']; ?>">
+                              <?php echo $Result['frm_res_name']; ?>
+                            </option>
+                          <?php } ?>
+                        </select>
+                      </div>
+                      <div class="col-6 col-sm-4">
+                        <span class="nameofinput">ชื่อภาษาไทย **</span>
+                        <input class="form-control" type="text" placeholder="ชื่อ(ไทย)" name="incomenameth" require>
+                      </div>
+                      <div class="col-6 col-sm-4">
+                        <span class="nameofinput">ชื่อภาษาอังกฤษ</span>
+                        <input class="form-control" type="text" placeholder="ชื่อ(อังกฤษ)" name="incomenameen">
+                      </div>
                     </div>
-                    <div class="col-6 col-sm-4">
-                      <span class="nameofinput">ชื่อภาษาไทย **</span>
-                      <input class="form-control" type="text" placeholder="ชื่อ(ไทย)" name="incomenameth" require>
+                    <div class="row mt-3">
+                      <div class="col-6 col-sm-1">
+                        <span class="nameofinput">ราคาขาย **</span>
+                        <input class="form-control" type="text" placeholder="default" name="sell" require>
+                      </div>
+                      <div class="col-6 col-sm-1">
+                        <span class="nameofinput">ราคาทุน</span>
+                        <input class="form-control" type="text" placeholder="" name="budget">
+                      </div>
+                      <div class="col-6 col-sm-1">
+                        <span class="nameofinput"> Bill code</span>
+                        <input class="form-control" type="text" placeholder="" name="billcode">
+                      </div>
+                      <div class="col-6 col-sm-1">
+                        <span class="nameofinput"> Bill number</span>
+                        <input class="form-control" type="text" placeholder="" name="billnumber">
+                      </div>
+                      <div class="col-6 col-sm-3">
+                        <span class="nameofinput">ADP:code</span>
+                        <select class="form-control" name="nhso_apd_code_name">
+                          <option selected>nhso_adp_code_name </option>
+                          <?php while ($Result = mysqli_fetch_assoc($adp_codes)) { ?>
+                            <option value="<?php echo $Result['nhso_adp_code'] . ' ' . $Result['nhso_adp_code_name']; ?>">
+                              <?php echo $Result['nhso_adp_code'] . ' ' . $Result['nhso_adp_code_name']; ?>
+                            </option>
+                          <?php } ?>
+                        </select>
+                      </div>
+                      <div class="col-6 col-sm-4">
+                        <span class="nameofinput">ADP:TYPE</span>
+                        <select class="form-control" name="nhso_apd_type_name">
+                          <option selected>nhso_adp_type </option>
+                          <?php while ($Result = mysqli_fetch_assoc($adp_types)) { ?>
+                            <option value="<?php echo $Result['nhso_adp_type_name']; ?>">
+                              <?php echo $Result['nhso_adp_type_name']; ?>
+                            </option>
+                          <?php } ?>
+                        </select>
+                      </div>
                     </div>
-                    <div class="col-6 col-sm-4">
-                      <span class="nameofinput">ชื่อภาษาอังกฤษ</span>
-                      <input class="form-control" type="text" placeholder="ชื่อ(อังกฤษ)" name="incomenameen">
+
+                    <div class="row mt-3">
+                      <div class="col-6 col-sm-6">
+                        <span class="nameofinput">Product category (สกส.)</span>
+                        <select class="form-control" name="sks_product_category_name">
+                          <option selected>sks_product_category_name </option>
+                          <?php while ($Result = mysqli_fetch_assoc($product_categorys)) { ?>
+                            <option value="<?php echo $Result['sks_product_category_name']; ?>">
+                              <?php echo $Result['sks_product_category_name']; ?>
+                            </option>
+                          <?php } ?>
+                        </select>
+                      </div>
+
+                      <div class="col-6 col-sm-5">
+                        <span class="nameofinput">กลุ่มการรักษา</span>
+                        <select class="form-control" require>
+                          <option selected>non_drug_item_type_names </option>
+                          <?php while ($Result = pg_fetch_assoc($nondrug_item_type_names)) { ?>
+                            <option value="<?php echo $Result['nondrugitems_type_name']; ?>">
+                              <?php echo $Result['nondrugitems_type_name']; ?>
+                            </option>
+                          <?php } ?>
+                        </select>
+                      </div>
                     </div>
+
+
+                    <? // รับค่าจากช่อง income ส่งค่า id income ไปหน้า select menuincome เพื่อเช็คค่า่ในตารางว่าป็น lab ไหมหากใช่ห้แสดงข้อมูลที่ต้องกรอกเพิ่มเติมและีเทรินข้อมูลหน้านั้นกลับมาที่ if menuincomes
+                      ?>
+                    <div class="row" id="menuincomes"></div>
+                    <? // รับค่าจากช่อง income ส่งค่า id income ไปหน้า select menuincome เพื่อเช็คค่า่ในตารางว่าป็น lab ไหมหากใช่ห้แสดงข้อมูลที่ต้องกรอกเพิ่มเติมและีเทรินข้อมูลหน้านั้นกลับมาที่ if menuincomes
+                      ?>
+
+                    <hr>
+                    <div class="row mt-5">
+                      <div class="col-6 col-lg-2">
+                        <fieldset>
+                          <legend>ข้าราชการ:</legend>
+                          <span class="nameofinput">ข้าราช(ราคา)</span>
+                          <input class="form-control" type="text" placeholder="ตามสิทธิใส่ราคาที่เบิกได้" name="doctorcert">
+                          <span class="nameofinput">ประเภท</span>
+                          <select class="form-control" name="tepe1" require>
+                            <option selected> ...</option>
+                            <option value="1">ตามสิทธิ</option>
+                            <option value="2">ชำระเงินเอง(เบิกได้)</option>
+                            <option value="3">ชำระเงินเอง(เบิกไม่ได้)</option>
+                          </select>
+                        </fieldset>
+                      </div>
+
+                      <div class="col-6 col-lg-2">
+                        <fieldset>
+                          <legend>UCบัตรทอง:</legend>
+                          <span class="nameofinput">UC(ราคา)</span>
+                          <input class="form-control" type="text" placeholder="ตามสิทธิใส่ราคาที่เบิกได้" name="doctorcert">
+                          <span class="nameofinput">ประเภท</span>
+                          <select class="form-control" name="tepe2" require>
+                            <option selected> ...</option>
+                            <option value="1">ตามสิทธิ</option>
+                            <option value="2">ชำระเงินเอง(เบิกได้)</option>
+                            <option value="3">ชำระเงินเอง(เบิกไม่ได้)</option>
+                          </select>
+                        </fieldset>
+                      </div>
+                      <div class="col-6 col-lg-2">
+                        <fieldset>
+                          <legend>ประกันสังคม:</legend>
+                          <span class="nameofinput">ประกันสังคม(ราคา)</span>
+                          <input class="form-control" type="text" placeholder="ตามสิทธิใส่ราคาที่เบิกได้" name="doctorcert">
+                          <span class="nameofinput">ประเภท</span>
+                          <select class="form-control" name="tepe3" require>
+                            <option selected> ...</option>
+                            <option value="1">ตามสิทธิ</option>
+                            <option value="2">ชำระเงินเอง(เบิกได้)</option>
+                            <option value="3">ชำระเงินเอง(เบิกไม่ได้)</option>
+                          </select>
+                        </fieldset>
+                      </div>
+                      <div class="col-6 col-lg-2">
+                        <fieldset>
+                          <legend>พรบ:</legend>
+                          <span class="nameofinput">พรบ(ราคา)</span>
+                          <input class="form-control" type="text" placeholder="ตามสิทธิใส่ราคาที่เบิกได้" name="doctorcert">
+                          <span class="nameofinput">ประเภท</span>
+                          <select class="form-control" name="tepe4" require>
+                            <option selected> ...</option>
+                            <option value="1">ตามสิทธิ</option>
+                            <option value="2">ชำระเงินเอง(เบิกได้)</option>
+                            <option value="3">ชำระเงินเอง(เบิกไม่ได้)</option>
+                          </select>
+                        </fieldset>
+                      </div>
+                      <div class="col-6 col-lg-2">
+                        <fieldset>
+                          <legend>ชำระเงินเอง:</legend>
+                          <span class="nameofinput">ชำระเงินเอง(ราคา)</span>
+                          <input class="form-control" type="text" placeholder="ตามสิทธิใส่ราคาที่เบิกได้" name="doctorcert">
+                          <span class="nameofinput">ประเภท</span>
+                          <select class="form-control" name="tepe5" require>
+                            <option selected> ...</option>
+                            <option value="1">ตามสิทธิ</option>
+                            <option value="2">ชำระเงินเอง(เบิกได้)</option>
+                            <option value="3">ชำระเงินเอง(เบิกไม่ได้)</option>
+                          </select>
+                        </fieldset>
+                      </div>
+                      <div class="col-6 col-lg-1">
+                        <fieldset>
+                          <legend>อื่นๆ:</legend>
+                          <span class="nameofinput">อื่นๆ(ราคา)</span>
+                          <input class="form-control" type="text" placeholder="อื่นๆ" name="doctorcert">
+                          <span class="nameofinput">ประเภท</span>
+                          <select class="form-control" name="tepe6" require>
+                            <option selected> ...</option>
+                            <option value="1">ตามสิทธิ</option>
+                            <option value="2">ชำระเงินเอง(เบิกได้)</option>
+                            <option value="3">ชำระเงินเอง(เบิกไม่ได้)</option>
+                          </select>
+                        </fieldset>
+                      </div>
+                    </div>
+                    <div class="row mt-5">
+                      <div class="col-11 col-lg-11">
+                        <span class="nameofinput">หมายเหตุ</span>
+                        <input class="form-control" type="text" placeholder="รายละเอียดเพิ่มเติม หรือ lab profile ระบุ รายการ เป็นข้อๆ ฯลฯ " name="note">
+                      </div>
+                    </div>
+                    <div class="row mt-5 ">
+                      <div class="col-11 col-lg-5">
+                        <input type="checkbox" name="vehicle11" id="vehicle11" value="ส่งเบิกสกสOPD" style=" width: 25px;  height: 25px; ">
+                        <label for="vehicle11">ส่งเบิก สกส.OPD </label>&nbsp;
+                        <input type="checkbox" name="vehicle12" id="vehicle12" value="ส่งเบิกสกสIPD" style=" width: 25px;  height: 25px; ">
+                        <label for="vehicle12">ส่งเบิก สกส.IPD</label>&nbsp;
+                      </div>
+                    </div>
+
                   </div>
-                  <div class="row mt-3">
-                    <div class="col-6 col-sm-1">
-                      <span class="nameofinput">ราคาขาย **</span>
-                      <input class="form-control" type="text" placeholder="default" name="sell" require>
-                    </div>
-                    <div class="col-6 col-sm-1">
-                      <span class="nameofinput">ราคาทุน</span>
-                      <input class="form-control" type="text" placeholder="" name="budget">
-                    </div>
-                    <div class="col-6 col-sm-1">
-                      <span class="nameofinput"> Bill code</span>
-                      <input class="form-control" type="text" placeholder="" name="billcode">
-                    </div>
-                    <div class="col-6 col-sm-1">
-                      <span class="nameofinput"> Bill number</span>
-                      <input class="form-control" type="text" placeholder="" name="billnumber">
-                    </div>
-                    <div class="col-6 col-sm-3">
-                      <span class="nameofinput">ADP:code</span>
-                      <select class="form-control" name="nhso_apd_code_name">
-                        <option selected>nhso_adp_code_name </option>
-                        <?php while ($Result = mysqli_fetch_assoc($adp_codes)) { ?>
-                          <option value="<?php echo $Result['nhso_adp_code'] . ' ' . $Result['nhso_adp_code_name']; ?>">
-                            <?php echo $Result['nhso_adp_code'] . ' ' . $Result['nhso_adp_code_name']; ?>
-                          </option>
-                        <?php } ?>
-                      </select>
-                    </div>
-                    <div class="col-6 col-sm-4">
-                      <span class="nameofinput">ADP:TYPE</span>
-                      <select class="form-control" name="nhso_apd_type_name">
-                        <option selected>nhso_adp_type </option>
-                        <?php while ($Result = mysqli_fetch_assoc($adp_types)) { ?>
-                          <option value="<?php echo $Result['nhso_adp_type_name']; ?>">
-                            <?php echo $Result['nhso_adp_type_name']; ?>
-                          </option>
-                        <?php } ?>
-                      </select>
-                    </div>
-                  </div>
-
-                  <div class="row mt-3">
-                    <div class="col-6 col-sm-6">
-                      <span class="nameofinput">Product category (สกส.)</span>
-                      <select class="form-control" name="sks_product_category_name">
-                        <option selected>sks_product_category_name </option>
-                        <?php while ($Result = mysqli_fetch_assoc($product_categorys)) { ?>
-                          <option value="<?php echo $Result['sks_product_category_name']; ?>">
-                            <?php echo $Result['sks_product_category_name']; ?>
-                          </option>
-                        <?php } ?>
-                      </select>
-                    </div>
-
-                    <div class="col-6 col-sm-5">
-                      <span class="nameofinput">กลุ่มการรักษา</span>
-                      <select class="form-control" require>
-                        <option selected>non_drug_item_type_names </option>
-                        <?php while ($Result = pg_fetch_assoc($nondrug_item_type_names)) { ?>
-                          <option value="<?php echo $Result['nondrugitems_type_name']; ?>">
-                            <?php echo $Result['nondrugitems_type_name']; ?>
-                          </option>
-                        <?php } ?>
-                      </select>
-                    </div>
-                  </div>
-
-
-                  <? // รับค่าจากช่อง income ส่งค่า id income ไปหน้า select menuincome เพื่อเช็คค่า่ในตารางว่าป็น lab ไหมหากใช่ห้แสดงข้อมูลที่ต้องกรอกเพิ่มเติมและีเทรินข้อมูลหน้านั้นกลับมาที่ if menuincomes
-                  ?>
-                  <div class="row" id="menuincomes"></div>
-                  <? // รับค่าจากช่อง income ส่งค่า id income ไปหน้า select menuincome เพื่อเช็คค่า่ในตารางว่าป็น lab ไหมหากใช่ห้แสดงข้อมูลที่ต้องกรอกเพิ่มเติมและีเทรินข้อมูลหน้านั้นกลับมาที่ if menuincomes
-                  ?>
-
                   <hr>
-                  <div class="row mt-5">
-                    <div class="col-6 col-lg-2">
-                      <fieldset>
-                        <legend>ข้าราชการ:</legend>
-                        <span class="nameofinput">ข้าราช(ราคา)</span>
-                        <input class="form-control" type="text" placeholder="ตามสิทธิใส่ราคาที่เบิกได้" name="doctorcert">
-                        <span class="nameofinput">ประเภท</span>
-                        <select class="form-control" name="tepe1" require>
-                          <option selected> ...</option>
-                          <option value="1">ตามสิทธิ</option>
-                          <option value="2">ชำระเงินเอง(เบิกได้)</option>
-                          <option value="3">ชำระเงินเอง(เบิกไม่ได้)</option>
-                        </select>
-                      </fieldset>
-                    </div>
+                  <button type="button" class="btn btn-success" name="submitform2">แจ้งขอเพิ่มรายการ</button>
+                </form>
+              </div>
 
-                    <div class="col-6 col-lg-2">
-                      <fieldset>
-                        <legend>UCบัตรทอง:</legend>
-                        <span class="nameofinput">UC(ราคา)</span>
-                        <input class="form-control" type="text" placeholder="ตามสิทธิใส่ราคาที่เบิกได้" name="doctorcert">
-                        <span class="nameofinput">ประเภท</span>
-                        <select class="form-control" name="tepe2" require>
-                          <option selected> ...</option>
-                          <option value="1">ตามสิทธิ</option>
-                          <option value="2">ชำระเงินเอง(เบิกได้)</option>
-                          <option value="3">ชำระเงินเอง(เบิกไม่ได้)</option>
-                        </select>
-                      </fieldset>
-                    </div>
-                    <div class="col-6 col-lg-2">
-                      <fieldset>
-                        <legend>ประกันสังคม:</legend>
-                        <span class="nameofinput">ประกันสังคม(ราคา)</span>
-                        <input class="form-control" type="text" placeholder="ตามสิทธิใส่ราคาที่เบิกได้" name="doctorcert">
-                        <span class="nameofinput">ประเภท</span>
-                        <select class="form-control" name="tepe3" require>
-                          <option selected> ...</option>
-                          <option value="1">ตามสิทธิ</option>
-                          <option value="2">ชำระเงินเอง(เบิกได้)</option>
-                          <option value="3">ชำระเงินเอง(เบิกไม่ได้)</option>
-                        </select>
-                      </fieldset>
-                    </div>
-                    <div class="col-6 col-lg-2">
-                      <fieldset>
-                        <legend>พรบ:</legend>
-                        <span class="nameofinput">พรบ(ราคา)</span>
-                        <input class="form-control" type="text" placeholder="ตามสิทธิใส่ราคาที่เบิกได้" name="doctorcert">
-                        <span class="nameofinput">ประเภท</span>
-                        <select class="form-control" name="tepe4" require>
-                          <option selected> ...</option>
-                          <option value="1">ตามสิทธิ</option>
-                          <option value="2">ชำระเงินเอง(เบิกได้)</option>
-                          <option value="3">ชำระเงินเอง(เบิกไม่ได้)</option>
-                        </select>
-                      </fieldset>
-                    </div>
-                    <div class="col-6 col-lg-2">
-                      <fieldset>
-                        <legend>ชำระเงินเอง:</legend>
-                        <span class="nameofinput">ชำระเงินเอง(ราคา)</span>
-                        <input class="form-control" type="text" placeholder="ตามสิทธิใส่ราคาที่เบิกได้" name="doctorcert">
-                        <span class="nameofinput">ประเภท</span>
-                        <select class="form-control" name="tepe5" require>
-                          <option selected> ...</option>
-                          <option value="1">ตามสิทธิ</option>
-                          <option value="2">ชำระเงินเอง(เบิกได้)</option>
-                          <option value="3">ชำระเงินเอง(เบิกไม่ได้)</option>
-                        </select>
-                      </fieldset>
-                    </div>
-                    <div class="col-6 col-lg-1">
-                      <fieldset>
-                        <legend>อื่นๆ:</legend>
-                        <span class="nameofinput">อื่นๆ(ราคา)</span>
-                        <input class="form-control" type="text" placeholder="อื่นๆ" name="doctorcert">
-                        <span class="nameofinput">ประเภท</span>
-                        <select class="form-control" name="tepe6" require>
-                          <option selected> ...</option>
-                          <option value="1">ตามสิทธิ</option>
-                          <option value="2">ชำระเงินเอง(เบิกได้)</option>
-                          <option value="3">ชำระเงินเอง(เบิกไม่ได้)</option>
-                        </select>
-                      </fieldset>
-                    </div>
-                  </div>
-                  <div class="row mt-5">
-                    <div class="col-11 col-lg-11">
-                      <span class="nameofinput">หมายเหตุ</span>
-                      <input class="form-control" type="text" placeholder="รายละเอียดเพิ่มเติม หรือ lab profile ระบุ รายการ เป็นข้อๆ ฯลฯ " name="note">
-                    </div>
-                  </div>
-                  <div class="row mt-5 ">
-                    <div class="col-11 col-lg-5">
-                      <input type="checkbox" name="vehicle11" id="vehicle11" value="ส่งเบิกสกสOPD" style=" width: 25px;  height: 25px; ">
-                      <label for="vehicle11">ส่งเบิก สกส.OPD </label>&nbsp;
-                      <input type="checkbox" name="vehicle12" id="vehicle12" value="ส่งเบิกสกสIPD" style=" width: 25px;  height: 25px; ">
-                      <label for="vehicle12">ส่งเบิก สกส.IPD</label>&nbsp;
-                    </div>
-                  </div>
-
-                </div>
-                <hr>
-                <button type="button" class="btn btn-success" name="submitform2">แจ้งขอเพิ่มรายการ</button>
-              </form>
-            </div>
-
-                        <?}else echo 'ปิดใช้งาน(เฉพาะ admin)';?>
+            <? } else echo 'ปิดใช้งาน(เฉพาะ admin)'; ?>
           </section>
 
           <!-- 	<section id="section-bar-4"><p>4</p></section>
@@ -540,7 +581,11 @@
   </div>
   <script src="js/cbpFWTabs.js"></script>
   <script>
-    (function() { [].slice.call(document.querySelectorAll('.tabs')).forEach(function(el) { new CBPFWTabs(el); }); })();
+    (function() {
+      [].slice.call(document.querySelectorAll('.tabs')).forEach(function(el) {
+        new CBPFWTabs(el);
+      });
+    })();
   </script>
 </body>
 
