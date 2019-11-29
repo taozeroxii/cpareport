@@ -45,7 +45,7 @@ include "config/timestampviewer.php";//เรียกไฟล์ในส่�
 											<input type="text" class="form-control" id="datepickers" placeholder="ช่วงวันที่เริ่ม" name="datepickers" data-provide="datepicker" data-date-language="th" autocomplete="off" >
 											<input type="text" class="form-control" id="datepickert" placeholder="ถึงวันที่" name="datepickert" data-provide="datepicker" data-date-language="th" autocomplete="off" >
 											<select class="select2" name="i_dropdown[]" id="i_dropdown" multiple="multiple" style="width: 20%;" placeholder="สิทธิ" title="เลือกสิทธิ์"></select>
-											<button type="submit" class="btn btn-default">Submit</button>
+											<button type="submit" class="btn btn-default">Submit</button><small style="color:brown">**หมายเหตุ:หากไม่เลือกสิทธิจะแสดงทุกสิทธิ**</small>
 										</form>
 									</div>
 								</h3>
@@ -103,7 +103,9 @@ include "config/timestampviewer.php";//เรียกไฟล์ในส่�
 									<h3 class="box-title co_dep"><?php echo " ข้อมูลช่วงวันที่ ".thaiDatefull($datepickers)." ถึงวันที่ ".thaiDatefull($datepickert) ?> 
 									<small><?php echo " เวลาที่ใช้ในการประมวลผล ".$bm->stop()." วินาที "; ?></small>
 								</h3>
-								<button type="" class="btn btn-default pull-right" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal"> Template </button>
+								<?if($_SESSION['status'] == 1 ){?>
+								<button type="" class="btn btn-default pull-right" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal"> SQL </button>
+								<?}?>
 								<button type="" class="btn btn-default pull-right" class="btn btn-info btn-lg" onclick="export_excel()" > Excel </button>
 							</div>
 							<div class="box-body table-responsive"><span class="fcol"> </span>
