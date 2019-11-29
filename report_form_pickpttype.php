@@ -76,9 +76,24 @@ include "config/timestampviewer.php";//เรียกไฟล์ในส่�
 						}
 						$sum_pttypes = rtrim($sum_pttypes,',');
 						$sum_pttypes .= ") ";
-                    }
-                    $sql = str_replace("{i_dropdown}", "$sum_pttypes", $sql);
+					} 
+					else {
+						$selectypttype = 'SELECT pttype from pttype order by pttype';
+						$querypttype = pg_query($selectypttype);
 
+
+						 $sum_pttypes = "(";
+						while($resultpty = pg_fetch_assoc($querypttype)) 
+						{ 
+							 $sum_pttypes .="'" .$resultpty['pttype']. "',";
+						}
+						$sum_pttypes = rtrim($sum_pttypes,',');
+						$sum_pttypes .= ") ";
+						$sql = str_replace("{i_dropdown}", "$sum_pttypes", $sql);
+					}
+			 		$sql = str_replace("{i_dropdown}", "$sum_pttypes", $sql);
+				
+              
 					$result = pg_query($sql);
 					?>
 					<div class="row">
