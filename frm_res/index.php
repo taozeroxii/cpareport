@@ -230,6 +230,8 @@
                         <option value="นศพ.">นศพ.</option>
                         <option value="พญ.">พญ.</option>
                         <option value="พทป.">พทป.</option>
+                        <option value="พญ.">ทพ.</option>
+                        <option value="พทป.">ทพญ.</option>
                       </select>
                     </div>
                     <div class="col-sm-3">
