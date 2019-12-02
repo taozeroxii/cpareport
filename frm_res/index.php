@@ -7,20 +7,18 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>แบบฟอร์มแจ้งขอเพิ่มรายการในHosxp</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <link href="https://fonts.googleapis.com/css?family=Prompt" rel="stylesheet">
   <meta name="description" content="Tab Styles Inspiration: A small collection of styles for tabs" />
   <meta name="keywords" content="tabs, inspiration, web design, css, modern, effects, svg" />
-  <meta name="author" content="Codrops" />
   <link rel="shortcut icon" href="../favicon.ico">
   <link rel="stylesheet" type="text/css" href="css/normalize.css" />
   <link rel="stylesheet" type="text/css" href="css/demo.css" />
   <link rel="stylesheet" type="text/css" href="css/tabs.css" />
   <link rel="stylesheet" type="text/css" href="css/tabstyles.css" />
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
   <script src="js/modernizr.custom.js"></script>
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
-
   <script src="jquery-1.11.1.min.js" type="text/javascript"></script>
   <script type="text/javascript">
     $(document).ready(function() {
@@ -44,7 +42,21 @@
 
 
 
-<body>
+<body style="font-family: 'Prompt', sans-serif;">
+<nav class="navbar navbar-expand-lg  navbar-dark bg-dark">
+  <a class="navbar-brand" href="../index.php">Report</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+    <div class="navbar-nav">
+      <a class="nav-item nav-link " href="checkreg_hosxp.php">หน้ารายการคำขอ <span class="sr-only">(current)</span></a>
+      <a class="nav-item nav-link active" href="#">เพิ่มผู้ใช้งานHosxp</a>
+      <a class="nav-item nav-link disabled" href="#" tabindex="-1" style="float:right" aria-disabled="true">Disabled</a>
+  </div>
+</nav>
+
+
   <style>
     .nameofinput {
       font-size: 12px;
@@ -63,8 +75,6 @@
   </style>
 
   <br><br>
-  <a href="../index.php">กลับหน้าแรก</a>
-
   <?php
   include('../config/my_con.class.php');
   include('../config/pg_con.class.php');
@@ -179,47 +189,26 @@
       } else   echo "<script>alert('มีการแจ้งข้อมูลนี้ไปแล้ว');window.location=index.php;</script>";
     } else   echo "<script>alert('มีข้อมูลในระบบแล้วหรือเคยแจ้งไปแล้ว');window.location=index.php;</script>";
   }
+  
   ?>
 
 
-
-
-  <!-- 		<svg class="hidden">
-			<defs>
-				<path id="tabshape" d="M80,60C34,53.5,64.417,0,0,0v60H80z"/>
-			</defs>
-		</svg> -->
   <div class="container">
-    <!-- Top Navigation -->
-    <!-- 			<div class="codrops-top clearfix">
-				<a class="codrops-icon codrops-icon-prev" href="http://tympanus.net/Tutorials/PagePreloadingEffect/"><span>Previous Demo</span></a>
-				<span class="right"><a class="codrops-icon codrops-icon-drop" href="http://tympanus.net/codrops/?p=19559"><span>Back to the Codrops Article</span></a></span>
-			</div> -->
-    <!-- 		<header class="codrops-header">
-				<h1>Tab Styles Inspiration <span>A small collection of styles for tabs</span></h1>
-				<p class="support">Your browser does not support <strong>flexbox</strong>! <br />Please view this demo with a <strong>modern browser</strong>.</p>
-			</header> -->
     <section>
-      <div class="tabs tabs-style-bar">
+      <div class="tabs tabs-style-bar" style="background-color:white">
         <nav>
           <ul>
             <li><a href="#section-bar-1" class="icon icon-tools"><span> ขอเพิ่มชื่อเข้าใช้งานในระบบ HosXp </span></a></li>
             <li><a href="#section-bar-2" class="icon icon-tools"><span> ขอเพิ่มค่ารักษาพยาบาลใช้งานในระบบ HosXp </span></a></li>
-            <!-- <li><a href="#section-bar-4" class="icon icon-tools"><span>Upload</span></a></li>
-							<li><a href="#section-bar-5" class="icon icon-tools"><span>Settings</span></a></li> -->
           </ul>
         </nav>
-
-
-
         <div class="content-wrap border">
           <section id="section-bar-1">
             <div class="container">
-
               <form action="#" method="POST" class="form-horizontal">
                 <div class="form-group has-success">
                   <div class="row">
-                    <div class="col-sm-1">
+                    <div class="col-sm-2">
                       <span class="nameofinput">คำนำหน้า</span>
                       <select class="form-control" id="inputGroupSelect01" name="pname" required>
                         <option selected>pname</option>
@@ -249,7 +238,7 @@
                   </div>
 
                   <div class="row mt-3">
-                    <div class="col-sm-1">
+                    <div class="col-sm-2">
                       <span class="nameofinput">เพศ</span>
                       <select class="form-control" name="gender" required>
                         <option selected> gender </option>
@@ -311,7 +300,7 @@
                       <span class="nameofinput">วันที่เข้าเริ่มงาน</span>
                       <input class="form-control" type="date" placeholder="" name="firstdayonjob" require>
                     </div>
-                    <div class="col-sm-2">
+                    <div class="col-sm-3">
                       <span class="nameofinput">email</span>
                       <input class="form-control" type="email" name="emailaddress">
                     </div>
@@ -325,8 +314,8 @@
                     </div>
                   </div>
                   <div class="row mt-3">
-                    <div class="col-sm-4">
-                      <span class="nameofinput">เลขห้องที่เข้าใช้งาน วิธีดูเลขที่ห้องคลิกปุ่ม -><button type="button" class="btn btn-primary btn-circle" data-toggle="modal" data-target="#imginfo"><i class="glyphicon glyphicon-list"></i></button></span>
+                    <div class="col-sm-12">
+                      <span class="nameofinput">เลขห้องที่เข้าใช้งาน วิธีดูเลขที่ห้องคลิกปุ่มสีฟ้า -><button type="button" class="btn btn-primary btn-circle" data-toggle="modal" data-target="#imginfo"><i class="glyphicon glyphicon-list"></i></button></span>
                       <input class="form-control" type="text" placeholder="ระบุ.. ห้องที่ต้องการใช้งานระบุรหัสแต่ละห้อง " name="note"></input>
                     </div>
                   </div>
@@ -589,6 +578,9 @@
       });
     })();
   </script>
+  <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 </body>
 
 </html>
