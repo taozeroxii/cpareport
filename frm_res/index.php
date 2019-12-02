@@ -357,7 +357,7 @@
 
                   <div class="form-group">
                     <div class="row">
-                      <div class="col-sm-3">
+                      <div class="col-sm-4">
                         <span class="nameofinput">หมวดค่ารักษาพยาบาล **</span>
                         <select class="form-control" name='incomes' id="incomes" require>
                           <option selected>หมวดค่ารักษาพยาบาล(income)...</option>
@@ -405,7 +405,7 @@
                           <?php } ?>
                         </select>
                       </div>
-                      <div class="col-6 col-sm-4">
+                      <div class="col-6 col-sm-5">
                         <span class="nameofinput">ADP:TYPE</span>
                         <select class="form-control" name="nhso_apd_type_name">
                           <option selected>nhso_adp_type </option>
@@ -431,7 +431,7 @@
                         </select>
                       </div>
 
-                      <div class="col-6 col-sm-5">
+                      <div class="col-6 col-sm-6">
                         <span class="nameofinput">กลุ่มการรักษา</span>
                         <select class="form-control" require>
                           <option selected>non_drug_item_type_names </option>
@@ -524,7 +524,7 @@
                           </select>
                         </fieldset>
                       </div>
-                      <div class="col-6 col-lg-1">
+                      <div class="col-6 col-lg-2">
                         <fieldset>
                           <legend>อื่นๆ:</legend>
                           <span class="nameofinput">อื่นๆ(ราคา)</span>
@@ -540,13 +540,13 @@
                       </div>
                     </div>
                     <div class="row mt-5">
-                      <div class="col-11 col-lg-11">
+                      <div class="col-11 col-lg-12">
                         <span class="nameofinput">หมายเหตุ</span>
                         <input class="form-control" type="text" placeholder="รายละเอียดเพิ่มเติม หรือ lab profile ระบุ รายการ เป็นข้อๆ ฯลฯ " name="note">
                       </div>
                     </div>
                     <div class="row mt-5 ">
-                      <div class="col-11 col-lg-5">
+                      <div class="col-11 col-lg-12">
                         <input type="checkbox" name="vehicle11" id="vehicle11" value="ส่งเบิกสกสOPD" style=" width: 25px;  height: 25px; ">
                         <label for="vehicle11">ส่งเบิก สกส.OPD </label>&nbsp;
                         <input type="checkbox" name="vehicle12" id="vehicle12" value="ส่งเบิกสกสIPD" style=" width: 25px;  height: 25px; ">
