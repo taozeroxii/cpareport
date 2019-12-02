@@ -211,11 +211,15 @@
                                                         <label for="assis1">ผู้ดำเนินการ</label>
                                                         <select id="inputState" name="txtassisadmin" class="form-control" required>
                                                             <option selected value="">...</option>
-                                                            <option value="เอก">เอก</option>
-                                                            <option value="โอ">โอ</option>
-                                                            <option value="ดอย">ดอย</option>
-                                                            <option value="มาร์ค">มาร์ค</option>
-                                                            <option value="เต๋า">เต๋า</option>
+                                                            <option value="จิรกร">จิรกร</option>
+                                                            <option value="ณรงค์">ณรงค์</option>
+                                                            <option value="รัชวิทย์">รัชวิทย์</option>
+                                                            <option value="ชานิศักดิ์">ชานิศักดิ์</option>
+                                                            <option value="ปฐมพงศ์">ปฐมพงศ์</option>
+                                                            <option value="ปิยดา">ปิยดา</option>
+                                                            <option value="เพ็ญจันทร์">เพ็ญจันทร์</option>
+                                                            <option value="อดิศักดิ์">อดิศักดิ์</option>
+                                                            <option value="วิภาวดี">วิภาวดี</option>       
                                                         </select>
                                                     </div>
                                                 </div>
