@@ -51,10 +51,10 @@
 
     //query เอาเลขหน้า
     $start = ($page - 1) * $perpage;
-    $sql = "select * from frm_res_require_login_hosxp  ORDER BY id limit {$start} , {$perpage} ";
+    $sql = "select * from frm_res_require_login_hosxp  ORDER BY id desc limit {$start} , {$perpage} ";
     $query = mysqli_query($con, $sql);
 
-    $allrec = "SELECT * FROM frm_res_require_login_hosxp ORDER BY id";
+    $allrec = "SELECT * FROM frm_res_require_login_hosxp ORDER BY id desc";
     $queryalrecord = mysqli_query($con, $allrec);
 
     ///////////////////////////////////// เมื่อกดรับงาน ส่ง POST เข้ามาทำงาน //////////////////////////////// 
@@ -118,7 +118,7 @@
                         or lname LIKE '%" . $_GET["txtKeyword"] . "%' 
                         or cid LIKE '%" . $_GET["txtKeyword"] . "%' 
                         or username LIKE '%" . $_GET["txtKeyword"] . "%' 
-                        or status LIKE '%" . $_GET["txtKeyword"] . "%' )";
+                        or status LIKE '%" . $_GET["txtKeyword"] . "%' )  ORDER BY id desc";
         } else {
             $sql = "select * from frm_res_require_login_hosxp  ORDER BY id desc limit {$start} , {$perpage} ";
         }
@@ -282,7 +282,7 @@
         <!--  /////////////////// ส่วนของ paginatorทำ query มาใหม่และนับจำนวนแถว //////////////////     -->
         <?php
 
-        $sql2 = "select * from frm_res_require_login_hosxp ";
+        $sql2 = "select * from frm_res_require_login_hosxp order by id desc";
         if (isset($_GET['txtKeyword'])) {
             if ($_GET["txtKeyword"] != "") {
                 $sql2  =  "SELECT * FROM frm_res_require_login_hosxp WHERE (id LIKE '%" . $result['adminget_name'] . "%' or fname LIKE '%" . $_GET["txtKeyword"] . "%' or status LIKE '%" . $_GET["txtKeyword"] . "%' )";
@@ -300,14 +300,14 @@
         <nav aria-label="Page navigation example">
             <ul class="pagination">
                 <li class="page-item">
-                    <a class="page-link" href="index.php?page=1" aria-label="Previous">
+                    <a class="page-link" href="checkreg_hosxp.php?page=1" aria-label="Previous">
                         <span aria-hidden="true">&laquo;</span></a>
                 <li class="page-item">
                     <?php for ($i = 1; $i <= $total_page; $i++) { ?>
-                <li class="page-item"><a class="page-link" href="index.php?page=<?php echo $i; ?>"><?php echo $i; ?></a></li>
+                <li class="page-item"><a class="page-link" href="checkreg_hosxp.php?page=<?php echo $i; ?>"><?php echo $i; ?></a></li>
             <?php } ?>
             <li class="page-item">
-                <a class="page-link" href="index.php?page=<?php echo $total_page; ?>" aria-label="Next">
+                <a class="page-link" href="checkreg_hosxp.php?page=<?php echo $total_page; ?>" aria-label="Next">
                     <span aria-hidden="true">&raquo;</span></a>
             </li>
             </ul>
