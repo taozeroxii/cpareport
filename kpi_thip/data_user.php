@@ -1,124 +1,27 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html>
 <head>
+  <title></title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" type="text/css" href="css/index.css">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
-  <script type="text/javascript" src="js/echarts.min.js"></script>
-  <script type="text/javascript" src="js/pdfobject.js"></script>
+  <!-- <script type="text/javascript" src="js/echarts.min.js"></script> -->
+  <!-- <script type="text/javascript" src="js/pdfobject.js"></script> -->
   <link href="https://fonts.googleapis.com/css?family=Prompt&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 </head>
 
 <?php
 date_default_timezone_set("Asia/Bangkok");
-function thaiDate($datetime)
-{
-  if (!is_null($datetime)) {
-    list($date, $time) = split('T', $datetime);
-    list($Y, $m, $d) = split('-', $date);
-    $Y = $Y + 543 - 2500;
-    switch ($m) {
-      case "01":
-      $m = "ม.ค.";
-      break;
-      case "02":
-      $m = "ก.พ.";
-      break;
-      case "03":
-      $m = "มี.ค.";
-      break;
-      case "04":
-      $m = "เม.ย.";
-      break;
-      case "05":
-      $m = "พ.ค.";
-      break;
-      case "06":
-      $m = "มิ.ย.";
-      break;
-      case "07":
-      $m = "ก.ค.";
-      break;
-      case "08":
-      $m = "ส.ค.";
-      break;
-      case "09":
-      $m = "ก.ย.";
-      break;
-      case "10":
-      $m = "ต.ค.";
-      break;
-      case "11":
-      $m = "พ.ย.";
-      break;
-      case "12":
-      $m = "ธ.ค.";
-      break;
-    }
-    return $d . " " . $m . " " . $Y . "";
-  }
-  return "";
-}
-function thaiDateFULL($datetime)
-{
-  if (!is_null($datetime)) {
-    list($date, $time) = split('T', $datetime);
-    list($Y, $m, $d) = split('-', $date);
-    $Y = $Y + 543;
-    switch ($m) {
-      case "01":
-      $m = "มกราคม";
-      break;
-      case "02":
-      $m = "กุมภาพันธ์";
-      break;
-      case "03":
-      $m = "มีนาคม";
-      break;
-      case "04":
-      $m = "เมษายน";
-      break;
-      case "05":
-      $m = "พฤษภาคม";
-      break;
-      case "06":
-      $m = "มิถุนายน";
-      break;
-      case "07":
-      $m = "กรกฎาคม";
-      break;
-      case "08":
-      $m = "สิงหาคม";
-      break;
-      case "09":
-      $m = "กันยายน";
-      break;
-      case "10":
-      $m = "ตุลาคม";
-      break;
-      case "11":
-      $m = "พฤศจิกายน";
-      break;
-      case "12":
-      $m = "ธันวาคม";
-      break;
-    }
-    return $d . " " . $m . " " . $Y . "";
-  }
-  return "";
-}
 $con = new mysqli("172.16.0.251", "report", "report", "cpareportdb");
 mysqli_set_charset($con, "utf8");
 $sql = "			
 SELECT id,kpi_code,kpi_name FROM cpareport_kpi_thip   WHERE kpi_data_send = 'user' ";
 $result = mysqli_query($con, $sql);
 ?>
-
-
 <style>
   .col-lg-2 {
     padding-left: 70px;
@@ -135,6 +38,7 @@ $result = mysqli_query($con, $sql);
     filter: alpha(opacity=75);
     -moz-opacity: .75;
     z-index: 999;
+
     background: #fff url(http://i.imgur.com/KUJoe.gif) 50% 50% no-repeat;    
   }
 
@@ -157,10 +61,9 @@ $result = mysqli_query($con, $sql);
   }
 </style>
 
-
 <body style="font-family: 'Prompt', sans-serif;">
   <!-- id ใช้แสดงตัวโหลดหมุนๆบนหน้าจอ -->
-  <div id="overlay"></div>
+  <!-- <div id="overlay"></div> -->
   <!-- --------------------------- -->
 
   <div class="main-contain">
@@ -183,10 +86,10 @@ $result = mysqli_query($con, $sql);
       foreach ($result as $item) {
         $kpiname  =  $item['kpi_name'];
         $kpicode  =  $item['kpi_code'];
-        $kpi_ym =  $item['kpi_ym'];
-        $a = $item['kpi_cal_a'];
-        $b = $item['kpi_cal_b'];
-        $c = $item['kpi_cal_c'];
+        $kpi_ym   =  $item['kpi_ym'];
+        $a        = $item['kpi_cal_a'];
+        $b        = $item['kpi_cal_b'];
+        $c        = $item['kpi_cal_c'];
         $rw++;
         ?>
         <tbody>
@@ -235,7 +138,7 @@ $result = mysqli_query($con, $sql);
       <? foreach ($result as $item) {
         $kpiname  =  $item['kpi_name'];
         $kpicode  =  $item['kpi_code'];
-        $kpievent  =  $item['kpi_event'];
+
         ?>
         <div class="modal fade modal-xl" id="<?= $kpicode ?>" tabindex="-1" role="dialog" aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">
           <div class="modal-dialog modal-lg">
@@ -245,42 +148,126 @@ $result = mysqli_query($con, $sql);
                   <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                   </button>
-                  <h5 class="hh-hh"><?= $kpicode . ' : ' . $kpiname; ?> </h5>
+                  <center><h5 class="hh-hh"><?= $kpicode . ' : ' . $kpiname; ?> </h5></center>
                 </div>
                 <div class="modal-body">
-                  <form>                    
-                   <div class="form-group">
-                    <label for="usr">A: <span class="daw"> * </span><span class="ddt"> ดูรายละเอียดได้จาก นิยาม</span></label>
+                 <form action="" name="frmMain" id="frmMain" method="POST">
+                  <label for="usr">Year<span class="dow"> * </span><span class="ddt">เลือก ปี ที่นำเข้าข้อมูล</span></label>
+                  <?php
+                  $currently_selected = date('Y'); 
+                  $earliest_year = 2018; 
+                  $latest_year = date('Y'); 
+                  print '<select  class="form-control" id="kpi_year" name="kpi_year" >';
+                  foreach ( range( $latest_year, $earliest_year ) as $i ) {
+                    print '<option value="'.$i.'"'.($i === $currently_selected ? ' selected="selected"' : '').'>'.$i.'</option>';
+                  }
+                  print '</select>';
+                  ?>
+                  <br>
+                  <label for="usr" >Month<span class="dow"> * </span><span class="ddt"> เลือก เดือน ที่นำเข้าข้อมูล </span></label>
+                  <select class="form-control" id="kpi_month" name="kpi_month">
+                    <option value="01">มกราคม</option>
+                    <option value="02">กุมภาพันธ์</option>
+                    <option value="03">มีนาคม</option>
+                    <option value="04">เมษายน</option>
+                    <option value="05">พฤษภาคม</option>
+                    <option value="06">มิถุนายน</option>
+                    <option value="07">กรกฎาคม</option>
+                    <option value="08">สิงหาคม</option>
+                    <option value="09">กันยายน</option>
+                    <option value="10">ตุลาคม</option>
+                    <option value="11">พฤศจิกายน</option>
+                    <option value="12">ธันวาคม</option>
+                  </select> 
+
+                  <br>
+
+                  <input type="hidden" class="form-control" id="kpi_code" name="kpi_code" value="<?=$kpicode;?>">
+                  <div class="form-group">
+                    <label for="usr">A: <span class="dow"> * </span><span class="ddt"> ดูรายละเอียดได้จาก นิยาม</span></label>
                     <input type="number" class="form-control" id="kpi_a" placeholder="ระบุค่าตัวเลข a ">
                     <br>
-                    <label for="usr">B: <span class="daw"> * </span><span class="ddt"> ดูรายละเอียดได้จาก นิยาม</span></label>
+                    <label for="usr">B: <span class="dow"> * </span><span class="ddt"> ดูรายละเอียดได้จาก นิยาม</span></label>
                     <input type="number" class="form-control" id="kpi_b" placeholder="ระบุค่าตัวเลข b ">
-                     <br>
-                     <center><button type="button" class="btn btn-info" data-dismiss="modal">เพิ่มข้อมูล</button></center>
+                    <br>
+                    <center><button type="submit" id="btnSend" class="btn btn-info" data-dismiss="modal">เพิ่มข้อมูล</button></center>
                   </div>
 
                 </form>
-                
+
               </div>
-              <div class="modal-footer">
+           <!--    <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-              </div>
+              </div> -->
             </div>
           </div>
         </div>
       <? } ?>
 
       <!-- Script ทำการโหลดหนาเพจให้เสร็จก่อนแสดงผล-->
-      <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+      <!-- <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script> -->
       <script type="text/javascript">
-        $(function() {
+    /*    $(function() {
           $("#overlay").fadeOut();
           $(".main-contain").removeClass("main-contain");
         });
+        */
       </script>
     </div>
 
 
-  </body>
+    <script type="text/javascript">
+    // $(document).ready(function() {      
+    //   $("#btnSend").click(function() {
+    //       $.ajax({
+    //          type: "POST",
+    //          url: "data_user_add.php",
+    //          data: $("#frmMain").serialize(),
+    //          success: function(result) {
+    //           //console.log(data);
+    //           if(result.status == 1) 
+    //           {
+    //             alert(result.message); 
+    //               console.log(result);
+    //           }
+    //           else 
+    //           {
+    //             alert(result.message);
+    //               console.log(result);
+    //           }
+    //          }
+    //        });
+    //   });
 
-  </html>
+    // });
+
+
+    $(document).ready(function(){
+      $("#btnSend").click(function(){
+        var kpi_year    =$("#kpi_year").val();
+        var kpi_month   =$("#kpi_month").val();
+        var kpi_code    =$("#kpi_code").val();
+        var kpi_a       =$("#kpi_a").val();
+        var kpi_b       =$("#kpi_b").val();
+        $.ajax({
+          url:'data_user_add.php',
+          method:'POST',
+          data:{
+            kpi_year:kpi_year,
+            kpi_month:kpi_month,
+            kpi_code:kpi_code,
+            kpi_a:kpi_a,
+            kpi_b:kpi_b
+          },
+          success:function(data){
+           alert(data);
+         }
+       });
+      });
+    });
+
+
+  </script>
+
+</body>
+</html>
