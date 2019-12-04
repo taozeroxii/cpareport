@@ -14,13 +14,29 @@
 
 <body style="font-family: 'Prompt', sans-serif;">
 
+<nav class="navbar navbar-expand-lg  navbar-dark bg-dark">
+  <a class="navbar-brand" href="../index.php">Report</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+    <div class="navbar-nav">
+      <a class="nav-item nav-link active" href="#">หน้ารายการคำขอ <span class="sr-only">(current)</span></a>
+      <a class="nav-item nav-link" href="index.php">เพิ่มผู้ใช้งานHosxp</a>
+      <a class="nav-item nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+    </div>
+  </div>
+</nav>
+
+
     <style>
         .fontstatusa {
             color: red;
         }
+
         .fontstatusb {
             color: green;
-        } 
+        }
     </style>
     <!--  /////////////////// เชื่อมต่อ และquery จำนวนหน้าและและช่องแถบค้นหา GET METHOD FROM ค้นหา//////////////////     -->
     <?php
@@ -35,10 +51,10 @@
 
     //query เอาเลขหน้า
     $start = ($page - 1) * $perpage;
-    $sql = "select * from frm_res_require_login_hosxp  ORDER BY id limit {$start} , {$perpage} ";
+    $sql = "select * from frm_res_require_login_hosxp  ORDER BY id desc limit {$start} , {$perpage} ";
     $query = mysqli_query($con, $sql);
 
-    $allrec = "SELECT * FROM frm_res_require_login_hosxp ORDER BY id";
+    $allrec = "SELECT * FROM frm_res_require_login_hosxp ORDER BY id desc";
     $queryalrecord = mysqli_query($con, $allrec);
 
     ///////////////////////////////////// เมื่อกดรับงาน ส่ง POST เข้ามาทำงาน //////////////////////////////// 
@@ -50,8 +66,8 @@
 
         echo $addadminjob = "UPDATE `frm_res_require_login_hosxp` SET 
         `status` = 'done', 
-        `enddate_time` = '".$_POST['enddate_time']."',
-        `it_getrequest` = '".$_POST["txtassisadmin"]."'  WHERE id = '".$_POST["idform"]."'";
+        `enddate_time` = '" . $_POST['enddate_time'] . "',
+        `it_getrequest` = '" . $_POST["txtassisadmin"] . "'  WHERE id = '" . $_POST["idform"] . "'";
 
         $Queryaddadminjob =  mysqli_query($con, $addadminjob);
         //echo  $Queryaddadminjob;
@@ -77,10 +93,10 @@
                 curl_close($ch);
                 return $result;
             }
-            $message = 'ดำเนินการเพิ่ม user hosxp '."\r\n".
-            'วันที่ขอเพิ่ม :'.$_POST['begindate']."\r\n".
-            'ชื่อ :'.$_POST["userregis"]."\r\n".
-            'สถานะ : ดำเนินการแล้ว '."  ".  $_POST["txtassisadmin"]."\r\nเวลา: ".  $_POST["enddate_time"];
+            $message = 'ดำเนินการเพิ่ม user hosxp ' . "\r\n" .
+                'วันที่ขอเพิ่ม :' . $_POST['begindate'] . "\r\n" .
+                'ชื่อ :' . $_POST["userregis"] . "\r\n" .
+                'สถานะ : ดำเนินการแล้ว ' . "  " .  $_POST["txtassisadmin"] . "\r\nเวลา: " .  $_POST["enddate_time"];
             $token = 'd5zh3iN8q18hw1cTYxIJc2eS4OlZBOCMq6VOySo2u3z';
             send_line_notify($message, $token);
             echo "<script>alert('บันทึกสำเร็จ');window.location = 'checkreg_hosxp.php'</script>";
@@ -102,7 +118,7 @@
                         or lname LIKE '%" . $_GET["txtKeyword"] . "%' 
                         or cid LIKE '%" . $_GET["txtKeyword"] . "%' 
                         or username LIKE '%" . $_GET["txtKeyword"] . "%' 
-                        or status LIKE '%" . $_GET["txtKeyword"] . "%' )";
+                        or status LIKE '%" . $_GET["txtKeyword"] . "%' )  ORDER BY id desc";
         } else {
             $sql = "select * from frm_res_require_login_hosxp  ORDER BY id desc limit {$start} , {$perpage} ";
         }
@@ -119,7 +135,7 @@
             <div class="row">
                 <div class="col-lg-6">
                     <center>
-                        <h1>รายการคำขอเพิ่ม user hosxp</h1>
+                        <h1 style="margin-top:15px">รายการขอเพิ่ม user hosxp</h1>
                     </center>
                 </div>
                 <div class="col-lg-6">
@@ -135,7 +151,7 @@
             </div>
         </div>
     </form>
-
+<hr>
     <!--  //////////////////////////////////////////////////////////////////////////////////////////////////////////////    -->
 
 
@@ -155,7 +171,9 @@
                             <th style="text-align:center;">สถานะดำเนินการ</th>
                             <th style="text-align:center;">วันที่แจ้ง</th>
                             <th style="text-align:center;">ดำเนินการเสร็จ</th>
-                            <th style="text-align:center;">ตรวจสอบ</th>
+                            <?  if ($_SESSION['status'] == '1') { ?>
+                                <th style="text-align:center;">ตรวจสอบ</th>
+                            <? } ?>
                         </tr>
                     </thead>
 
@@ -168,12 +186,16 @@
                                 <td><?php echo $result['jobclass'] ?></td>
                                 <td><?php echo $result['spclty']; ?> </td>
                                 <td style="text-align:center;"><?php echo $result['it_getrequest']; ?> </td>
-                                <td class="<?php if (($result['status'] == 'waiting')) { echo 'fontstatusa'; } else echo 'fontstatusb'; ?>" style="text-align:center;"><?php echo $result['status']; ?> </td>
+                                <td class="<?php if (($result['status'] == 'waiting')) {
+                                                    echo 'fontstatusa';
+                                                } else echo 'fontstatusb'; ?>" style="text-align:center;"><?php echo $result['status']; ?> </td>
                                 <td style="text-align:center;"><?php echo $result['insertdate_time']; ?> </td>
                                 <td style="text-align:center;"><?php echo $result['enddate_time']; ?> </td>
+                                <?  if ($_SESSION['status'] == '1') { ?>
                                 <td>
-                                    <center><button class="btn btn-info" data-toggle="modal" data-target="#closejob<?php echo $result['id']; ?>">เพิ่มเติม</button> </center>
-                                </td>
+                                     <center><button class="btn btn-info" data-toggle="modal" data-target="#closejob<?php echo $result['id']; ?>">เพิ่มเติม</button> </center>
+                                </td>  
+                                 <? } ?>
                             </tr>
 
 
@@ -211,15 +233,19 @@
                                                         <label for="assis1">ผู้ดำเนินการ</label>
                                                         <select id="inputState" name="txtassisadmin" class="form-control" required>
                                                             <option selected value="">...</option>
-                                                            <option value="เอก">เอก</option>
-                                                            <option value="โอ">โอ</option>
-                                                            <option value="ดอย">ดอย</option>
-                                                            <option value="มาร์ค">มาร์ค</option>
-                                                            <option value="เต๋า">เต๋า</option>
+                                                            <option value="จิรกร">จิรกร</option>
+                                                            <option value="ณรงค์">ณรงค์</option>
+                                                            <option value="รัชวิทย์">รัชวิทย์</option>
+                                                            <option value="ชานิศักดิ์">ชานิศักดิ์</option>
+                                                            <option value="ปฐมพงศ์">ปฐมพงศ์</option>
+                                                            <option value="ปิยดา">ปิยดา</option>
+                                                            <option value="เพ็ญจันทร์">เพ็ญจันทร์</option>
+                                                            <option value="อดิศักดิ์">อดิศักดิ์</option>
+                                                            <option value="วิภาวดี">วิภาวดี</option>
                                                         </select>
                                                     </div>
                                                 </div>
-                                              
+
                                         </div>
 
                                         <div class="modal-footer">
@@ -232,8 +258,8 @@
                                                 $today = $year . '-' . $month . '-' . $day . '  ' . $TIME;
                                                 ?>
                                             <input type="hidden" name="status" value="done">
-                                            <input type="hidden" name="userregis" value="<? echo $userregis;?>">
-                                            <input type="hidden" name="idform" value="<?echo $result['id'];?>">
+                                            <input type="hidden" name="userregis" value="<? echo $userregis; ?>">
+                                            <input type="hidden" name="idform" value="<? echo $result['id']; ?>">
                                             <input type="hidden" name="enddate_time" value="<?php echo $today ?>">
                                             <input type="hidden" name="begindate" value="<?php echo $begin ?>">
                                             <button type="button" class="btn btn-secondary" data-dismiss="modal">ปิด</button>
@@ -256,7 +282,7 @@
         <!--  /////////////////// ส่วนของ paginatorทำ query มาใหม่และนับจำนวนแถว //////////////////     -->
         <?php
 
-        $sql2 = "select * from frm_res_require_login_hosxp ";
+        $sql2 = "select * from frm_res_require_login_hosxp order by id desc";
         if (isset($_GET['txtKeyword'])) {
             if ($_GET["txtKeyword"] != "") {
                 $sql2  =  "SELECT * FROM frm_res_require_login_hosxp WHERE (id LIKE '%" . $result['adminget_name'] . "%' or fname LIKE '%" . $_GET["txtKeyword"] . "%' or status LIKE '%" . $_GET["txtKeyword"] . "%' )";
@@ -274,14 +300,14 @@
         <nav aria-label="Page navigation example">
             <ul class="pagination">
                 <li class="page-item">
-                    <a class="page-link" href="index.php?page=1" aria-label="Previous">
+                    <a class="page-link" href="checkreg_hosxp.php?page=1" aria-label="Previous">
                         <span aria-hidden="true">&laquo;</span></a>
                 <li class="page-item">
                     <?php for ($i = 1; $i <= $total_page; $i++) { ?>
-                <li class="page-item"><a class="page-link" href="index.php?page=<?php echo $i; ?>"><?php echo $i; ?></a></li>
+                <li class="page-item"><a class="page-link" href="checkreg_hosxp.php?page=<?php echo $i; ?>"><?php echo $i; ?></a></li>
             <?php } ?>
             <li class="page-item">
-                <a class="page-link" href="index.php?page=<?php echo $total_page; ?>" aria-label="Next">
+                <a class="page-link" href="checkreg_hosxp.php?page=<?php echo $total_page; ?>" aria-label="Next">
                     <span aria-hidden="true">&raquo;</span></a>
             </li>
             </ul>
