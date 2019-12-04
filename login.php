@@ -47,7 +47,7 @@
             
         if($_SESSION['status'] =='1'){ header('location:admin/index.php'); }
                 else { header('location:index.php');}
-        }else{  echo "<script>alert('Username หรือ password ผิดพลาด');window.location ='login.php';</script>";
+        }else{  $message =  "login fail ชื่อผู้ใช้งานหรือรหัสผ่านไม่ถูกต้อง!!!";
          }
     }
     ?>
@@ -78,8 +78,8 @@
                 </form>
             </div>
         </div>
-
     </div>
+    <?echo '<center><p style = "margin-top:10px;color:red">'.$message.'</p></center>';?>
 
 
 

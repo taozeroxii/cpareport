@@ -13,31 +13,32 @@
 
 
 <body style="font-family: 'Prompt', sans-serif;">
-
-<nav class="navbar navbar-expand-lg  navbar-dark bg-dark">
-  <a class="navbar-brand" href="../index.php">Report</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-  <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-    <div class="navbar-nav">
-      <a class="nav-item nav-link active" href="#">หน้ารายการคำขอ <span class="sr-only">(current)</span></a>
-      <a class="nav-item nav-link" href="index.php">เพิ่มผู้ใช้งานHosxp</a>
-      <a class="nav-item nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
-    </div>
-  </div>
-</nav>
-
-
     <style>
         .fontstatusa {
-            color: red;
+            color: crimson;
         }
 
         .fontstatusb {
             color: green;
         }
     </style>
+
+
+    <nav class="navbar navbar-expand-lg  navbar-dark bg-dark ">
+        <a class="navbar-brand" href="../index.php">Report</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <div class="navbar-nav">
+                <a class="nav-item nav-link active" href="#">หน้ารายการคำขอ <span class="sr-only">(current)</span></a>
+                <a class="nav-item nav-link" href="index.php">เพิ่มผู้ใช้งานHosxp</a>
+                <a class="nav-item nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+            </div>
+        </div>
+    </nav>
+
+
     <!--  /////////////////// เชื่อมต่อ และquery จำนวนหน้าและและช่องแถบค้นหา GET METHOD FROM ค้นหา//////////////////     -->
     <?php
     include('../config/my_con.class.php');
@@ -151,7 +152,7 @@
             </div>
         </div>
     </form>
-<hr>
+    <hr>
     <!--  //////////////////////////////////////////////////////////////////////////////////////////////////////////////    -->
 
 
@@ -171,7 +172,7 @@
                             <th style="text-align:center;">สถานะดำเนินการ</th>
                             <th style="text-align:center;">วันที่แจ้ง</th>
                             <th style="text-align:center;">ดำเนินการเสร็จ</th>
-                            <?  if ($_SESSION['status'] == '1') { ?>
+                            <? if ($_SESSION['status'] == '1') { ?>
                                 <th style="text-align:center;">ตรวจสอบ</th>
                             <? } ?>
                         </tr>
@@ -191,11 +192,11 @@
                                                 } else echo 'fontstatusb'; ?>" style="text-align:center;"><?php echo $result['status']; ?> </td>
                                 <td style="text-align:center;"><?php echo $result['insertdate_time']; ?> </td>
                                 <td style="text-align:center;"><?php echo $result['enddate_time']; ?> </td>
-                                <?  if ($_SESSION['status'] == '1') { ?>
-                                <td>
-                                     <center><button class="btn btn-info" data-toggle="modal" data-target="#closejob<?php echo $result['id']; ?>">เพิ่มเติม</button> </center>
-                                </td>  
-                                 <? } ?>
+                                <? if ($_SESSION['status'] == '1') { ?>
+                                    <td>
+                                        <center><button class="btn btn-info" data-toggle="modal" data-target="#closejob<?php echo $result['id']; ?>">เพิ่มเติม</button> </center>
+                                    </td>
+                                <? } ?>
                             </tr>
 
 
@@ -210,6 +211,7 @@
                                         </div>
                                         <div class="modal-body">
                                             <p>ใบแจ้งที่: <?php echo $result['id']; ?></p>
+                                            <? $id = $result['id'];?>
                                             <p>วันที่แจ้ง: <?php echo $begin = $result['insertdate_time']; ?></p>
                                             <p>ชื่อ-นามสกุล: <?php echo $userregis =  $result['pname'] . $result['fname'] . '    ' . $result['lname']; ?></p>
                                             <p>ชื่อภาษาอังกฤษ: <?php echo $result['panme'] . $result['fname'] . '    ' . $result['lname']; ?></p>
@@ -245,7 +247,6 @@
                                                         </select>
                                                     </div>
                                                 </div>
-
                                         </div>
 
                                         <div class="modal-footer">
@@ -263,6 +264,7 @@
                                             <input type="hidden" name="enddate_time" value="<?php echo $today ?>">
                                             <input type="hidden" name="begindate" value="<?php echo $begin ?>">
                                             <button type="button" class="btn btn-secondary" data-dismiss="modal">ปิด</button>
+                                            <input type="button" class="btn btn-success" value="Print" target="_blank" onclick="function_printform()">
                                             <input type="submit" name="closejob" class="btn btn-primary" value="ดำเนินการแล้ว">
                                         </div>
                                         </form>
@@ -348,6 +350,13 @@
 
         });
     </script>
+
+    <script type="text/javascript">
+        function function_printform() {
+            window.open ("../frm_res/form_prints/printreges.php?id=<?php echo $id; ?>") ;
+        }
+    </script>
+
 
     <script src="bootstrap/js/bootstrap.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
