@@ -21,23 +21,41 @@
         .fontstatusb {
             color: green;
         }
+
+        @media print {
+            .nonprint {
+                display: none;
+            }
+
+            .print {
+                width: 100%;
+                float: left;
+            }
+            .print p{
+               font-size: 16px;
+            }
+            .modal-backdrop { display: none;}
+            body {
+                background: white;
+            }
+        }
     </style>
 
-
-    <nav class="navbar navbar-expand-lg  navbar-dark bg-dark ">
-        <a class="navbar-brand" href="../index.php">Report</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-            <div class="navbar-nav">
-                <a class="nav-item nav-link active" href="#">หน้ารายการคำขอ <span class="sr-only">(current)</span></a>
-                <a class="nav-item nav-link" href="index.php">เพิ่มผู้ใช้งานHosxp</a>
-                <a class="nav-item nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+    <div class="nonprint">
+        <nav class="navbar navbar-expand-lg  navbar-dark bg-dark ">
+            <a class="navbar-brand" href="../index.php">Report</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                <div class="navbar-nav">
+                    <a class="nav-item nav-link active" href="#">หน้ารายการคำขอ <span class="sr-only">(current)</span></a>
+                    <a class="nav-item nav-link" href="index.php">เพิ่มผู้ใช้งานHosxp</a>
+                    <a class="nav-item nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+                </div>
             </div>
-        </div>
-    </nav>
-
+        </nav>
+    </div>
 
     <!--  /////////////////// เชื่อมต่อ และquery จำนวนหน้าและและช่องแถบค้นหา GET METHOD FROM ค้นหา//////////////////     -->
     <?php
@@ -128,162 +146,171 @@
     ?>
 
 
-    <hr>
     <!--  //////////////////////////////////////////// ค้นหา/////////////////////////////////////////////////////////     -->
-    <form name="frmSearch" method="get" action="<?php echo $_SERVER['SCRIPT_NAME']; ?>">
-        <!-- $_SERVER['SCRIPT_NAME']; คือการดึงชื่อเอกสารมา เมื่อกด form นี้ให้เกิดaction โหลดหน้าเดิม-->
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-lg-6">
-                    <center>
-                        <h1 style="margin-top:15px">รายการขอเพิ่ม user hosxp</h1>
-                    </center>
+    <div class="nonprint">
+        <form name="frmSearch" method="get" action="<?php echo $_SERVER['SCRIPT_NAME']; ?>">
+            <!-- $_SERVER['SCRIPT_NAME']; คือการดึงชื่อเอกสารมา เมื่อกด form นี้ให้เกิดaction โหลดหน้าเดิม-->
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-6 mt-2">
+                        <center>
+                            <h1 style="margin-top:15px">รายการขอเพิ่ม user hosxp</h1>
+                        </center>
+                    </div>
+                    <div class="col-lg-6">
+                        <table class="table table-bordered mt-3">
+                            <tr>
+                                <th>
+                                    <input name="txtKeyword" placeholder="ค้นหา" type="text" class="form-control" id="txtKeyword" value="">
+                                </th>
+                                <th><input type="submit" class="btn btn-info btn-lg btn-block" value="Search"> </th>
+                            </tr>
+                        </table>
+                    </div>
                 </div>
-                <div class="col-lg-6">
-                    <table class="table table-bordered ">
-                        <tr>
-                            <th>
-                                <input name="txtKeyword" placeholder="ค้นหา" type="text" class="form-control" id="txtKeyword" value="">
-                            </th>
-                            <th><input type="submit" class="btn btn-info btn-lg btn-block" value="Search"> </th>
-                        </tr>
+            </div>
+            <hr>
+        </form>
+    </div>
+    <!--  //////////////////////////////////////////////////////////////////////////////////////////////////////////////    -->
+
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="nonprint">
+                    <?php echo  '<p>จำนวนทั้งหมด : ' . $totaldata = mysqli_num_rows($queryalrecord) . ' รายการ</p>'; ?>
+                    <table class="table table-bordered table-hover ">
+                        <thead>
+                            <tr>
+                                <th style="text-align:center;"> เลขที่</th>
+                                <th style="text-align:center;">ชื่อ-นามสกุล ผู้แจ้ง </th>
+                                <th style="text-align:center;">ตำแหน่งหลัก</th>
+                                <th style="text-align:center;">แผนก</th>
+                                <th style="text-align:center;">ชื่อ ผู้ดำเนินการ </th>
+                                <th style="text-align:center;">สถานะดำเนินการ</th>
+                                <th style="text-align:center;">วันที่แจ้ง</th>
+                                <th style="text-align:center;">ดำเนินการเสร็จ</th>
+                                <? if ($_SESSION['status'] == '1') { ?>
+                                    <th style="text-align:center;">ตรวจสอบ</th>
+                                <? } ?>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php while ($result = mysqli_fetch_assoc($query)) { ?>
+                                <tr data-toggle="collapse" role="button" aria-expanded="false" aria-controls="collapseExample">
+                                    <td style="text-align:center;"><?php echo $result['id']; ?> </td>
+                                    <td><?php echo $result['pname'] . ' ' . $result['fname'] . '    ' . $result['lname']; ?> </td>
+                                    <td><?php echo $result['jobclass'] ?></td>
+                                    <td><?php echo $result['spclty']; ?> </td>
+                                    <td style="text-align:center;"><?php echo $result['it_getrequest']; ?> </td>
+                                    <td class="<?php if (($result['status'] == 'waiting')) {
+                                                        echo 'fontstatusa';
+                                                    } else echo 'fontstatusb'; ?>" style="text-align:center;"><?php echo $result['status']; ?> </td>
+                                    <td style="text-align:center;"><?php echo $result['insertdate_time']; ?> </td>
+                                    <td style="text-align:center;"><?php echo $result['enddate_time']; ?> </td>
+                                    <? if ($_SESSION['status'] == '1') { ?>
+                                        <td>
+                                            <center><button class="btn btn-info" data-toggle="modal" data-target="#closejob<?php echo $result['id']; ?>">เพิ่มเติม</button> </center>
+                                        </td>
+                                    <? } ?>
+                                </tr>
+                            <?php } ?>
+                        <tbody>
                     </table>
                 </div>
             </div>
         </div>
-    </form>
-    <hr>
-    <!--  //////////////////////////////////////////////////////////////////////////////////////////////////////////////    -->
 
 
-    <div class="container-fluid ">
-        <?php echo  '<p>จำนวนทั้งหมด : ' . $totaldata = mysqli_num_rows($queryalrecord) . ' รายการ</p>'; ?>
-        <hr calss='mx-auto mt-5 shadow p-3 bg-white rounded'>
-        <div class="row">
-            <div class="col-lg-12">
-                <table class="table table-bordered table-hover ">
-                    <thead>
-                        <tr>
-                            <th style="text-align:center;"> เลขที่</th>
-                            <th style="text-align:center;">ชื่อ-นามสกุล ผู้แจ้ง </th>
-                            <th style="text-align:center;">ตำแหน่งหลัก</th>
-                            <th style="text-align:center;">แผนก</th>
-                            <th style="text-align:center;">ชื่อ ผู้ดำเนินการ </th>
-                            <th style="text-align:center;">สถานะดำเนินการ</th>
-                            <th style="text-align:center;">วันที่แจ้ง</th>
-                            <th style="text-align:center;">ดำเนินการเสร็จ</th>
-                            <? if ($_SESSION['status'] == '1') { ?>
-                                <th style="text-align:center;">ตรวจสอบ</th>
-                            <? } ?>
-                        </tr>
-                    </thead>
 
-
-                    <tbody>
-                        <?php while ($result = mysqli_fetch_assoc($query)) { ?>
-                            <tr data-toggle="collapse" role="button" aria-expanded="false" aria-controls="collapseExample">
-                                <td style="text-align:center;"><?php echo $result['id']; ?> </td>
-                                <td><?php echo $result['pname'] . ' ' . $result['fname'] . '    ' . $result['lname']; ?> </td>
-                                <td><?php echo $result['jobclass'] ?></td>
-                                <td><?php echo $result['spclty']; ?> </td>
-                                <td style="text-align:center;"><?php echo $result['it_getrequest']; ?> </td>
-                                <td class="<?php if (($result['status'] == 'waiting')) {
-                                                    echo 'fontstatusa';
-                                                } else echo 'fontstatusb'; ?>" style="text-align:center;"><?php echo $result['status']; ?> </td>
-                                <td style="text-align:center;"><?php echo $result['insertdate_time']; ?> </td>
-                                <td style="text-align:center;"><?php echo $result['enddate_time']; ?> </td>
-                                <? if ($_SESSION['status'] == '1') { ?>
-                                    <td>
-                                        <center><button class="btn btn-info" data-toggle="modal" data-target="#closejob<?php echo $result['id']; ?>">เพิ่มเติม</button> </center>
-                                    </td>
-                                <? } ?>
-                            </tr>
-
-
-                            <!--///////////////////////////////////////////// Modal close job  ///////////////////////////////////////////////////////-->
-                            <div class="modal fade" id="closejob<?php echo $result['id']; ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModal" aria-hidden="true">
-                                <div class="modal-dialog">
-                                    <!-- Modal content-->
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h4 class="modal-title">ปิดงาน</h4>
-                                            <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                        </div>
-                                        <div class="modal-body">
-                                            <p>ใบแจ้งที่: <?php echo $result['id']; ?></p>
-                                            <? $id = $result['id'];?>
-                                            <p>วันที่แจ้ง: <?php echo $begin = $result['insertdate_time']; ?></p>
-                                            <p>ชื่อ-นามสกุล: <?php echo $userregis =  $result['pname'] . $result['fname'] . '    ' . $result['lname']; ?></p>
-                                            <p>ชื่อภาษาอังกฤษ: <?php echo $result['panme'] . $result['fname'] . '    ' . $result['lname']; ?></p>
-                                            <p>เพศ: <?php echo $result['gender']; ?> </p>
-                                            <p>ปีเกิด: <?php echo $result['birthday']; ?> </p>
-                                            <p>เลขที่ใบประกอบวิชาชีพ: <?php echo $result['doctor_cert']; ?> </p>
-                                            <p>ตำแหน่งหลัก: <?php echo $result['jobclass']; ?> </p>
-                                            <p>แผนก: <?php echo $result['spclty']; ?> </p>
-                                            <p>เฉพาะทาง: <?php echo $result['speciality']; ?> </p>
-                                            <p>วันที่เริ่มงาน: <?php echo $result['first_day_in_job']; ?> </p>
-                                            <p>user.: <?php echo $result['username']; ?> </p>
-                                            <p>password.: <?php echo $result['password']; ?> </p>
-                                            <p>หมายเหตุ.: <?php echo $result['note']; ?> </p>
-                                            <hr>
-                                            <h4 class="modal-title">ข้อมูลเพิ่มเติม</h4>
-                                            <hr>
-                                            <form action="#" method="POST" name='colsejob'>
-
-                                                <div class="row">
-                                                    <div class="col-4">
-                                                        <label for="assis1">ผู้ดำเนินการ</label>
-                                                        <select id="inputState" name="txtassisadmin" class="form-control" required>
-                                                            <option selected value="">...</option>
-                                                            <option value="จิรกร">จิรกร</option>
-                                                            <option value="ณรงค์">ณรงค์</option>
-                                                            <option value="รัชวิทย์">รัชวิทย์</option>
-                                                            <option value="ชานิศักดิ์">ชานิศักดิ์</option>
-                                                            <option value="ปฐมพงศ์">ปฐมพงศ์</option>
-                                                            <option value="ปิยดา">ปิยดา</option>
-                                                            <option value="เพ็ญจันทร์">เพ็ญจันทร์</option>
-                                                            <option value="อดิศักดิ์">อดิศักดิ์</option>
-                                                            <option value="วิภาวดี">วิภาวดี</option>
-                                                        </select>
-                                                    </div>
-                                                </div>
-                                        </div>
-
-                                        <div class="modal-footer">
-                                            <?php
-                                                date_default_timezone_set("Asia/Bangkok"); //ตั้งโซนเวลา
-                                                $month = date('m');
-                                                $day = date('d');
-                                                $year = (date('Y'));
-                                                $TIME = date("H:i:s");   //date("h:i:s a"); แบบมีpm am
-                                                $today = $year . '-' . $month . '-' . $day . '  ' . $TIME;
-                                                ?>
-                                            <input type="hidden" name="status" value="done">
-                                            <input type="hidden" name="userregis" value="<? echo $userregis; ?>">
-                                            <input type="hidden" name="idform" value="<? echo $result['id']; ?>">
-                                            <input type="hidden" name="enddate_time" value="<?php echo $today ?>">
-                                            <input type="hidden" name="begindate" value="<?php echo $begin ?>">
-                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">ปิด</button>
-                                            <input type="button" class="btn btn-success" value="Print" target="_blank" onclick="function_printform()">
-                                            <input type="submit" name="closejob" class="btn btn-primary" value="ดำเนินการแล้ว">
-                                        </div>
-                                        </form>
-                                    </div>
-                                </div>
+        <? foreach ($query as $item) { ?>
+            <!--///////////////////////////////////////////// Modal close job  ///////////////////////////////////////////////////////-->
+            <div class="modal fade" id="closejob<?php echo  $item['id']; ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModal" aria-hidden="true">
+                <div class="modal-dialog">
+                    <!-- Modal content-->
+                    <div class="modal-content">
+                        <div class="nonprint">
+                            <div class="modal-header">
+                                <h4 class="modal-title">ตรวจสอบดำเนินการ</h4>
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
                             </div>
-                            <!--//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////-->
+                        </div>
+                        <div class="modal-body">
+                            <div class="print">
+                                <h4 style="background-color: #878787;color:black;padding:10px;border-style: dotted;border-width: 0.5px;">ใบแจ้งที่: <?php echo $item['id']; ?></h4>
+                                <p>วันที่แจ้ง : <?php echo $begin = $item['insertdate_time']; ?></p>
+                                <p>ชื่อ-นามสกุล : <?php echo $userregis =  $item['pname'] . $item['fname'] . '    ' . $item['lname']; ?></p>
+                                <p>ชื่อภาษาอังกฤษ : <?php echo $item['panme'] . $item['fname'] . '    ' . $item['lname']; ?></p>
+                                <p>เพศ : <?php echo $item['gender']; ?> </p>
+                                <p>ปีเกิด : <?php echo $item['birthday']; ?> </p>
+                                <p>เลขที่ใบประกอบวิชาชีพ : <?php echo $item['doctor_cert']; ?> </p>
+                                <p>ตำแหน่งหลัก : <?php echo $item['jobclass']; ?> </p>
+                                <p>แผนก : <?php echo $item['spclty']; ?> </p>
+                                <p>เฉพาะทาง : <?php echo $item['speciality']; ?> </p>
+                                <p>วันที่เริ่มงาน : <?php echo $item['first_day_in_job']; ?> </p>
+                                <p>user : <?php echo $item['username']; ?> </p>
+                                <p>password : <?php echo $item['password']; ?> </p>
+                                <p>หมายเหตุ : <?php echo $item['note']; ?> </p>
+                                 <?php if($item['it_getrequest'] != null){ ?><p>ผู้ดำเนินการ : <?php echo $item['it_getrequest']; ?> </p><?}?>
+                            </div>
+                            <?php if($item['it_getrequest'] == null){ ?>
+                                <div class="nonprint">
+                                    <hr>
+                                    <h4 class="modal-title">ข้อมูลเพิ่มเติม</h4>
+                                    <form action="#" method="POST" name='colsejob'>
+                                        <div class="row">
+                                            <div class="col-4">
+                                                <label for="assis1">ผู้ดำเนินการ</label>
+                                                <select id="inputState" name="txtassisadmin" class="form-control" required>
+                                                    <option selected value="">...</option>
+                                                    <option value="จิรกร">จิรกร</option>
+                                                    <option value="ณรงค์">ณรงค์</option>
+                                                    <option value="รัชวิทย์">รัชวิทย์</option>
+                                                    <option value="ชานิศักดิ์">ชานิศักดิ์</option>
+                                                    <option value="ปฐมพงศ์">ปฐมพงศ์</option>
+                                                    <option value="ปิยดา">ปิยดา</option>
+                                                    <option value="เพ็ญจันทร์">เพ็ญจันทร์</option>
+                                                    <option value="อดิศักดิ์">อดิศักดิ์</option>
+                                                    <option value="วิภาวดี">วิภาวดี</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                </div>
+                            <?}?>
+                        </div>
 
-
-                        <?php } ?>
-                    <tbody>
-                </table>
+                        <div class="nonprint">
+                            <div class="modal-footer">
+                                <?php
+                                    date_default_timezone_set("Asia/Bangkok"); //ตั้งโซนเวลา
+                                    $month = date('m');
+                                    $day = date('d');
+                                    $year = (date('Y'));
+                                    $TIME = date("H:i:s");   //date("h:i:s a"); แบบมีpm am
+                                    $today = $year . '-' . $month . '-' . $day . '  ' . $TIME;
+                                    ?>
+                                <input type="hidden" name="status" value="done">
+                                <input type="hidden" name="userregis" value="<? echo $userregis; ?>">
+                                <input type="hidden" name="idform" value="<? echo $result['id']; ?>">
+                                <input type="hidden" name="enddate_time" value="<?php echo $today ?>">
+                                <input type="hidden" name="begindate" value="<?php echo $begin ?>">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">ปิด</button>
+                                <?php if($item['it_getrequest'] != null){ ?><input type="button" class="btn btn-success" value="Print" target="_blank" onclick="window.print()"><?}?>
+                                <input type="submit" name="closejob" class="btn btn-primary"  <?php if($item['it_getrequest'] != null){echo 'value="ดำเนินการแล้ว"'.'disabled';} else echo 'value="บันทึก"' ?>>
+                            </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
             </div>
-        </div>
+            <!--//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////-->
+        <? } ?>
+
 
 
         <!--  /////////////////// ส่วนของ paginatorทำ query มาใหม่และนับจำนวนแถว //////////////////     -->
         <?php
-
         $sql2 = "select * from frm_res_require_login_hosxp order by id desc";
         if (isset($_GET['txtKeyword'])) {
             if ($_GET["txtKeyword"] != "") {
@@ -298,22 +325,23 @@
         $total_page = ceil($total_record / $perpage);
         ?>
 
-
-        <nav aria-label="Page navigation example">
-            <ul class="pagination">
+        <div class="nonprint">
+            <nav aria-label="Page navigation example">
+                <ul class="pagination">
+                    <li class="page-item">
+                        <a class="page-link" href="checkreg_hosxp.php?page=1" aria-label="Previous">
+                            <span aria-hidden="true">&laquo;</span></a>
+                    <li class="page-item">
+                        <?php for ($i = 1; $i <= $total_page; $i++) { ?>
+                    <li class="page-item"><a class="page-link" href="checkreg_hosxp.php?page=<?php echo $i; ?>"><?php echo $i; ?></a></li>
+                <?php } ?>
                 <li class="page-item">
-                    <a class="page-link" href="checkreg_hosxp.php?page=1" aria-label="Previous">
-                        <span aria-hidden="true">&laquo;</span></a>
-                <li class="page-item">
-                    <?php for ($i = 1; $i <= $total_page; $i++) { ?>
-                <li class="page-item"><a class="page-link" href="checkreg_hosxp.php?page=<?php echo $i; ?>"><?php echo $i; ?></a></li>
-            <?php } ?>
-            <li class="page-item">
-                <a class="page-link" href="checkreg_hosxp.php?page=<?php echo $total_page; ?>" aria-label="Next">
-                    <span aria-hidden="true">&raquo;</span></a>
-            </li>
-            </ul>
-        </nav>
+                    <a class="page-link" href="checkreg_hosxp.php?page=<?php echo $total_page; ?>" aria-label="Next">
+                        <span aria-hidden="true">&raquo;</span></a>
+                </li>
+                </ul>
+            </nav>
+        </div>
     </div>
     </div>
     </div> <!-- /container -->
@@ -349,12 +377,6 @@
             });
 
         });
-    </script>
-
-    <script type="text/javascript">
-        function function_printform() {
-            window.open ("../frm_res/form_prints/printreges.php?id=<?php echo $id; ?>") ;
-        }
     </script>
 
 
