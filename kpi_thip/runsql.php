@@ -33,7 +33,7 @@ foreach ($ronetimepermonth as $sql1time) {
     $permonth = $sql1time['kpi_sql_a'];
     $permontB = $sql1time['kpi_sql_b'];
     $kpicode  = $sql1time['kpi_code'];
-    $kpi_cal  = $sql1time['kpi_cal'];
+   echo $kpi_cal  = $sql1time['kpi_cal'];
     $resultkpi = 0;
     // แทนที่ข้อความช่วงวันที่ A และ B 
     $sql_a = " $permonth ";
@@ -61,13 +61,18 @@ foreach ($ronetimepermonth as $sql1time) {
 
     if( $Rsuma != null && $RsumB != null ||$Rsuma != '' && $RsumB != '' )
     { 
-        if( $kpi_cal = 1){
+        if( $kpi_cal == '1'){
             @$resultkpi = ($Rsuma/$RsumB)*100;
-            $resultkpisub = number_format($resultkpi,2);
+            @$resultkpisub = number_format($resultkpi,2);
+            //echo 'Kpi :'.number_format($resultkpi1,2) .'<br>';
+        }
+        if( $kpi_cal == '2'){
+            @$resultkpi = $Rsuma/$RsumB;
+            @$resultkpisub = number_format($resultkpi,2);
             //echo 'Kpi :'.number_format($resultkpi1,2) .'<br>';
         }
     }
-    echo 'kpicode: '.$kpicode.' kpi_a: '.$Rsuma.' kpi_b: '.$RsumB.' kpi_c a/b*100: '.number_format($resultkpi,2).' inserttime: '.$kpi_dateupdate.' kpi_ym: '.$kpi_ym.' kpi_year: '.$Y.' status: '.$kpi_status.'<br>';
+    echo 'kpicode: '.$kpicode.' kpi_a: '.$Rsuma.' kpi_b: '.$RsumB.' kpi_c : '.number_format($resultkpi,2).' inserttime: '.$kpi_dateupdate.' kpi_ym: '.$kpi_ym.' kpi_year: '.$Y.' status: '.$kpi_status.'<br>';
     //ใช้คำสั่ง Insert ข้อมูลในเดือนก่อนหน้าของเดือนที่กด Update 
     $checkkpi = " SELECT * FROM cpareport_kpi_data where  kpi_code = '".$kpicode."' AND kpi_ym = '$kpi_ym' "; // queryดูใน kpicodeว่าเดือนนั้นๆเคย insert ไปรึยัง หากยังให้เพิ่มลงฐาน
     $have_checkkpi_yet = mysqli_query($con, $checkkpi);
@@ -109,7 +114,7 @@ if($sixmonthm == "11"||$sixmonthm == "05"){// ในรอบปีงบ เด
         $permontha = $sql2timeperyear['kpi_sql_a'];
         $permontb = $sql2timeperyear['kpi_sql_b'];
         $kpi_code  = $sql2timeperyear['kpi_code'];
-        $kpi_cal  = $sql2timeperyear['kpi_cal'];
+        echo $kpi_cal  = $sql2timeperyear['kpi_cal'];
         $resultkpi = 0;
         // แทนที่ข้อความช่วงวันที่ A และ B 
         $sql_a = " $permontha ";
@@ -138,14 +143,19 @@ if($sixmonthm == "11"||$sixmonthm == "05"){// ในรอบปีงบ เด
     
         if( $Rsuma != null && $RsumB != null ||$Rsuma != '' && $RsumB != '' )
         { 
-            if( $kpi_cal = 1){
+            if( $kpi_cal == '1'){
                 @$resultkpi = ($Rsuma/$RsumB)*100;
                 $resultkpisub = number_format($resultkpi,2);
                 //echo 'Kpi :'.number_format($resultkpi1,2) .'<br>';
             }
+            if( $kpi_cal == '2'){
+                @$resultkpi = $Rsuma/$RsumB;
+                @$resultkpisub = number_format($resultkpi,2);
+                //echo 'Kpi :'.number_format($resultkpi1,2) .'<br>';
+            }
         }
 
-        echo 'kpicode: '.$kpi_code.' kpi_a: '.$Rsuma.' kpi_b: '.$RsumB.' kpi_c a/b*100: '.number_format($resultkpi,2).' inserttime: '.$kpi_dateupdate.' kpi_ym: '.$kpi_ym.' kpi_year: '.$Y.' status: '.$kpi_status.'<br>';
+        echo 'kpicode: '.$kpi_code.' kpi_a: '.$Rsuma.' kpi_b: '.$RsumB.' kpi_c : '.number_format($resultkpi,2).' inserttime: '.$kpi_dateupdate.' kpi_ym: '.$kpi_ym.' kpi_year: '.$Y.' status: '.$kpi_status.'<br>';
         //ใช้คำสั่ง Insert ข้อมูลในเดือนก่อนหน้าของเดือนที่กด Update 
         $kpi_ym6 = date(("Y-m"),strtotime("first day of -6 month "));
         $checkkpi = " SELECT * FROM cpareport_kpi_data where  kpi_code = '".$kpi_code."' AND kpi_ym = '$kpi_ym6' "; // queryดูใน kpicodeว่าเดือนนั้นๆเคย insert ไปรึยัง หากยังให้เพิ่มลงฐาน
@@ -223,6 +233,11 @@ if($ononeyear == "11"){
             if( $kpi_cal = 1){
                 @$resultkpi = ($Rsuma/$RsumB)*100;
                 $resultkpisub = number_format($resultkpi,2);
+                //echo 'Kpi :'.number_format($resultkpi1,2) .'<br>';
+            }
+            if( $kpi_cal = 2){
+                @$resultkpi = ($Rsuma/$RsumB);
+                @$resultkpisub = number_format($resultkpi,2);
                 //echo 'Kpi :'.number_format($resultkpi1,2) .'<br>';
             }
         }
