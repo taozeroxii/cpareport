@@ -205,9 +205,9 @@ $result = mysqli_query($con, $sql);
             <th style="color:green"><?= '&nbsp;&nbsp;&nbsp' . $rw ?></th>
             <td style="text-align:center;"><? echo $kpicode ?></td>
             <td><?= $kpiname . '  <span class="badge badge-primary badge-pill">' . $kpi_ym . '</span>'; ?> </td>
-            <td style="text-align:center;"><? if ($a && $b != null) echo $c; else echo 'NULL'; ?></td>
+            <td style="text-align:center;"><? if (($a!=null && $b != null)) echo $c; else echo 'NULL'; ?></td>
             <td><? if ($a != null) echo $a; else echo 'NULL'; ?></td>
-            <td><? if ($b != null) echo $b;else echo 'NULL'; ?></td>
+            <td><? if ($b != null) echo $b; else echo 'NULL'; ?></td>
             <td data-toggle="modal" data-target="#niyam<?= $kpicode ?>"><button class="btn btn-primary">?</button></td>
             <td data-toggle="modal" data-target="#<?= $kpicode ?>"><button class="btn btn-danger">!</button></td>
           </tr>
