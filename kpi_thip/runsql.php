@@ -33,7 +33,7 @@ foreach ($ronetimepermonth as $sql1time) {
     $permonth = $sql1time['kpi_sql_a'];
     $permontB = $sql1time['kpi_sql_b'];
     $kpicode  = $sql1time['kpi_code'];
-   echo $kpi_cal  = $sql1time['kpi_cal'];
+    $kpi_cal  = $sql1time['kpi_cal'];
     $resultkpi = 0;
     // แทนที่ข้อความช่วงวันที่ A และ B 
     $sql_a = " $permonth ";
@@ -114,7 +114,7 @@ if($sixmonthm == "11"||$sixmonthm == "05"){// ในรอบปีงบ เด
         $permontha = $sql2timeperyear['kpi_sql_a'];
         $permontb = $sql2timeperyear['kpi_sql_b'];
         $kpi_code  = $sql2timeperyear['kpi_code'];
-        echo $kpi_cal  = $sql2timeperyear['kpi_cal'];
+        $kpi_cal  = $sql2timeperyear['kpi_cal'];
         $resultkpi = 0;
         // แทนที่ข้อความช่วงวันที่ A และ B 
         $sql_a = " $permontha ";

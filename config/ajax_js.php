@@ -113,7 +113,7 @@
     //Timepicker
     $(".timepicker").timepicker({
       showInputs: false
-    });
+    }); 
   });
 </script>
 
@@ -181,8 +181,30 @@
       }});
   }
   loadct();
-
 </script>
+
+
+<script type="text/javascript">                
+  function loadct(){
+    $.ajax({
+      url: "diagdental.class.php",
+      method: 'GET',
+      data: {'selector':'diagdental'},
+      success: function(result){
+        var htmlOption = "";
+        data = JSON.parse(result);
+        $.each(data, function(i, item) {
+          htmlOption += "<option value='"+ item.code +"'>"+ item.name +" "+item.hos_guide+"</option>";
+        });
+        $('#diag_dental').html(htmlOption);
+
+      }});
+  }
+  loadct();
+</script>
+
+
+
 
 <script type="text/javascript">                
   function loadct(){
@@ -201,6 +223,7 @@
       }});
   }
   loadct();
+  </script>
 
 <script type="text/javascript">                
   function loadclinic(){
@@ -219,8 +242,8 @@
       }});
   }
   loadclinic();
-
 </script>
+
 <style>
   .tt-query,
   .tt-hint {

@@ -241,6 +241,23 @@ function top10opd() {
   }
   load_d();	
 
+
+  function load_d(){
+    $.ajax({
+      url: "config/diagdental.class.php",
+      method: 'GET',
+      data: {'selector':'diagdental'},
+      success: function(result){
+        var htmlOption = "";
+        data = JSON.parse(result);
+        $.each(data, function(i, item) {
+          htmlOption += "<option value='"+ item.code +"'>"+ item.name +" "+ item.hos_guide+"</option>";
+        });
+        $('#diag_dental').html(htmlOption);
+      }});
+  }
+  load_d();	
+
   function load_pct(){
     $.ajax({
       url: "config/spclty.class.php",
@@ -291,6 +308,10 @@ function load_icd(){
       }});
   }
   load_cli();
+
+
+
+  
 
 </script>
 
