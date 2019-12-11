@@ -1,4 +1,5 @@
 <head>
+    <link href="admin/img/favicon.ico" rel="shortcut icon" type="image/x-icon" />
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Report</title>
