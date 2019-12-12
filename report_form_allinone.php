@@ -44,26 +44,26 @@ include "config/timestampviewer.php"; //เรียกไฟล์ในส่�
                                 <input type="text" class="form-control" id="datepickers" placeholder="ช่วงวันที่เริ่ม" name="datepickers" data-provide="datepicker" data-date-language="th" autocomplete="off">
                                 <input type="text" class="form-control" id="datepickert" placeholder="ถึงวันที่" name="datepickert" data-provide="datepicker" data-date-language="th" autocomplete="off">
                                 <label>&nbsp; ช่วงอายุคนป่วย</label>
-                                <select class="btn btn-default" name='beginage'>
-                                    <option selected>อายุเริ่ม..</option>
+                                <select class="btn btn-default" name='beginage'required>
+                                    <option selected >อายุเริ่ม..</option>
                                     <?php for ($fage = 0; $fage <= 120; $fage++) { ?>
                                         <option value="<? echo $fage; ?>"><?= $fage ?></option>
                                     <?php } ?>
                                 </select>
-                                <select class="btn btn-default" name='endage'>
+                                <select class="btn btn-default" name='endage' required>
                                     <option selected>อายุถึง..</option>
                                     <?php for ($fage = 0; $fage <= 120; $fage++) { ?>
                                         <option value="<? echo $fage; ?>"><?= $fage ?></option>
                                     <?php } ?>
                                 </select>
+                            </div>
+                            <div class="row" style="margin-top:10px;">
+                                <label>code และ hosguid : </label>
+                                <select class="select2" name="diag_dental[]" id="diag_dental" multiple="multiple" style="width: 40%;"></select>
                                 <label>&nbsp; สิทธิ</label>
                                 <select class="select2" name="i_dropdown[]" id="i_dropdown" multiple="multiple" style="width: 15%;" placeholder="สิทธิ" title="เลือกสิทธิ์"></select>
                                 <label>&nbsp; แพทย์</label>
                                 <select class="select2" name="d_dropdown[]" id="d_dropdown" multiple="multiple" style="width: 20%;"></select>
-                            </div>
-                            <div class="row" style="margin-top:10px;">
-                                <label>code และ hosguid : </label>
-                                <select class="select2" name="diagdental_dropdrown[]" id="diag_dental" multiple="multiple" style="width: 40%;"></select>
                             </div>
                             <div class="row">
                                 <small style="color:red;">**หมายเหต: ข้อมูลจะจำกัดเพียง 1500 แถวเพื่อป้องกันการดึงข้อมูลที่มากเกินไปจนอาจทำให้ส่งผลต่อหน้างาน**</small>
@@ -74,7 +74,7 @@ include "config/timestampviewer.php"; //เรียกไฟล์ในส่�
 
                 </div>
             </div>
-    </div>
+
 
 
 
@@ -90,9 +90,9 @@ include "config/timestampviewer.php"; //เรียกไฟล์ในส่�
     $beginage    = $_POST['beginage'];
     $endage    = $_POST['endage'];
 
-
-
     $c_pttype       = $_POST['i_dropdown'];
+    $d_doctor       = $_POST['d_dropdown'];
+    $dt_diag        = $_POST['diag_dental'];
 
     if ($datepickers != "--") {
         $sql = " $sql_detail ";
@@ -123,6 +123,52 @@ include "config/timestampviewer.php"; //เรียกไฟล์ในส่�
         }
         $sql = str_replace("{i_dropdown}", "$sum_pttypes", $sql);
 
+        // วนค่าเพิ่อแทนที่ตวแปรใร {d_doctor}  
+        if (sizeof($d_doctor) > 0) {
+            $sum_dc = "(";
+            foreach ($d_doctor as $value) {
+                $sum_dc .= "'" . $value . "',";
+            }
+            $sum_dc = rtrim($sum_dc, ',');
+            $sum_dc .= ") ";
+        } else {
+            $selectdoctor = 'SELECT code from doctor order by code';
+            $querydoctor = pg_query($selectdoctor);
+
+
+            $sum_dc = "(";
+            while ($resultdc = pg_fetch_assoc($querydoctor)) {
+                $sum_dc .= "'" . $resultdc['code'] . "',";
+            }
+            $sum_dc = rtrim($sum_dc, ',');
+            $sum_dc .= ") ";
+            $sql = str_replace("{d_doctor}", "$sum_dc", $sql);
+        }
+        $sql = str_replace("{d_doctor}", "$sum_dc", $sql);
+
+
+
+        // วนค่าเพิ่อแทนที่ตวแปรใน {diag_dental}  
+        if (sizeof($dt_diag) > 0) {
+            $sum_dtm = "(";
+            foreach ($dt_diag as $value) {
+                $sum_dtm .= "'" . $value . "',";
+            }
+            $sum_dtm = rtrim($sum_dtm, ',');
+            $sum_dtm .= ") ";
+        } else {
+            $selectdtm = 'SELECT code from dttm order by code';
+            $querydtm = pg_query($selectdtm);
+
+            $sum_dtm = "(";
+            while ($resultdtm = pg_fetch_assoc($querydtm)) {
+                $sum_dtm .= "'" . $resultdtm['code'] . "',";
+            }
+            $sum_dtm = rtrim($sum_dtm, ',');
+            $sum_dtm .= ")";
+            $sql = str_replace("{diag_dental}", "$sum_dtm", $sql);
+        }
+        $sql = str_replace("{diag_dental}", "$sum_dtm", $sql);
 
         $result = pg_query($sql);
         ?>
@@ -141,7 +187,7 @@ include "config/timestampviewer.php"; //เรียกไฟล์ในส่�
                     <div class="box-body table-responsive"><span class="fcol"> </span>
                         <table id="example1" class="table table-bordered table-striped">
                             <thead>
-                                <tr>
+                                <tr class= "text-nowrap">
                                     <?php
                                         $i = pg_num_fields($result);
                                         for ($j = 0; $j < $i; $j++) {
@@ -160,7 +206,7 @@ include "config/timestampviewer.php"; //เรียกไฟล์ในส่�
                                         <?php
                                                 for ($j = 0; $j < $i; $j++) {
                                                     $fieldname = pg_field_name($result, $j);
-                                                    echo '<td>' . $row_result[$fieldname] . '</td>';
+                                                    echo '<td class= "text-nowrap">' . $row_result[$fieldname] . '</td>';
                                                 }
                                                 ?>
                                     </tr>
@@ -177,8 +223,9 @@ include "config/timestampviewer.php"; //เรียกไฟล์ในส่�
     }
     ?>
     </section>
-    <?php include "config/footer.class.php"; ?>
+  
     </div>
+    <?php include "config/footer.class.php"; ?>
     <?php include "config/js.class.php" ?>
     <script>
         $(function() {
