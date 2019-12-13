@@ -1,7 +1,7 @@
 <?php
 $todate = date('Ymd_His');
-//header("Content-type: application/vnd.ms-excel");
-//header("Content-Disposition: attachment; filename=export".$todate.".xls");
+header("Content-type: application/vnd.ms-excel");
+header("Content-Disposition: attachment; filename=export".$todate.".xls");
 ?>
 <html>
 <body>

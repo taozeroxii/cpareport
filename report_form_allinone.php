@@ -267,8 +267,7 @@ include "config/timestampviewer.php"; //เรียกไฟล์ในส่�
     </script>
 
     <script type="text/javascript">
-        function export_excel() {
-            
+        function export_excel() {  
             document.location = "export_excel_f001.php?send_excel=<?php echo $send_excel; ?>&datepickers=<?php echo $datepickers; ?>&datepickert=<?php echo $datepickert; ?>&i_dropdown=<?php echo $sum_pttypes; ?>&beginage=<?php echo $beginage; ?>&endage=<?php echo $endage; ?>&d_doctor=<?php echo $sum_dc; ?>&dental_diag=<?php echo $sum_dtm; ?>&room=<?php echo $sum_r; ?>";
         }
     </script>
