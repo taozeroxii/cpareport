@@ -244,6 +244,26 @@
   loadclinic();
 </script>
 
+
+<script type="text/javascript">                
+  function load_room(){
+    $.ajax({
+      url: "room.class.php",
+      method: 'GET',
+      data: {'selector':'room'},
+      success: function(result){
+        var htmlOption = "";
+        data = JSON.parse(result);
+        $.each(data, function(i, item) {
+          htmlOption += "<option value='"+ item.code +"'>"+ item.code + " "+ item.name + "</option>";
+        });
+        $('#r_dropdown').html(htmlOption);
+        
+      }});
+  }
+  load_room();
+</script>
+
 <style>
   .tt-query,
   .tt-hint {

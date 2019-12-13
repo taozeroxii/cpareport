@@ -275,6 +275,25 @@ function top10opd() {
   }
   load_pct();
 
+
+  function load_room(){
+    $.ajax({
+      url: "config/room.class.php",
+      method: 'GET',
+      data: {'selector':'room'},
+      success: function(result){
+        var htmlOption = "";
+        data = JSON.parse(result);
+        $.each(data, function(i, item) {
+          htmlOption += "<option value='"+ item.code +"'>"+ item.name + "</option>";
+        });
+        $('#r_dropdown').html(htmlOption);
+
+      }});
+  }
+  load_room();
+
+
 function load_icd(){
     $.ajax({
       url: "config/icd9cm.class.php",

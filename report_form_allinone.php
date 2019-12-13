@@ -59,11 +59,13 @@ include "config/timestampviewer.php"; //เรียกไฟล์ในส่�
                             </div>
                             <div class="row" style="margin-top:10px;">
                                 <label>code และ hosguid : </label>
-                                <select class="select2" name="diag_dental[]" id="diag_dental" multiple="multiple" style="width: 40%;"></select>
+                                <select class="select2" name="diag_dental[]" id="diag_dental" multiple="multiple" style="width: 35%;"></select>
                                 <label>&nbsp; สิทธิ</label>
                                 <select class="select2" name="i_dropdown[]" id="i_dropdown" multiple="multiple" style="width: 15%;" placeholder="สิทธิ" title="เลือกสิทธิ์"></select>
                                 <label>&nbsp; แพทย์</label>
-                                <select class="select2" name="d_dropdown[]" id="d_dropdown" multiple="multiple" style="width: 20%;"></select>
+                                <select class="select2" name="d_dropdown[]" id="d_dropdown" multiple="multiple" style="width: 15%;"></select>
+                                <label>&nbsp; ห้องใช้งาน</label>
+                                <select class="select2" name="r_dropdown[]" id="r_dropdown" multiple="multiple" style="width: 15%;"></select>
                             </div>
                             <div class="row">
                                 <small style="color:red;">**หมายเหต: ข้อมูลจะจำกัดเพียง 1500 แถวเพื่อป้องกันการดึงข้อมูลที่มากเกินไปจนอาจทำให้ส่งผลต่อหน้างาน**</small>
@@ -74,8 +76,6 @@ include "config/timestampviewer.php"; //เรียกไฟล์ในส่�
 
                 </div>
             </div>
-
-
 
 
     <?php
@@ -90,9 +90,10 @@ include "config/timestampviewer.php"; //เรียกไฟล์ในส่�
     $beginage    = $_POST['beginage'];
     $endage    = $_POST['endage'];
 
-    $c_pttype       = $_POST['i_dropdown'];
-    $d_doctor       = $_POST['d_dropdown'];
-    $dt_diag        = $_POST['diag_dental'];
+    $c_pttype       = $_POST['i_dropdown']; //เก็ฐค่าสิทธิ
+    $d_doctor       = $_POST['d_dropdown']; //หมอ
+    $dt_diag        = $_POST['diag_dental'];//ไดแอกทันตกรรม
+    $r_room         = $_POST['r_dropdown'];//ห้อง
 
     if ($datepickers != "--") {
         $sql = " $sql_detail ";
@@ -170,6 +171,30 @@ include "config/timestampviewer.php"; //เรียกไฟล์ในส่�
         }
         $sql = str_replace("{diag_dental}", "$sum_dtm", $sql);
 
+
+        
+        // วนค่าเพิ่อแทนที่ตวแปรใน {diag_dental}  
+        if (sizeof($r_room) > 0) {
+            $sum_r = "(";
+            foreach ($r_room as $value) {
+                $sum_r .= "'" . $value . "',";
+            }
+            $sum_r = rtrim($sum_r, ',');
+            $sum_r .= ") ";
+        } else {
+            $selectksk = 'SELECT depcode from kskdepartment';
+            $queryksk = pg_query($selectksk);
+
+            $sum_r = "(";
+            while ($resultksk = pg_fetch_assoc($queryksk)) {
+                $sum_r .= "'" . $resultksk['depcode'] . "',";
+            }
+            $sum_r = rtrim($sum_r, ',');
+            $sum_r .= ")";
+            $sql = str_replace("{kskdepartment}", "$sum_r", $sql);
+        }
+        $sql = str_replace("{kskdepartment}", "$sum_r", $sql);
+
         $result = pg_query($sql);
         ?>
         <div class="row">
@@ -243,10 +268,9 @@ include "config/timestampviewer.php"; //เรียกไฟล์ในส่�
 
     <script type="text/javascript">
         function export_excel() {
-            document.location = "export_excel_f001.php?send_excel=<?php echo $send_excel; ?>&datepickers=<?php echo $datepickers; ?>&datepickert=<?php echo $datepickert; ?>&i_dropdown=<?php echo $sum_pttypes; ?>";
+            
+            document.location = "export_excel_f001.php?send_excel=<?php echo $send_excel; ?>&datepickers=<?php echo $datepickers; ?>&datepickert=<?php echo $datepickert; ?>&i_dropdown=<?php echo $sum_pttypes; ?>&beginage=<?php echo $beginage; ?>&endage=<?php echo $endage; ?>&d_doctor=<?php echo $sum_dc; ?>&dental_diag=<?php echo $sum_dtm; ?>&room=<?php echo $sum_r; ?>";
         }
     </script>
-
 </body>
-
 </html>
