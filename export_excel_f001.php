@@ -35,7 +35,7 @@ foreach($res as $item) {
                     $sql = str_replace("{endage}", "$endage", $sql);
                     $sql = str_replace("{d_doctor}", "$d_doctor", $sql);
                     $sql = str_replace("{diag_dental}", "$dental_diag", $sql);
-                    echo $sql = str_replace("{kskdepartment}", "$room", $sql);
+                    $sql = str_replace("{kskdepartment}", "$room", $sql);
                     $result = pg_query($sql);
     ?>
     <table width="100%" border="1">
