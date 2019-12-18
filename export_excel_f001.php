@@ -1,7 +1,7 @@
 <?php
 $todate = date('Ymd_His');
-header("Content-type: application/vnd.ms-excel");
-header("Content-Disposition: attachment; filename=export".$todate.".xls");
+//header("Content-type: application/vnd.ms-excel");
+//header("Content-Disposition: attachment; filename=export".$todate.".xls");
 ?>
 <html>
 <body>
@@ -19,6 +19,8 @@ $endage         = $_GET['endage'];
 $d_doctor       =  $_GET['d_doctor'];
 $dental_diag    =  $_GET['dental_diag'];
 $room           =  $_GET['room'];
+$diag_1         =  $_GET['diag_1'];
+$diag_2         =  $_GET['diag_2'];
 
 $topLevelItems = " SELECT sql_code,sql_head FROM cpareport_sql WHERE sql_file = '".$sql."'";
 $res=mysqli_query($con,$topLevelItems);
@@ -36,6 +38,9 @@ foreach($res as $item) {
                     $sql = str_replace("{d_doctor}", "$d_doctor", $sql);
                     $sql = str_replace("{diag_dental}", "$dental_diag", $sql);
                     $sql = str_replace("{kskdepartment}", "$room", $sql);
+
+                    $sql = str_replace("{diag_1}", "'$diag_1'", $sql);
+                    $sql = str_replace("{diag_2}", "'$diag_2'", $sql);
                     $result = pg_query($sql);
     ?>
     <table width="100%" border="1">
