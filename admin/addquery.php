@@ -81,8 +81,8 @@ include('../config/my_con.class.php');
 
 
     <?php if (isset($_POST['submit'])) {
-
-        /*echo 'id :'.$_POST['id'] . '<br> ';
+        /*
+        echo 'id :'.$_POST['id'] . '<br> ';
         echo 'sql_names :'.$_POST['sql_names'] . '<br> ';
         echo 'sql_file  :'.$_POST['sql_file'] . '<br>';
         echo 'textquery  :'.$_POST['textquery'] . '<br>';
@@ -106,7 +106,7 @@ include('../config/my_con.class.php');
         */
         $reptitle = str_replace(' ', '_', $_POST["menu_title"]);
 
-        $insertsql = "INSERT INTO cpareport_sql (sql_id,sql_name,sql_file,sql_code,sql_subcode_1,sql_subcode_2,sql_subcode_3,sql_type,sq_link,sql_head,sql_updatedate,sql_userupdate,sql_status)
+         $insertsql = "INSERT INTO cpareport_sql (sql_id,sql_name,sql_file,sql_code,sql_subcode_1,sql_subcode_2,sql_subcode_3,sql_type,sq_link,sql_head,sql_updatedate,sql_userupdate,sql_status)
         VALUES ('" . $_POST["id"] . "'
         ,'" . $_POST["sql_names"] . "'
         ,'" . $_POST["sql_file"] . "'
