@@ -113,15 +113,18 @@ $res = mysqli_query($con, $topLevelItems);
 
 	if (isset($_POST['submit'])) {
 		//echo $_POST['code'];
-		$update = "UPDATE  cpareport_sql  SET sql_code = '" . addslashes($_POST['code']) . "' where sql_file =  '" . $_POST['file_sql'] . "' ";
+		$update = "UPDATE  cpareport_sql  SET sql_code = '" . addslashes($_POST['code']) . "' , sql_subcode_1 = '" . addslashes($_POST['code1']) . "' where sql_file =  '" . $_POST['file_sql'] . "' ";
 		$Qupdate = mysqli_query($con, $update);
 		date_default_timezone_set("Asia/Bangkok");
 		$Indate = date("Y-m-d H:i:s");
-		$insertlog = "INSERT INTO sqlupdate_log (sql_edit_user,sql_file,old_sql,new_sql,update_datetime)
+
+	    $insertlog = "INSERT INTO sqlupdate_log (sql_edit_user,sql_file,old_sql,new_sql,sqlsubcode1_old,sqlsubcode1_new,update_datetime)
         VALUES ('" . $_SESSION['username'] . "'
         ,'" . $_POST['file_sql'] . "'
         ,'" . addslashes($_POST["old_code"]) . "'
         ,'" . addslashes($_POST["code"]) . "'
+		,'" . addslashes($_POST["old_code1"]) . "'
+        ,'" . addslashes($_POST["code1"]) . "'
         ,'" . $Indate . "'
 		)";
 		$Qinsertlog = mysqli_query($con, $insertlog);
@@ -133,6 +136,7 @@ $res = mysqli_query($con, $topLevelItems);
 			echo "<script>alert('queryInsert ผิดพลาด');window.location=sqlupdate.php;</script>";
 		}
 	}
+
 
 	if (isset($_POST['closesql'])) {
 		echo $_post['closesql'];
@@ -166,6 +170,7 @@ $res = mysqli_query($con, $topLevelItems);
 		<?php
 		foreach ($res as $item);
 		$code =  $item['sql_code'];
+		$code1 =  $item['sql_subcode_1'];
 		?>
 
 		<div class="hhh">
@@ -203,7 +208,7 @@ $res = mysqli_query($con, $topLevelItems);
 			
 			</span>
 		</div>
-		<hr>
+	
 		<div class="row">
 			<div class="col-12">
 				<div class="btnbar" style="float:right;margin-right:15px">
@@ -219,11 +224,20 @@ $res = mysqli_query($con, $topLevelItems);
 				</div>
 			</div>
 		</div>
+	
 
 		<div class="search">
 			<form action="#" name="s" id="s" method="POST">
-				<textarea style="background: black;color:white" class="input-group" rows="25" cols="100" name="code" id="sql" value=""><?php echo $code; ?></textarea>
+					<?if($code1 != null || $code1 !=''){?>
+					<div class="row">
+					<div class="col-6">	sql_1<textarea style="background: black;color:white" class="input-group" rows="25" cols="100" name="code" id="sql" value=""><?php echo $code; ?></textarea></div>
+					<div class="col-6">	sql_code1<textarea style="background: black;color:white" class="input-group" rows="25" cols="100" name="code1" id="sql" value=""><?php echo $code1; ?></textarea></div>
+					<?}else{ ?>
+						<textarea style="background: black;color:white" class="input-group" rows="25" cols="100" name="code" id="sql" value=""><?php echo $code; ?></textarea>
+					<?}?>
+				</div>
 				<input type="hidden" name="old_code" value="<? echo $code ?>">
+				<input type="hidden" name="old_code1" value="<? echo $code1?>">
 				<input type="hidden" name="file_sql" value="<? echo $file ?>">
 				<br>
 				<div class="row">
@@ -257,6 +271,8 @@ $res = mysqli_query($con, $topLevelItems);
 							<th>sql-file</th>
 							<th>sql เก่า</th>
 							<th>sql ใหม่</th>
+							<th>sqlsub1 เก่า</th>
+							<th>sqlsub1 ใหม่</th>
 							<th>วัน-เวลา</th>
 							<?php
 							while ($data = mysqli_fetch_assoc($querylog)) {
@@ -266,6 +282,8 @@ $res = mysqli_query($con, $topLevelItems);
 									<td><?echo $data['sql_file']; ?></td>
 									<td class= "text-nowrap"><?echo $data['old_sql']; ?></td>
 									<td class= "text-nowrap"><?echo $data['new_sql']; ?></td>
+									<td class= "text-nowrap"><?echo $data['sqlsubcode1_old']; ?></td>
+									<td class= "text-nowrap"><?echo $data['sqlsubcode1_new']; ?></td>
 									<td class= "text-nowrap"><?echo $data['update_datetime']; ?></td>
 								</tr>
 							<?php $ii++;
