@@ -230,8 +230,8 @@ $res = mysqli_query($con, $topLevelItems);
 			<form action="#" name="s" id="s" method="POST">
 					<?if($code1 != null || $code1 !=''){?>
 					<div class="row">
-					<div class="col-6">	sql_1<textarea style="background: black;color:white" class="input-group" rows="25" cols="100" name="code" id="sql" value=""><?php echo $code; ?></textarea></div>
-					<div class="col-6">	sql_code1<textarea style="background: black;color:white" class="input-group" rows="25" cols="100" name="code1" id="sql" value=""><?php echo $code1; ?></textarea></div>
+					<div class="col-12 col-lg-6">	sqlcode<textarea style="background: black;color:white" class="input-group" rows="25" cols="100" name="code" id="sql" value=""><?php echo $code; ?></textarea></div>
+					<div class="col-12 col-lg-6">	sql_subcode1<textarea style="background: black;color:white" class="input-group" rows="25" cols="100" name="code1" id="sql" value=""><?php echo $code1; ?></textarea></div>
 					<?}else{ ?>
 						<textarea style="background: black;color:white" class="input-group" rows="25" cols="100" name="code" id="sql" value=""><?php echo $code; ?></textarea>
 					<?}?>
