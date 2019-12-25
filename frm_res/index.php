@@ -43,18 +43,18 @@
 
 
 <body style="font-family: 'Prompt', sans-serif;">
-<nav class="navbar navbar-expand-lg  navbar-dark bg-dark">
-  <a class="navbar-brand" href="../index.php">Report</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-  <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-    <div class="navbar-nav">
-      <a class="nav-item nav-link " href="checkreg_hosxp.php">หน้ารายการคำขอ <span class="sr-only">(current)</span></a>
-      <a class="nav-item nav-link active" href="#">เพิ่มผู้ใช้งานHosxp</a>
-      <a class="nav-item nav-link disabled" href="#" tabindex="-1" style="float:right" aria-disabled="true">Disabled</a>
-  </div>
-</nav>
+  <nav class="navbar navbar-expand-lg  navbar-dark bg-dark">
+    <a class="navbar-brand" href="../index.php">Report</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+      <div class="navbar-nav">
+        <a class="nav-item nav-link " href="checkreg_hosxp.php">หน้ารายการคำขอ <span class="sr-only">(current)</span></a>
+        <a class="nav-item nav-link active" href="#">เพิ่มผู้ใช้งานHosxp</a>
+        <a class="nav-item nav-link disabled" href="#" tabindex="-1" style="float:right" aria-disabled="true">Disabled</a>
+      </div>
+  </nav>
 
 
   <style>
@@ -180,7 +180,7 @@
           return $result;
         }
 
-        $message = 'ขอเพิ่ม user hosxp ' . "\r\n" .
+        $message = "\r\n" .
           'วันที่ขอเพิ่ม :' . date("Y/m/d H:i:s") . "\r\n" .
           'ชื่อ :' . $_POST["pname"] . " " .  $_POST["fname"] . "  " .  $_POST["lname"] . "\r\n" .
           'สถานะ : รอดำเนินการ';
@@ -189,7 +189,11 @@
       } else   echo "<script>alert('มีการแจ้งข้อมูลนี้ไปแล้ว');window.location=index.php;</script>";
     } else   echo "<script>alert('มีข้อมูลในระบบแล้วหรือเคยแจ้งไปแล้ว');window.location=index.php;</script>";
   }
-  
+
+
+  /////////////////// เช็คเก็บข้อมูลผู้เข้าชม sql นั้นๆ เพื่อเก็บ session นับจำนวน view  //////////////////////////////
+  $sql 		=  $_GET['sql'];
+  include "../config/timestampviewer.php"; //เรียกไฟล์ในส่วนที่ทำงานนับจำนวนผู้กดเข้ามาหน้า sql นั้นๆ
   ?>
 
 
@@ -238,7 +242,7 @@
                   </div>
 
                   <div class="row mt-3">
-                    <div class="col-sm-2">
+                    <div class="col-sm-1">
                       <span class="nameofinput">เพศ</span>
                       <select class="form-control" name="gender" required>
                         <option selected> gender </option>
@@ -246,7 +250,7 @@
                         <option value="หญิง">หญิง</option>
                       </select>
                     </div>
-                    <div class="col-sm-2">
+                    <div class="col-sm-3">
                       <span class="nameofinput">วันเดือนปีเกิด(คศ.)</span>
                       <input class="form-control" type="date" placeholder="ปีเกิด" name="birthday" required>
                     </div>
@@ -268,7 +272,7 @@
                     </div>
                     <div class="col-sm-2">
                       <span class="nameofinput">แผนกสาขา(sp)</span>
-                      <select class="form-control" name="spcltys" require>
+                      <select class="form-control" name="spcltys" required>
                         <option value="" selected>โปรดเลือก ..</option>
                         <?php while ($Result = mysqli_fetch_assoc($spcltys)) { ?>
                           <option value="<?php echo $Result['frm_res_spclty']; ?>">
@@ -296,11 +300,11 @@
                       <span class="nameofinput">เลขที่ใบประกอบวิชาชีพ</span>
                       <input class="form-control" type="text" placeholder="เลขที่ใบประกอบวิชาชีพ" name="doctorcert">
                     </div>
-                    <div class="col-sm-2">
-                      <span class="nameofinput">วันที่เข้าเริ่มงาน</span>
-                      <input class="form-control" type="date" placeholder="" name="firstdayonjob" require>
-                    </div>
                     <div class="col-sm-3">
+                      <span class="nameofinput">วันที่เข้าเริ่มงาน</span>
+                      <input class="form-control" type="date" placeholder="" name="firstdayonjob" required>
+                    </div>
+                    <div class="col-sm-2">
                       <span class="nameofinput">email</span>
                       <input class="form-control" type="email" name="emailaddress">
                     </div>
@@ -446,10 +450,10 @@
 
 
                     <? // รับค่าจากช่อง income ส่งค่า id income ไปหน้า select menuincome เพื่อเช็คค่า่ในตารางว่าป็น lab ไหมหากใช่ห้แสดงข้อมูลที่ต้องกรอกเพิ่มเติมและีเทรินข้อมูลหน้านั้นกลับมาที่ if menuincomes
-                      ?>
+                    ?>
                     <div class="row" id="menuincomes"></div>
                     <? // รับค่าจากช่อง income ส่งค่า id income ไปหน้า select menuincome เพื่อเช็คค่า่ในตารางว่าป็น lab ไหมหากใช่ห้แสดงข้อมูลที่ต้องกรอกเพิ่มเติมและีเทรินข้อมูลหน้านั้นกลับมาที่ if menuincomes
-                      ?>
+                    ?>
 
                     <hr>
                     <div class="row mt-5">
@@ -579,8 +583,8 @@
     })();
   </script>
   <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 </body>
 
 </html>
