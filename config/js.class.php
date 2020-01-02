@@ -15,38 +15,20 @@
 
  <script type="text/javascript">
   google.charts.load('current', {'packages':['corechart']});
+  google.charts.setOnLoadCallback(chart_top10report);
   google.charts.setOnLoadCallback(pie_chart);
   google.charts.setOnLoadCallback(sex);
   google.charts.setOnLoadCallback(ptt);
   google.charts.setOnLoadCallback(cmi);
-  google.charts.setOnLoadCallback(chart_top10report);
   google.charts.setOnLoadCallback(top10death);
   google.charts.setOnLoadCallback(top10ipd);
   google.charts.setOnLoadCallback(top10opd);
   google.charts.setOnLoadCallback(bar_chart);
   google.charts.setOnLoadCallback(line_chart);
   google.charts.setOnLoadCallback(chart_age);
-  google.charts.setOnLoadCallback(ctr);
-
-
-  function ctreport() { 
-  var jsonData = $.ajax({
-    url: 'charts/chart_top10report.php',
-    dataType:"json",
-    async: false,
-    success: function(jsonData)
-    {
-      var data  = new google.visualization.arrayToDataTable(jsonData);  
-      var chart = new google.visualization.PieChart(document.getElementById('ctr'));
-      chart.draw(data);
-
-    } 
-  }).responseText;
-}
 
 
 
-  
   function chart_top10report() { 
   var jsonData = $.ajax({
     url: 'charts/chart_top10report.php',
@@ -60,7 +42,8 @@
 
     } 
   }).responseText;
-}
+  }
+
 
   function chart_age() { 
   var jsonData = $.ajax({
@@ -177,6 +160,8 @@ function top10opd() {
     } 
   }).responseText;
 }
+
+
 
 
 </script>

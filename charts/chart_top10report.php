@@ -1,20 +1,11 @@
 <?php
-ob_start();
-date_default_timezone_set('asia/bangkok');
 include('db.php');
-
-$data[] = array('รหัสโรค','จำนวน');
-$sql = " SELECT death_diag_1 as pdx,count(*) as cc
-        FROM death
-        WHERE 1 = 1
-        AND death_diag_1 <> '' AND death_diag_1 is not null
-        group by pdx
-        order by cc desc 
-        limit 10";
-$query = pg_query($sql);
-while($result = pg_fetch_array($query))
+$data[] = array('ชื่อรายงาน','จำนวน');
+$sql = " SELECT sql_file,cm.menu_sub,count(*)as cc FROM viewer v left join cpareport_menu cm on v.sql_file = cm.menu_file group by sql_file order by cc desc limit 10";
+$query = mysqli_query($con,$sql);
+while($result = mysqli_fetch_assoc($query))
 {
-$data[] = array($result['pdx'],(int)$result['cc']);
+$data[] = array($result['menu_sub'],(int)$result['cc']);
 }
 echo json_encode($data);
 ?>
