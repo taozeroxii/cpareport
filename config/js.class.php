@@ -19,6 +19,7 @@
   google.charts.setOnLoadCallback(sex);
   google.charts.setOnLoadCallback(ptt);
   google.charts.setOnLoadCallback(cmi);
+  google.charts.setOnLoadCallback(chart_top10report);
   google.charts.setOnLoadCallback(top10death);
   google.charts.setOnLoadCallback(top10ipd);
   google.charts.setOnLoadCallback(top10opd);
@@ -43,6 +44,23 @@
   }).responseText;
 }
 
+
+
+  
+  function chart_top10report() { 
+  var jsonData = $.ajax({
+    url: 'charts/chart_top10report.php',
+    dataType:"json",
+    async: false,
+    success: function(jsonData)
+    {
+      var data  = new google.visualization.arrayToDataTable(jsonData);  
+      var chart = new google.visualization.ColumnChart(document.getElementById('chart_top10report'));
+      chart.draw(data);
+
+    } 
+  }).responseText;
+}
 
   function chart_age() { 
   var jsonData = $.ajax({
