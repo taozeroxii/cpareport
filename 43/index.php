@@ -5,7 +5,10 @@ include('../config/pg_con.class.php');
 include('../config/func.class.php');
 $datenow = DATE('Y-m-d');
 $YMDbegin = date("Y-m", strtotime("first day of previous month")); 
-$subItems = " SELECT *  FROM f43_filename  ";
+$subItems = " SELECT a.id,a.f43_name_en,a.f43_name_th,b.f43_record,f43_sql
+FROM f43_filename as a
+LEFT JOIN f43_excel as b ON a.f43_name_en = b.f43_name_en
+ORDER BY a.id  ";
 $res      = mysqli_query($con,$subItems);
 ?>
 
@@ -16,23 +19,66 @@ $res      = mysqli_query($con,$subItems);
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>RoyalUI Admin</title>
+  <title> HDC DATA CENTER HOPITAL. </title>
   <link rel="stylesheet" href="vendors/ti-icons/css/themify-icons.css">
   <link rel="stylesheet" href="vendors/base/vendor.bundle.base.css">
   <link rel="stylesheet" href="css/style.css">  <link rel="shortcut icon" href="images/favicon.png" />
+  <style type="text/css">
+    .f1{
+      font-weight: bold;
+      color: #0B5345;
+    }
+    .f2{
+     font-weight: bold;
+     color: #CB4335
+
+   }
+   .awr{
+    font-weight: bold;
+    color:#AE1708; 
+  }
+  .aws{
+    font-weight: bold;
+    color: #157A32;
+
+  }
+  td{
+    font-weight: bold;
+    font-size: 1.4em;
+    color: #566573;
+  }
+  .ca{
+    color: #B41212;
+    font-weight: bold;
+    font-size: 1.8em;
+  }
+  .cb{
+
+   color: #0656CA;
+   font-weight: bold;
+   font-size: 1.8em;
+ }
+ .cc{
+
+   color: #29890B;
+   font-weight: bold;
+   font-size: 1.8em;
+ }
+</style>
 </head>
 <body>
   <div class="container-scroller">
     <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
       <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
-        <a class="navbar-brand brand-logo mr-5" href="index.html"><img src="images/logo.svg" class="mr-2" alt="logo"/></a>
-        <a class="navbar-brand brand-logo-mini" href="index.html"><img src="images/logo-mini.svg" alt="logo"/></a>
+        <span class="f1"> F 4 3 </span>&nbsp;&nbsp;<span class="f2"> R a C o r d</span>
+      <!--   <a class="navbar-brand brand-logo mr-5" href="index.html"><img src="images/logo.svg" class="mr-2" alt="logo"/></a>
+        <a class="navbar-brand brand-logo-mini" href="index.html"><img src="images/logo-mini.svg" alt="logo"/></a> -->
       </div>
       <div class="navbar-menu-wrapper d-flex align-items-center justify-content-end">
         <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
           <span class="ti-view-list"></span>
         </button>
-        <ul class="navbar-nav mr-lg-2">
+        <!-- <ul class="navbar-nav mr-lg-2">
           <li class="nav-item nav-search d-none d-lg-block">
             <div class="input-group">
               <div class="input-group-prepend hover-cursor" id="navbar-search-icon">
@@ -43,8 +89,8 @@ $res      = mysqli_query($con,$subItems);
               <input type="text" class="form-control" id="navbar-search-input" placeholder="Search now" aria-label="search" aria-describedby="search">
             </div>
           </li>
-        </ul>
-        <ul class="navbar-nav navbar-nav-right">
+        </ul> -->
+        <!-- <ul class="navbar-nav navbar-nav-right">
           <li class="nav-item dropdown mr-1">
             <a class="nav-link count-indicator dropdown-toggle d-flex justify-content-center align-items-center" id="messageDropdown" href="#" data-toggle="dropdown">
               <i class="ti-email mx-0"></i>
@@ -152,7 +198,7 @@ $res      = mysqli_query($con,$subItems);
               </a>
             </div>
           </li>
-        </ul>
+        </ul> -->
         <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button" data-toggle="offcanvas">
           <span class="ti-view-list"></span>
         </button>
@@ -162,9 +208,9 @@ $res      = mysqli_query($con,$subItems);
     <div class="container-fluid page-body-wrapper">
       <!-- partial:partials/_sidebar.html -->
       <nav class="sidebar sidebar-offcanvas" id="sidebar">
-        <ul class="nav">
+      <!--   <ul class="nav">
           <li class="nav-item">
-            <a class="nav-link" href="index.html">
+            <a class="nav-link" href="#">
               <i class="ti-shield menu-icon"></i>
               <span class="menu-title">Dashboard</span>
             </a>
@@ -228,16 +274,15 @@ $res      = mysqli_query($con,$subItems);
               <span class="menu-title">Documentation</span>
             </a>
           </li>
-        </ul>
+        </ul -->
       </nav>
-
       <div class="main-panel">
         <div class="content-wrapper">
           <div class="row">
             <div class="col-md-12 grid-margin">
               <div class="d-flex justify-content-between align-items-center">
                 <div>
-                  <h4 class="font-weight-bold mb-0">F43 EXPORT</h4>
+                  <h4 class="font-weight-bold mb-0">จำนวนข้อมูลใน 43 แฟ้ม </h4>
                 </div>
 <!--                 <div>
                     <button type="button" class="btn btn-primary btn-icon-text btn-rounded">
@@ -247,19 +292,6 @@ $res      = mysqli_query($con,$subItems);
                 </div>
               </div>
             </div>
-            <style type="text/css">
-              td{
-                font-weight: bold;
-                font-size: 1.4em;
-                color: #566573;
-              }
-              .aws
-              {
-               color: #641E16;
-              }
-            </style>
-
-
             <div class="row">
               <div class="col-md-10 grid-margin stretch-card">
                 <div class="card">
@@ -271,58 +303,70 @@ $res      = mysqli_query($con,$subItems);
                           <tr>
                             <th>ลำดับ</th>
                             <th>แฟ้ม</th>
-                            <th>รายละเอียด</th>
-                            <th>จำนวนข้อมูล</th>
+                            <th>รายละเอียด</th>                           
+                            <th>จำนวนข้อมูลในระบบ</th>
+                            <th>จำนวนข้อมูลที่ส่งออกจาก Hosxp</th>
+                            <th>ระดับ</th>
                           </tr>
                         </thead>
                         <tbody>
                           <?php
                           foreach($res as $subItem){
-                              $subItems2  = $subItem['f43_sql'];
-                              $subItems2  = str_replace("{datepickers}", "'$datenow'", $subItems2);
-                              $res2       = pg_query($conn,$subItems2);
-                              $res3       = pg_fetch_array($res2); 
-                              $count_data = number_format($res3['cc'],0);
-                          ?>
-                            <tr title="จำนวน [&nbsp;&nbsp;&nbsp;<?php  echo $count_data; ?>&nbsp;&nbsp;&nbsp;]">
+                            $subItems2  = $subItem['f43_sql']; 
+                            $subItems2  = str_replace("{datepickers}", "'$datenow'", $subItems2);
+                            $res2       = pg_query($conn,$subItems2);
+                            $res3       = pg_fetch_array($res2); 
+                            $count_data = number_format($res3['cc'],0);
+                            ?>
+                            <tr title="">
                              <td><?php echo $subItem['id'];?></td>
                              <td><?php echo $subItem['f43_name_en'];?></td>
                              <td><?php echo $subItem['f43_name_th'];?></td>
-                             <td class="aws"><?php  echo $count_data; ?></td>
-                          </tr>
-                          <?php
-                        }
-                        ?>
-                      </tbody>
-                    </table>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-          </div>
-
+                             <td class="aws" title=""><?php  echo $count_data; ?></td>
+                             <?php $datasystem =  number_format($subItem['f43_record'],0);?>
+                             <td class="awr"><?php echo $datasystem;?></td>
+                             <td class="awr">
+                              <?php if ($datasystem == $count_data) {
+                                echo "<span class='cc'><i class='ti-check' title='ข้อมูลในระบบกับส่งออกเท่ากัน = '></i></span>";
+                              } elseif ($datasystem < $count_data) {
+                               echo "<span class='ca'><i class='ti-arrow-down' title='ข้อมูลในระบบมากกว่า > ที่ส่งออก'></i></span>";
+                             } elseif ($datasystem > $count_data){
+                               echo "<span class='cb'><i class='ti-arrow-up' title='ข้อมูลในระบบน้อยกว่า < ที่ส่งออก'></i></span>";
+                             }
+                             ?>
+                           </td>
+                         </tr>
+                         <?php
+                       }
+                       ?>
+                     </tbody>
+                   </table>
+                 </div>
+               </div>
+             </div>
+           </div>
+         </div>
+       </div>
+       <footer class="footer">
+        <div class="d-sm-flex justify-content-center justify-content-sm-between">
+          <span class="text-muted text-center text-sm-left d-block d-sm-inline-block">Copyright © 2018 <a href="#" target="_blank">Hopital</a>. All rights reserved.</span>
+          <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center">A b h a i H o S<i class="ti-heart text-danger ml-1"></i></span>
         </div>
-        <footer class="footer">
-          <div class="d-sm-flex justify-content-center justify-content-sm-between">
-            <span class="text-muted text-center text-sm-left d-block d-sm-inline-block">Copyright © 2018 <a href="https://www.templatewatch.com/" target="_blank">Templatewatch</a>. All rights reserved.</span>
-            <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center">Hand-crafted & made with <i class="ti-heart text-danger ml-1"></i></span>
-          </div>
-        </footer>
-
-      </div>
+      </footer>
 
     </div>
 
   </div>
 
-  <script src="vendors/base/vendor.bundle.base.js"></script>
-  <script src="vendors/chart.js/Chart.min.js"></script>
-  <script src="js/off-canvas.js"></script>
-  <script src="js/hoverable-collapse.js"></script>
-  <script src="js/template.js"></script>
-  <script src="js/todolist.js"></script>
-  <script src="js/dashboard.js"></script>
+</div>
+
+<script src="vendors/base/vendor.bundle.base.js"></script>
+<script src="vendors/chart.js/Chart.min.js"></script>
+<script src="js/off-canvas.js"></script>
+<script src="js/hoverable-collapse.js"></script>
+<script src="js/template.js"></script>
+<script src="js/todolist.js"></script>
+<script src="js/dashboard.js"></script>
 </body>
 
 </html>

@@ -402,7 +402,7 @@ for( $i = 0 ; $i < 100000 ; $i++ )
         </h3>
       </div>
       <div class="box-body">
-       <div id="" style="height: 100%"></div>
+       <div id="ctreport"></div>
      </div>
    </div>
  </div>
