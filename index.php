@@ -141,7 +141,7 @@ for( $i = 0 ; $i < 100000 ; $i++ )
           <div class="col-md-6 col-lg-7">
             <div class="box">
               <div class="box-header with-border">
-                <h3 class="box-title">ค่า CMI ปี 2562  <small><?php echo " ข้อมูลวันที่ ".thaidatefull(date('Y-m-d')) ;?></small></h3>
+                <h3 class="box-title">ค่า CMI ปี 2563  <small><?php echo " ข้อมูลวันที่ ".thaidatefull(date('Y-m-d')) ;?></small></h3>
               </div>
               <div class="box-body">
                 <div id="">  
