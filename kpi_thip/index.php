@@ -183,7 +183,9 @@ include "../config/timestampviewer.php"; //เรียกไฟล์ในส�
   <div class="main-contain">
     <div class="header" style="box-shadow:3px 3px 3px 3px rgba(0,0,0,0.5);background-color: #0B5345">
       KPI THIP ABHAI BHUBAJHR HOSPITAL
+      <?if($_SESSION['status']=='1'){?>
       <a href="runsql.php"> <button class="btn btn-warning" style="float:right;" > Update</button></a>
+      <?}?>
 
       <hr>
       <div class="row">
