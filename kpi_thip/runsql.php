@@ -112,14 +112,14 @@ foreach ($ronetimepermonth as $sql1time) {
 echo '6เดือน<br>';
 $Y6 = date(("Y"),strtotime("last month"));
 $M6 = date(("m"),strtotime("last month"));
-$sixmonthm = date("m");//Update ทุกๆ เดือนที่ 10 
+$sixmonthm = date("m");//Update ทุกๆ เดือนที่ 10 และเดือน  4
 //echo $sixmonthEnddate  = date(("Y-m-d"),strtotime("2019-04-01 last day of 5 month ")) ;echo '<br>';   // ให้เช็ควันสุดท้ายของอีก 5 เดือนถัดไปรวมเดือนที่ปัจจุบันด้วยเป็น 6 เดือน
-$sixmonthBegindate  = date(("Y-m-d"),strtotime("first day of -6 month ")) ;//echo '<br>';   // ให้เช็ควันสุดท้ายของอีก 5 เดือนถัดไปรวมเดือนที่ปัจจุบันด้วยเป็น 6 เดือน   // ให้เช็ควันแรกของเดือนที่10
-$sixmonthEnddate = date(("Y-m-d"),strtotime("last day of last month"));//echo '<br>'; // ให้เช็ควันแรกของเดือนที่10
+$sixmonthBegindate  = date(("Y-m-d"),strtotime("first day of -6 month ")) ;//echo '<br>';    // ให้เช็ควันแรกของเดือน-6
+$sixmonthEnddate = date(("Y-m-d"),strtotime("last day of last month"));//echo '<br>'; // เช็ควันสุดท้ายของเดือน
 
 if($sixmonthm == "11"||$sixmonthm == "05"){// ในรอบปีงบ เดือน 4 ถึง เดือน 9 และ เดือน 10 ปีเก่า ถึง เดือน 3 ปีใหม่ 
-    $sixmonthBegindate  = date(("Y-m-d"),strtotime("first day of -6 month ")) ;//echo '<br>';   // ให้เช็ควันสุดท้ายของอีก 5 เดือนถัดไปรวมเดือนที่ปัจจุบันด้วยเป็น 6 เดือน   // ให้เช็ควันแรกของเดือนที่10
-    $sixmonthEnddate = date(("Y-m-d"),strtotime("last day of last month"));//echo '<br>'; // ให้เช็ควันแรกของเดือนที่10
+    $sixmonthBegindate  = date(("Y-m-d"),strtotime("first day of -6 month ")) ;//echo '<br>';  // ให้เช็ควันแรกของเดือนปัจจุบัน -6
+    $sixmonthEnddate = date(("Y-m-d"),strtotime("last day of last month"));//echo '<br>'; // วันสุดท้ายของเดือนก่อนหน้าเดือนปัจจุบัน
     $serch1timeperyear = " SELECT * FROM cpareport_kpi_sql WHERE kpi_type = 'Y' AND kpi_event = '6';"; // query เช็คค่าในฐานว่า query sql ตัวไหนเป็นแบบราย 6 เดือน 
     $ronetimeperyear = mysqli_query($con, $serch1timeperyear);
     $kpi_status   = 1;
@@ -205,7 +205,7 @@ $ononeyearBegindate  = date(("Y-m-d"),strtotime("first day of -12 month ")) ;
 $ononeyearEnddate = date(("Y-m-d"),strtotime("last day of last month"));
 
 if($ononeyear == "11"){
-    $YBegindate  = date(("Y-m-d"),strtotime("first day of -12 month ")) ;// ให้เช็ควันแรกของอีก 5 เดือนถัดไปรวมเดือนที่ปัจจุบันด้วยเป็น 6 เดือน   // ให้เช็ควันแรกของเดือนที่10
+    $YBegindate  = date(("Y-m-d"),strtotime("first day of -12 month ")) ;// ให้เช็ควันแรกของอีก 5 เดือนถัดไปรวมเดือนที่ปัจจุบันด้วยเป็น 12 เดือน   // ให้เช็ควันแรกของเดือนที่10
     $YEnddate = date(("Y-m-d"),strtotime("last day of last month"));// ให้เช็ควันสุดท้ายของเดือนที่10
     $sercperyear = " SELECT * FROM cpareport_kpi_sql WHERE kpi_type = 'Y' AND kpi_event = '12';"; // query เช็คค่าในฐานว่า query sql ตัวไหนเป็นแบบราย 6 เดือน 
     $Querysercperyear = mysqli_query($con, $sercperyear);
