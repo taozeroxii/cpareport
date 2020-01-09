@@ -58,13 +58,26 @@
 
   </script>
 </head>
+<?php 
 
+$todate2 = date('m');
+$todate3 = date('Y')+543;
+$todate4 = date('Y')+1+543;
+$todate5 = date('Y')-1+543;
+
+if ($todate2 > '10') {
+$betweentodate =   "ระหว่างเดือน ตุลาคม ".$todate3." ถึง กันยายน ".$todate4;
+} else {
+$betweentodate =   "ระหว่างเดือน ตุลาคม ".$todate5." ถึง กันยายน ".$todate3;
+}
+ $yd = $betweentodate;
+ ?> 
 
 <div class="modal fade" id="myModal_rt_death" role="dialog">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h4 class="modal-title text-center">จำนวนผู้ป่วยเสียชีวิต แยกตามเดือน ตุลาคม 2561 - ปัจจุบัน <sup class="sutt"></sup></h4>
+        <h4 class="modal-title text-center">จำนวนผู้ป่วยเสียชีวิต <?php echo $yd;?> <sup class="sutt"></sup></h4>
       </div>
       <div class="modal-body">
         <center><div id="charts_death"></div></center>
@@ -78,7 +91,7 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h4 class="modal-title text-center">จำนวนผู้ป่วย Admit แยกตามเดือน ตุลาคม 2561 - ปัจจุบัน <sup class="sutt"></sup></h4>
+        <h4 class="modal-title text-center">จำนวนผู้ป่วยAdmit <?php echo $yd;?> <sup class="sutt"></sup></h4>
       </div>
       <div class="modal-body">
         <center><div id="charts_admit"></div></center>
@@ -92,7 +105,7 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h4 class="modal-title text-center">จำนวนผู้ป่วย จำหน่าย แยกตามเดือน ตุลาคม 2561 - ปัจจุบัน <sup class="sutt"></sup></h4>
+        <h4 class="modal-title text-center">จำนวนผู้ป่วยจำหน่าย <?php echo $yd;?> <sup class="sutt"></sup></h4>
       </div>
       <div class="modal-body">
         <center><div id="charts_dsc"></div></center>

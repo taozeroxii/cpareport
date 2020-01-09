@@ -1,4 +1,5 @@
 <?php
+include('/../config/yd.php');
 // นัด วันนี้ แยก คลินิก
 $sql = " SELECT CURRENT_DATE, C.NAME AS clinic_name ,count(C.NAME) as c_clinic
           FROM oapp o
@@ -163,7 +164,7 @@ $sql_cmi = " SELECT  CASE
           ,ROUND(sum(adjrw)/count(an),4) as cmi
          FROM ipt i
           left join pttype p1 on i.pttype = p1.pttype
-         WHERE i.dchdate between '2019-10-01' AND '2020-12-31'
+         WHERE i.dchdate between '".$yd."'
          GROUP BY md,dm ,yy 
          ORDER BY yy,dm DESC
          LIMIT 6 ";

@@ -1,34 +1,7 @@
 <?php ob_start();
 date_default_timezone_set('asia/bangkok');
 include('db.php');
-$todate2 = date('m')-1;
-$todate3 = date('Y');
-if ($todate2 == 0) 
-{
-   $todate2 = 12;
-   $todate3 = $todate3-1;
-}
-$todate = $todate3."-".$todate2."-";
-if ($todate2 == 1 or $todate2 ==3 or $todate2 ==5 or $todate2 ==7 or $todate2 ==8 or $todate2 ==10 or $todate2 ==12) 
-{
-  $datein = $todate."1";
-  $dateout = $todate."31";
-}
-elseif ($todate2 == 4 or $todate2 ==6 or $todate2 ==9 or $todate2 ==11) 
-{
-  $datein = $todate."1";
-  $dateout = $todate."30";
-}
-elseif ($todate2 == 2 ) 
-{
-  $datein = $todate."1";
-  if ($todate3 %4 == 0) $dateout = $todate."29";
-  else $dateout == $todate."28";
-}
-
-
-$todate_mback_start = $datein;
-$todate_mback_stop  = $dateout;
+include('/../config/yd.php');
 
 $data[] = array('เดือน','จำนวนAdmit');
 $sql = " SELECT  CASE 
@@ -50,8 +23,7 @@ END AS md
 ,date_part('YEAR'  ,regdate) as dy
  ,count(an) AS cc 
  FROM ipt 
-
- WHERE regdate between '2018-10-01' AND '2019-09-30'
+ WHERE regdate between '".$yd."'
  GROUP BY md,dm,dy  
 ORDER BY dy,dm ASC ";
 $query = pg_query($sql);

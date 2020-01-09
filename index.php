@@ -11,6 +11,19 @@ include "config/head.index.class.php";
 for ($i = 0; $i < 100000; $i++) {
   $i;
 }
+
+$todate2 = date('m');
+$todate3 = date('Y')+543;
+$todate4 = date('Y')+1+543;
+$todate5 = date('Y')-1+543;
+
+if ($todate2 > '10') {
+$betweentodate =   "ระหว่างเดือน ตุลาคม ".$todate3." ถึง กันยายน ".$todate4;
+} else {
+$betweentodate =   "ระหว่างเดือน ตุลาคม ".$todate5." ถึง กันยายน ".$todate3;
+}
+ $yd = $betweentodate;
+
 ?>
 <style type="text/css">
   .header {
@@ -142,7 +155,7 @@ for ($i = 0; $i < 100000; $i++) {
         <div class="col-md-6 col-lg-7">
           <div class="box">
             <div class="box-header with-border">
-              <h3 class="box-title">ค่า CMI ปี 2563 <small><?php echo " ข้อมูลวันที่ " . thaidatefull(date('Y-m-d')); ?></small></h3>
+              <h3 class="box-title">ค่า CMI <?php echo $yd; ?> <small><?php echo " ข้อมูลวันที่ ณ " . thaidatefull(date('Y-m-d')); ?></small></h3>
             </div>
             <div class="box-body">
               <div id="">

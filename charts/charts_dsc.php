@@ -1,8 +1,11 @@
 <?php ob_start();
 date_default_timezone_set('asia/bangkok');
 include('db.php');
-$todate2 = date('m')-1;
-$todate3 = date('Y');
+include('/../config/yd.php');
+
+
+
+/*
 if ($todate2 == 0) 
 {
    $todate2 = 12;
@@ -29,6 +32,10 @@ elseif ($todate2 == 2 )
 
 $todate_mback_start = $datein;
 $todate_mback_stop  = $dateout;
+*/
+
+
+
 
 $data[] = array('เดือน','จำนวนจำหน่าย');
 $sql = " SELECT  CASE 
@@ -48,15 +55,17 @@ ELSE '-'
 END AS md 
 ,date_part('MONTH' ,dchdate) as dm
 ,date_part('YEAR'  ,dchdate) as dy
- ,count(an)as cc 
+,count(an)as cc 
  FROM ipt 
- WHERE dchdate between '2018-10-01' AND '2019-09-30'
+ WHERE dchdate between '".$yd."'
  GROUP BY md,dm,dy  
  ORDER BY dy,dm ASC ";
 $query = pg_query($sql);
+//echo $sql;
 while($result = pg_fetch_array($query))
 {
  $data[] = array($result['md'],(int)$result['cc']);
 }
 echo json_encode($data);
+
 ?>
