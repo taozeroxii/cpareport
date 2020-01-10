@@ -44,6 +44,7 @@
             $_SESSION['lname'] =  $accoutUsser['lname'];
             $_SESSION['niname'] =  $accoutUsser['niname'];
             $_SESSION['status'] =  $accoutUsser['status'];
+            $_SESSION['department'] =  $accoutUsser['department'];
             
         if($_SESSION['status'] =='1'){ header('location:admin/index.php'); }
                 else { header('location:index.php');}
