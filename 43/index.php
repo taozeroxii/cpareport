@@ -5,11 +5,26 @@ include('../config/pg_con.class.php');
 include('../config/func.class.php');
 $datenow = DATE('Y-m-d');
 $YMDbegin = date("Y-m", strtotime("first day of previous month")); 
+
+$mdate   = date('m');
+$ydate   = date('Y');
+$yyydate = date('Y')-1;
+
+if ($mdate == '01') {
+      $ymd =   $yyydate."12";
+    } else {
+      $ymd =   $ydate."".$mdate;
+    }
+      $yymmdd = $ymd;
+
+
 $subItems = " SELECT a.id,a.f43_name_en,a.f43_name_th,b.f43_record,f43_sql
 FROM f43_filename as a
 LEFT JOIN f43_excel as b ON a.f43_name_en = b.f43_name_en
+WHERE 1 = 1
+AND b.order_send = '".$yymmdd."'
 ORDER BY a.id  ";
-$res      = mysqli_query($con,$subItems);
+$res     = mysqli_query($con,$subItems);
 ?>
 
 
@@ -70,7 +85,7 @@ $res      = mysqli_query($con,$subItems);
   <div class="container-scroller">
     <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
       <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
-        <span class="f1"> F 4 3 </span>&nbsp;&nbsp;<span class="f2"> R a C o r d</span>
+        <span class="f1"> F 4 3  </span>&nbsp;&nbsp;<span class="f2"> R a C o r d</span>
       <!--   <a class="navbar-brand brand-logo mr-5" href="index.html"><img src="images/logo.svg" class="mr-2" alt="logo"/></a>
         <a class="navbar-brand brand-logo-mini" href="index.html"><img src="images/logo-mini.svg" alt="logo"/></a> -->
       </div>
@@ -282,7 +297,7 @@ $res      = mysqli_query($con,$subItems);
             <div class="col-md-12 grid-margin">
               <div class="d-flex justify-content-between align-items-center">
                 <div>
-                  <h4 class="font-weight-bold mb-0">จำนวนข้อมูลใน 43 แฟ้ม </h4>
+                  <h4 class="font-weight-bold mb-0">จำนวนข้อมูลใน 43 แฟ้ม</h4>
                 </div>
 <!--                 <div>
                     <button type="button" class="btn btn-primary btn-icon-text btn-rounded">
