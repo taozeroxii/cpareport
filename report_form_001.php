@@ -23,7 +23,7 @@ foreach($res as $item) {
 }
 /////////////////// เช็คlogin  //////////////////////////////
 if ((isset($_SESSION['username']) == "" || isset($_SESSION['username']) == null)&& $sql == 'sql_0123' ) {
-    echo "<script>alert('โปรดเข้าสู่ระบบเพื่อดูข้อมูล');window.location ='index.php';</script>";
+  $messagealert = 'โปรดเข้าสู่ระบบเพื่อค้นหาข้อมูล';
 } 
 /////////////////// เช็คเก็บข้อมูลผู้เข้าชม sql นั้นๆ เพื่อเก็บ session นับจำนวน view  //////////////////////////////
 include "config/timestampviewer.php";//เรียกไฟล์ในส่วนที่ทำงานนับจำนวนผู้กดเข้ามาหน้า sql นั้นๆ
@@ -49,10 +49,12 @@ include "config/timestampviewer.php";//เรียกไฟล์ในส่�
 								<h3 class="box-title">
 									<div class="container">
 										<form class="form-inline" method="POST" action="#">
+										<?if ($messagealert == '' || $messagealert  == null&& $sql == 'sql_0123' ) {?>
 											<input type="text" class="form-control" id="datepickers" name="datepickers" data-provide="datepicker" data-date-language="th" autocomplete="off" >
 											<input type="text" class="form-control" id="datepickert" name="datepickert" data-provide="datepicker" data-date-language="th" autocomplete="off" >
 											<button type="submit" class="btn btn-default" vaule = 'submit'>ตกลง</button>
 										</form>
+									<?}else echo  $messagealert ;?>
 									</div>
 								</h3>
 							</div>
