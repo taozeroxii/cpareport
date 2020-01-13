@@ -41,15 +41,16 @@ if (isset($_SESSION['username']) != "" || isset($_SESSION['username']) != null) 
   $countuseronline = mysqli_num_rows($resultCtime);
 }
 ?>
+
 <div class="wrapper ">
-  <header class="main-header header ">
-    <a href="#" class="logo">
-      <span class="logo-mini"><b>r</b>CPA</span>
-      <span class="logo-lg"><b>Re</b>port Hospital</span>
+  <header class="main-header header  ">
+    <a href="#" class="logo " style="background-color: #007aa2;">
+      <span class="logo-mini "><b>r</b>CPA</span>
+      <span class="logo-lg "><b>Re</b>port Hospital</span>
     </a>
-    <nav class="navbar navbar-inverse">
+    <nav class="navbar navbar-inverse ">
       <div class="container-fluid">
-        <div class="navbar-header">
+        <div class="navbar-header ">
           <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
             <span class="sr-only">Toggle navigation</span> <? echo 'ผู้เยี่ยมชม ' . $countVisitorWeb . ' ครั้ง '; //นับผู้เข้าดูเก็บ session ต่อการเปิดเว็บ1ครั้งต้อง ปิด browserแล้วเปิดใหม่ถึงจะนับเพิ่ม และต้องมีการเข้าดูหน้ารายงานใดซักหน้าถึงจะนับว่าเป็น 1 visit 
                                                             ?>
