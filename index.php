@@ -58,7 +58,7 @@ $betweentodate =   "ระหว่างเดือน ตุลาคม ".$t
         <div class="col-md-3 col-lg-2">
           <div class="box">
             <div class="box-header with-border">
-              <h3 class="box-title">Data <small><?php echo " ข้อมูลวันที่ " . thaidatefull(date('Y-m-d')); ?></small></h3>
+              <h3 class="box-title" title="ข้อมูลวันนี้ ณ ขณะนี้ "><?php echo " ข้อมูลวันนี้ " . thaidatefull(date('Y-m-d')); ?></h3>
             </div>
             <div class="box-body">
               <table class="table table-bordered table-hover ">
@@ -155,7 +155,7 @@ $betweentodate =   "ระหว่างเดือน ตุลาคม ".$t
         <div class="col-md-6 col-lg-7">
           <div class="box">
             <div class="box-header with-border">
-              <h3 class="box-title">ค่า CMI <?php echo $yd; ?> <small><?php echo " ข้อมูลวันที่ ณ " . thaidatefull(date('Y-m-d')); ?></small></h3>
+              <h3 class="box-title">ค่า CMI <?php echo $yd; ?> </h3><span class="small"><?php echo " ข้อมูลวันที่ ณ " . thaidatefull(date('Y-m-d')); ?></span>
             </div>
             <div class="box-body">
               <div id="">
@@ -190,8 +190,7 @@ $betweentodate =   "ระหว่างเดือน ตุลาคม ".$t
         <div class="col-md-4 col-lg-3">
           <div class="box">
             <div class="box-header with-border">
-              <h4>ช่วงอายุผู้ป่วยที่เข้ารับบริการ</h4>
-              <p><?php echo " ข้อมูลวันที่ " . thaidatefull(date('Y-m-d')); ?></p>
+              <h3 class="box-title">ช่วงอายุผู้รับบริการ </h3><span class="small"><?php echo " ข้อมูลวันที่ ณ " . thaidatefull(date('Y-m-d')); ?></span>
             </div>
             <div class="box-body">
 
@@ -280,7 +279,7 @@ $betweentodate =   "ระหว่างเดือน ตุลาคม ".$t
         <div class="col-md-6">
           <div class="box">
             <div class="box-header with-border">
-              <h3 class="box-title">ผู้มารับบริการ จำแนกตามสิทธิ์ <small><?php echo " ข้อมูลวันที่ " . thaidatefull(date('Y-m-d')); ?></small></h3>
+              <h3 class="box-title">ผู้มารับบริการ จำแนกตามสิทธิ์ </h3><span class="small"><?php echo " ข้อมูลวันที่ ณ " . thaidatefull(date('Y-m-d')); ?></span>
             </div>
             <div class="box-body">
               <div id="ptt"></div>
@@ -290,7 +289,7 @@ $betweentodate =   "ระหว่างเดือน ตุลาคม ".$t
         <div class="col-md-6">
           <div class="box">
             <div class="box-header with-border">
-              <h3 class="box-title">ผู้มารับบริการ จำแนกตามเพศ <small><?php echo " ข้อมูลวันที่ " . thaidatefull(date('Y-m-d')); ?></small></h3>
+              <h3 class="box-title">ผู้มารับบริการ จำแนกตามเพศ </h3><span class="small"><?php echo " ข้อมูลวันที่ ณ " . thaidatefull(date('Y-m-d')); ?></span>
             </div>
             <div class="box-body">
               <div id="sex"></div>
@@ -303,9 +302,8 @@ $betweentodate =   "ระหว่างเดือน ตุลาคม ".$t
         <div class="col-md-6">
           <div class="box">
             <div class="box-header with-border">
-              <h3 class="box-title">10 ลำดับโรคผู้ป่วยนอก
-                <small><?php echo "ข้อมูล " . thaidate($todate_mback_start) . " - " . thaidate($todate_mback_stop); ?></small>
-              </h3>
+              <h3 class="box-title">10 ลำดับโรคผู้ป่วยนอก </h3>
+              <span class="small"><?php echo "ข้อมูล " . thaidate($todate_mback_start) . " - " . thaidate($todate_mback_stop); ?></span>
             </div>
             <div class="box-body">
               <div id="top10opd"></div>
@@ -316,9 +314,8 @@ $betweentodate =   "ระหว่างเดือน ตุลาคม ".$t
         <div class="col-md-6">
           <div class="box">
             <div class="box-header with-border">
-              <h3 class="box-title">10 ลำดับโรคผู้ป่วยใน
-                <small><?php echo "ข้อมูล " . thaidate($todate_mback_start) . " - " . thaidate($todate_mback_stop); ?></small>
-              </h3>
+              <h3 class="box-title">10 ลำดับโรคผู้ป่วยใน </h3>
+              <span class="small"><?php echo "ข้อมูล " . thaidate($todate_mback_start) . " - " . thaidate($todate_mback_stop); ?></span>
             </div>
             <div class="box-body">
               <div id="top10ipd"></div>
@@ -331,8 +328,8 @@ $betweentodate =   "ระหว่างเดือน ตุลาคม ".$t
         <div class="col-md-6">
           <div class="box">
             <div class="box-header with-border">
-              <h3 class="box-title">10 ลำดับโรคผู้ป่วยนอก
-                <small><?php echo "ข้อมูล " . thaidate($todate_mback_start) . " - " . thaidate($todate_mback_stop); ?></small></h3>
+              <h3 class="box-title">10 ลำดับโรคผู้ป่วยนอก</h3>
+              <span class="small"><?php echo "ข้อมูล " . thaidate($todate_mback_start) . " - " . thaidate($todate_mback_stop); ?></span>
             </div>
             <div class="box-body">
               <table class="table table-bordered table-hover ">
@@ -367,8 +364,8 @@ $betweentodate =   "ระหว่างเดือน ตุลาคม ".$t
 
         <div class="col-md-6">
           <div class="box">
-            <div class="box-header with-border">
-              <h3 class="box-title">10 ลำดับโรคผู้ป่วยใน <small><?php echo "ข้อมูล " . thaidate($todate_mback_start) . " - " . thaidate($todate_mback_stop); ?></small></h3>
+            <div class="box-header with-border"></h3>
+              <span class="small"><?php echo "ข้อมูล " . thaidate($todate_mback_start) . " - " . thaidate($todate_mback_stop); ?></span>
             </div>
             <div class="box-body">
               <table class="table table-bordered table-hover">
@@ -437,7 +434,7 @@ $betweentodate =   "ระหว่างเดือน ตุลาคม ".$t
         <div class="col-md-4">
           <div class="box">
             <div class="box-header with-border">
-              <h3 class="box-title">ข้อมูลการนัด <small><? php // echo " ข้อมูลการนัดวันที่ ".thaidatefull(date('Y-m-d')) ;
+              <h3 class="box-title">ข้อมูลการนัด <small><?php // echo " ข้อมูลการนัดวันที่ ".thaidatefull(date('Y-m-d')) ;
                                                         ?></small></h3>
             </div>
             <div class="box-body">

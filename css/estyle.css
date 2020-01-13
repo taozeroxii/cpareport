@@ -118,3 +118,10 @@ font-weight: bold;
 font-size: 1.4em;
 color: green;
 }
+.box-header{
+	background: #007aa2;
+	color: #fff;
+}
+.small{
+	color: #EB984E;
+}
