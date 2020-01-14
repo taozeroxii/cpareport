@@ -44,7 +44,7 @@ if (isset($_SESSION['username']) != "" || isset($_SESSION['username']) != null) 
 
 <div class="wrapper ">
   <header class="main-header header  ">
-    <a href="#" class="logo " style="background-color: #007aa2;">
+    <a href="#" class="logo " style="background-color: #007aa2; text-shadow: 4px 2px 4px #000;">
       <span class="logo-mini "><b>r</b>CPA</span>
       <span class="logo-lg "><b>Re</b>port Hospital</span>
     </a>

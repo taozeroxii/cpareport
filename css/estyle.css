@@ -1,9 +1,11 @@
 body,div,h1,h3{
 	font-family: 'Prompt', sans-serif;
+
 }
 .ml{
 	color: #D35400;
 	font-family: 'Prompt', sans-serif;
+		text-shadow: 4px 2px 4px #000;
 }
 .ml:hover{
 	display: inline-block;
@@ -24,6 +26,7 @@ body,div,h1,h3{
 	font-size: 1.0em;
 	font-weight: bold;
 	color: #0B5345;
+
 }
 
 .fo{
@@ -31,6 +34,7 @@ body,div,h1,h3{
 }
 .box{
 color: #0B5345;
+
 }
 /*td:hover{
 background: #E5E7E9;
@@ -40,6 +44,7 @@ background: #E5E7E9;
 }
 .ffont{
 	font-size: 0.8em;
+
 }
 .cen{
 	text-align: center;
@@ -120,12 +125,16 @@ color: green;
 }
 .box-header{
 	background: #007aa2;
+		text-shadow: 4px 2px 4px #000;
 	color: #fff;
 }
 .small{
-	color: #EB984E;
+	color: #F5F5F5;
+	/*font-weight: bold;*/
+	/*text-shadow: 4px 2px 4px #000;*/
 }
 .container-fluid{
 	background: #007aa2;
+		text-shadow: 4px 2px 4px #000;
 }
 /*##############################*/
