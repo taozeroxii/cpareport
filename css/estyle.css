@@ -138,3 +138,38 @@ color: green;
 		text-shadow: 4px 2px 4px #000;
 }
 /*##############################*/
+body {
+	background-color: lighten(silver, 18%);
+	h2 {
+		text-align: center;
+	}
+}
+
+/*.app-wrapper {
+	margin: 10px 10px;
+	border-radius: 3px;
+
+	overflow: auto;
+	padding: 0px 5px;
+	.chartWrap {
+		float: left;
+		position: relative;
+		width: 25%;
+		background: white;
+		height: 330px;
+		border: 1px solid silver;
+		margin: 0 4%;
+		#onFeedChart {
+			height: 100%;
+		}
+		#photoUploadChart {
+			height: 100%;
+		}
+		#vendorChart {
+			height: 100%;
+		}
+		.highcharts-container {
+			max-height: 300px;
+		}
+	}
+}*/

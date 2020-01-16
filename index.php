@@ -276,16 +276,14 @@ $yd = $betweentodate;
                 </div>
               </div>
 
-
             <!--   <div class="row">
                 <div class="col-md-3">
                   <div class="box">
                     <div class="box-header with-border">
                       <h3 class="box-title">test</h3>
-                      <span class="small">&nbsp;<?php// echo " ข้อมูล ณ วันที่ " . thaidatefull(date('Y-m-d')); ?></span>
                     </div>
                     <div class="box-body">
-                      <div id=""></div>
+                      <div id="test"></div>
                     </div>
                   </div>
                 </div>
@@ -293,10 +291,9 @@ $yd = $betweentodate;
                   <div class="box">
                     <div class="box-header with-border">
                       <h3 class="box-title">test</h3>
-                     <span class="small">&nbsp;<?php// echo " ข้อมูล ณ วันที่ " . thaidatefull(date('Y-m-d')); ?></span>
                     </div>
                     <div class="box-body">
-                      <div id=""></div>
+                      <div id="photoUploadChart"></div>
                     </div>
                   </div>
                 </div>
@@ -304,10 +301,9 @@ $yd = $betweentodate;
                   <div class="box">
                     <div class="box-header with-border">
                       <h3 class="box-title">test</h3>
-                      <span class="small">&nbsp;<?php// echo " ข้อมูล ณ วันที่ " . thaidatefull(date('Y-m-d')); ?></span>
                     </div>
                     <div class="box-body">
-                      <div id=""></div>
+                      <div id="vendorChart"></div>
                     </div>
                   </div>
                 </div>
@@ -315,10 +311,9 @@ $yd = $betweentodate;
                   <div class="box">
                     <div class="box-header with-border">
                       <h3 class="box-title">test</h3>
-                      <span class="small">&nbsp;<?php// echo " ข้อมูล ณ วันที่ " . thaidatefull(date('Y-m-d')); ?></span>
                     </div>
                     <div class="box-body">
-                      <div id=""></div>
+                      <div id="vendorChart"></div>
                     </div>
                   </div>
                 </div>
@@ -479,9 +474,6 @@ $yd = $betweentodate;
                 </div>
               </div>
 
-
-
-
       <!--   <div class="row">
         <div class="col-md-4">
           <div class="box">
@@ -533,8 +525,8 @@ $yd = $betweentodate;
   <script src="hchart/js/highcharts.js"></script>
   <script src="hchart/js/data.js"></script>
   <script src="hchart/js/exporting.js"></script>
-  <!-- <script src="js/highcharts_color.js"></script> -->
-  <script>
+  <script src="config/js/jschart.js"></script>
+ <!--  <script>
     $(function() {
 
       $('#container').highcharts({
@@ -562,7 +554,9 @@ $yd = $betweentodate;
         }
       });
     });
-  </script>
+
+
+  </script> -->
   <script>
     $(function() {
       $('#example1').DataTable()
