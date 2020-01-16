@@ -101,9 +101,11 @@ background: #E5E7E9;
 	font-size: 0.8em;
 }
 .co_dep{
-	color: #566573;
+	/*color: #566573;*/
 }
-
+small{
+	color: #fff;
+}
 .t_dsc{
 	color: #3498DB;
 }
