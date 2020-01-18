@@ -34,7 +34,6 @@ $yd = $betweentodate;
     width: 100%;
     z-index: 1000;
   }
-
   .content {
     /*background:#0C0;*/
     /*    margin-top:100px;
