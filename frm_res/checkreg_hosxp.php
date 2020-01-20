@@ -122,7 +122,7 @@
         } else {
             echo "connect fail";
         }
-        mysqli_close($conn);
+        mysqli_close($con);
     }
     ?>
 
@@ -242,6 +242,7 @@
                                 <p>วันที่แจ้ง : <?php echo $begin = $item['insertdate_time']; ?></p>
                                 <p>ชื่อ-นามสกุล : <?php echo $userregis =  $item['pname'] . $item['fname'] . '    ' . $item['lname']; ?></p>
                                 <p>ชื่อภาษาอังกฤษ : <?php echo $item['panme'] . $item['fname'] . '    ' . $item['lname']; ?></p>
+                                <p>Cid : <?php echo $item['cid']; ?> </p>
                                 <p>เพศ : <?php echo $item['gender']; ?> </p>
                                 <p>ปีเกิด : <?php echo $item['birthday']; ?> </p>
                                 <p>เลขที่ใบประกอบวิชาชีพ : <?php echo $item['doctor_cert']; ?> </p>
@@ -292,7 +293,7 @@
                                     ?>
                                 <input type="hidden" name="status" value="done">
                                 <input type="hidden" name="userregis" value="<? echo $userregis; ?>">
-                                <input type="hidden" name="idform" value="<? echo $result['id']; ?>">
+                                <input type="hidden" name="idform" value="<? echo $item['id']; ?>">
                                 <input type="hidden" name="enddate_time" value="<?php echo $today ?>">
                                 <input type="hidden" name="begindate" value="<?php echo $begin ?>">
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">ปิด</button>
