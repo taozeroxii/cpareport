@@ -134,6 +134,9 @@
    }
 
    function top10ipd() {
+    var options = {
+       colors: ['#B4B4FF']
+     };
      var jsonData = $.ajax({
        url: 'charts/chart_top10ipd.php',
        dataType: "json",
@@ -141,7 +144,7 @@
        success: function(jsonData) {
          var data = new google.visualization.arrayToDataTable(jsonData);
          var chart = new google.visualization.ColumnChart(document.getElementById('top10ipd'));
-         chart.draw(data);
+         chart.draw(data,options);
 
        }
      }).responseText;
