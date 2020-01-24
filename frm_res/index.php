@@ -145,7 +145,7 @@
     $haveusers = pg_fetch_assoc($checkusernames);
 
     if ($havecid == null && $haveusers == null) {
-     echo  $insertsql = "INSERT INTO frm_res_require_login_hosxp (pname,fname,lname,engfullname,gender,birthday,cid,jobclass,spclty,speciality,doctor_cert,first_day_in_job,emailaddress,username,password,status,insertdate_time,accepcert,expirecert,mobilenumber,providertype )
+      $insertsql = "INSERT INTO frm_res_require_login_hosxp (pname,fname,lname,engfullname,gender,birthday,cid,jobclass,spclty,speciality,doctor_cert,first_day_in_job,emailaddress,username,password,status,insertdate_time,accepcert,expirecert,mobilenumber,providertype )
       VALUES ('" . $_POST["pname"] . "'
       ,'" . $_POST["fname"] . "'
       ,'" . $_POST["lname"] . "'
