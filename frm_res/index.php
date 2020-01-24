@@ -7,6 +7,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>แบบฟอร์มแจ้งขอเพิ่มรายการในHosxp</title>
+  <link rel="stylesheet" href="https://unpkg.com/bootstrap@4.1.0/dist/css/bootstrap.min.css" >
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
   <link href="https://fonts.googleapis.com/css?family=Prompt" rel="stylesheet">
   <meta name="description" content="Tab Styles Inspiration: A small collection of styles for tabs" />
@@ -101,6 +102,9 @@
 
   $nondrugitems_type = " SELECT * FROM nondrugitems_type";
   $nondrug_item_type_names = pg_query($conn, $nondrugitems_type);
+
+  $providertype = " SELECT * FROM provider_type";
+  $providertypes = pg_query($conn, $providertype);
   /*
 ทำเช็ค  เวลากดเลือกหมวดค่ารักษาพยาบาลที่เป็น lab แล้ว ให้เพิ่มช่องใส่พวกชื่อlab e code specimen กลุ่ม
 หากเพิ่มค่ารักษาพยาบาลที่ต้องเช็คราคาผานศูนย์สิทธิให้แสดงปุ่ม print form เพื่อเอาลายเซ็นว่าผ่านตรวจสอบแล้ว
@@ -125,7 +129,11 @@
     echo $_POST['doctorcert'];  echo '<br>';
     echo $_POST['firstdayonjob'];  echo '<br>';
     echo $_POST['emailaddress'];  echo '<br>';
-    echo $_POST['username'];
+    echo $_POST['username']; echo '<br>';
+    echo $_POST['accepcert']; echo '<br>';
+    echo $_POST['expirecert']; echo '<br>';
+    echo $_POST['mobilephone']; echo '<br>';
+    echo $_POST['Providertype']; echo '<br>';
      */
     date_default_timezone_set("Asia/Bangkok");
     $datenow  =  date("Y/m/d H:i:s");
@@ -137,7 +145,7 @@
     $haveusers = pg_fetch_assoc($checkusernames);
 
     if ($havecid == null && $haveusers == null) {
-      $insertsql = "INSERT INTO frm_res_require_login_hosxp (pname,fname,lname,engfullname,gender,birthday,cid,jobclass,spclty,speciality,doctor_cert,first_day_in_job,emailaddress,username,password,status,insertdate_time)
+     echo  $insertsql = "INSERT INTO frm_res_require_login_hosxp (pname,fname,lname,engfullname,gender,birthday,cid,jobclass,spclty,speciality,doctor_cert,first_day_in_job,emailaddress,username,password,status,insertdate_time,accepcert,expirecert,mobilenumber,providertype )
       VALUES ('" . $_POST["pname"] . "'
       ,'" . $_POST["fname"] . "'
       ,'" . $_POST["lname"] . "'
@@ -155,6 +163,10 @@
       ,'1234'
       ,'waiting'
       ,'" . $datenow . "'
+      ,'" . $_POST['accepcert']. "'
+      ,'" . $_POST['expirecert'] . "'
+      ,'" .  $_POST['mobilephone']. "'
+      ,'" . $_POST['Providertype']. "'
       )";
 
       $queryInsert = mysqli_query($con, $insertsql);
@@ -229,15 +241,15 @@
                     </div>
                     <div class="col-sm-3">
                       <span class="nameofinput">ชื่อ</span>
-                      <input class="form-control" type="text" placeholder="fname" name="fname" required>
+                      <input class="form-control" type="text" placeholder="ชื่อ" name="fname" pattern="^[ก-๏\s]+$" required>
                     </div>
                     <div class="col-sm-3">
                       <span class="nameofinput">นามสกุล</span>
-                      <input class="form-control" type="text" placeholder="lname" name="lname" required>
+                      <input class="form-control" type="text" placeholder="นามสกุล" name="lname" pattern="^[ก-๏\s]+$" required>
                     </div>
                     <div class="col-sm-4">
-                      <span class="nameofinput">ชื่อภาษาอังกฤษ</span>
-                      <input class="form-control" type="text" placeholder="Fullname" name="engfullname">
+                      <span class="nameofinput">ชื่อสกุลภาษาอังกฤษ</span>
+                      <input class="form-control" type="text" placeholder="ชื่อสกุลภาษาอังกฤษ" pattern="^[a-zA-Z\s]+$" name="engfullname" required>
                     </div>
                   </div>
 
@@ -256,7 +268,7 @@
                     </div>
                     <div class="col-sm-2">
                       <span class="nameofinput">เลขที่บัตรประชาชน</span>
-                      <input class="form-control" type="text" placeholder="เลขที่บัตรประชาชน(cid)" name="cid" maxlength="13" required>
+                      <input class="form-control" type="text" maxlength="13" minlength="13" pattern="[0-9]{1,}"  placeholder="เลขที่บัตรประชาชน(cid)" name="cid" maxlength="13" required>
                     </div>
 
                     <div class="col-sm-2">
@@ -296,31 +308,58 @@
                   </div>
 
                   <div class="row mt-3">
-                    <div class="col-sm-2">
-                      <span class="nameofinput">เลขที่ใบประกอบวิชาชีพ</span>
-                      <input class="form-control" type="text" placeholder="เลขที่ใบประกอบวิชาชีพ" name="doctorcert">
+                      <div class="col-sm-3">
+                          <span class="nameofinput">วันที่เข้าเริ่มงาน</span>
+                          <input class="form-control" type="date" placeholder="" name="firstdayonjob" required>
+                        </div>
+                        <div class="col-sm-3">
+                          <span class="nameofinput">เลขที่ใบประกอบวิชาชีพ</span>
+                          <input class="form-control" type="text" placeholder="เลขที่ใบประกอบวิชาชีพ" name="doctorcert">
+                        </div>
+                        <div class="col-sm-3">
+                          <span class="nameofinput">วันที่ออกใบอนุญาต</span>
+                          <input class="form-control" type="date" placeholder="" name="accepcert" >
+                        </div>
+                        <div class="col-sm-3">
+                          <span class="nameofinput">วันที่หมดอายุอนุญาต</span>
+                          <input class="form-control" type="date" placeholder="" name="expirecert" >
+                        </div>
                     </div>
-                    <div class="col-sm-3">
-                      <span class="nameofinput">วันที่เข้าเริ่มงาน</span>
-                      <input class="form-control" type="date" placeholder="" name="firstdayonjob" required>
+                    <div class="row mt-3">
+                        <div class="col-sm-3">
+                          <span class="nameofinput">email</span>
+                          <input class="form-control" type="email" name="emailaddress">
+                        </div>
+                        <div class="col-sm-3">
+                          <span class="nameofinput">โทรศัพท์</span>
+                          <input class="form-control" type="text" placeholder="08xxxxxxxxx" maxlength="10" name="mobilephone">
+                        </div>
+                        <div class="col-sm-4">
+                          <span class="nameofinput">ชื่อเข้าใช้งาน Hosxp <small style="color:red;">**เฉพาะภาษาอังกฤษพิมเล็กและเลข a-z,0-9**</small></span>
+                          <input class="form-control" type="text" placeholder="๊User name" name="username" required>
+                        </div>
+                        <div class="col-sm-2">
+                          <span class="nameofinput">รหัสผ่าน Hosxp</span>
+                          <input class="form-control" type="text" placeholder="๊1234" name="" disabled>
+                        </div>
                     </div>
-                    <div class="col-sm-2">
-                      <span class="nameofinput">email</span>
-                      <input class="form-control" type="email" name="emailaddress">
-                    </div>
-                    <div class="col-sm-3">
-                      <span class="nameofinput">ชื่อเข้าใช้งาน Hosxp</span>
-                      <input class="form-control" type="text" placeholder="๊User name" name="username" required>
-                    </div>
-                    <div class="col-sm-2">
-                      <span class="nameofinput">รหัสผ่าน Hosxp</span>
-                      <input class="form-control" type="text" placeholder="๊1234" name="" disabled>
-                    </div>
-                  </div>
+               
                   <div class="row mt-3">
-                    <div class="col-sm-12">
-                      <span class="nameofinput">เลขห้องที่เข้าใช้งาน วิธีดูเลขที่ห้องคลิกปุ่มสีฟ้า -><button type="button" class="btn btn-primary btn-circle" data-toggle="modal" data-target="#imginfo"><i class="glyphicon glyphicon-list"></i></button></span>
-                      <input class="form-control" type="text" placeholder="ระบุ.. ห้องที่ต้องการใช้งานระบุรหัสแต่ละห้อง " name="note"></input>
+                  <div class="col-sm-3">
+                      <span class="nameofinput">Provider type</span>
+                      <select class="form-control" name="Providertype" require>
+                        <option selected> Providertype</option>
+                        <option value="" selected>โปรดเลือก ..</option>
+                        <?php while ($Result = pg_fetch_assoc($providertypes)) { ?>
+                          <option value="<?php echo $Result['provider_type_name']; ?>">
+                            <?php echo $Result['provider_type_name']; ?>
+                          </option>
+                        <?php } ?>
+                      </select>
+                    </div>
+                    <div class="col-sm-6">
+                      <span class="nameofinput">เลขห้องที่เข้าใช้งาน วิธีดูเลขที่ห้องคลิกปุ่มสีแดง -><button type="button" class="btn btn-danger " data-toggle="modal" data-target="#imginfo"><i class="glyphicon glyphicon-list"></i></button></span>
+                      <input class="form-control" type="text" placeholder="อื่นๆ ระบุ... เช่น ห้องที่ต้องการใช้งาน หรือ รหัสสภาวิชาชีพ" name = "note"></input>
                     </div>
                   </div>
                 </div>
@@ -582,6 +621,8 @@
       });
     })();
   </script>
+  <script src="https://unpkg.com/jquery@3.3.1/dist/jquery.min.js">//เช็คตัอักษร</script>
+  <script src="https://unpkg.com/bootstrap@4.1.0/dist/js/bootstrap.min.js">//เช็คตัอักษร</script>
   <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
