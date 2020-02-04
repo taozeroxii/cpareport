@@ -54,7 +54,7 @@ $yd = $betweentodate;
 
       <section class="content">
         <div class="row">
-          <div class="col-md-3 col-lg-2">
+          <div class="col-md-3">
             <div class="box">
               <div class="box-header with-border">
                 <h3 class="box-title" title="ข้อมูลวันนี้ ณ ขณะนี้ "><?php echo " ข้อมูลวันนี้ " . thaidatefull(date('Y-m-d')); ?></h3>
@@ -151,7 +151,27 @@ $yd = $betweentodate;
                   </div>
                 </div>
 
-                <div class="col-md-6 col-lg-7">
+                                <div class="col-md-9">
+                  <div class="box">
+                    <div class="box-header with-border">
+                      <h3 class="box-title"><?php echo "ข้อมูลจำนวนผู้มารับบริการรายเดือน ".$yd; ?> </h3>
+                      <span class="small">&nbsp;&nbsp;<?php echo " ข้อมูลวันที่ ณ " . thaidatefull(date('Y-m-d')); ?></span>
+                    </div>
+                    <div class="box-body">
+                      <div id="">
+                        <div id="chartContainer" style="min-width: 110px; height: 430px; margin: 0 auto"></div>
+                        <!-- <div class="chartContainer" id="chartContainer">132</div> -->
+
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+
+
+          <div class="row">
+                <div class="col-md-9">
                   <div class="box">
                     <div class="box-header with-border">
                       <h3 class="box-title">ค่า CMI <?php echo $yd; ?> </h3>
@@ -187,7 +207,7 @@ $yd = $betweentodate;
                 </div>
 
 
-                <div class="col-md-4 col-lg-3">
+                <div class="col-md-3">
                   <div class="box">
                     <div class="box-header with-border">
                       <h3 class="box-title">ช่วงอายุผู้รับบริการ</h3>
@@ -273,6 +293,7 @@ $yd = $betweentodate;
                     </div>
                   </div>
                 </div>
+
               </div>
 
             <!--   <div class="row">
@@ -517,7 +538,7 @@ $yd = $betweentodate;
 
     </section>
   </div>
-
+  <?php include "canvas/data_hos.php"; ?>
   <?php include "config/footer.class.php"; ?>
   <?php include "config/js.class.php" ?>
   <?php include "modal/modal.class.php" ?>
