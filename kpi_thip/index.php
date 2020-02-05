@@ -24,42 +24,18 @@ function thaiDate($datetime)
     list($Y, $m, $d) = split('-', $date);
     $Y = $Y + 543 - 2500;
     switch ($m) {
-      case "01":
-        $m = "ม.ค.";
-        break;
-      case "02":
-        $m = "ก.พ.";
-        break;
-      case "03":
-        $m = "มี.ค.";
-        break;
-      case "04":
-        $m = "เม.ย.";
-        break;
-      case "05":
-        $m = "พ.ค.";
-        break;
-      case "06":
-        $m = "มิ.ย.";
-        break;
-      case "07":
-        $m = "ก.ค.";
-        break;
-      case "08":
-        $m = "ส.ค.";
-        break;
-      case "09":
-        $m = "ก.ย.";
-        break;
-      case "10":
-        $m = "ต.ค.";
-        break;
-      case "11":
-        $m = "พ.ย.";
-        break;
-      case "12":
-        $m = "ธ.ค.";
-        break;
+      case "01": $m = "ม.ค."; break;
+      case "02": $m = "ก.พ."; break;
+      case "03": $m = "มี.ค."; break;
+      case "04": $m = "เม.ย."; break;
+      case "05": $m = "พ.ค."; break;
+      case "06": $m = "มิ.ย."; break;
+      case "07": $m = "ก.ค."; break;
+      case "08": $m = "ส.ค."; break;
+      case "09": $m = "ก.ย."; break;
+      case "10": $m = "ต.ค."; break;
+      case "11": $m = "พ.ย."; break;
+      case "12": $m = "ธ.ค."; break;
     }
     return $d . " " . $m . " " . $Y . "";
   }
@@ -72,42 +48,18 @@ function thaiDateFULL($datetime)
     list($Y, $m, $d) = split('-', $date);
     $Y = $Y + 543;
     switch ($m) {
-      case "01":
-        $m = "มกราคม";
-        break;
-      case "02":
-        $m = "กุมภาพันธ์";
-        break;
-      case "03":
-        $m = "มีนาคม";
-        break;
-      case "04":
-        $m = "เมษายน";
-        break;
-      case "05":
-        $m = "พฤษภาคม";
-        break;
-      case "06":
-        $m = "มิถุนายน";
-        break;
-      case "07":
-        $m = "กรกฎาคม";
-        break;
-      case "08":
-        $m = "สิงหาคม";
-        break;
-      case "09":
-        $m = "กันยายน";
-        break;
-      case "10":
-        $m = "ตุลาคม";
-        break;
-      case "11":
-        $m = "พฤศจิกายน";
-        break;
-      case "12":
-        $m = "ธันวาคม";
-        break;
+      case "01": $m = "มกราคม"; break;
+      case "02": $m = "กุมภาพันธ์"; break;
+      case "03": $m = "มีนาคม"; break;
+      case "04": $m = "เมษายน";break;
+      case "05": $m = "พฤษภาคม";break;
+      case "06": $m = "มิถุนายน";break;
+      case "07": $m = "กรกฎาคม";break;
+      case "08": $m = "สิงหาคม"; break;
+      case "09": $m = "กันยายน"; break;
+      case "10": $m = "ตุลาคม"; break;
+      case "11": $m = "พฤศจิกายน"; break;
+      case "12": $m = "ธันวาคม"; break;
     }
     return $d . " " . $m . " " . $Y . "";
   }
@@ -116,30 +68,29 @@ function thaiDateFULL($datetime)
 $con = new mysqli("172.16.0.251", "report", "report", "cpareportdb");
 mysqli_set_charset($con, "utf8");
 $sqlquery = "			
-SELECT ct.id,ct.kpi_code,kpi_name,kpi_cal_a,kpi_cal_b,kpi_cal_c,kpi_ym,kpi_dateupdate 
-FROM cpareport_kpi_thip ct  
-left join  cpareport_kpi_data cd on cd.kpi_code = ct.kpi_code and kpi_ym = (SELECT max(kpi_ym) FROM cpareport_kpi_data )
-where ct.kpi_event is null
-UNION
-SELECT ct.id,ct.kpi_code,kpi_name,kpi_cal_a,kpi_cal_b,kpi_cal_c,kpi_ym,kpi_dateupdate 
-FROM cpareport_kpi_thip ct  
-left join  cpareport_kpi_data cd on cd.kpi_code = ct.kpi_code and kpi_ym = (SELECT max(kpi_ym) FROM cpareport_kpi_data )
-where ct.kpi_event = '1'
-UNION ALL 
-SELECT ct.id ,ct.kpi_code,kpi_name,cd.kpi_cal_a,cd.kpi_cal_b,cd.kpi_cal_c,cd.kpi_ym,cd.kpi_dateupdate 
-FROM cpareport_kpi_thip ct  
-left join  cpareport_kpi_data cd on cd.kpi_code = ct.kpi_code and kpi_ym = 
-(SELECT max(kpi_ym) FROM cpareport_kpi_data cd inner join cpareport_kpi_thip ct on ct.kpi_code = cd.kpi_code where ct.kpi_event = '6')
-where ct.kpi_event ='6'
-UNION ALL 
-SELECT ct.id ,ct.kpi_code,kpi_name,cd.kpi_cal_a,cd.kpi_cal_b,cd.kpi_cal_c,cd.kpi_ym,cd.kpi_dateupdate 
-FROM cpareport_kpi_thip ct  
-left join  cpareport_kpi_data cd on cd.kpi_code = ct.kpi_code and kpi_ym = 
-(SELECT max(kpi_ym) FROM cpareport_kpi_data cd inner join cpareport_kpi_thip ct on ct.kpi_code = cd.kpi_code where ct.kpi_event = '12')
-where ct.kpi_event ='12'
-order by id ";
+  SELECT ct.id,ct.kpi_code,kpi_name,kpi_cal_a,kpi_cal_b,kpi_cal_c,kpi_ym,kpi_dateupdate 
+  FROM cpareport_kpi_thip ct  
+  left join  cpareport_kpi_data cd on cd.kpi_code = ct.kpi_code and kpi_ym = (SELECT max(kpi_ym) FROM cpareport_kpi_data )
+  where ct.kpi_event is null and kpi_type = '1'
+  UNION
+  SELECT ct.id,ct.kpi_code,kpi_name,kpi_cal_a,kpi_cal_b,kpi_cal_c,kpi_ym,kpi_dateupdate 
+  FROM cpareport_kpi_thip ct  
+  left join  cpareport_kpi_data cd on cd.kpi_code = ct.kpi_code and kpi_ym = (SELECT max(kpi_ym) FROM cpareport_kpi_data )
+  where ct.kpi_event = '1' and kpi_type = '1'
+  UNION ALL 
+  SELECT ct.id ,ct.kpi_code,kpi_name,cd.kpi_cal_a,cd.kpi_cal_b,cd.kpi_cal_c,cd.kpi_ym,cd.kpi_dateupdate 
+  FROM cpareport_kpi_thip ct  
+  left join  cpareport_kpi_data cd on cd.kpi_code = ct.kpi_code and kpi_ym = 
+  (SELECT max(kpi_ym) FROM cpareport_kpi_data cd inner join cpareport_kpi_thip ct on ct.kpi_code = cd.kpi_code where ct.kpi_event = '6')
+  where ct.kpi_event ='6' and kpi_type = '1'
+  UNION ALL 
+  SELECT ct.id ,ct.kpi_code,kpi_name,cd.kpi_cal_a,cd.kpi_cal_b,cd.kpi_cal_c,cd.kpi_ym,cd.kpi_dateupdate 
+  FROM cpareport_kpi_thip ct  
+  left join  cpareport_kpi_data cd on cd.kpi_code = ct.kpi_code and kpi_ym = 
+  (SELECT max(kpi_ym) FROM cpareport_kpi_data cd inner join cpareport_kpi_thip ct on ct.kpi_code = cd.kpi_code where ct.kpi_event = '12')
+  where ct.kpi_event ='12' and kpi_type = '1'
+  order by id,kpi_code";
 $result = mysqli_query($con, $sqlquery);
-
 
 $sql     =  $_GET['sql'];
 include "../config/timestampviewer.php"; //เรียกไฟล์ในส่วนที่ทำงานนับจำนวนผู้กดเข้ามาหน้า sql นั้นๆ
@@ -215,8 +166,8 @@ include "../config/timestampviewer.php"; //เรียกไฟล์ในส�
         <th style="color:green"><?= '&nbsp;&nbsp;&nbsp' . $rw ?></th>
         <td style="text-align:center;"><? echo $kpicode ?></td>
         <td><?= $kpiname . '  <span class="badge badge-primary badge-pill">' . $kpi_ym . '</span>'; ?> </td>
-        <td style="text-align:center;"><? if (($a != null && $b != null)) echo $c;
-                                        else echo 'NULL'; ?></td>
+        <td style="text-align:center;">
+        <? if (($a != null && $b != null)) echo $c; else echo 'NULL'; ?></td>
         <td><? if ($a != null) echo $a;
             else echo 'NULL'; ?></td>
         <td><? if ($b != null) echo $b;
@@ -347,9 +298,10 @@ include "../config/timestampviewer.php"; //เรียกไฟล์ในส�
                 ?>
                   <tr>
                     <th scope="row"><? echo thaiDateFULL($resultkpi['kpi_ym']) . '&nbsp;';
-                                    if ($resultkpi['kpi_endym'] != '' || $resultkpi['kpi_endym'] != null) {
-                                      echo 'ถึง ' . thaiDateFULL($resultkpi['kpi_endym']);
-                                    } ?></th>
+                       if ($resultkpi['kpi_endym'] != '' || $resultkpi['kpi_endym'] != null) {
+                          echo 'ถึง ' . thaiDateFULL($resultkpi['kpi_endym']);
+                       } ?>
+                    </th>
                     <td><? echo $resultkpi['kpi_cal_c']; ?></td>
                     <td><? echo $resultkpi['kpi_cal_a']; ?></td>
                     <td><? echo $resultkpi['kpi_cal_b']; ?></td>
@@ -357,6 +309,21 @@ include "../config/timestampviewer.php"; //เรียกไฟล์ในส�
                 <? } ?>
               </tbody>
             </table>
+            <? if($_SESSION['status']=='1'){
+                $kpi_sql = " SELECT * FROM cpareport_kpi_sql WHERE kpi_code = '$kpicode'";
+                $resultkpisql = mysqli_query($con, $kpi_sql);?>
+                 <?foreach ($resultkpisql as $responsql) { ?>  
+                <p>
+                      <button class="btn btn-primary" type="button" data-toggle="collapse" data-target=".multi-collapse" aria-expanded="false" aria-controls="multiCollapseExample1<?= $kpicode?>">แสดงชุดคำสั่ง SQL A และ B</button>
+                </p>
+                <div class="row">
+                  <div class="col-10">
+                    <div class="collapse multi-collapse" id="multiCollapseExample1<?= $kpicode?>"  style="background-color:#ccc;padding:3px">
+                          <center>SQL A </center><?echo $responsql['kpi_sql_a'].'<hr><center>SQL B </center>'.$responsql['kpi_sql_b'].'<br>';?>      
+                    </div>
+                  </div>                 
+                </div>
+                <?}}?>                   
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -375,8 +342,5 @@ include "../config/timestampviewer.php"; //เรียกไฟล์ในส�
     });
   </script>
   </div>
-
-
 </body>
-
 </html>
