@@ -52,9 +52,10 @@ function thaiDate($datetime)
 $sqlr = " SELECT DISTINCT b.loginname,a.computername
 ,date(a.ksklogintime) as cdate
 ,to_char(a.ksklogintime, 'HH24:MI:SS') as ctime
-,a.department,a.ip_address,b.name
+,a.department,a.ip_address,b.name,k.second_line_text as tel
 FROM onlineuser as a
 INNER JOIN opduser as b ON a.kskloginname = b.loginname
+INNER JOIN kskdepartment as k ON k.department = a.department
 WHERE date(a.ksklogintime) = CURRENT_DATE
 ORDER BY cdate,ctime DESC ";
 $queryr = pg_query($sqlr);
@@ -62,9 +63,10 @@ $queryr = pg_query($sqlr);
 $sql = " SELECT DISTINCT b.loginname,a.computername
 ,date(a.ksklogintime) as cdate
 ,to_char(a.ksklogintime, 'HH24:MI:SS') as ctime
-,a.department,a.ip_address,b.name
+,a.department,a.ip_address,b.name,k.second_line_text as tel
 FROM onlineuser as a
 INNER JOIN opduser as b ON a.kskloginname = b.loginname
+INNER JOIN kskdepartment as k ON k.department = a.department
 WHERE date(a.ksklogintime) = CURRENT_DATE
 ORDER BY cdate,ctime DESC
 LIMIT 1 ";
@@ -110,6 +112,9 @@ $new_nuer = $r['name'] . " | " . $r['loginname'] . " | " . $r['computername'] . 
           <th>
             <CENTER> ชื่อผู้ใช้งาน </CENTER>
           </th>
+           <th>
+            <CENTER> ติดต่อ </CENTER>
+          </th>
           <th>
             <CENTER> USER ใช้งาน </CENTER>
           </th>
@@ -141,6 +146,7 @@ $new_nuer = $r['name'] . " | " . $r['loginname'] . " | " . $r['computername'] . 
         <tr class="odd gradeX hoho">
           <!-- <td><CENTER><?= $i ?></CENTER></td> -->
           <td><?= $rowr["name"] ?></td>
+          <td class="center"><b><?= $rowr["tel"] ?></b></td>
           <td><?= $rowr["loginname"] ?></td>
           <td>
             <left><b><?= $rowr["computername"] ?></b></left>
@@ -158,7 +164,7 @@ $new_nuer = $r['name'] . " | " . $r['loginname'] . " | " . $r['computername'] . 
   <center>
     <div><a href="#">
         <type="button" title="abhai bhubajhr Information Hospital">
-          <font size="3px"><B>By:eaktamp<B> </font>
+          <font size="3px"><B>By:INformation<B> </font>
   </center>
   </div>
 </body>
