@@ -275,6 +275,7 @@
                                                     <option value="เพ็ญจันทร์">เพ็ญจันทร์</option>
                                                     <option value="อดิศักดิ์">อดิศักดิ์</option>
                                                     <option value="วิภาวดี">วิภาวดี</option>
+                                                    <option value="มีข้อมูลในระบบแล้ว">มีข้อมูลในระบบแล้ว</option>
                                                 </select>
                                             </div>
                                         </div>
