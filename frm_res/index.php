@@ -140,11 +140,16 @@
     $checkcid = "select * from frm_res_require_login_hosxp where cid = '" . $_POST['cid'] . "'";
     $querycheckcid = mysqli_query($con, $checkcid);
     $havecid = mysqli_fetch_assoc($querycheckcid);
+
+    $checkcidhosxp = "select * from doctor where cid = '" . $_POST['cid'] . "'";
+    $querycheckcidhosxp = mysqli_query($conn, $checkcidhosxp);
+    $havecidhosxp = mysqli_fetch_assoc($querycheckcid);
+ 
     $checkusername = "select * from officer where officer_login_name = '" . $_POST['username'] . "'";
     $checkusernames = pg_query($conn, $checkusername);
     $haveusers = pg_fetch_assoc($checkusernames);
 
-    if ($havecid == null && $haveusers == null) {
+    if ($havecid == null && $haveusers == null &&  $havecidhosxp == null){
       $insertsql = "INSERT INTO frm_res_require_login_hosxp (pname,fname,lname,engfullname,gender,birthday,cid,jobclass,spclty,speciality,doctor_cert,first_day_in_job,emailaddress,username,password,status,insertdate_time,accepcert,expirecert,mobilenumber,providertype )
       VALUES ('" . $_POST["pname"] . "'
       ,'" . $_POST["fname"] . "'
