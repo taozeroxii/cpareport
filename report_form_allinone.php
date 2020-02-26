@@ -36,8 +36,8 @@ include "config/timestampviewer.php"; //เรียกไฟล์ในส่�
 
         <section class="content">
             <div class="col-xs-12">
-                <div class="box" style="padding:5px">
-                    <div class="container-fluid">
+                <div class="box" style="padding:5px;">
+                    <div class="container-fluid" style="background-color:white;">
                         <form class="form-inline" method="POST" action="#">
                             <div class="row">
                                 <label for="datepickers">ช่วงวันที่มารับบริการ : </label>

@@ -2,7 +2,7 @@
 header("Content-type:application/json; charset=UTF-8");          
 header("Cache-Control: no-store, no-cache, must-revalidate");         
 header("Cache-Control: post-check=0, pre-check=0", false); 
-        $connect = "host=172.16.11.13 dbname=cpahdb user=iptscanview password=iptscanview";
+        $connect = "host=172.16.0.192 dbname=cpahdb user=iptscanview password=iptscanview";
         $conn = pg_connect($connect);
         pg_set_client_encoding($conn, "utf8");
 
