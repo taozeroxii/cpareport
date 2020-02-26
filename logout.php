@@ -13,5 +13,5 @@ echo $ud = ("UPDATE useronline set status = 'offline',logoutdate_time = '".$now.
 $uf = mysqli_query($con, $ud);
 mysqli_query($con, $uf);
 session_destroy();
-header('../');
+header('location:../');
 ?>
