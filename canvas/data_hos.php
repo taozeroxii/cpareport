@@ -98,7 +98,7 @@ function toggleDataSeries(e) {
 		height: 30%; 
 		max-width: 70%; 
 		margin: 10px auto; 
-	
+	}
 </style>
 </head>
 <body>

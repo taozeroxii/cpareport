@@ -34,9 +34,9 @@ $yd = $betweentodate;
     width: 100%;
     z-index: 1000;
   }
-  .content {
-    /*background:#0C0;*/
-    /*    margin-top:100px;
+  /*.content {
+    background:#0C0;
+    margin-top:100px;
     height:2000px;
     }*/
   </style>
@@ -151,7 +151,7 @@ $yd = $betweentodate;
                   </div>
                 </div>
 
-                                <div class="col-md-9">
+                <div class="col-md-9">
                   <div class="box">
                     <div class="box-header with-border">
                       <h3 class="box-title"><?php echo "ข้อมูลจำนวนผู้มารับบริการรายเดือน ".$yd; ?> </h3>
@@ -213,7 +213,7 @@ $yd = $betweentodate;
                       <h3 class="box-title">ช่วงอายุผู้รับบริการ</h3>
                       <span class="small">&nbsp;<?php echo " ข้อมูล ณ วันที่ " . thaidatefull(date('Y-m-d')); ?></span>
                     </div>
-                    <div class="box-body">
+                    <div class="box-body">a
 
                       <table class="table table-bordered">
                         <tr>

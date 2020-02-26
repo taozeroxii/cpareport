@@ -11,7 +11,13 @@
  <script src="plugins/select2/select2.js"></script>
  <script src="dist/js/adminlte.min.js"></script>
  <script src="dist/js/demo.js"></script>
+
+ <!-- load the ajax api -->
+ <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+ <!--
  <script type="text/javascript" src="js/loader.js"></script>
+ something wrong with file loader , when change to use CDN google It's can show chart but not at all because the DB cannot search data  -->
+ 
 
  <script type="text/javascript">
    google.charts.load('current', {
