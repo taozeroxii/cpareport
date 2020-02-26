@@ -48,6 +48,8 @@
             
         if($_SESSION['status'] =='1'){ header('location:admin/index.php'); }
                 else { header('location:index.php');}
+        if($_SESSION['status'] =='4'){ header('location:gsb/index.php'); }
+                else { header('location:index.php');}
         }else{  $message =  "login fail ชื่อผู้ใช้งานหรือรหัสผ่านไม่ถูกต้อง!!!";
          }
     }

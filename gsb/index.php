@@ -43,6 +43,9 @@ date_default_timezone_set('asia/bangkok');
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body>
+<?php if ((isset($_SESSION['username']) == "" || isset($_SESSION['username']) == null)|| $_SESSION['status']!='1') {
+    echo "<script>window.location ='../login.php';</script>";
+  } ?>
   <div class="hmain">Patient GSB Member<sup> โรงพยาบาลเจ้าพระยาอภัยภูเบศร & ธนาคารออมสิน</sup></div>
   <div class="container ">
     <div class="row">

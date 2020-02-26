@@ -128,6 +128,7 @@
                                 <option value="1">Admin ดูแลจัดการข้อมูลได้</option>
                                 <option value="2">super user เข้าดูหน้าข้อมูลลับได้ทั้งหมด</option>
                                 <option value="3">users เข้าดูข้อมูลได้ตามแผนก</option>
+                                <option value="4">users ใช้งานหน้า GSB เท่านั้น</option>
                             </select>
                             <hr>
                             <input type="hidden" class="form-control" name="menuid" value="<?php echo $maxidmenu; ?>" />
