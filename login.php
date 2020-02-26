@@ -74,7 +74,11 @@
                             <hr>
                             <input type="submit" name="submit" class="btn btn-primary" value="LOGIN">
                             <input type="reset" name="set" class="btn btn-warning" value="RESET">
-                            <a href="index.php" class="mt-5" style="float:right;">กลับหน้าหลัก</a>
+                            <hr>
+                            <center>
+                                <a href="../" class="mt-5" style="margin-right:10px;"> กลับหน้าหลัก</a>
+                                <a href="index.php" class="mt-5">กลับหน้าreport &nbsp;</a>
+                            </center>
                         </div>
                         <div class="text-center"></div>
                     </div>
