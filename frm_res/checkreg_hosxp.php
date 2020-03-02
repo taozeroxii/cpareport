@@ -241,7 +241,7 @@
                                 <h4 style="background-color: #878787;color:black;padding:10px;border-style: dotted;border-width: 0.5px;">ใบแจ้งที่: <?php echo $item['id']; ?></h4>
                                 <p>วันที่แจ้ง : <?php echo $begin = $item['insertdate_time']; ?>&nbsp;&nbsp;&nbsp; วันที่เริ่มงาน : <?php echo $item['first_day_in_job']; ?></p>
                                 <p>ชื่อ-นามสกุล : <?php echo $userregis =  $item['pname'] . $item['fname'] . '    ' . $item['lname']; ?> &nbsp;&nbsp;&nbsp;เพศ : <?php echo $item['gender']; ?></p>
-                                <p>ชื่อภาษาอังกฤษ : <?php echo $item['panme'] . $item['fname'] . '    ' . $item['lname']; ?></p>
+                                <p>ชื่อภาษาอังกฤษ : <?php echo $item['engfullname'];?></p>
                                 <p>Cid : <?php echo $item['cid']; ?> </p>
                                 <p>ปีเกิด : <?php echo $item['birthday']; ?> </p>
                                 <p>เลขที่ใบประกอบวิชาชีพ : <?php echo $item['doctor_cert']; ?> </p>
@@ -251,7 +251,7 @@
                                 <p>แผนก : <?php echo $item['spclty']; ?> </p>
                                 <p>เฉพาะทาง : <?php echo $item['speciality']; ?> </p>
                                 <p>Providertype : <?php echo $item['providertype']; ?> </p>
-                                <p>e-mail : <?php echo $item['email']; ?> &nbsp;&nbsp;&nbsp;โทรศัพท์<?php echo $item['mobilepone']; ?>  </p>
+                                <p>e-mail : <?php echo $item['emailaddress']; ?> &nbsp;&nbsp;&nbsp;โทรศัพท์<?php echo $item['mobilenumber']; ?>  </p>
                                 <p>user : <?php echo $item['username']; ?>&nbsp;&nbsp;&nbsp; password : <?php echo $item['password']; ?></p>
                                 <p>หมายเหตุ : <?php echo $item['note']; ?> </p>
                                  <?php if($item['it_getrequest'] != null){ ?><p>ผู้ดำเนินการ : <?php echo $item['it_getrequest']; ?> </p><?}?>
