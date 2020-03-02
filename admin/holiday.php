@@ -1,6 +1,6 @@
 <?php session_start(); ?>
 <?php
-include("config.inc.php");
+include("../config/pg_con.class.php");
 date_default_timezone_set('asia/bangkok');
 function thaiDate($datetime)
 {
