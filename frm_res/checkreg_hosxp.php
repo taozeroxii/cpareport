@@ -251,7 +251,7 @@
                                 <p>แผนก : <?php echo $item['spclty']; ?> </p>
                                 <p>เฉพาะทาง : <?php echo $item['speciality']; ?> </p>
                                 <p>Providertype : <?php echo $item['providertype']; ?> </p>
-                                <p>e-mail : <?php echo $item['emailaddress']; ?> &nbsp;&nbsp;&nbsp;โทรศัพท์<?php echo $item['mobilenumber']; ?>  </p>
+                                <p>e-mail : <?php echo $item['emailaddress']; ?> &nbsp;&nbsp;&nbsp;โทรศัพท์ : <?php echo $item['mobilenumber']; ?>  </p>
                                 <p>user : <?php echo $item['username']; ?>&nbsp;&nbsp;&nbsp; password : <?php echo $item['password']; ?></p>
                                 <p>หมายเหตุ : <?php echo $item['note']; ?> </p>
                                  <?php if($item['it_getrequest'] != null){ ?><p>ผู้ดำเนินการ : <?php echo $item['it_getrequest']; ?> </p><?}?>
