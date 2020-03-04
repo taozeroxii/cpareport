@@ -101,7 +101,9 @@ $new_nuer = $r['name'] . " | " . $r['loginname'] . " | " . $r['computername'] . 
 
   <hr>
   <div class="phone_head">USER ON LINE HOSXP <br>
-    <hr><?php echo "<span class='new_u'>ผู้ใช้งานล่าสุด </span><span class='new_sql'>" . $new_nuer . "</span>"; ?></hr>
+    <a href="open_radmin.php" target="_blank" title="เปิดโปรแกรม Open_Radmin" class="new_sql">Open_Radmin</a>
+    <hr>
+    <?php echo "<span class='new_u'>ผู้ใช้งานล่าสุด </span><span class='new_sql'>" . $new_nuer . "</span>"; ?></hr>
 
   </div>
   </CENTER>
@@ -156,6 +158,8 @@ $new_nuer = $r['name'] . " | " . $r['loginname'] . " | " . $r['computername'] . 
           <td class="center"><?= thaiDate($rowr["cdate"]) ?></td>
           <td class="center"><?= $rowr["ctime"] ?></td>
         </tr>
+
+
         <?php $ii++;
         } ?>
       </tbody>
