@@ -90,10 +90,13 @@
                         <div class="text-center"></div>
                     </div>
                 </form>
+                <?echo '<center><p style = "margin-top:10px;" class="alert-danger">'.$message.'</p></center>';?>
             </div>
+        
         </div>
+
     </div>
-    <?echo '<center><p style = "margin-top:10px;color:red">'.$message.'</p></center>';?>
+
 
 
 
