@@ -32,32 +32,36 @@
         $hash = password_hash($password,PASSWORD_BCRYPT);
         echo  $hash;
         */
-        $sql = "SELECT * FROM `cpareport_userlogin` WHERE `username` =  '".$username."'  AND `password` = '".$password."'";//query เช็ค user password ตรงไหม
-
+        $sql = "SELECT * FROM `cpareport_userlogin` WHERE `username` =  '".$username."'";//query เช็ค user password ตรงไหม
         $result = $con->query($sql);
       
         if($result->num_rows>0){
-            $accoutUsser = $result->fetch_assoc();
-            $_SESSION['username'] =  $accoutUsser['username'];
-            $_SESSION['password'] =  $accoutUsser['password'];
-            $_SESSION['fname'] =  $accoutUsser['fname'];
-            $_SESSION['lname'] =  $accoutUsser['lname'];
-            $_SESSION['niname'] =  $accoutUsser['niname'];
-            $_SESSION['status'] =  $accoutUsser['status'];
-            $_SESSION['department'] =  $accoutUsser['department'];
             
-            if($_SESSION['status'] =='1'){
-                header('location:admin/index.php'); 
-            }
-            else if ($_SESSION['status'] == '4'){
-                header('location:gsb'); 
-            }
-            else 
-            { 
-                header('location:index.php');
-            }
+            $sqlcheckpassword = "SELECT * FROM `cpareport_userlogin` WHERE  `username` =  '".$username."' AND `password` = '".$password."'";
+            $resultcheckpassword  = $con->query($sqlcheckpassword);
+            if($resultcheckpassword->num_rows>0){
+                $accoutUsser = $result->fetch_assoc();
+                $_SESSION['username'] =  $accoutUsser['username'];
+                $_SESSION['password'] =  $accoutUsser['password'];
+                $_SESSION['fname'] =  $accoutUsser['fname'];
+                $_SESSION['lname'] =  $accoutUsser['lname'];
+                $_SESSION['niname'] =  $accoutUsser['niname'];
+                $_SESSION['status'] =  $accoutUsser['status'];
+                $_SESSION['department'] =  $accoutUsser['department'];
+                
+                if($_SESSION['status'] =='1'){
+                    header('location:admin/index.php'); 
+                }
+                else if ($_SESSION['status'] == '4'){
+                    header('location:gsb'); 
+                }
+                else 
+                { 
+                    header('location:index.php');
+                }
+            }else{ $message =  "login fail password ไม่ถูกต้อง!!!"; }
 
-        }else{  $message =  "login fail ชื่อผู้ใช้งานหรือรหัสผ่านไม่ถูกต้อง!!!";
+        }else{  $message =  "login fail ไม่มีชื่อ Username นี้ในระบบ!!!";
          }
     }
     ?>
