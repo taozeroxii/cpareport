@@ -142,15 +142,15 @@
     $havecid = mysqli_fetch_assoc($querycheckcid);
 
     $checkcidhosxp = "select * from doctor where cid = '" . $_POST['cid'] . "'";
-    $querycheckcidhosxp = mysqli_query($conn, $checkcidhosxp);
-    $havecidhosxp = mysqli_fetch_assoc($querycheckcid);
+    $querycheckcidhosxp = pg_query($conn, $checkcidhosxp);
+    $havecidhosxp = pg_fetch_assoc($querycheckcidhosxp);
  
     $checkusername = "select * from officer where officer_login_name = '" . $_POST['username'] . "'";
     $checkusernames = pg_query($conn, $checkusername);
     $haveusers = pg_fetch_assoc($checkusernames);
 
     if ($havecid == null && $haveusers == null &&  $havecidhosxp == null){
-      $insertsql = "INSERT INTO frm_res_require_login_hosxp (pname,fname,lname,engfullname,gender,birthday,cid,jobclass,spclty,speciality,doctor_cert,first_day_in_job,emailaddress,username,password,status,insertdate_time,accepcert,expirecert,mobilenumber,providertype )
+      $insertsql = "INSERT INTO frm_res_require_login_hosxp (pname,fname,lname,engfullname,gender,birthday,cid,jobclass,spclty,speciality,doctor_cert,first_day_in_job,emailaddress,username,password,status,insertdate_time,accepcert,expirecert,mobilenumber,providertype,note )
       VALUES ('" . $_POST["pname"] . "'
       ,'" . $_POST["fname"] . "'
       ,'" . $_POST["lname"] . "'
@@ -172,6 +172,7 @@
       ,'" . $_POST['expirecert'] . "'
       ,'" .  $_POST['mobilephone']. "'
       ,'" . $_POST['Providertype']. "'
+      ,'" . $_POST['note']. "'
       )";
 
       $queryInsert = mysqli_query($con, $insertsql);
@@ -180,7 +181,7 @@
         echo "<script>alert('แจ้งข้อมูลไปยังผู้ดูแลระบบเรียบร้อย');window.location=index.php;</script>";
         //echo "<script>window.location='test.php';</script>";
         // LINE API NOTIFY//
-        function send_line_notify($message, $token)
+       function send_line_notify($message, $token)
         {
           $ch = curl_init();
           curl_setopt($ch, CURLOPT_URL, "https://notify-api.line.me/api/notify");
