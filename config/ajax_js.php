@@ -230,7 +230,7 @@
     $.ajax({
       url: "clinic.class.php",
       method: 'GET',
-      data: {'selector':'icd101'},
+      data: {'selector':'clinic'},
       success: function(result){
         var htmlOption = "";
         data = JSON.parse(result);
