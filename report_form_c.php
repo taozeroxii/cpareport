@@ -68,7 +68,7 @@ include "config/timestampviewer.php";//เรียกไฟล์ในส่�
 					$sql = " $sql_detail ";
 					$sql = str_replace("{datepickers}", "'$datepickers'", $sql);
 					$sql = str_replace("{datepickert}", "'$datepickert'", $sql);
-					$sql = str_replace("{clinic_dropdown}", "'$clinic_dropdown'", $sql);
+					$sql = str_replace("{clinic_department}", "'$clinic_dropdown'", $sql);
 					$result = pg_query($sql);
 					?>
 					<div class="row">
