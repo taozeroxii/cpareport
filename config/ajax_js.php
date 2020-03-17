@@ -230,14 +230,14 @@
     $.ajax({
       url: "clinic.class.php",
       method: 'GET',
-      data: {'selector':'clinic'},
+      data: {'selector':'cli'},
       success: function(result){
         var htmlOption = "";
         data = JSON.parse(result);
         $.each(data, function(i, item) {
-          htmlOption += "<option value='"+ item.code +"'>"+ item.code + " "+ item.name + "</option>";
+          htmlOption += "<option value='"+ item.clinic +"'>"+ item.clinic + " "+ item.name + "</option>";
         });
-        $('#clinic_dropdown').html(htmlOption);
+        $('#cli_dropdown').html(htmlOption);
         
       }});
   }

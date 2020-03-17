@@ -44,7 +44,7 @@ include "config/timestampviewer.php";//เรียกไฟล์ในส่�
 										<form class="form-inline" method="POST" action="#">
 											<input type="text" class="form-control" id="datepickers" placeholder="ช่วงวันที่เริ่ม" name="datepickers" data-provide="datepicker" data-date-language="th" autocomplete="off" >
 											<input type="text" class="form-control" id="datepickert" placeholder="ถึงวันที่" name="datepickert" data-provide="datepicker" data-date-language="th" autocomplete="off" >
-											<select class="select2" name="clinic_dropdown" id="clinic_dropdown" style="width: 20%;" placeholder="คลินิก" title="เลือกคลินิก"></select>
+											<select class="select2" name="cli_dropdown" id="cli_dropdown" style="width: 20%;" placeholder="คลินิก" title="เลือกคลินิก"></select>
 											<button type="submit" class="btn btn-default">Submit</button>
 										</form>
 									</div>
@@ -62,13 +62,13 @@ include "config/timestampviewer.php";//เรียกไฟล์ในส่�
 				list($m,$d,$Y)  = split('/',$datepickert); 
 				$datepickert    = trim($Y)."-".trim($m)."-".trim($d);
 
-				$clinic_dropdown   = $_POST['clinic_dropdown'];    
+				$cli_dropdown   = $_POST['cli_dropdown'];    
 
 				if($datepickers != "--") {
 					$sql = " $sql_detail ";
 					$sql = str_replace("{datepickers}", "'$datepickers'", $sql);
 					$sql = str_replace("{datepickert}", "'$datepickert'", $sql);
-					$sql = str_replace("{clinic_department}", "'$clinic_dropdown'", $sql);
+					$sql = str_replace("{cli_dropdown}", "'$cli_dropdown'", $sql);
 					$result = pg_query($sql);
 					?>
 					<div class="row">
@@ -140,7 +140,7 @@ include "config/timestampviewer.php";//เรียกไฟล์ในส่�
 	<script type="text/javascript">
 				function export_excel() 
 		{
-			document.location = "export_excel_c.php?send_excel=<?php echo $send_excel; ?>&datepickers=<?php echo $datepickers; ?>&datepickert=<?php echo $datepickert; ?>&clinic_dropdown=<?php echo $clinic_dropdown; ?>";
+			document.location = "export_excel_c.php?send_excel=<?php echo $send_excel; ?>&datepickers=<?php echo $datepickers; ?>&datepickert=<?php echo $datepickert; ?>&cli_dropdown=<?php echo $cli_dropdown; ?>";
 		}
 	</script>
 

@@ -1,6 +1,6 @@
  <?php require "pg_con.class.php";
- 	$clinic = $_GET['selector'];
-    if($clinic == "clinic"){
+ 	$cli = $_GET['selector'];
+    if($cli == "cli"){
     	$result= pg_query(" SELECT* FROM clinic order by clinic");
     	$resultArray = array();
 		while($row= pg_fetch_assoc($result)) { 
