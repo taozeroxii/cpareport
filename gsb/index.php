@@ -46,7 +46,9 @@ date_default_timezone_set('asia/bangkok');
 <body>
   <?php if ( (isset($_SESSION['username']) == "" || isset($_SESSION['username']) == null) &&( $_SESSION['status'] !='4'  ||  $_SESSION['status'] !='1'   ) ) {
         echo "<script>window.location ='../login.php';</script>"; } ?>
-  <div class="hmain">Patient GSB Member<sup> โรงพยาบาลเจ้าพระยาอภัยภูเบศร & ธนาคารออมสิน</sup &nbsp; ><a href="../logout.php"><button class="btn-sm btn-danger" href= ''> logout</button></a> </div>
+  <div class="hmain">Patient GSB Member<sup> โรงพยาบาลเจ้าพระยาอภัยภูเบศร & ธนาคารออมสิน</sup> &nbsp;
+    <a href="../logout.php" title="กรุณาออกจากระบบทุกครั้งหลังการใช้งาน"><button class="btn-sm btn-danger" href= ''> ออกจากระบบ</button></a> 
+  </div>
   <div class="container ">
     <div class="row">
       <div class="col-md-12">
