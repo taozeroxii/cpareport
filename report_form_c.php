@@ -45,7 +45,7 @@ include "config/timestampviewer.php";//เรียกไฟล์ในส่�
 											<input type="text" class="form-control" id="datepickers" placeholder="ช่วงวันที่เริ่ม" name="datepickers" data-provide="datepicker" data-date-language="th" autocomplete="off" >
 											<input type="text" class="form-control" id="datepickert" placeholder="ถึงวันที่" name="datepickert" data-provide="datepicker" data-date-language="th" autocomplete="off" >
 											<select class="select2" name="cli_dropdown" id="cli_dropdown" style="width: 20%;" placeholder="คลินิก" title="เลือกคลินิก"></select>
-											<button type="submit" class="btn btn-default">Submit</button>
+											<button type="submit" class="btn btn-default">ค้นหาข้อมูล</button>
 										</form>
 									</div>
 								</h3>
@@ -64,18 +64,25 @@ include "config/timestampviewer.php";//เรียกไฟล์ในส่�
 
 				$cli_dropdown   = $_POST['cli_dropdown'];    
 
+
 				if($datepickers != "--") {
 					$sql = " $sql_detail ";
 					$sql = str_replace("{datepickers}", "'$datepickers'", $sql);
 					$sql = str_replace("{datepickert}", "'$datepickert'", $sql);
 					$sql = str_replace("{cli_dropdown}", "'$cli_dropdown'", $sql);
 					$result = pg_query($sql);
+
+					$qcc  = " SELECT * FROM clinic WHERE clinic = '".$cli_dropdown ."'";
+				$selectcc = pg_query($qcc);
+				$resqcc   = pg_fetch_array($selectcc);
+				$cccc	  = $resqcc['clinic']." ".$resqcc['name'];
+
 					?>
 					<div class="row">
 						<div class="col-xs-12">
 							<div class="box">
 								<div class="box-header">
-									<h3 class="box-title co_dep"><?php echo " ข้อมูลช่วงวันที่ ".thaiDatefull($datepickers)." ถึงวันที่ ".thaiDatefull($datepickert) ?> 
+									<h3 class="box-title co_dep"><?php echo " ข้อมูลช่วงวันที่ ".thaiDatefull($datepickers)." ถึงวันที่ ".thaiDatefull($datepickert)." || ".$cccc; ?> 
 									<small><?php echo " เวลาที่ใช้ในการประมวลผล ".$bm->stop()." วินาที "; ?></small>
 								</h3>
 								<button type="" class="btn btn-default pull-right" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal"> Template </button>
