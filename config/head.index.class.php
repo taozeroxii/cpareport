@@ -191,6 +191,18 @@
                 });
             }, 1000);
         });
+
+
+        $(document).ready(function() {
+            var shownIds = new Array();
+            setInterval(function() {
+                $.get("sql_rt/realtime_visitperday.php", function(data) {
+                    data = $.parseJSON(data);
+                    $("#realtime_visitperday").html("<tr><td>" + data + "</td></tr>");
+                });
+            }, 1000);
+        });
+
     </script>
 
 </head>

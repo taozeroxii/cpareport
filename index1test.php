@@ -15,6 +15,7 @@ for ($i = 0; $i < 100000; $i++) {
 }
 $sql        =  $_GET['sql']; // get ค่าตามsql ที่ต้องการมา
 $send_excel =  $_GET['sql']; // get ค่าตามsql ที่ต้องการมาเพื่อเอาไว้ส่งออก excel
+
 $topLevelItems = " SELECT sql_code,sql_head FROM cpareport_sql WHERE sql_file = '" . $sql . "'"; // รับค่าsql มาแล้วเช็คค่าในตารางว่าตรงกับ idไหน แล้วให้เรียกค่าsqlที่เก็บไว้มาใช้ตอนแสดงผลกราฟและตาราง
 $res = mysqli_query($con, $topLevelItems);
 foreach ($res as $item) {
