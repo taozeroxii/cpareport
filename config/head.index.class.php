@@ -198,7 +198,7 @@
             setInterval(function() {
                 $.get("sql_rt/realtime_visitperday.php", function(data) {
                     data = $.parseJSON(data);
-                    $("#realtime_visitperday").html("<tr><td>" + data + "</td></tr>");
+                    $("#realtime_visitperday").html("" + data + "");
                 });
             }, 1000);
         });

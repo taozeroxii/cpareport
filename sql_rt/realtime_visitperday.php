@@ -25,7 +25,7 @@ $sql_rt = " SELECT type,string_agg(date_cc,' || ' ORDER BY date_cc)as cc FROM (
 )as sss group by type   ";
 $result_rt = pg_query($sql_rt);
 //$row_rt = pg_fetch_array($result_rt);
-$dhc_rt = '<br><table class="table table-bordered center "> <tr><th>รายการ</th><th>วันที่/จำนวน</th></tr>';
+$dhc_rt = '<br><table class="table table-bordered " style= "margin-left:9px"> <tr><th>รายการ</th><th>วันที่/จำนวน</th></tr>';
 while ($row_result = pg_fetch_assoc($result_rt)) {
    $dhc_rt .= '<tr><td>'.$row_result['type'].' </td><td>'.$row_result['cc'].'<td/></tr>';
 }
