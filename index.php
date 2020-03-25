@@ -85,7 +85,7 @@ $yd = $betweentodate;
                       <td class="cen">
                         <div class="rt" id="realtime_ipd">
                           <!-- <img src="image/loading2.gif" width="40px" height="20px"> -->
-                           <div class="spinner-border text-primary" role="status">
+                          <div class="spinner-border text-primary" role="status">
                             <span class="sr-only">Loading...</span>
                           </div>
                         </div>
@@ -96,7 +96,7 @@ $yd = $betweentodate;
                       <td class="cen">
                         <div class="rt" id="realtime_app">
                           <!-- <img src="image/loading2.gif" width="40px" height="20px"> -->
-                           <div class="spinner-border text-primary" role="status">
+                          <div class="spinner-border text-primary" role="status">
                             <span class="sr-only">Loading...</span>
                           </div>
                         </div>
@@ -107,7 +107,7 @@ $yd = $betweentodate;
                       <td class="cen">
                         <div class="rt" id="realtime_admit" data-toggle="modal" data-target="#myModal_rt_admit">
                           <!-- <img src="image/loading2.gif" width="40px" height="20px"> -->
-                           <div class="spinner-border text-primary" role="status">
+                          <div class="spinner-border text-primary" role="status">
                             <span class="sr-only">Loading...</span>
                           </div>
                         </div>
@@ -118,7 +118,7 @@ $yd = $betweentodate;
                       <td class="cen">
                         <div class="rt" id="realtime_dsc" data-toggle="modal" data-target="#myModal_rt_dsc">
                           <!-- <img src="image/loading2.gif" width="40px" height="20px"> -->
-                           <div class="spinner-border text-primary" role="status">
+                          <div class="spinner-border text-primary" role="status">
                             <span class="sr-only">Loading...</span>
                           </div>
                         </div>
@@ -128,9 +128,9 @@ $yd = $betweentodate;
                         <td class="cen">
                           <div class="rt" id="dhc_death" data-toggle="modal" data-target="#myModal_rt_death">
                             <!-- <img src="image/loading2.gif" width="40px" height="20px"> -->
-                             <div class="spinner-border text-primary" role="status">
-                            <span class="sr-only">Loading...</span>
-                          </div>
+                            <div class="spinner-border text-primary" role="status">
+                              <span class="sr-only">Loading...</span>
+                            </div>
                           </div>
                         </td>
 
@@ -140,9 +140,9 @@ $yd = $betweentodate;
                         <td class="cen">
                           <div class="rt" id="realtime_referin">
                             <!-- <img src="image/loading2.gif" width="40px" height="20px"> -->
-                             <div class="spinner-border text-primary" role="status">
-                            <span class="sr-only">Loading...</span>
-                          </div>
+                            <div class="spinner-border text-primary" role="status">
+                              <span class="sr-only">Loading...</span>
+                            </div>
                           </div>
                         </td>
                       </tr>
@@ -151,9 +151,9 @@ $yd = $betweentodate;
                         <td class="cen">
                           <div class="rt" id="realtime_referout">
                             <!-- <img src="image/loading2.gif" width="40px" height="20px"> -->
-                             <div class="spinner-border text-primary" role="status">
-                            <span class="sr-only">Loading...</span>
-                          </div>
+                            <div class="spinner-border text-primary" role="status">
+                              <span class="sr-only">Loading...</span>
+                            </div>
                           </div>
                         </td>
                       </tr>
@@ -227,7 +227,20 @@ $yd = $betweentodate;
                     </div>
                     <center>
                       <div id="realtime_visitperday" >
-                        <img src="image/loading2.gif" width="40px" height="20px">
+                        <!-- <img src="image/loading2.gif" width="40px" height="20px"> -->
+                        <div class="preloader-wrapper big active">
+                          <div class="spinner-layer spinner-blue-only">
+                            <div class="circle-clipper left">
+                              <div class="circle"></div>
+                            </div>
+                            <div class="gap-patch">
+                              <div class="circle"></div>
+                            </div>
+                            <div class="circle-clipper right">
+                              <div class="circle"></div>
+                            </div>
+                          </div>
+                        </div>
                       </div>
                     </center>
                   </tr>
