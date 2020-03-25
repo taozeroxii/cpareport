@@ -15,6 +15,9 @@
     <link rel="stylesheet" href="css/estyle.css">
     <link href="https://fonts.googleapis.com/css?family=Prompt" rel="stylesheet">
     <script type="text/javascript" src="http://code.jquery.com/jquery-1.7.1.js"></script>
+
+  <link rel="stylesheet" href="css/span.css">
+
     <script type="text/javascript">
         $(document).ready(function() {
             var shownIds = new Array();
