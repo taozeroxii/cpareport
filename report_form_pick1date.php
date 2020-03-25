@@ -87,7 +87,7 @@ include "config/timestampviewer.php";//เรียกไฟล์ในส่�
                   </h3>
                   &nbsp;&nbsp;
                   ผู้ป่วยในโรค <span class="pdx_s"><?php echo $row_result_a . " คน  "; ?></span>&nbsp;&nbsp;
-                  ผู้ป่วยทั้งหมด <span class="pdx"><?php echo $total . " คน  "; ?></span>
+                  ผู้ป่วยทั้งหมด <span class="pdx_s"><?php echo $total . " คน  "; ?></span>
                 </div>
               </div>
             </div>
