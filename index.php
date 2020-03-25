@@ -73,7 +73,7 @@ $yd = $betweentodate;
                       <!-- <span class="badge bg-green"> -->
                         <div class="rt " id="realtime_opd">
                           <!-- <img src="image/loading2.gif" width="40px" height="20px"> -->
-                          <div class="spinner-border text-primary" role="status">
+                          <div class="spinner-grow text-primary" role="status">
                             <span class="sr-only">Loading...</span>
                           </div>
                         </div>
@@ -85,7 +85,7 @@ $yd = $betweentodate;
                       <td class="cen">
                         <div class="rt" id="realtime_ipd">
                           <!-- <img src="image/loading2.gif" width="40px" height="20px"> -->
-                          <div class="spinner-border text-primary" role="status">
+                          <div class="spinner-grow text-primary" role="status">
                             <span class="sr-only">Loading...</span>
                           </div>
                         </div>
@@ -96,7 +96,7 @@ $yd = $betweentodate;
                       <td class="cen">
                         <div class="rt" id="realtime_app">
                           <!-- <img src="image/loading2.gif" width="40px" height="20px"> -->
-                          <div class="spinner-border text-primary" role="status">
+                          <div class="spinner-grow text-primary" role="status">
                             <span class="sr-only">Loading...</span>
                           </div>
                         </div>
@@ -107,7 +107,7 @@ $yd = $betweentodate;
                       <td class="cen">
                         <div class="rt" id="realtime_admit" data-toggle="modal" data-target="#myModal_rt_admit">
                           <!-- <img src="image/loading2.gif" width="40px" height="20px"> -->
-                          <div class="spinner-border text-primary" role="status">
+                          <div class="spinner-grow text-primary" role="status">
                             <span class="sr-only">Loading...</span>
                           </div>
                         </div>
@@ -118,7 +118,7 @@ $yd = $betweentodate;
                       <td class="cen">
                         <div class="rt" id="realtime_dsc" data-toggle="modal" data-target="#myModal_rt_dsc">
                           <!-- <img src="image/loading2.gif" width="40px" height="20px"> -->
-                          <div class="spinner-border text-primary" role="status">
+                          <div class="spinner-grow text-primary" role="status">
                             <span class="sr-only">Loading...</span>
                           </div>
                         </div>
@@ -128,7 +128,7 @@ $yd = $betweentodate;
                         <td class="cen">
                           <div class="rt" id="dhc_death" data-toggle="modal" data-target="#myModal_rt_death">
                             <!-- <img src="image/loading2.gif" width="40px" height="20px"> -->
-                            <div class="spinner-border text-primary" role="status">
+                            <div class="spinner-grow text-primary" role="status">
                               <span class="sr-only">Loading...</span>
                             </div>
                           </div>
@@ -140,7 +140,7 @@ $yd = $betweentodate;
                         <td class="cen">
                           <div class="rt" id="realtime_referin">
                             <!-- <img src="image/loading2.gif" width="40px" height="20px"> -->
-                            <div class="spinner-border text-primary" role="status">
+                            <div class="spinner-grow text-primary" role="status">
                               <span class="sr-only">Loading...</span>
                             </div>
                           </div>
@@ -151,7 +151,7 @@ $yd = $betweentodate;
                         <td class="cen">
                           <div class="rt" id="realtime_referout">
                             <!-- <img src="image/loading2.gif" width="40px" height="20px"> -->
-                            <div class="spinner-border text-primary" role="status">
+                            <div class="spinner-grow text-primary" role="status">
                               <span class="sr-only">Loading...</span>
                             </div>
                           </div>
@@ -228,19 +228,10 @@ $yd = $betweentodate;
                     <center>
                       <div id="realtime_visitperday" >
                         <!-- <img src="image/loading2.gif" width="40px" height="20px"> -->
-                        <div class="preloader-wrapper big active">
-                          <div class="spinner-layer spinner-blue-only">
-                            <div class="circle-clipper left">
-                              <div class="circle"></div>
-                            </div>
-                            <div class="gap-patch">
-                              <div class="circle"></div>
-                            </div>
-                            <div class="circle-clipper right">
-                              <div class="circle"></div>
-                            </div>
-                          </div>
+                        <div class="spinner-grow text-secondary" role="status">
+                          <span class="sr-only">Loading...</span>
                         </div>
+
                       </div>
                     </center>
                   </tr>
@@ -265,7 +256,10 @@ $yd = $betweentodate;
                         <td>ต่ำกว่า 16 ปี </td>
                         <td class="cen">
                           <div class="rt" id="realtime_age15">
-                            <img src="image/loading2.gif" width="40px" height="20px">
+                            <!-- <img src="image/loading2.gif" width="40px" height="20px"> -->
+                            <div class="spinner-border text-success" role="status">
+                              <span class="sr-only">Loading...</span>
+                            </div>
                           </div>
                         </td>
                       </tr>
@@ -273,7 +267,10 @@ $yd = $betweentodate;
                         <td>16-25 ปี </td>
                         <td class="cen">
                           <div class="rt" id="realtime_age18">
-                            <img src="image/loading2.gif" width="40px" height="20px">
+                            <!-- <img src="image/loading2.gif" width="40px" height="20px"> -->
+                            <div class="spinner-border text-success" role="status">
+                              <span class="sr-only">Loading...</span>
+                            </div>
                           </div>
                         </td>
                       </tr>
@@ -281,94 +278,112 @@ $yd = $betweentodate;
                         <td>26-30 ปี </td>
                         <td class="cen">
                           <div class="rt" id="realtime_age30">
-                            <img src="image/loading2.gif" width="40px" height="20px">
+                           <!-- <img src="image/loading2.gif" width="40px" height="20px"> -->
+                           <div class="spinner-border text-success" role="status">
+                            <span class="sr-only">Loading...</span>
                           </div>
-                        </td>
-                      </tr>
-                      <tr class="ffont">
-                        <td>31-40 ปี </td>
-                        <td class="cen">
-                          <div class="rt" id="realtime_age40">
-                            <img src="image/loading2.gif" width="40px" height="20px">
+                        </div>
+                      </td>
+                    </tr>
+                    <tr class="ffont">
+                      <td>31-40 ปี </td>
+                      <td class="cen">
+                        <div class="rt" id="realtime_age40">
+                          <!-- <img src="image/loading2.gif" width="40px" height="20px"> -->
+                          <div class="spinner-border text-success" role="status">
+                            <span class="sr-only">Loading...</span>
                           </div>
-                        </td>
-                      </tr>
-                      <tr class="ffont">
-                        <td>41-50 ปี </td>
-                        <td class="cen">
-                          <div class="rt" id="realtime_age50">
-                            <img src="image/loading2.gif" width="40px" height="20px">
+                        </div>
+                      </td>
+                    </tr>
+                    <tr class="ffont">
+                      <td>41-50 ปี </td>
+                      <td class="cen">
+                        <div class="rt" id="realtime_age50">
+                          <!-- <img src="image/loading2.gif" width="40px" height="20px"> -->
+                          <div class="spinner-border text-success" role="status">
+                            <span class="sr-only">Loading...</span>
                           </div>
-                        </td>
-                      </tr>
-                      <tr class="ffont">
-                        <td>51-60 ปี </td>
-                        <td class="cen">
-                          <div class="rt" id="realtime_age60">
-                            <img src="image/loading2.gif" width="40px" height="20px">
+                        </div>
+                      </td>
+                    </tr>
+                    <tr class="ffont">
+                      <td>51-60 ปี </td>
+                      <td class="cen">
+                        <div class="rt" id="realtime_age60">
+                          <!-- <img src="image/loading2.gif" width="40px" height="20px"> -->
+                          <div class="spinner-border text-success" role="status">
+                            <span class="sr-only">Loading...</span>
                           </div>
-                        </td>
-                      </tr>
-                      <tr class="ffont">
-                        <td>61 -80 ปี </td>
-                        <td class="cen">
-                          <div class="rt" id="realtime_age80">
-                            <img src="image/loading2.gif" width="40px" height="20px">
+                        </div>
+                      </td>
+                    </tr>
+                    <tr class="ffont">
+                      <td>61 -80 ปี </td>
+                      <td class="cen">
+                        <div class="rt" id="realtime_age80">
+                          <!-- <img src="image/loading2.gif" width="40px" height="20px"> -->
+                          <div class="spinner-border text-success" role="status">
+                            <span class="sr-only">Loading...</span>
                           </div>
-                        </td>
-                      </tr>
-                      <tr class="ffont">
-                        <td>มากกว่า 80 ปี </td>
-                        <td class="cen">
-                          <div class="rt" id="realtime_age80up">
-                            <img src="image/loading2.gif" width="40px" height="25px">
+                        </div>
+                      </td>
+                    </tr>
+                    <tr class="ffont">
+                      <td>มากกว่า 80 ปี </td>
+                      <td class="cen">
+                        <div class="rt" id="realtime_age80up">
+                          <!-- <img src="image/loading2.gif" width="40px" height="25px"> -->
+                          <div class="spinner-border text-success" role="status">
+                            <span class="sr-only">Loading...</span>
                           </div>
-                        </td>
-                      </tr>
-                    </table>
-                    <br>
-                  </div>
+                        </div>
+                      </td>
+                    </tr>
+                  </table>
+                  <br>
                 </div>
               </div>
             </div>
+          </div>
 
 
-            <div class="row">
-              <div class="col-md-12">
-                <div class="box">
-                  <div class="box-header with-border">
-                    <h3 class="box-title">ค่า CMI <?php echo $yd; ?> </h3>
-                    <span class="small">&nbsp;&nbsp;<?php echo " ข้อมูลวันที่ ณ " . thaidatefull(date('Y-m-d')); ?></span>
-                  </div>
-                  <div class="box-body">
-                    <div id="">
-                      <div id="container" style="min-width: 110px; height: 200px; margin: 0 auto"></div>
-                      <table class="table" id="datatable">
-                        <thead>
-                          <tr>
-                            <th>เดือน</th>
-                            <th>ค่า CMI</th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                          <?php
-                          while ($result = pg_fetch_array($row_cmi)) {
-                            $cmi = $result['cmi'];
-                            ?>
-                            <tr>
-                              <td><?php echo $result['md']; ?></td>
-                              <td><?php echo $cmi = ($cmi) ? $cmi : "0"; ?></td>
-                            </tr>
-                            <?php
-                          }
+          <div class="row">
+            <div class="col-md-12">
+              <div class="box">
+                <div class="box-header with-border">
+                  <h3 class="box-title">ค่า CMI <?php echo $yd; ?> </h3>
+                  <span class="small">&nbsp;&nbsp;<?php echo " ข้อมูลวันที่ ณ " . thaidatefull(date('Y-m-d')); ?></span>
+                </div>
+                <div class="box-body">
+                  <div id="">
+                    <div id="container" style="min-width: 110px; height: 200px; margin: 0 auto"></div>
+                    <table class="table" id="datatable">
+                      <thead>
+                        <tr>
+                          <th>เดือน</th>
+                          <th>ค่า CMI</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <?php
+                        while ($result = pg_fetch_array($row_cmi)) {
+                          $cmi = $result['cmi'];
                           ?>
-                        </tbody>
-                      </table>
-                    </div>
+                          <tr>
+                            <td><?php echo $result['md']; ?></td>
+                            <td><?php echo $cmi = ($cmi) ? $cmi : "0"; ?></td>
+                          </tr>
+                          <?php
+                        }
+                        ?>
+                      </tbody>
+                    </table>
                   </div>
                 </div>
               </div>
             </div>
+          </div>
 
 
 
