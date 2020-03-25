@@ -174,7 +174,7 @@ $yd = $betweentodate;
         <div class="col-md-9">
           <div class="box">
             <div class="box-header with-border">
-              <h3 class="box-title"> จำนวนผู้รับบริการปัจจุบัน - ย้อนหลัง</h3>
+              <h3 class="box-title "> ข้อมูลจำนวนผู้รับบริการปัจจุบัน - ย้อนหลัง</h3>
             </div>
             <center>
             <div id="realtime_visitperday" >

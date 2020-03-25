@@ -1,5 +1,7 @@
+
 <?php 
 include "pg_con.class.php";
+
 function thf($datetime)
 {
  if(!is_null($datetime))
@@ -64,24 +66,31 @@ $day_3 = strtotime("-2 day");
 $day_4 = strtotime("-3 day");
 $day_5 = strtotime("-4 day");
 
-$dhc_rt = '<br><table class="table table-bordered " style= "margin-left:9px"> <tr>
-	<th class="text-center">รายการ</th>
-	<th class="text-center">'.thf(date("Y-m-d",$curdate)) .' (วันนี้) </th>
-	<th class="text-center">'.thf(date("Y-m-d",$lastday)).'</th>
-	<th class="text-center">'.thf(date("Y-m-d",$day_3)).'</th>
-	<th class="text-center">'.thf(date("Y-m-d",$day_4)).'</th>
-	<th class="text-center">'.thf(date("Y-m-d",$day_5)).'</th>
+$dhc_rt = //'<br><table class="table table-bordered " style= "margin-left:9px"> 
+'<div class="container">
+<table class="table">
+<thead>
+<tr>
+<th class="text-center">รายการ</th>
+<th class="text-center">'.thf(date("Y-m-d",$curdate)) .'<sup class="text-danger"> ( ข้อมูลวันนี้ ) </sup></th>
+<th class="text-center">'.thf(date("Y-m-d",$lastday)).'</th>
+<th class="text-center">'.thf(date("Y-m-d",$day_3)).'</th>
+<th class="text-center">'.thf(date("Y-m-d",$day_4)).'</th>
+<th class="text-center">'.thf(date("Y-m-d",$day_5)).'</th>
 </tr>';
 while ($row_result = pg_fetch_assoc($result_rt)) {
-   $dhc_rt .= 
-   '<tr>
-	   <td>'.$row_result['type'].' </td>
-	   <td class="text-center">'.$row_result['ข้อมูลปัจจุบัน'].'</td>
-	   <td class="text-center">'.$row_result['ย้อนหลังหนึ่งวัน'].'</td>
-	   <td class="text-center">'.$row_result['ย้อนหลังสองวัน'].'</td>
-	   <td class="text-center">'.$row_result['ย้อนหลังสามวัน'].'</td>
-	   <td class="text-center">'.$row_result['ย้อนหลังสี่วัน'].'</td>
-   </tr>';
+ $dhc_rt .= 
+ '<tr>
+ <td class="">'.$row_result['type'].' </td>
+ <td class="text-center">'.$row_result['ข้อมูลปัจจุบัน'].'</td>
+ <td class="text-center">'.$row_result['ย้อนหลังหนึ่งวัน'].'</td>
+ <td class="text-center">'.$row_result['ย้อนหลังสองวัน'].'</td>
+ <td class="text-center">'.$row_result['ย้อนหลังสามวัน'].'</td>
+ <td class="text-center">'.$row_result['ย้อนหลังสี่วัน'].'</td>
+ </tr>
+ <thead>
+ </div>';
 }
-$dhc_rt .= '</table><br><hr>';
+$dhc_rt .= '</table><br><br><hr>';
 echo json_encode($dhc_rt);
+?>
