@@ -38,7 +38,7 @@ $sql = "INSERT INTO help_hosxp (message_in, message_out, admin_send,dateupdate,i
 	    VALUES ('".$message_in."','".$message_out."','".$admin_send."','".$dateupdate."','".$ipupdate."')";
 $query = mysqli_query($con,$sql);
 	$line_api = 'https://notify-api.line.me/api/notify';
-	$access_token = '7aTisrKodM65FCJYUWm66SiwCBmPYIUba0oaaDlETtz';
+	$access_token = 'f4SqOeCfkgNJAmdJOA1U79xX8d6MANYdCoHcgaw7ePm';
 	$str 		=	$message_out;
 	$image_thumbnail_url = ''; 
 	$image_fullsize_url = ''; 
