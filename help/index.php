@@ -1,4 +1,11 @@
 <?php
+include('../config/my_con.class.php');
+$s = $_GET['search_menu'];
+$topLevelItems = " SELECT * FROM cpareport_menu WHERE menu_status in ('1','2') and menu_sub LIKE '%%$s%%'  ";
+$res = mysqli_query($con, $topLevelItems);
+ session_start(); 
+ ?>
+<?php
 require_once("../config/my_con.class.php");
 date_default_timezone_set("Asia/Bangkok");
 function DateThai($strDate)
@@ -54,10 +61,10 @@ $id 				=	$row['id'];
 	</style>
 </head>
 <body>
-
+	<?php if (isset($_SESSION['username']) == "" || isset($_SESSION['username']) == null) {
+		echo "<script>window.location ='../login.php';</script>";
+	} ?>
 	<div class="container-contact100" style="background-image: url('images/bg-01.jpg');">
-
-
 		<div class="wrap-contact100">
 
 			<form class="contact100-form validate-form" name="send" id="send" action="send.php" method="post">
