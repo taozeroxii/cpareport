@@ -20,7 +20,7 @@ $message_in 		=	$row['message_in'];
 $message_out 		=	$row['message_out'];
 $admin_send 		=	$row['admin_send'];
 $dateupdate 		=	$row['dateupdate'];
-
+$id 				=	$row['id'];
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -37,6 +37,21 @@ $dateupdate 		=	$row['dateupdate'];
 	<link rel="stylesheet" type="text/css" href="vendor/select2/select2.min.css">
 	<link rel="stylesheet" type="text/css" href="css/util.css">
 	<link rel="stylesheet" type="text/css" href="css/main.css">
+	<style type="text/css">
+		.color-a{
+			color: #2F58CE;
+			font-weight: bold;
+		}
+		.color-b{
+			color: #7D3C98;
+		}		
+		.s1{
+			color: #0E6655;
+		}
+		.s2{
+			color: #CF4006;
+		}
+	</style>
 </head>
 <body>
 
@@ -49,8 +64,10 @@ $dateupdate 		=	$row['dateupdate'];
 				<span class="contact100-form-title">
 					Admin Help HosXp | <?php echo $show; ?>
 				</span>		
-				<div title="รายการที่แจ้งปัญหาล่าสุด | และรายการตอบปัญหาล่าสุด "><?php echo "รายการล่าสุด ".$message_in." | ".$message_out ?></div>
-				<div title="ผู้ตอบรายการปัญหาล่าสุด | และวันเวลาการตอบปัญหาล่าสุด "><?php echo " | ".$admin_send." | ".$dateupdate ?></div>
+				<div class="color-a" title="รายการที่แจ้งปัญหาล่าสุด | และรายการตอบปัญหาล่าสุด ">
+					<?php echo "<u>รายการล่าสุด</u> : ".$id." : ".$message_in." |<span class='s1'> ".$message_out ?></span></div>
+				<div class="color-b" title="ผู้ตอบรายการปัญหาล่าสุด | และวันเวลาการตอบปัญหาล่าสุด ">
+					<?php echo " | ".$admin_send." |<span class='s2'> ".$dateupdate ?></span></div>
 				<hr>
 <!-- 
 				<div class="wrap-input100 rs1-wrap-input100 validate-input" data-validate="Name is required">
