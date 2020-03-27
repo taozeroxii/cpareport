@@ -15,7 +15,7 @@ f4SqOeCfkgNJAmdJOA1U79xX8d6MANYdCoHcgaw7ePm
  	
 <?php
  header( "refresh: 0; url=index.php" );
-//	require_once("dbconnect.php");
+	require_once("../config/my_con.class.php");
 	date_default_timezone_set("Asia/Bangkok");
 	function DateThai($strDate)
 	{
@@ -26,22 +26,20 @@ f4SqOeCfkgNJAmdJOA1U79xX8d6MANYdCoHcgaw7ePm
 		$strMonthThai=$strMonthCut[$strMonth];
 		return "$strDay $strMonthThai $strYear";
 	}	
-	/*$strDate = date('Y/m/d');
-	$show 	 = DateThai($strDate);
-	 $id 	 = $_GET['UserID'];
-	 $sql  = " SELECT * FROM member WHERE UserID = ".$id." ";
-	$data = mysqli_query($mysqli,$sql);   
-	$row  = mysqli_fetch_array($data);
-*/
- 	//$UserID 		=	$row['UserID'];
- 	//$Name 			=	"test";
- //	$ID_CARD 		=	"test";
-   $text 	 = $_POST['message'];
 
+    $message_in 	= $_POST['message_in'];
+    $message_out 	= $_POST['message_out'];
+	$dateupdate 	= date('Y-m-d H:i:s');
+   	$date_th 	    = DateThai($strDate);
+    $admin_send 	= "admin";
+    $ipupdate		= "8.8.8.8";
 
+$sql = "INSERT INTO help_hosxp (message_in, message_out, admin_send,dateupdate,ipupdate) 
+	    VALUES ('".$message_in."','".$message_out."','".$admin_send."','".$dateupdate."','".$ipupdate."')";
+$query = mysqli_query($con,$sql);
 	$line_api = 'https://notify-api.line.me/api/notify';
 	$access_token = '7aTisrKodM65FCJYUWm66SiwCBmPYIUba0oaaDlETtz';
-	$str 		=	$text;
+	$str 		=	$message_out;
 	$image_thumbnail_url = ''; 
 	$image_fullsize_url = ''; 
 	$message_data = array(

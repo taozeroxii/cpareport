@@ -1,3 +1,27 @@
+<?php
+require_once("../config/my_con.class.php");
+date_default_timezone_set("Asia/Bangkok");
+function DateThai($strDate)
+{
+	$strYear = date("Y",strtotime($strDate))+543;
+	$strMonth= date("n",strtotime($strDate));
+	$strDay= date("j",strtotime($strDate));
+	$strMonthCut = Array("","ม.ค.","ก.พ.","มี.ค.","เม.ย.","พ.ค.","มิ.ย.","ก.ค.","ส.ค.","ก.ย.","ต.ค.","พ.ย.","ธ.ค.");
+	$strMonthThai=$strMonthCut[$strMonth];
+	return "$strDay $strMonthThai $strYear";
+}
+$strDate = date('Y/m/d');
+$show 	 = DateThai($strDate);
+$sql  = " SELECT * FROM help_hosxp ORDER BY id DESC LIMIT 1; ";
+$query = mysqli_query($con,$sql);  
+$row  = mysqli_fetch_array($query);
+
+$message_in 		=	$row['message_in'];
+$message_out 		=	$row['message_out'];
+$admin_send 		=	$row['admin_send'];
+$dateupdate 		=	$row['dateupdate'];
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -15,12 +39,19 @@
 	<link rel="stylesheet" type="text/css" href="css/main.css">
 </head>
 <body>
+
 	<div class="container-contact100" style="background-image: url('images/bg-01.jpg');">
+
+
 		<div class="wrap-contact100">
+
 			<form class="contact100-form validate-form" name="send" id="send" action="send.php" method="post">
 				<span class="contact100-form-title">
-					Admin Help HosXp
-				</span>
+					Admin Help HosXp | <?php echo $show; ?>
+				</span>		
+				<div title="รายการที่แจ้งปัญหาล่าสุด | และรายการตอบปัญหาล่าสุด "><?php echo "รายการล่าสุด ".$message_in." | ".$message_out ?></div>
+				<div title="ผู้ตอบรายการปัญหาล่าสุด | และวันเวลาการตอบปัญหาล่าสุด "><?php echo " | ".$admin_send." | ".$dateupdate ?></div>
+				<hr>
 <!-- 
 				<div class="wrap-input100 rs1-wrap-input100 validate-input" data-validate="Name is required">
 					<span class="label-input100">Tell us your name *</span>
@@ -37,8 +68,12 @@
 					<input class="input100" type="text" name="web" placeholder="http://">
 				</div> -->
 				<div class="wrap-input100 validate-input" data-validate = "Message is required">
-					<span class="label-input100">ข้อความ</span>
-					<textarea class="input100" name="message" id="message" placeholder=""></textarea>
+					<span class="label-input100">ปัญหาที่เกิด (แจ้งใน Group Line HOSxP)</span>
+					<textarea class="input100" name="message_in" id="message_in" placeholder="คัดลอกรายการที่มีการแจ้งปัญหาทาง Line Group HosXp "></textarea>
+				</div>
+				<div class="wrap-input100 validate-input" data-validate = "Message is required">
+					<span class="label-input100">แสดงความคิดเห็นของ Admin</span>
+					<textarea class="input100" name="message_out" id="message_out" placeholder="ตอบปัญหาที่แจ้งมา หรือ ใส่ link วิธีการแก้ไขปัญหาหรือรายละเอียดการแก้ไข"></textarea>
 				</div>
 				<div class="container-contact100-form-btn">
 					<div class="wrap-contact100-form-btn">
