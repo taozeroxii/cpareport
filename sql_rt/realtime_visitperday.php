@@ -28,7 +28,7 @@ function thf($datetime)
 }
 return "";
 }
-$sql_rt = "SELECT ord as ลำดับ,type ,
+$sql_rt = "SELECT ord as ord,type ,
 sum (case when vstdate = CURRENT_DATE  then cc else 0 end )  as ข้อมูลปัจจุบัน  ,
 sum (case when vstdate = CURRENT_DATE -1 then cc  else 0 end )as ย้อนหลังหนึ่งวัน    ,
 sum (case when vstdate = CURRENT_DATE -2 then cc  else 0 end )as ย้อนหลังสองวัน  ,
@@ -79,7 +79,7 @@ SELECT '10' :: integer as ord,'Refer_out (ส่งต่อ)' as type,refer_dat
 GROUP BY refer_date,ord  
 )as OPD
 GROUP BY TYPE,ord
-ORDER BY ลำดับ;  ";
+ORDER BY ord;  ";
 $result_rt = pg_query($sql_rt);
 
 $curdate = strtotime("now");
@@ -93,6 +93,7 @@ $dhc_rt = //'<br><table class="table table-bordered " style= "margin-left:9px">
 <table class="table">
 <thead>
 <tr>
+<th class="text-center">#</th>
 <th class="text-center">รายการ</th>
 <th class="text-center">'.thf(date("Y-m-d",$curdate)) .'<sup class="text-danger"> ( ข้อมูลวันนี้ ) </sup></th>
 <th class="text-center">'.thf(date("Y-m-d",$lastday)).'</th>
@@ -103,6 +104,7 @@ $dhc_rt = //'<br><table class="table table-bordered " style= "margin-left:9px">
 while ($row_result = pg_fetch_assoc($result_rt)) {
  $dhc_rt .= 
  '<tr>
+ <td class="">'.$row_result['ord'].' </td>
  <td class="">'.$row_result['type'].' </td>
  <td class="text-center">'.$row_result['ข้อมูลปัจจุบัน'].'</td>
  <td class="text-center">'.$row_result['ย้อนหลังหนึ่งวัน'].'</td>
