@@ -1,5 +1,5 @@
 <?php
-$objConnect = mysql_connect("localhost","report","report") or die("Error Connect to Database");
+$objConnect = mysql_connect("172.16.0.251","report","report") or die("Error Connect to Database");
 $objDB = mysql_select_db("phone_db");
 
 mysql_query("SET character_set_results=utf8");
