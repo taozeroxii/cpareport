@@ -1,0 +1,12 @@
+<?php
+$objConnect = mysql_connect("localhost","report","report") or die("Error Connect to Database");
+$objDB = mysql_select_db("phone_db");
+
+mysql_query("SET character_set_results=utf8");
+mysql_query("SET character_set_client=utf8");
+mysql_query("SET character_set_connection=utf8");
+mysql_query("collation_connection = utf8_general_ci");
+mysql_query("collation_database = utf8_general_ci");
+mysql_query("collation_server = utf8_general_ci");
+
+?>
