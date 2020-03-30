@@ -74,8 +74,8 @@ function chkdel(){if(confirm('  กรุณายืนยันการลบ
         <th><CENTER>คลิกนิก/แผนก/หน่วยงาน</CENTER></th>
         <th><CENTER>เบอร์โทร</CENTER></th>
         <th><CENTER>อาคาร/ตึก/ชั้น</CENTER></th>
-<!--         <th><CENTER>ประเภท</CENTER></th>
-        <th><CENTER>จัดการ</CENTER></th> -->
+        <th><CENTER>ประเภท</CENTER></th>
+        <th><CENTER>จัดการ</CENTER></th>
       </tr>
     </thead>
     <tbody>
@@ -94,24 +94,24 @@ function chkdel(){if(confirm('  กรุณายืนยันการลบ
         <td><?=$rowr["name"]?></td>
         <td><left><b><?=$rowr["phone_num"]?></b></left></td>
         <td class="center"><?=$rowr["nickname"]?></td>
-        <!-- <td class="center"> -->
-          <!-- <span class="label  -->
-          <?php //if($rowr["type_id"]=="1") echo "btn-success"; 
-			//else if($rowr["type_id"]=="2") echo "btn-danger";
-			//else if($rowr["type_id"]=="3") echo "btn-warning";
-			/*else if($rowr["type_id"]=="4") echo "btn-inverse"; ไม่เปิดใช้งาน*/
+        <td class="center">
+          <span class="label 
+          <?php if($rowr["type_id"]=="1") echo "btn-success"; 
+			else if($rowr["type_id"]=="2") echo "btn-danger";
+			else if($rowr["type_id"]=="3") echo "btn-warning";
+			else if($rowr["type_id"]=="4") echo "btn-inverse"; ไม่เปิดใช้งาน
 		 ?>
-     <!-- "> -->
-          <?php //echo $rowr["type_name"]?>
-          <!-- </span> -->
-        <!-- </td> -->
-        <!-- <td class="center"> -->
-          <!-- <a class="btn btn-info" href="?editid=<?//=$rowr['phone_id']?>#edit"> แก้ไข </a> -->
-          <?php// if(isset($_GET['admin'])){ ?>
-          <!-- <a class="btn btn-danger" data-toggle="modal" href="?del=<?//=$rowr["phone_id"]?>" OnClick="return chkdel();">  -->
-            <!-- <i class="icon-remove icon-white"></i> ลบ </a> -->
-          <? //}?>
-        <!-- </td> -->
+     <!-- ">
+          <?php echo $rowr["type_name"]?>
+          </span>
+        </td>
+        <td class="center">
+             <a class="btn btn-info" href="?editid=<?=$rowr['phone_id']?>#edit"> แก้ไข </a>
+          <?php if(isset($_GET['admin'])){ ?>
+          <a class="btn btn-danger" data-toggle="modal" href="?del=<?=$rowr["phone_id"]?>" OnClick="return chkdel();"> 
+            <i class="icon-remove icon-white"></i> ลบ </a>
+          <? }?>
+        </td>
       </tr>
       <?php  $ii++;	} // ปิด while นอก ?>
     </tbody>
@@ -130,7 +130,7 @@ function chkdel(){if(confirm('  กรุณายืนยันการลบ
   </div>
   <form action="index.php#add" method="get">
     <div style="margin-top:10px;">
-      <!-- <button  class="btn btn-info" type="submit"> <i class="icon-plus-sign icon-white"></i> เพิ่มเบอร์ </button> -->
+      <button  class="btn btn-info" type="submit"> <i class="icon-plus-sign icon-white"></i> เพิ่มเบอร์ </button>
       <input name="amount" type="text" class="input-mini"  id="amount" placeholder="" style="margin-bottom:0; text-align:right;" value="1" maxlength="1" >
       รายการ </div>
   </form>
@@ -222,6 +222,7 @@ $query_edit = mysql_query($sql_edit);
 $rowe = mysql_fetch_array($query_edit);
 
 if(isset($_GET['editid'])){
+  
 ?>
       <!-- Form Name -->
       <legend>แก้ไข</legend>
@@ -367,6 +368,6 @@ $modal.on('click', '.update', function(){
 });
 
 </script>
-<center><div><a href="#"> <type="button" title="abhai bhubajhr Information Hospital" ><font size="3px"><B>By:eaktamp Version 2.0<B> </font></center></div>
+<center><div><a href="#"> <type="button" title="abhai bhubajhr Information Hospital" ><font size="3px"><B>Information Hospital<B> </font></center></div>
 </body>
 </html>

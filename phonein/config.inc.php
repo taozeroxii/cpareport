@@ -1,6 +1,6 @@
 <?php
 $objConnect = mysql_connect("172.16.0.251","report","report") or die("Error Connect to Database");
-$objDB = mysql_select_db("phone_db");
+$objDB = mysql_select_db("cpareportdb");
 
 mysql_query("SET character_set_results=utf8");
 mysql_query("SET character_set_client=utf8");
