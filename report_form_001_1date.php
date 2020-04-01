@@ -13,6 +13,7 @@ for( $i = 0 ; $i < 100000 ; $i++ )
 {
 	$i;
 }
+
 $sql 		=  $_GET['sql'];
 $send_excel =  $_GET['sql'];
 $topLevelItems = " SELECT sql_code,sql_head FROM cpareport_sql WHERE sql_file = '".$sql."'";
