@@ -163,7 +163,7 @@ $day_5     = strtotime("-4 day");
  </html>
 
  <br>
- <center><div class=""><?php echo " วันเวลา Update ข้อมูล : ".thf($todate)."  เวลา ".$time_todate." น.".; ?></div></center>
+ <center><div class=""><?php echo " วันเวลา Update ข้อมูล : ".thf($todate)."  เวลา ".$time_todate." น."; ?></div></center>
  <br>
 
 <?php 
