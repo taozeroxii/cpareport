@@ -1,0 +1,6 @@
+th, td , hr {
+  border-bottom: 1px solid #ddd;
+}
+th , td{
+	font-size: 0.9em;
+}
