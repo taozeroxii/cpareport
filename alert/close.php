@@ -22,6 +22,7 @@
 
 </head>
 <body>
+	<!-- https://is.gd/DCpcOy -->
 	<img src="loading.gif">
 </body>
 <script type="text/javascript">
