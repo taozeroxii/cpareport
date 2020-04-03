@@ -281,3 +281,6 @@ if($ononeyear == "11"){
 }
 echo '<br><p style="color:green">Update Success</p>';
 ?>
+<script>
+    window.close('runsql.php','_self');
+</script>

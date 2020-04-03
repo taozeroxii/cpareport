@@ -1,6 +1,5 @@
 <!DOCTYPE HTML5>
 <html lang="en">
-
 <head>
     <title>เพิ่มผู้ใช้งาน</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -27,7 +26,8 @@
 </head>
 
 
-<body style="background-color:rgb(146, 235, 149)">
+<body style="background-color:rgb(146, 235, 149) " >
+
     <!-- main -->
     <?
     $remembername  = '' ;
