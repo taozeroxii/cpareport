@@ -40,6 +40,13 @@ $yd = $betweentodate;
     margin-top:100px;
     height:2000px;
     }*/
+    a{
+      color: #fff;
+    }
+    a:hover{
+      color: red;
+      font-weight: bold;
+      font-size: 1.4em;
   </style>
 
   <body class="hold-transition skin-blue sidebar-mini">
@@ -201,7 +208,12 @@ $yd = $betweentodate;
 <!--                       <div class="spinner-border text-warning" role="status">
                         <span class="sr-only">Loading...</span>
                       </div> -->
-                      <h3 class="box-title "> ข้อมูลจำนวนผู้รับบริการปัจจุบัน - ย้อนหลัง</h3>
+                      <h3 class="box-title ">
+                       ข้อมูลจำนวนผู้รับบริการปัจจุบัน - ย้อนหลัง </h3>
+                        &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+                        <span class="covid">
+                          <a href="http://172.16.0.251/report/report_form_001.php?sql=sql_0200" title="คลิกเลือกข้อมูลตามช่วงเวลาที่ต้องการ">คลิกเลือกข้อมูลตามช่วงเวลาที่เลือก</a>
+                        </span>
                  <!--      <div class="spinner-border text-primary" role="status">
                         <span class="sr-only">Loading...</span>
                       </div>
