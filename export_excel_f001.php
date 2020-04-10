@@ -9,7 +9,7 @@ header("Content-Disposition: attachment; filename=export".$todate.".xls");
     require "config/pg_con.class.php";
     include('config/my_con.class.php');
 //รับค่าตัวแปรจากform ดึงค่ามา
-$sql            = $_GET['send_excel'];
+ $sql            = $_GET['send_excel'];
 $datepickers    = $_GET['datepickers'];
 $datepickert    = $_GET['datepickert'];
 $i_dropdown     = $_GET['i_dropdown'];
@@ -21,6 +21,11 @@ $dental_diag    =  $_GET['dental_diag'];
 $room           =  $_GET['room'];
 $diag_1         =  $_GET['diag_1'];
 $diag_2         =  $_GET['diag_2'];
+// ส่วนฟอร์มยา
+$timeindrug     =  $_GET['timeindrug'];
+$timeoutdrug    =  $_GET['timeoutdrug'];
+echo $user_k    =  $_GET['userdrug'];
+
 
 $topLevelItems = " SELECT sql_code,sql_head FROM cpareport_sql WHERE sql_file = '".$sql."'";
 $res=mysqli_query($con,$topLevelItems);
@@ -41,6 +46,10 @@ foreach($res as $item) {
 
                     $sql = str_replace("{diag_1}", "'$diag_1'", $sql);
                     $sql = str_replace("{diag_2}", "'$diag_2'", $sql);
+
+                    $sql = str_replace("{time_in}", "'$timeindrug'", $sql);
+                    $sql = str_replace("{time_out}", "'$timeoutdrug'", $sql);
+                    $sql = str_replace("{user_k}", "'$user_k'", $sql);
                     $result = pg_query($sql);
     ?>
     <table width="100%" border="1">

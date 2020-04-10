@@ -14,6 +14,7 @@ for( $i = 0 ; $i < 100000 ; $i++ )
 	$i;
 }
 
+
 $sql 		=  $_GET['sql'];
 $send_excel =  $_GET['sql'];
 $topLevelItems = " SELECT sql_code,sql_head FROM cpareport_sql WHERE sql_file = '".$sql."'";
@@ -68,6 +69,7 @@ include "config/timestampviewer.php";//เรียกไฟล์ในส่�
 												.str_pad($mins,2,'0',STR_PAD_LEFT).'>'.str_pad($hours,2,'0',STR_PAD_LEFT).':'
 												.str_pad($mins,2,'0',STR_PAD_LEFT).'</option>';
 												?>
+												<option value='23:59'>24:00</option>
 											</select>
 											<button type="submit" class="btn btn-default" title="อย่าลืมเลือกเวลาด้วยนะครับ">ตกลง</button>
 										</form>
@@ -108,7 +110,8 @@ include "config/timestampviewer.php";//เรียกไฟล์ในส่�
 									<h3 class="box-title co_dep"><?php echo " ข้อมูลช่วงวันที่ ".thaiDatefull($datepickers)." ถึงวันที่ ".thaiDatefull($datepickert) ?> 
 									<small><?php echo " เวลาที่ใช้ในการประมวลผล ".$bm->stop()." วินาที "; ?></small>
 								</h3>
-								<button type="" class="btn btn-default pull-right" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal"> Template </button>
+								<button type="" class="btn btn-default pull-right" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal"> SQL </button>
+								<button type="" class="btn btn-default pull-right" class="btn btn-info btn-lg" onclick="export_excel()" > Excel </button>
 								<!-- <button type="" class="btn btn-default pull-right" class="btn btn-info btn-lg" onclick="export_excel()" > Excel </button> -->
 							</div>
 							<div class="box-body table-responsive"><span class="fcol"> </span>
@@ -169,10 +172,9 @@ include "config/timestampviewer.php";//เรียกไฟล์ในส่�
 	</script>
 	<script type="text/javascript">
 		function export_excel()
-		// {
-		// 	document.location = "export_excel_f001.php?send_excel=<?php //echo $send_excel; ?>&datepickers=<?php //echo $datepickers; ?>&datepickert=<?php //echo $datepickert; ?>";
-		// }
+		{
+			document.location = "export_excel_f001.php?send_excel=<?php echo $send_excel; ?>&datepickers=<?php echo $datepickers; ?>&datepickert=<?php echo $datepickert; ?>&timeindrug=<?php echo $time_in; ?>&timeoutdrug=<?php echo $time_out; ?>&userdrug=<?php echo $user_k ; ?>";
+		}
 	</script>
-
 </body>
 </html>
