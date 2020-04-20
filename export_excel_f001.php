@@ -25,6 +25,7 @@ $diag_2         =  $_GET['diag_2'];
 $timeindrug     =  $_GET['timeindrug'];
 $timeoutdrug    =  $_GET['timeoutdrug'];
 echo $user_k    =  $_GET['userdrug'];
+$pct_dropdown    =  $_GET['pct_dropdown'];//SPCLTY แผนก
 
 
 $topLevelItems = " SELECT sql_code,sql_head FROM cpareport_sql WHERE sql_file = '".$sql."'";
@@ -50,7 +51,9 @@ foreach($res as $item) {
                     $sql = str_replace("{time_in}", "'$timeindrug'", $sql);
                     $sql = str_replace("{time_out}", "'$timeoutdrug'", $sql);
                     $sql = str_replace("{user_k}", "'$user_k'", $sql);
-                    $result = pg_query($sql);
+                    $sql = str_replace("{pct_dropdown}", "'$pct_dropdown '", $sql);
+          
+                     $result = pg_query($sql);
     ?>
     <table width="100%" border="1">
         <thead>
