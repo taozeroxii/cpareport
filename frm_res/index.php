@@ -233,7 +233,7 @@
                     <div class="col-sm-2">
                       <span class="nameofinput">คำนำหน้า</span>
                       <select class="form-control" id="inputGroupSelect01" name="pname" required>
-                        <option selected>pname</option>
+                        <option  value="" selected>pname</option>
                         <option value="นาย">นาย</option>
                         <option value="นาง">นาง</option>
                         <option value="น.ส.">น.ส.</option>
