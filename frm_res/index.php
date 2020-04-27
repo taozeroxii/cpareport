@@ -149,7 +149,7 @@
     $checkusernames = pg_query($conn, $checkusername);
     $haveusers = pg_fetch_assoc($checkusernames);
 
-    if ($havecid == null && $haveusers == null &&  $havecidhosxp == null){
+    if ($havecid == null && $haveusers == null ){// &&  $havecidhosxp == null เอาส่วนเช็คว่ามี cid ในระบบ hosxp ออกเพื่อให้ผู้ใช้งานกรอกข้อมูลสมัครเข้ามาได้แม้มีข้อมูลชื่อตัวเองในระบบแล้วเพราะบางคนอาจยังไม่มีรหัสแต่มีชื่อในระบบ
       $insertsql = "INSERT INTO frm_res_require_login_hosxp (pname,fname,lname,engfullname,gender,birthday,cid,jobclass,spclty,speciality,doctor_cert,first_day_in_job,emailaddress,username,password,status,insertdate_time,accepcert,expirecert,mobilenumber,providertype,note )
       VALUES ('" . $_POST["pname"] . "'
       ,'" . $_POST["fname"] . "'
