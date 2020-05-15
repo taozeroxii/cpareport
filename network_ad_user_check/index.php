@@ -57,7 +57,7 @@ date_default_timezone_set('asia/bangkok');
   <MARQUEE scrollAmount=1 direction=right width="2%">| | | | | | | | |</MARQUEE>
   <MARQUEE behavior=alternate direction=right scrollAmount=3 width="1%"></MARQUEE>
 </div>
- <div class="cen"><span class="u"> ตรวจสอบ User ข้อท่านให้ตรงกับ ชื่อ - นามสกุล ของท่าน เพื่อใช้งาน  Login เข้าใช้งานครั้งแรกด้วยรหัสผ่าน </span>
+ <div class="cen"><span class="u"> ตรวจสอบ User ของท่านให้ตรงกับ ชื่อ - นามสกุล ของท่าน เพื่อใช้งาน  Login เข้าใช้งานครั้งแรกด้วยรหัสผ่าน </span>
   <span class="pass" title=" P@123456 | หมายเหตุ : P = ตัวอักษรใหญ่ "> P@123456 </span><span class="u"> หลักจาก เข้าสู่ระบบแล้วให้ทำการเปลี่ยนรหัสผ่านทันที</span> </div>
   <hr>
   <div class="container ">
