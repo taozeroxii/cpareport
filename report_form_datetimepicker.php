@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+<meta charset="UTF-8">
 <?php
 session_start();
 include"config/pg_con.class.php";

@@ -8,7 +8,7 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
   <script type="text/javascript" src="js/echarts.min.js"></script>
-  <script type="text/javascript" src="js/pdfobject.js"></script>
+  <!-- <script type="text/javascript" src="js/pdfobject.js"></script>-->
   <link href="https://fonts.googleapis.com/css?family=Prompt&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
@@ -213,8 +213,8 @@ include "../config/timestampviewer.php"; //เรียกไฟล์ในส�
     $kpicode  =  $item['kpi_code'];
     $kpievent  =  $item['kpi_event'];
   ?>
-    <div class="modal fade modal-xl" id="<?= $kpicode ?>" tabindex="-1" role="dialog" aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">
-      <div class="modal-dialog modal-lg">
+    <div class="modal fade modal-xl"  id="<?= $kpicode ?>" tabindex="-1" role="dialog" aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-lg" >
         <div class="modal-content">
           <div class="modal-header">
             <h5 class="modal-title" id="exampleModalLongTitle">
@@ -223,7 +223,7 @@ include "../config/timestampviewer.php"; //เรียกไฟล์ในส�
               </button>
               <h5><?= $kpicode . ' : ' . $kpiname; ?> </h5>
           </div>
-          <div class="modal-body">
+          <div class="modal-body" >
             <center>
               <div id="report<?= $kpicode ?>" style="width:800px;height: 200px"></div>
             </center>
