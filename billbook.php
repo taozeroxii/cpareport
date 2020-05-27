@@ -28,7 +28,7 @@
                 <label class="h2">เลขที่ </label>
                 <input type="text" name="bill_number" value=""  placeholder="" onKeyUp="if(isNaN(this.value)){ alert('กรุณากรอกตัวเลข'); this.value='';}" required />
             </div>
-            <button class="button" type="submit" style="vertical-align:middle;font-size:16px;margin-top:20px" name="submit" value="submit"><span> ตรวจสอบ</span></button>
+            <button class="button" type="submit" style="vertical-align:middle;font-size:16px;margin-top:20px" name="submit" value="submit"><span> Check</span></button>
         </form>
     </div>
 
