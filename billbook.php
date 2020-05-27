@@ -88,9 +88,9 @@
     <div class=tr>
     <div  class="td">ชื่อ-นามสกุล</div>
     <div  class="td">HN</div>
-    <div class="td">วันที่</div>
+    <div class="td">วันที่รับบริการ</div>
     <div  class="td">เวลา</div>
-    <div  class="td">เวลา</div>
+    <div  class="td">วันที่สรุป</div>
     <div  class="td">เวลา</div>
     <div  class="td">User</div>
     </div>
