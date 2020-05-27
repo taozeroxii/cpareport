@@ -5,6 +5,7 @@ include"config/my_con.class.php";
 include"config/func.class.php";
 //$cid    = $_SESSION['cid'];
 $hn     = $_SESSION['hn'];
+
 ?>
 <!DOCTYPE html>
 <html lang="th">
@@ -36,7 +37,10 @@ $amphoe     = $row_result['amphoe'];
 $province   = $row_result['province'];
 $zipcode    = $row_result['zipcode'];
 $hn      = $row_result['hn'];
-?>
+
+
+ if ($hn > 0) {
+?>  
 <body>
     <div class="uk-container uk-padding">
         <h2><img src="img/iconsend.jpg" class="iimg">Patient Address.</h2><span class="fon">ปรับปรุงล่าสุด วันที่ <?php echo thaiDateFULL($row_result['cdate'])." เวลา ".$row_result['ctime']." น.";?></span>
@@ -70,5 +74,12 @@ $hn      = $row_result['hn'];
      <!-- <div class="uk-width-1-2@m"> -->
         <a href="index.php"><button class="button btn" id="" name="" title="กลับไปค้นหาข้อมูลใหม่อีกครั้ง" style="vertical-align:middle;font-size:16px;width:100%"><span> ค้นหาข้อมูลใหม่ </span></button></a>
   <!-- </div> -->
+<?php
+  } 
+  else {
+    header("Location: index.php");
+  }
+?>
+
 </body>
 </html>
