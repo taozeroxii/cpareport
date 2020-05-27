@@ -47,6 +47,10 @@
     y.NAME AS pttype_name,
     fp.finance_pay_type_name,
     p.hn,
+    r.book_number,
+    r.bill_number,
+    DATE(r.bill_date_time) as bdate,
+    r.bill_staff,
     o.NAME AS staff_name ,r.rcpt_print_trans_head_id
     FROM    rcpt_print r
     LEFT OUTER JOIN patient P ON P.hn = r.hn
@@ -64,6 +68,11 @@
     $patient_name = $row_result['patient_name'];
     $hn           = $row_result['hn'];
     $head_id      = $row_result['rcpt_print_trans_head_id'];
+    $booknumber  = $row_result['book_number'];
+    $billnumber  = $row_result['bill_number'];
+    $bill_staff  = $row_result['bill_staff'];
+    $bdate      = $row_result['bdate'];
+
 
  if ($head_id <> "" ) {
 
@@ -89,17 +98,19 @@
     <div  class="td">ชื่อ-นามสกุล</div>
     <div  class="td">HN</div>
     <div class="td">วันที่รับบริการ</div>
-    <div  class="td">เวลา</div>
+    <div  class="td">เลขที่/เล่มที่</div>
+    <div  class="td">Userออกบิล</div>
     <div  class="td">วันที่สรุป</div>
     <div  class="td">เวลา</div>
-    <div  class="td">User</div>
+    <div  class="td">Userสรุป</div>
     </div>
     <div class=tr>
     <div class="td"><?php echo $patient_name; ?></div>
     <div class="td"><?php echo $hn; ?></div>
-  <div class="td"><?php echo thaidate($trans_date); ?></div>
-  <div class="td"><?php echo $trans_time; ?></div>
-   <div class="td"><?php echo $trans_time; ?></div>
+  <div class="td"><?php echo thaidate($bdate); ?></div>
+  <div class="td"><?php echo $booknumber."/".$billnumber; ?></div>
+    <div class="td"><?php echo $bill_staff; ?></div>
+   <div class="td"><?php echo thaidate($trans_date);; ?></div>
     <div class="td"><?php echo $trans_time; ?></div>
   <div class="td"><?php echo $trans_staff; ?></div>
     </div>
@@ -108,7 +119,7 @@
 </div>
 <?php
 }else{
- echo "<div class='nono'>ไม่มีข้อมูลนะจ๊ะ</div>";
+ echo "<div class='nono'>ศิริพร ว่า ไม่มีข้อมูลนะจ๊ะ ! </div>";
 }
 ?>
 
