@@ -90,6 +90,8 @@
     <div  class="td">HN</div>
     <div class="td">วันที่</div>
     <div  class="td">เวลา</div>
+    <div  class="td">เวลา</div>
+    <div  class="td">เวลา</div>
     <div  class="td">User</div>
     </div>
     <div class=tr>
@@ -97,6 +99,8 @@
     <div class="td"><?php echo $hn; ?></div>
   <div class="td"><?php echo thaidate($trans_date); ?></div>
   <div class="td"><?php echo $trans_time; ?></div>
+   <div class="td"><?php echo $trans_time; ?></div>
+    <div class="td"><?php echo $trans_time; ?></div>
   <div class="td"><?php echo $trans_staff; ?></div>
     </div>
 </div>
