@@ -11,6 +11,7 @@ $district   = $_POST['district'];
 $amphoe     = $_POST['amphoe'];
 $province   = $_POST['province'];
 $zipcode    = $_POST['zipcode'];
+$phone       = $_POST['phone'];
 $file       = $_POST['hn'];
 ?>
 <!DOCTYPE html>
@@ -33,7 +34,7 @@ $file       = $_POST['hn'];
 	<br>
 	<br>
 	<div class="div2">
-		<div><?php echo "คุณ".$fname." ".$lname; ?></div>
+		<div><?php echo "คุณ".$fname." ".$lname." (".$phone.")"; ?></div>
 		<div><?php echo "เลขที่ ".$adddess." หมู่ ".$moo." ตำบล".$district; ?></div>
 		<div><?php echo "อำเภอ".$amphoe." จังหวัด".$province; ?></div>
 		<div><?php echo $zipcode; ?></div>

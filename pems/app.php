@@ -69,7 +69,7 @@ $sql .= " AND (( o.oapp_status_id < 4 ) OR o.oapp_status_id IS NULL ) ";
 $sql .= " ORDER BY o.nextdate ";
 $result = pg_query($conn, $sql);
 $countdata = pg_num_rows($result);//เช็คมีนัดไม่มีนัด
-echo $sql;
+//echo $sql;
 ?>
 
 <body>

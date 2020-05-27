@@ -5,6 +5,8 @@
 }
 
 .div2 {
+  margin: 1%;	
+  padding: 1%;
   float: right;
   width: 350px;
   height: 100px;  

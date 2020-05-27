@@ -37,7 +37,7 @@ $amphoe     = $row_result['amphoe'];
 $province   = $row_result['province'];
 $zipcode    = $row_result['zipcode'];
 $hn      = $row_result['hn'];
-
+$phone      = $row_result['phone'];
 
  if ($hn > 0) {
 ?>  
@@ -67,6 +67,7 @@ $hn      = $row_result['hn'];
             <input type="hidden" name="province"  value="<?php echo $province; ?>"  required />
             <input type="hidden" name="zipcode"   value="<?php echo $zipcode; ?>"  required />
             <input type="hidden" name="hn"   value="<?php echo $hn; ?>"  required />
+             <input type="hidden" name="phone"   value="<?php echo $phone; ?>"  required />
             <!-- <div class="uk-width-1-2@m"> -->
              <button class="button" id="send" name="send" title="พิมพ์รายการที่แสดง" style="vertical-align:middle;font-size:16px;width:100%"><span> พิมพ์รายการ </span></button>
          <!-- </div> -->
