@@ -24,23 +24,25 @@ $file       = $_POST['hn'];
 
 
 <div class="div3">
-	<table width = 60% style="border:1px #000000;"  bgcolor="#000000"><tr><td style="border:1px dashed white;" bgcolor="white">
+	<table width = 60% style="border:1px #000000;"  bgcolor="#000000"><tr><td style="border:1px dashed white;" bgcolor="white" align="center">
 		<div align="center" style="font-size: 12px"><?php echo "ชำระค่าฝากส่งเป็นรายเดือน" ?></div>
-		<div align="center" style="font-size: 12px"><?php echo "ใบอนุญาตเลขที่ ...../.........." ?></div>
+		<div align="center" style="font-size: 12px"><?php echo "ใบอนุญาตเลขที่ ......../.............." ?></div>
 		<div align="center" style="font-size: 12px"><?php echo "ไปรณีย์ปราจีนบุรี" ?></div>
 	</td></tr></table>
 </div>
 <div class="div4">
+	<table width = 60% style="border:1px #000000;"  bgcolor="#000000"><tr><td style="border:1px dashed white;" bgcolor="white" align="center">
 		<div align="center" style="font-size: 25px"><?php echo "ยาและเวชภัณฑ์" ?></div>
 		<div align="center" style="font-size: 13px"><?php echo "โรงพยาบาลเจ้าพระยาอภัยภูเบศร" ?></div>
-		<div align="center" style="font-size: 10px"><?php echo "(หลีกเลี่ยงแสงแดดและความชื้น)" ?></div>
+		<div align="center" style="font-size: 11px"><?php echo "(หลีกเลี่ยงแสงแดดและความชื้น)" ?></div>
+	</table>
 </div>
 	<div class="div1">
-		<div style="font-size: 10px"><?php echo "ฝ่ายเภสัชกรรม"; ?></div>
-		<div style="font-size: 10px"><?php echo "โรงพยาบาลเจ้าพระยาอภัยภูเบศร"; ?></div>
-		<div style="font-size: 10px"><?php echo "เลขที่ 32/7 หมู่ 12 ตำบลท่างาม"; ?></div>
-		<div style="font-size: 10px"><?php echo "อำเภอเมือง จังหวัดปราจีนบุรี"; ?></div>
-		<div style="font-size: 10px"><?php echo "25000"; ?></div>
+		<div style="font-size: 12px"><?php echo "ฝ่ายเภสัชกรรม"; ?></div>
+		<div style="font-size: 12px"><?php echo "โรงพยาบาลเจ้าพระยาอภัยภูเบศร"; ?></div>
+		<div style="font-size: 12px"><?php echo "เลขที่ 32/7 หมู่ 12 ตำบลท่างาม"; ?></div>
+		<div style="font-size: 12px"><?php echo "อำเภอเมือง จังหวัดปราจีนบุรี"; ?></div>
+		<div style="font-size: 12px"><?php echo "25000"; ?></div>
 	</div>
 	<div class="div2" >
 		<div style="font-size: 20px"><?php echo "ชื่อที่อยู่ผู้รับ"; ?></div>
@@ -50,12 +52,12 @@ $file       = $_POST['hn'];
 		<div style="font-size: 20px"><?php echo $zipcode; ?></div>
 	</div>
 	<div class="div6">
-		<div style="font-size: 10px"><?php echo "จำนวน ......... รายการ"; ?></div>
+		<div style="font-size: 13px"><?php echo "จำนวน ......... รายการ"; ?></div>
 		
 
 	</div>
 	<div class="div5">
-		<div align="center" style="font-size: 10px"><?php echo "รับรองที่อยู่ถูกต้อง"; ?></div>
+		<div align="center" style="font-size: 12px"><?php echo "รับรองที่อยู่ถูกต้อง"; ?></div>
 		<br><br>
 		<div style="font-size: 10px"><?php echo "ลงชื่อ ..................................................................."; ?></div>
 
