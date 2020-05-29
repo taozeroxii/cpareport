@@ -4,6 +4,7 @@
 }
 
 .div2 {
+
   float: right;
   width: 450px;
   height: 80px;  
@@ -28,7 +29,7 @@
 }
 
 .div5 { 
-  margin: 8%; 
+  margin: 5%; 
   
   float: right;
   width: 250px;
