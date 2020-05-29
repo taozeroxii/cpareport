@@ -1,0 +1,73 @@
+.div1 {
+  width: 300px;
+  height: 100px;
+
+}
+
+.div2 {
+    display: inline-block;
+    margin: 20%;   
+    padding: 50px;
+    float: left;
+    height: 200px;  
+    border: 1px solid red;
+    width :500px;
+    text-align: left;
+
+}
+
+.hhh{
+    font-size:1.8em; 
+    font-weight: bold;
+}
+
+
+.hh{
+    width: 94%;
+    padding: 2%;
+    margin: 2%;
+    font-size:1.8em; 
+    font-weight: bold;
+}
+.aa{
+    float: right;
+
+}
+.bb{
+    float: right;
+
+}
+.cc{
+    float: right;
+
+}
+.dd{
+    float: right;
+}
+
+.textAlignVer{
+    display:block;
+    filter: flipv fliph;
+    -webkit-transform: rotate(90deg); 
+    -moz-transform: rotate(90deg); 
+    transform: rotate(90deg); 
+    position:relative;
+    width:25px;
+    white-space:nowrap;
+    font-size:0.4em;
+    margin-bottom:10px;
+}
+
+
+.textAlignVer2{
+    display:block;
+    filter: flipv fliph;
+    -webkit-transform: rotate(90deg); 
+    -moz-transform: rotate(90deg); 
+    transform: rotate(90deg); 
+    position:relative;
+    width:25px;
+    white-space:nowrap;
+    font-size:0.4em;
+    margin-bottom:10px;
+}
