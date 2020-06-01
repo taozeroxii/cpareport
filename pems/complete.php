@@ -71,10 +71,10 @@ if ($hn > 0) {
                 <input type="hidden" name="phone"   value="<?php echo $phone; ?>"  required />
 
                     <div class="col-12">
-                       <button class="button" id="send" type="submit" name="send" title="พิมพ์รายการที่แสดง" style="vertical-align:middle;font-size:16px;width:100%">พิมพ์ A5-L </button>
+                       <button class="button" id="send" type="submit" name="send" title="พิมพ์รายการที่แสดง" style="vertical-align:middle;font-size:16px;width:100%">พิมพ์แนวนอน A5 (ต้องเลือกขนาดกระดาษเป็น A4) </button>
                       <!--  <button class="button" type="submit" formaction="print_pems5.php" style="vertical-align:middle;font-size:16px;width:40%">พิมพ์ A5</button> -->
                         </div>
-                </form>
+                </form> 
 
                 <!-- <div class="uk-width-1-2@m"> -->
                     <a href="index.php"><button class="button btn" id="" name="" title="กลับไปค้นหาข้อมูลใหม่อีกครั้ง" style="vertical-align:middle;font-size:16px;width:100%"><span> ค้นหาข้อมูลใหม่ </span></button></a>
