@@ -354,7 +354,6 @@
                   <div class="col-sm-3">
                       <span class="nameofinput">Provider type</span>
                       <select class="form-control" name="Providertype" require>
-                        <option selected> Providertype</option>
                         <option value="" selected>โปรดเลือก ..</option>
                         <?php while ($Result = pg_fetch_assoc($providertypes)) { ?>
                           <option value="<?php echo $Result['provider_type_name']; ?>">
@@ -365,7 +364,7 @@
                     </div>
                     <div class="col-sm-6">
                       <span class="nameofinput">เลขห้องที่เข้าใช้งาน วิธีดูเลขที่ห้องคลิกปุ่มสีแดง -><button type="button" class="btn btn-danger " data-toggle="modal" data-target="#imginfo"><i class="glyphicon glyphicon-list"></i></button></span>
-                      <input class="form-control" type="text" placeholder="อื่นๆ ระบุ... เช่น ห้องที่ต้องการใช้งาน หรือ รหัสสภาวิชาชีพ" name = "note"></input>
+                      <input class="form-control" type="text" placeholder="ระบุตัวเลข หรือ ชื่อห้องที่ต้องการใช้งาน (สามารถระบุได้หลายห้อง)" name = "note" required></input>
                     </div>
                   </div>
                 </div>
