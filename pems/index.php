@@ -9,7 +9,8 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Kanit">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-beta.20/css/uikit.css">
     <link rel="stylesheet" type="text/css" href="css/style.css">
-    <link href="fontawesome-free-5.13.0-web/css/all.css" rel="stylesheet"> <!--load all styles -->
+    <link href="fontawesome-free-5.13.0-web/css/all.css" rel="stylesheet">
+    <!--load all styles -->
 
     <!-- include the script -->
     <script src="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/alertify.min.js"></script>
@@ -26,13 +27,13 @@
 <body>
     <div class="uk-container uk-padding">
         <form name="form1" style=" margin-top:15%;" action="#" method="post">
-           <!--  <div class="uk-width-1-2@m">
+            <!--  <div class="uk-width-1-2@m">
                 <label class="h2"> รหัสประจำตัวประชาชน <i class="fas fa-address-card"></i></label>
                 <input type="text" name="cid" value="" maxlength="13" minlength="13" placeholder="9999999999999" required />
             </div> -->
             <div class="uk-width-1-2@m">
                 <label class="h2">รหัสประจำตัวผู้ป่วย (HN) </label>
-                <input type="text" name="hn" value="" maxlength="9" minlength="9" placeholder="123456789 ให้เติมเลข 0 จนครบ 9 หลัก" onKeyUp="if(isNaN(this.value)){ alert('กรุณากรอกตัวเลข'); this.value='';}" required />
+                <input type="text" name="hn" value="" maxlength="9"  placeholder="Plese input your (HN)" onKeyUp="if(isNaN(this.value)){ alert('กรุณากรอกตัวเลข'); this.value='';}" required />
             </div>
             <button class="button" type="submit" style="vertical-align:middle;font-size:16px;margin-top:20px" name="submit" value="submit"><span> ตรวจสอบ</span></button>
         </form>
@@ -41,12 +42,24 @@
     <?php
     include 'config/pg_con.class.php';
     if (isset($_POST['submit'])) {
-        /* 
-           echo $hn = $_POST['hn'];
-           echo $cid = $_POST['cid'];
-        */
+        $HnfromAdmin = $_POST['hn'];//เก็บค่าที่รับมา
+        $numofhn = strlen($HnfromAdmin);//ตรวจสอบจำนวนตัวเลขที่กรอกเข้ามากี่ตัว
+        if (strlen($HnfromAdmin) < 9) {
+            for ($ins = 0; $ins < 9 - strlen($HnfromAdmin); $ins++) {
+                $numss[$ins] = '0';
+            }
+            //วนเอาค่าเลขในอาเรย์มาใช้
+            for ($sum = 0; $sum < sizeof($numss); $sum++) {
+                $fillHn .= $numss[$sum];
+            }
+            $realhn = $fillHn .=  $HnfromAdmin;
+            $realhn;
+        } else {
+            $realhn = $_POST['hn'];
+        }
+
         //$searchuser = "SELECT hn,cid FROM patient where  hn = '" . $_POST['hn'] . "' and cid = '" . $_POST['cid'] . "'  ";
-        $searchuser = "SELECT hn,cid FROM patient where  hn = '" . $_POST['hn'] . "' ";
+        $searchuser = "SELECT hn,cid FROM patient where  hn = '" .   $realhn . "' ";
         $have_user_yet = pg_query($conn, $searchuser);
         $count = pg_num_rows($have_user_yet);
         echo $have_user_yet['hn'];
@@ -56,7 +69,7 @@
             $accoutUsser = pg_fetch_assoc($have_user_yet);
             echo $_SESSION['hn']  =  $accoutUsser['hn'];
             echo ' <br>';
-           // echo $_SESSION['cid'] = $accoutUsser['cid'];
+            // echo $_SESSION['cid'] = $accoutUsser['cid'];
             //$password = $con->real_escape_string md5((md5($_POST['cid'])));//decode
             echo "<script>alertify.success('พบข้อมูล');</script>";
             header('location:senddata.php');
