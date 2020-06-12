@@ -1,6 +1,6 @@
 <?php
 $todate = date('Ymd_His');
-header("Content-type: application/vnd.ms-excel");
+//header("Content-type: application/vnd.ms-excel");
 header("Content-Disposition: attachment; filename=export".$todate.".xls");
 ?>
 <html>
@@ -68,7 +68,7 @@ foreach($res as $item) {
             </tr> 
         </thead>
         <tbody>
-            <? $rw=0;
+            <?php $rw=0;
             while($row_result = pg_fetch_array($result)) 
             { 
                 $rw++;
