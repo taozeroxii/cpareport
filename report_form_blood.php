@@ -46,7 +46,11 @@ include "config/timestampviewer.php";//เรียกไฟล์ในส่�
                   <form class="form-inline" method="POST" action="#">
                     <input type="text" class="form-control" id="datepickers" name="datepickers" data-provide="datepicker" data-date-language="th" autocomplete="off" >
                     <input type="text" class="form-control" id="datepickert" name="datepickert" data-provide="datepicker" data-date-language="th" autocomplete="off" >
+                    <?php if($_GET['sql']== 'sql_0214'){?>
+                    <label>&nbsp; กลุ่ม lab</label>
+                    <select class="select2" name="l_dropdown[]" id="l_dropdown" multiple="multiple" style="width: 20%;"></select>
                     <button type="submit" class="btn btn-default">ตกลง</button>
+                    <?php }?>
                   </form>
 
                 </div>
@@ -64,19 +68,44 @@ include "config/timestampviewer.php";//เรียกไฟล์ในส่�
       list($m,$d,$Y)  = split('/',$datepickert); 
       $datepickert    = trim($Y)."-".trim($m)."-".trim($d);
 
+      $l_dropdown         = $_POST['l_dropdown'];//กลุ่ม lab
+
+
       if($datepickers != "--") {
         $sql_a = " $sql_detail ";
         $sql_a = str_replace("{datepickers}", "'$datepickers'", $sql_a);
         $sql_a = str_replace("{datepickert}", "'$datepickert'", $sql_a);
-        $result_a = pg_query($sql_a);
-        $row_result_a = pg_num_rows($result_a);
 
         $sql_b = " $sql_detail_1 ";
         $sql_b = str_replace("{datepickers}", "'$datepickers'", $sql_b);
         $sql_b = str_replace("{datepickert}", "'$datepickert'", $sql_b);
-        $result_b = pg_query($sql_b);
 
-
+          // วนค่าเพิ่อแทนที่ตัวแปร  
+          if (sizeof($l_dropdown) > 0) {
+            $sum_r = "(";
+            foreach ($l_dropdown as $value) {
+                $sum_r .= "'" . $value . "',";
+            }
+            $sum_r = rtrim($sum_r, ',');
+            $sum_r .= ") ";
+         } else {
+            $selectLabgroup = 'SELECT lab_id FROM lab_items_group';
+            $querylabGroup= pg_query($selectLabgroup);
+  
+            $sum_r = "(";
+            while ($resultksk = pg_fetch_assoc($querylabGroup)) {
+                $sum_r .= "'" . $resultksk['lab_id'] . "',";
+            }
+            $sum_r = rtrim($sum_r, ',');
+            $sum_r .= ")";
+            $sql_a = str_replace("{lab_group}", "$sum_r", $sql_a);
+            $sql_b = str_replace("{lab_group}", "$sum_r", $sql_b);
+          }
+           $sql_a = str_replace("{lab_group}", "$sum_r", $sql_a);
+           $sql_b = str_replace("{lab_group}", "$sum_r", $sql_b);
+           $result_a = pg_query($sql_a);
+           $result_b = pg_query($sql_b);
+           $row_result_a = pg_num_rows($result_a);
         ?>
 
         <div class="row">

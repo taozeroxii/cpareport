@@ -390,6 +390,28 @@
  </script>
 
 
+
+<script type="text/javascript">                
+  function load_lab_group(){
+    $.ajax({
+      url: "config/grouplab.class.php",
+      method: 'GET',
+      data: {'selector':'glab'},
+      success: function(result){
+        var htmlOption = "";
+        data = JSON.parse(result);
+        $.each(data, function(i, item) {
+          htmlOption += "<option value='"+ item.lab_id +"'>" +item.lab_group_name + "</option>";
+        });
+        $('#l_dropdown').html(htmlOption);
+        
+      }});
+  }
+  load_lab_group();
+</script>
+
+
+
  <div class="modal fade" id="myModal" role="dialog">
    <div class="modal-dialog modal-lg">
      <div class="modal-content">
