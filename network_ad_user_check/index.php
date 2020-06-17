@@ -47,6 +47,8 @@ function check_email(elm){
   </div>
   <div class="cen"><span class="u"> ตรวจสอบ User ของท่านให้ตรงกับ ชื่อ - นามสกุล ของท่าน เพื่อใช้งาน Login เข้าใช้งานครั้งแรกด้วยรหัสผ่าน </span>
     <span class="pass" title=" P@123456 | หมายเหตุ : P = ตัวอักษรใหญ่ "> P@123456 </span><span class="u"> หลักจาก เข้าสู่ระบบแล้วให้ทำการเปลี่ยนรหัสผ่านทันที</span> </div>
+    <br>
+    <div class="cen"><span class="war"> ตรวจสอบข้อมูล หากไม่พบให้ทำการ <span class="bspan">เพิ่มผู้ใช้งานใหม่</span> และรอการยืนยันจากผู้ดูแลระบบ ภายใน 24 ชั่วโมง </span></div>
   <hr>
   <div class="container ">
     <div class="row">
@@ -156,38 +158,38 @@ function check_email(elm){
       <div class="modal-content">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title">กรุณากรอกข้อมูลของท่าน ให้ถูกต้อง ครบถ้วน</h4>
+          <h4 class="modal-title"><span class="	glyphicon glyphicon-lock"></span> กรุณากรอกข้อมูล ให้ถูกต้อง ครบถ้วน </h4>
         </div>
         <!-- <h4 class="modal-title"> <?php //echo   $resultmax['maxid']; ?></h4>      -->
         <div class="modal-body">
           <form action="#" id="form_add" name="form_add">
             <div class="form-group">
-              <label for="firstname">ชื่อ:</label>
+              <label for="firstname"><span class="glyphicon glyphicon-user"> ชื่อ:</label>
               <input type="text" class="form-control" id="firstname" placeholder="ชื่อจริง..." name="firstname">
             </div>
             <div class="form-group">
-              <label for="lastname">นามสกุล:</label>
+              <label for="lastname"><span class="glyphicon glyphicon-user"> นามสกุล:</label>
               <input type="text" class="form-control" id="lastname" placeholder="นามสกุลจริง..." name="lastname">
             </div>
             <div class="form-group">
-              <label for="email">Email:</label>
+              <label for="email"> <span class="glyphicon glyphicon-envelope"> Email:</label>
               <input type="email" class="form-control" id="email" placeholder="อีเมล์..." name="email" onblur="check_email(this)">
             </div>
             <div class="form-group">
-              <label for="department">หน่วยงาน:</label>
+              <label for="department"> <span class="glyphicon glyphicon-home"> หน่วยงาน:</label>
               <input type="text" class="form-control" id="department" placeholder="หน่วยงาน..." name="department">
             </div>
             <div class="form-group">
-              <label for="telephone">เบอร์มือถือ:</label>
+              <label for="telephone"> <span class="glyphicon glyphicon-phone"> เบอร์มือถือ:</label>
               <input type="text" class="form-control" id="telephone" placeholder="เบอร์มือถือ..." name="telephone" onKeyUp="if(isNaN(this.value)){ alert('กรุณากรอกตัวเลข'); this.value='';}">
             </div>
             <div class="form-group">
-              <label for="jobtitle">ตำแหน่ง:</label>
+              <label for="jobtitle"><span class="glyphicon glyphicon-stats"> ตำแหน่ง:</label>
               <input type="text" class="form-control" id="jobtitle" placeholder="ตำแหน่ง..." name="jobtitle">
             </div>
               <br>
-            <center><button type="submit"  id="submit" class="btn btn-danger btn-lg" >บันทึก</button>&nbsp;&nbsp;
-                    <button type="button" class="btn btn-info btn-lg" data-dismiss="modal">ยกเลิก</button>
+            <center><button type="submit"  id="submit" class="btn btn-danger btn-lg" > <span class="glyphicon glyphicon-floppy-disk"> บันทึก</button>&nbsp;&nbsp;
+                    <button type="button" class="btn btn-info btn-lg" data-dismiss="modal"> <span class="glyphicon glyphicon-off"> ยกเลิก</button>
             </center>
           </form>
         </div>

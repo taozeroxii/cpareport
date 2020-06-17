@@ -129,3 +129,15 @@
                      color: #0B5345;
                       font-weight: bold;
                   }
+
+                  .war{
+                    color:#E3066E;
+                    text-align: center;
+                    font-weight: bold;
+                  }
+                  .bspan{
+
+                      font-weight: bold;
+                      color: #EA066F;
+                      font-size: 1.4em;
+                  }
