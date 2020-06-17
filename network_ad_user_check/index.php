@@ -28,7 +28,7 @@ function check_email(elm){
     if(!elm.value.match(regex_email)){
         alert('กรุณาตรวจสอบ Email ให้ถูกต้อง');
     }else{
-alert('you email true');
+//alert('you email true');
 }
 }
 </script>
@@ -186,7 +186,7 @@ alert('you email true');
               <input type="text" class="form-control" id="jobtitle" placeholder="ตำแหน่ง..." name="jobtitle">
             </div>
               <br>
-            <center><button type="submit"  id="submit" class="btn btn-danger btn-lg">บันทึก</button>&nbsp;&nbsp;
+            <center><button type="submit"  id="submit" class="btn btn-danger btn-lg" >บันทึก</button>&nbsp;&nbsp;
                     <button type="button" class="btn btn-info btn-lg" data-dismiss="modal">ยกเลิก</button>
             </center>
           </form>
@@ -200,5 +200,6 @@ alert('you email true');
   </div>
 
 </body>
+
 
 </html>
