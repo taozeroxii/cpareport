@@ -6,8 +6,8 @@
           background-image: url("ajax-loader.gif");
           background-repeat: no-repeat;
           display: none;
-          height: 100px;
-          width: 100px;
+          /* height: 100px;
+          width: 100px; */
         }
         .wi{
           width: 38%;
@@ -128,4 +128,16 @@
                   .u{
                      color: #0B5345;
                       font-weight: bold;
+                  }
+
+                  .war{
+                    color:#E3066E;
+                    text-align: center;
+                    font-weight: bold;
+                  }
+                  .bspan{
+
+                      font-weight: bold;
+                      color: #EA066F;
+                      font-size: 1.4em;
                   }

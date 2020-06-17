@@ -4,6 +4,6 @@ $user = 'report';
 $password = 'report';
 $database = 'cpareportdb';
 
-mysql_connect($host, $user, $password);
-mysql_select_db($database);
+$connection =  mysql_connect($host, $user, $password);
+$db = mysql_select_db($database ,$connection);
 mysql_query("SET NAMES UTF8");

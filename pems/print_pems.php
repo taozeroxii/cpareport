@@ -24,7 +24,7 @@ $file       = $_POST['hn'];
 
 
 <div class="div3">
-	<table style="border:1px #000000;"  bgcolor="#000000"><tr><td style="height: 70px; width: 150px;border:1px dashed white;" bgcolor="white" align="center">
+	<table style="border:1px #000000;"  bgcolor="#000000"><tr><td style="height: 50px; width: 150px;border:1px dashed white;" bgcolor="white" align="center">
 		<div align="center" style="font-size: 12px"><?php echo "ชำระค่าฝากส่งเป็นรายเดือน" ?></div>
 		<div align="center" style="font-size: 12px"><?php echo "ใบอนุญาตเลขที่ 27/2521" ?></div>
 		<div align="center" style="font-size: 12px"><?php echo "ปทจ.ปราจีนบุรี" ?></div>
