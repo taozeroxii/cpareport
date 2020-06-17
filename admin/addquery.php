@@ -67,7 +67,7 @@ include('../config/my_con.class.php');
     $TIME = date("H:i:s");   //date("h:i:s a"); แบบมีpm am
     $today = $year . '-' . $month . '-' . $day . '  ' . $TIME;
 
-    $cpareport_mainmenu = " SELECT * FROM cpareport_mainmenu order by main_id";
+    $cpareport_mainmenu = " SELECT * FROM cpareport_mainmenu where main_status = '1' order by main_id";
     $mainmenu = mysqli_query($con, $cpareport_mainmenu);
 
     $sql2 = " SELECT * FROM cpareport_report WHERE report_status = '1'  ORDER BY report_id ASC  ";
