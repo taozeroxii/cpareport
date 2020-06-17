@@ -6,8 +6,8 @@
           background-image: url("ajax-loader.gif");
           background-repeat: no-repeat;
           display: none;
-          height: 100px;
-          width: 100px;
+          /* height: 100px;
+          width: 100px; */
         }
         .wi{
           width: 38%;
