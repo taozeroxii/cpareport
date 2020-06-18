@@ -182,3 +182,8 @@
             cursor: pointer;
             color: maroon;
         }
+        
+        .coco {
+            color: #9520d8;
+            font-weight: bold;
+        }

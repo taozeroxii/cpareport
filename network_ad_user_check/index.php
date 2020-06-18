@@ -39,6 +39,8 @@ date_default_timezone_set('asia/bangkok');
   <br><br><br>
   <div class="hmain">ตรวจสอบ User ใช้งาน Authentication <sup> โรงพยาบาลเจ้าพระยาอภัยภูเบศร </sup> &nbsp;
   </div>
+    <div class="cen coco">ระบบ Authentication คือ การยืนยันตัวตนในขณะที่เรากำลังใช้งานระบบใดๆ บนเครือข่ายอินเตอร์เน็ต ของโรงพยาบาล จุดประสงค์หลักของการ Authentication คือพิสูจน์ตัวบุคคล พร้อมทั้งทำการตรวจสอบสิทธิ์ว่าผู้ใช้งานระบบนั้นมีสิทธิ์ใช้ได้และเป็นเจ้าของข้อมูลเหล่านั้นจริงๆ
+  </div>
   <hr>
   <div class="cen"><img src="news.png" width="50px" height="50px">
     <MARQUEE behavior=alternate direction=left scrollAmount=3 width="1%"></MARQUEE>
