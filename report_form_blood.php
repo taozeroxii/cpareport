@@ -49,8 +49,8 @@ include "config/timestampviewer.php";//เรียกไฟล์ในส่�
                     <?php if($_GET['sql']== 'sql_0214'){?>
                     <label>&nbsp; กลุ่ม lab</label>
                     <select class="select2" name="l_dropdown[]" id="l_dropdown" multiple="multiple" style="width: 20%;"></select>
-                    <button type="submit" class="btn btn-default">ตกลง</button>
                     <?php }?>
+                    <button type="submit" class="btn btn-default">ตกลง</button>
                   </form>
 
                 </div>
