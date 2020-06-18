@@ -89,15 +89,17 @@ include "config/timestampviewer.php";//เรียกไฟล์ในส่�
             $sum_r = rtrim($sum_r, ',');
             $sum_r .= ") ";
          } else {
+           if(  $l_dropdown  != '' ||   $l_dropdown   != null){
             $selectLabgroup = 'SELECT lab_id FROM lab_items_group';
             $querylabGroup= pg_query($selectLabgroup);
-  
+           
             $sum_r = "(";
             while ($resultksk = pg_fetch_assoc($querylabGroup)) {
                 $sum_r .= "'" . $resultksk['lab_id'] . "',";
             }
             $sum_r = rtrim($sum_r, ',');
             $sum_r .= ")";
+          }
             $sql_a = str_replace("{lab_group}", "$sum_r", $sql_a);
             $sql_b = str_replace("{lab_group}", "$sum_r", $sql_b);
           }
