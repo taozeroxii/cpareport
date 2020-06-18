@@ -177,3 +177,8 @@
             font-weight: bold;
             color: #b208b8;
         }
+        
+        .heand:hover {
+            cursor: pointer;
+            color: maroon;
+        }

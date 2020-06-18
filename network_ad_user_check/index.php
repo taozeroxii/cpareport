@@ -3,8 +3,9 @@ date_default_timezone_set('asia/bangkok');
 ?>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <!-- https://www.formget.com/submit-form-using-ajax-php-and-jquery/ -->
+  <!-- https://www.formget.com/submit-form-using-ajax-php-and-jquery/ -->
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -23,19 +24,20 @@ date_default_timezone_set('asia/bangkok');
   <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
   <script src="add_ajax_script.js"></script>
   <script type='text/javascript'>
-function check_email(elm){
-    var regex_email=/^[_a-zA-Z0-9-]+(\.[_a-zA-Z0-9-]+)*\@[a-zA-Z0-9-]+(\.[a-zA-Z0-9-]+)*(\.([a-zA-Z]){2,4})$/
-    if(!elm.value.match(regex_email)){
+    function check_email(elm) {
+      var regex_email = /^[_a-zA-Z0-9-]+(\.[_a-zA-Z0-9-]+)*\@[a-zA-Z0-9-]+(\.[a-zA-Z0-9-]+)*(\.([a-zA-Z]){2,4})$/
+      if (!elm.value.match(regex_email)) {
         alert('กรุณาตรวจสอบ Email ให้ถูกต้อง');
-    }else{
-//alert('you email true');
-}
-}
-</script>
+      } else {
+        //alert('you email true');
+      }
+    }
+  </script>
 </head>
+
 <body>
   <br><br><br>
-    <div class="hmain">ตรวจสอบ User ใช้งาน Authentication <sup> โรงพยาบาลเจ้าพระยาอภัยภูเบศร </sup> &nbsp;
+  <div class="hmain">ตรวจสอบ User ใช้งาน Authentication <sup> โรงพยาบาลเจ้าพระยาอภัยภูเบศร </sup> &nbsp;
   </div>
   <hr>
   <div class="cen"><img src="news.png" width="50px" height="50px">
@@ -47,8 +49,10 @@ function check_email(elm){
   </div>
   <div class="cen"><span class="u"> ตรวจสอบ User ของท่านให้ตรงกับ ชื่อ - นามสกุล ของท่าน เพื่อใช้งาน Login เข้าใช้งานครั้งแรกด้วยรหัสผ่าน </span>
     <span class="pass" title=" P@123456 | หมายเหตุ : P = ตัวอักษรใหญ่ "> P@123456 </span><span class="u"> หลักจาก เข้าสู่ระบบแล้วให้ทำการเปลี่ยนรหัสผ่านทันที</span> </div>
-    <br>
-    <div class="cen"><span class="war"> ตรวจสอบข้อมูล หากไม่พบให้ทำการ <span class="bspan">เพิ่มผู้ใช้งานใหม่</span> และรอการยืนยันจากผู้ดูแลระบบ ภายใน 24 ชั่วโมง </span></div>
+  <br>
+  <div class="cen"><span class="war"> ตรวจสอบข้อมูล หากไม่พบให้ทำการ <span class="bspan">เพิ่มผู้ใช้งานใหม่</span> และรอการยืนยันจากผู้ดูแลระบบ ภายใน 24 ชั่วโมง </span>
+    <button type="button" class="btn btn-info" data-toggle="modal" data-target="#Modalnote"><span class="glyphicon glyphicon-th-list"></span>&nbsp;&nbsp;เอกสารน่ารู้ </button>
+  </div>
   <hr>
   <div class="container ">
     <div class="row">
@@ -56,7 +60,7 @@ function check_email(elm){
         <form class="form-inline" name="searchform" id="searchform">
           <div class="form-group wi">
             <label for="textsearch">
-              </label>
+            </label>
             <input type="text" name="itemname" id="itemname" class="form-control" placeholder=" ค้นหา  ชื่อ หรือ นามสกุล || อย่างใดอย่างหนึ่ง " autocomplete="off" autofocus />
           </div>
           <button type="button" class="btn success btn-lg" id="btnSearch" title="">
@@ -160,7 +164,8 @@ function check_email(elm){
           <button type="button" class="close" data-dismiss="modal">&times;</button>
           <h4 class="modal-title"><span class="	glyphicon glyphicon-lock"></span> กรุณากรอกข้อมูล ให้ถูกต้อง ครบถ้วน </h4>
         </div>
-        <!-- <h4 class="modal-title"> <?php //echo   $resultmax['maxid']; ?></h4>      -->
+        <!-- <h4 class="modal-title"> <?php //echo   $resultmax['maxid']; 
+                                      ?></h4>      -->
         <div class="modal-body">
           <form action="#" id="form_add" name="form_add">
             <div class="form-group">
@@ -187,9 +192,9 @@ function check_email(elm){
               <label for="jobtitle"><span class="glyphicon glyphicon-stats"> ตำแหน่ง:</label>
               <input type="text" class="form-control" id="jobtitle" placeholder="ตำแหน่ง..." name="jobtitle">
             </div>
-              <br>
-            <center><button type="submit"  id="submit" class="btn btn-danger btn-lg" > <span class="glyphicon glyphicon-floppy-disk"> บันทึก</button>&nbsp;&nbsp;
-                    <button type="button" class="btn btn-info btn-lg" data-dismiss="modal"> <span class="glyphicon glyphicon-off"> ยกเลิก</button>
+            <br>
+            <center><button type="submit" id="submit" class="btn btn-danger btn-lg"> <span class="glyphicon glyphicon-floppy-disk"> บันทึก</button>&nbsp;&nbsp;
+              <button type="button" class="btn btn-info btn-lg" data-dismiss="modal"> <span class="glyphicon glyphicon-off"> ยกเลิก</button>
             </center>
           </form>
         </div>
@@ -201,7 +206,40 @@ function check_email(elm){
     </div>
   </div>
 
-</body>
 
+  <div id="Modalnote" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title"><span class="glyphicon glyphicon-hand-right"></span> เอกสารที่เกี่ยวข้อง </h4>
+        </div>
+        <div class="modal-body">
+
+          <div class="heand" onclick="openWin1()"><span class="war heand"><span class="glyphicon glyphicon-paperclip"></span> หลักเกณฑ์การเก็บรักษาข้อมูลจราจรทางคอมพิวเตอร์ของผู้ให้บริการพ.ศ. ๒๕๕๐ </span></div>
+          <br>
+          <div class="heand" onclick="openWin2()"><span class="war heand"><span class="glyphicon glyphicon-paperclip"></span> พระราชบัญญัติว่าด้วยการกระทําความผิดเกี่ยวกับคอมพิวเตอร์พ.ศ. ๒๕๕๐</span></div>
+          <br>
+          <div class="heand" onclick="openWin3()"><span class="war heand"> <span class="glyphicon glyphicon-paperclip"></span> พระราชบัญญัติ ว่าด้วยการกระทําความผิดเกี่ยวกับคอมพิวเตอร์ (ฉบับที่ ๒)พ.ศ. ๒๕๖๐</span></div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">ปิด</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+  <script>
+    function openWin1() {
+      window.open("img/law-computer2.pdf", "_blank", "toolbar=yes,scrollbars=yes,resizable=yes,top=100,left=500,width=600,height=800");
+    }
+    function openWin2() {
+      window.open("img/law-comter1.pdf", "_blank", "toolbar=yes,scrollbars=yes,resizable=yes,top=100,left=500,width=600,height=800");
+    }
+    function openWin3() {
+      window.open("img/LAW-PRB.pdf", "_blank", "toolbar=yes,scrollbars=yes,resizable=yes,top=100,left=500,width=600,height=800");
+    }
+  </script>
+</body>
 
 </html>
