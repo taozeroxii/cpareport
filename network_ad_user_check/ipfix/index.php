@@ -52,6 +52,7 @@ $today =  date('Y-m-d H:i:s');
                 <button class="btn btn-warning" name="vlan" type="submit" value="31"><b> 31 </b> </button>
                 <button class="btn btn-warning" name="vlan" type="submit" value="32"><b> 32 </b> </button>
                 <button class="btn btn-warning" name="vlan" type="submit" value="36"><b> 36 </b> </button>
+                <button class="btn btn-warning" name="vlan" type="submit" value="40"><b> 40 </b> </button>
                 <button class="btn btn-warning" name="vlan" type="submit" value="43"><b> 43 </b> </button>
                 <button class="btn btn-warning" name="vlan" type="submit" value="44"><b> 44 </b> </button>
             </form>
