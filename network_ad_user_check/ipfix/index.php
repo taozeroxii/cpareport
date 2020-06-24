@@ -38,9 +38,12 @@ $today =  date('Y-m-d H:i:s');
             <button data-toggle="modal" data-target="#myModal" class="btn btn-dark "><b> Vlan Help Zone NetWork</b> </button>
             <form method='GET' action='index.php'>
                 <button class="btn btn-warning" name="vlan" type="submit" value=""><b> main </b> </button>
-                <button class="btn btn-warning" name="vlan" type="submit" value="5','8,','20','22','24','25','26','27','28','29','31','32','36','43','44','50"><b> All </b> </button>
+                <button class="btn btn-warning" name="vlan" type="submit" value="0','1','2','5','8,','20','22','24','25','26','27','28','29','31','32','36','43','44','50"><b> All </b> </button>
                 <!-- <button class="btn btn-warning" name="" type="" value="nullv"><b> ว่าง </b> </button>
                 <button class="btn btn-warning" name="" type="" value="openv"><b> ใช้งาน </b> </button> -->
+                <button class="btn btn-warning" name="vlan" type="submit" value="0"><b> 0 </b> </button>
+                <button class="btn btn-warning" name="vlan" type="submit" value="1"><b> 1 </b> </button>
+                <button class="btn btn-warning" name="vlan" type="submit" value="2"><b> 2 </b> </button>
                 <button class="btn btn-warning" name="vlan" type="submit" value="20"><b> 20 </b> </button>
                 <button class="btn btn-warning" name="vlan" type="submit" value="22"><b> 22 </b> </button>
                 <button class="btn btn-warning" name="vlan" type="submit" value="24"><b> 24 </b> </button>
