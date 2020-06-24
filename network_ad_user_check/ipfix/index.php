@@ -39,8 +39,8 @@ $today =  date('Y-m-d H:i:s');
             <form method='GET' action='index.php'>
                 <button class="btn btn-warning" name="vlan" type="submit" value=""><b> main </b> </button>
                 <button class="btn btn-warning" name="vlan" type="submit" value="0','1','2','5','8,','20','22','24','25','26','27','28','29','31','32','36','43','44','50"><b> All </b> </button>
-                <!-- <button class="btn btn-warning" name="" type="" value="nullv"><b> ว่าง </b> </button>
-                <button class="btn btn-warning" name="" type="" value="openv"><b> ใช้งาน </b> </button> -->
+                <button class="btn btn-warning" name="vlan" type="submit" value="170"><b> Public </b> </button>
+                <button class="btn btn-warning" name="vlan" type="vlan" value="8','14"><b> Other </b> </button>
                 <button class="btn btn-warning" name="vlan" type="submit" value="0"><b> 0 </b> </button>
                 <button class="btn btn-warning" name="vlan" type="submit" value="1"><b> 1 </b> </button>
                 <button class="btn btn-warning" name="vlan" type="submit" value="2"><b> 2 </b> </button>
@@ -64,30 +64,20 @@ $today =  date('Y-m-d H:i:s');
 
     <br>
     <?php
-
-    //$nullv = $_GET['nullv'];
-    //$openv = $_GET['openv'];
-
      $vlangroup =  $_GET['vlan'];
- 
      $nullvlan = "20";
-
     if ($vlangroup != "") {
-        $vlan = $vlangroup; 
+        $vlan = " vlan in ('$vlangroup') "; 
        } else {
-        $vlan = $nullvlan;
+        $vlan = " vlan in ('$nullvlan') ";
       }
      $vlan = $vlan;
-   
-
     $query = " SELECT * 
                FROM network_ipfix_zone 
-               WHERE vlan in ('$vlan') 
-               -- AND flage = 'Y'
+               WHERE $vlan 
                ORDER BY vlan ASC,num_group ASC ";
     $result = mysqli_query($connect, $query);
     ?>
-
     <div class="container-fluid">
         <div class="row justify-content-center">
             <?php
