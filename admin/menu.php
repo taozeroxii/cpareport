@@ -8,9 +8,13 @@
 <a class="nav-link" id="profile-tab" data-toggle="tab" href="sql_edit.php" role="tab" aria-controls="profile" aria-selected="false">แก้ไขQuery(main_sql)</a>
 <a class="nav-link" id="contact-tab" data-toggle="tab" href="holiday.php" role="tab" aria-controls="contact" aria-selected="false">วันหยุด HOSxp</a>
 <a class="nav-link" id="contact-tab" data-toggle="tab" target="blank" href="https://trello.com/abhaihelphos/home" role="tab" aria-controls="contact" aria-selected="false">รวมปัญหาต่างๆ </a>
-<a class="nav-link" id="contact-tab" data-toggle="tab" target="blank" href="http://172.16.0.251/monitor/" role="tab" aria-controls="contact" aria-selected="false">Network Monitor </a>
+
+<a class="nav-link" id="contact-tab" data-toggle="tab" target="blank" href="http://172.16.0.251/report/network_ad_user_check/ipfix/index.php" role="tab" aria-controls="contact" aria-selected="false">SET IP FIX </a>
 <a class="nav-link" id="contact-tab" data-toggle="tab" target="blank" href="http://172.16.0.251/report/admin/f43/uploadimg/index.php" role="tab" aria-controls="contact" aria-selected="false">Upload วิธีแก้ไขข้อมูล USER</a>
 <a class="nav-link" id="contact-tab" data-toggle="tab" target="blank" href="../help" role="tab" aria-controls="contact" aria-selected="false">Help hosxp</a>
+
+
+
 </ul> ' ?>
 <? echo "<span  class='new_sql mr-4' >" . 'ผู้ใช้งาน : ' . $_SESSION['fname'] . ' ' . $_SESSION['lname'].' STATUS: ';
 if ($_SESSION['status']=='1') { echo "admin  </span>";  } ?>
@@ -18,3 +22,4 @@ if ($_SESSION['status']=='1') { echo "admin  </span>";  } ?>
 </nav>';?>
 
 
+ <!-- <a class="nav-link" id="contact-tab" data-toggle="tab" target="blank" href="http://172.16.0.251/monitor/" role="tab" aria-controls="contact" aria-selected="false">Network Monitor </a> -->
