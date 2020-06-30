@@ -1,9 +1,13 @@
 <?php
 include 'connect.php'; 
-$sqlq      = " SELECT MAX(username) as maxid FROM network_ad_user WHERE username LIKE 'cpa%%'  ";
+$sqlq      = " SELECT RIGHT(MAX(username),'5') as maxid 
+                   -- MAX(username) as maxid 
+               FROM network_ad_user 
+               WHERE username LIKE 'cpa%%'  ";
 $querysql  = mysql_query($sqlq);
 $resultmax = mysql_fetch_assoc($querysql);
-$usernew    = substr($resultmax['maxid'], -3);
+//$usernew    = substr($resultmax['maxid'], -3);
+$usernew    = $resultmax['maxid'];
 
 $firstname  = $_POST['firstname'];
 $lastname   = $_POST['lastname'];
