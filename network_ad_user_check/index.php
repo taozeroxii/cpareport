@@ -91,15 +91,17 @@ var x = setInterval(function() {
         <span class="pass" title=" P@123456 | หมายเหตุ : P = ตัวอักษรใหญ่ "> P@123456 </span><span class="u"> หลักจาก
             เข้าสู่ระบบแล้วให้ทำการเปลี่ยนรหัสผ่านทันที</span> </div>
     <br>
-    <div class="cen"><span class="war"> ตรวจสอบข้อมูล หากไม่พบให้ทำการ <span class="bspan">เพิ่มผู้ใช้งานใหม่</span>
-            และรอการยืนยันจากผู้ดูแลระบบ ภายใน 24 ชั่วโมง </span>
+    <div class="cen"><span class="war"> ตรวจสอบข้อมูล  
+        <!-- <span class="bspan">หากไม่พบให้ทำการ เพิ่มผู้ใช้งานใหม่</span>
+            และรอการยืนยันจากผู้ดูแลระบบ ภายใน 24 ชั่วโมง </span> -->
         <button type="button" class="btn btn-info" data-toggle="modal" data-target="#Modalnote"><span
                 class="glyphicon glyphicon-th-list"></span>&nbsp;&nbsp;เอกสารน่ารู้ </button>
     </div>
 
     <div class="cen"> <span class="war">
-    <p class="cpp" id="demo"></p>
-    <span class="cp">หลังจากระบบปิด ถ้าท่านยังไม่ลงทะเบียนให้ติดต่อที่ศูนย์คอมพิวเตอร์</span>
+    <!-- <p class="cpp" id="demo"></p> -->
+    <!-- <span class="cp">หลังจากระบบปิด ถ้าท่านยังไม่ลงทะเบียนให้ติดต่อที่ศูนย์คอมพิวเตอร์</span> -->
+    <span class="bb"> สิ้นสุดการลงทะเบียน</span>
     </span>
     </div>
 
@@ -112,7 +114,7 @@ var x = setInterval(function() {
                         <label for="textsearch">
                         </label>
                         <input type="text" name="itemname" id="itemname" class="form-control"
-                            placeholder=" ค้นหา  ชื่อ หรือ นามสกุล || อย่างใดอย่างหนึ่ง " autocomplete="off"
+                            placeholder=" ค้นหาหาด้วย ชื่อ   หรือ   นามสกุล | |  อย่างใดอย่างหนึ่ง " autocomplete="off"
                             autofocus />
                     </div>
                     <button type="button" class="btn success btn-lg" id="btnSearch" title="">
@@ -208,18 +210,15 @@ var x = setInterval(function() {
     }
     </script>
 
-    <!-- Modal -->
-    <div id="myModal" class="modal fade" role="dialog">
+    <!-- <div id="myModal" class="modal fade" role="dialog">
         <div class="modal-dialog">
-            <!-- Modal content-->
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                     <h4 class="modal-title"><span class="	glyphicon glyphicon-lock"></span> กรุณากรอกข้อมูล ให้ถูกต้อง
                         ครบถ้วน </h4>
                 </div>
-                <!-- <h4 class="modal-title"> <?php //echo   $resultmax['maxid']; 
-                                      ?></h4>      -->
+              
                 <div class="modal-body">
                     <form action="#" id="form_add" name="form_add">
                         <div class="form-group">
@@ -261,21 +260,70 @@ var x = setInterval(function() {
                         </center>
                     </form>
                 </div>
-                <!-- <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        </div> -->
+            </div>
+
+        </div>
+    </div> -->
+
+    <div id="myModal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title bb "><span class="glyphicon glyphicon-lock"></span> Time Expire สิ้นสุดการลงทะเบียน
+                         </h4>
+                </div>
+                <div class="modal-body">
+                <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@700&display=swap" rel="stylesheet">
+    <style>
+        .bb {
+            text-align: center;
+            color: crimson;
+            font-weight: bold;
+            font-size: 2.4em;
+            font-family: 'Prompt', sans-serif;
+            ;
+        } 
+        .cc {
+            text-align: center;
+            color: #169921;
+            font-size: 1.4em;
+            font-family: 'Prompt', sans-serif;
+        }
+
+        .hhh {
+            text-align: center;
+            color: #E70910;
+            font-size: 1.4em;
+            font-family: 'Prompt', sans-serif;
+        }
+
+        
+    </style>
+
+
+    <div><center><img src="img/exp.png" alt=""></center></div>
+    <div class="bb"> </div>
+    <br>
+    <div class="cc"> สำหรับผู้ที่ไม่มีรายชื่อในระบบ หรือลงทะเบียนไม่ทันตามเวลาที่กำหนด</div>
+    <div class="cc"> กรุณาติดต่อศูนย์คอมพิวเตอร์ โทร 3148 </div>
+</body>
+<div class="cc"> ระหว่างวันที่ 7 - 9 กรกฎาคม 2563 </div>
+<div><center><img src="img/gg.gif" alt="" width="40px" height="40px"></center></div>
+<hr>
+
+                </div>
             </div>
 
         </div>
     </div>
-
 
     <div id="Modalnote" class="modal fade" role="dialog">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title"><span class="glyphicon glyphicon-hand-right"></span> เอกสารที่เกี่ยวข้อง
+                    <h4 class="modal-title "><span class="glyphicon glyphicon-hand-right"></span> เอกสารที่เกี่ยวข้อง
                     </h4>
                 </div>
                 <div class="modal-body">
