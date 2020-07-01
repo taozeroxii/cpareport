@@ -61,7 +61,7 @@
     <?php
     include('../config/my_con.class.php');
     include('../config/pg_con.class.php');
-    $perpage = 5;
+    $perpage = 10;
     if (isset($_GET['page'])) {
         $page = $_GET['page'];
     } else {
