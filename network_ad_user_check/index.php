@@ -308,7 +308,7 @@ var x = setInterval(function() {
     <div class="cc"> สำหรับผู้ที่ไม่มีรายชื่อในระบบ หรือลงทะเบียนไม่ทันตามเวลาที่กำหนด</div>
     <div class="cc"> กรุณาติดต่อศูนย์คอมพิวเตอร์ โทร 3148 </div>
 </body>
-<div class="cc"> ระหว่างวันที่ 7 - 9 กรกฎาคม 2563 </div>
+<div class="cc"> ระหว่างวันที่ 8 - 10 กรกฎาคม 2563 </div>
 <div><center><img src="img/gg.gif" alt="" width="40px" height="40px"></center></div>
 <hr>
 
