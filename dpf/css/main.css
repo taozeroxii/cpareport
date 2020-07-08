@@ -1,0 +1,82 @@
+body {
+	background-color: #1d1e21;
+	padding: 10px; color:#FFFFFF
+}
+a{ color:#0a1c27}
+.kwicks {
+	list-style: none;
+	position: relative;
+	margin: 0;
+	padding: 0;
+	font-weight: bold;
+}
+A:link {
+	color: #0a1c27; 
+	text-decoration:none
+}
+A:visited {
+	color: #0a1c27; 
+	text-decoration: none
+}
+A:hover {
+	color: #078542;
+
+}
+
+.kwicks.horizontal li {
+	margin-right: 5px; 
+	float: left;
+}
+.kwicks.vertical  li{
+	margin-bottom: 5px; 
+}
+.kwicks li{
+	padding: 1px;
+	margin: 1px;
+	float: left;
+	width: 44%;
+	height: 10%;
+	margin-right: 5px;
+	margin-left: 30px;
+	border-radius: 10px;
+}
+#kwick1 { 
+	background-color: #d2d7bb;
+	background: #d2d7bb;
+	cursor: pointer;
+}
+#kwick2 {
+	background-color: #5a69a9;
+	background: #d2d7bb;
+	cursor: pointer;
+}
+#kwick3 {
+	background-color: #d2d7bb;
+	background: #d2d7bb;
+
+	cursor: pointer;
+}
+#kwick4 { 
+	background-color: #d2d7bb;
+	background: #d2d7bb;
+	margin-right: none;
+	cursor: pointer;
+
+}
+.kwickb{ 
+	background-color: #E2CDC8;
+	background: #E2CDC8;
+	margin-right: none;
+}
+
+.kwicks.horizontal #kwick_4 {
+	margin-right: none; 
+}
+.kwicks.vertical #kwick_4 {
+	margin-bottom: none; 
+}
+.fname
+{
+	font-size: 14px;
+	color: #E2CDC8;
+}

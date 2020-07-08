@@ -99,6 +99,9 @@ var x = setInterval(function() {
     </div>
 
     <div class="cen"> <span class="war">
+    <button type="button" class="btn btn-success btn-lg" data-toggle="modal" data-target="#Modalzone"><span
+                class="glyphicon glyphicon-home"></span>&nbsp;&nbsp;ตารางการเริ่มใช้งาน Authentication  </button>
+                &nbsp;&nbsp;&nbsp;&nbsp;
     <!-- <p class="cpp" id="demo"></p> -->
     <!-- <span class="cp">หลังจากระบบปิด ถ้าท่านยังไม่ลงทะเบียนให้ติดต่อที่ศูนย์คอมพิวเตอร์</span> -->
     <span class="bb"> สิ้นสุดการลงทะเบียน</span>
@@ -317,6 +320,95 @@ var x = setInterval(function() {
 
         </div>
     </div>
+
+
+
+    <div id="Modalzone" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <!-- <button type="button" class="close" data-dismiss="modal">&times;</button> -->
+                <h4 class="modal-title">ตารางการเริ่มใช้งาน Authentication</h4>
+            </div>
+            <div class="modal-body" id="">
+                <table class="tt">
+                    <tr class="ttr">
+                        <td>V2020</td>
+                        <td>20</td>
+                        <td>อาคารเฉลิมพระเกียรติฯ</td>
+                    </tr>
+                    <tr class="ttr">
+                        <td>V2022 </td>
+                        <td>22</td>
+                        <td>อาคารชวนโปรดทิพย์</td>
+                    </tr>
+                    <tr class="ttr">
+                        <td>V2024</td>
+                        <td>24</td>
+                        <td>อาคารสุวัทนา</td>
+                    </tr>
+                    <tr class="ttr">
+                        <td>V2025</td>
+                        <td>25</td>
+                        <td>อาคาร สูติกรรมพิเศษ 114เตียง</td>
+                    </tr>
+                    <tr class="ttr">
+                        <td>V2026 </td>
+                        <td>26</td>
+                        <td>อาคารแผนไทย</td>
+                    </tr>
+                    <tr class="ttr">
+                        <td>V2027 </td>
+                        <td>27</td>
+                        <td>อาคารอาชีวะ อาชีวเวชกรรม</td>
+                    </tr>
+                    <tr class="ttr">
+                        <td>V2028 </td>
+                        <td>28</td>
+                        <td>อาคาร 75 ปี</td>
+                    </tr>
+                    <tr class="ttr">
+                        <td> V2029 </td>
+                        <td>29</td>
+                        <td></td>
+                    </tr>
+                    <tr class="ttr">
+                        <td> V2031 </td>
+                        <td>31</td>
+                        <td></td>
+                    </tr>
+                    <tr class="ttr">
+                        <td> V2032 </td>
+                        <td>32</td>
+                        <td>อาคารอุติเหตุฉุกเฉิน</td>
+                    </tr>
+                    <tr class="ttr">
+                        <td> V2036 </td>
+                        <td>36</td>
+                        <td></td>
+                    </tr>
+                    <tr class="ttr">
+                        <td> V2043 </td>
+                        <td>43</td>
+                        <td></td>
+                    </tr>
+                    <tr class="ttr">
+                        <td> V2044</td>
+                        <td>44</td>
+                        <td>อาคาร สูติกรรมเก่า เพชรัตน์-สุวัทนา</td>
+                    </tr>
+                </table>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+    </div>
+
+
+
 
     <div id="Modalnote" class="modal fade" role="dialog">
         <div class="modal-dialog">
