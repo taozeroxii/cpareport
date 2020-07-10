@@ -141,10 +141,10 @@
 </head>
 
 <body>
-<div class="phone_head">Incompat-stability-ยาฉีด 63 intranet <hr>
+<div class="phone_head">Incompat-stability-ยาฉีด 63  <hr>
 
-<a href="incompatibility.php"> <button class="button button2" title="เลือกหัวข้อรายการ"> IV incompat</button></a>&nbsp;&nbsp;&nbsp;
-<a href="dilution.php"> <button class="button button3" title="เลือกหัวข้อรายการ">Updated_IV dilution</button></a>
+<a href="incompatibility.php"> <button class="button button2" title="เลือกหัวข้อรายการ"> IV incompatibility</button></a>&nbsp;&nbsp;&nbsp;
+        <a href="dilution.php"> <button class="button button3" title="เลือกหัวข้อรายการ">ความคงตัวยาฉีด</button></a>
 
       
     </div>

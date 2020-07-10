@@ -141,10 +141,10 @@
 </head>
 
 <body>
-    <div class="phone_head">Incompat-stability-ยาฉีด 63 intranet <hr>
+    <div class="phone_head">Incompat-stability-ยาฉีด 63 <hr>
 
-        <a href="incompatibility.php"> <button class="button button2" title="เลือกหัวข้อรายการ"> IV incompat</button></a>&nbsp;&nbsp;&nbsp;
-        <a href="dilution.php"> <button class="button button3" title="เลือกหัวข้อรายการ">Updated_IV dilution</button></a>
+        <a href="incompatibility.php"> <button class="button button2" title="เลือกหัวข้อรายการ"> IV incompatibility</button></a>&nbsp;&nbsp;&nbsp;
+        <a href="dilution.php"> <button class="button button3" title="เลือกหัวข้อรายการ">ความคงตัวยาฉีด</button></a>
       
     </div>
     <div class="container-fluid" style="margin-top: 10px">
@@ -157,7 +157,7 @@
                     <th><CENTER> Generic  </CENTER></th>
                     <th><CENTER> ความแรง </CENTER></th>
                     <th><CENTER>  ความไม่เข้ากัน (Incompatibility)-IV admixture </CENTER></th>
-                    <th><CENTER>  ความไม่เข้ากัน (Incompatibility) Y-site </CENTER></th>
+                    <!-- <th><CENTER>  ความไม่เข้ากัน (Incompatibility) Y-site </CENTER></th> -->
                 </tr>
             </thead>
             <tbody>
@@ -174,7 +174,7 @@
                     <td><?=$rowr["generic"]?></td>
                     <td><?=$rowr["speeddrug"]?></td>
                     <td><?=$rowr["iv"]?></td>
-                    <td><?=$rowr["ysite"]?></td>
+                    <!-- <td><?=$rowr["ysite"]?></td> -->
                   
                 </tr>
                 <?php  $ii++;	};?>
