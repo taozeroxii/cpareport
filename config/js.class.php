@@ -387,6 +387,27 @@
      });
    }
    load_cli();
+
+
+   function load_cli() {
+     $.ajax({
+       url: "config/usergroup.class.php",
+       method: 'GET',
+       data: {
+         'selector': 'cli'
+       },
+       success: function(result) {
+         var htmlOption = "";
+         data = JSON.parse(result);
+         $.each(data, function(i, item) {
+           htmlOption += "<option value='" + item.officer_group_id + "'>"+ item.officer_group_name + "</option>";
+         });
+         $('#usergroup_dropdown').html(htmlOption);
+
+       }
+     });
+   }
+   load_cli();
  </script>
 
 
