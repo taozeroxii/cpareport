@@ -204,7 +204,7 @@ $res = mysqli_query($con, $topLevelItems);
 			<span class="bbb"> |</span>
 			<span class="c"> {c_department[]} </span>
 			<span class="bbb"> |</span>
-			<span class="c"> สิทธิ {i_dropdown} | ตัวเลือกเดียว {ward_dropdown} </span>
+			<span class="c"> สิทธิ {i_dropdown} | ตัวเลือกเดียว {ward_dropdown} |  กลุ่มผู้ใช้งาน {usergroup_dropdown}</span>
 			
 			</span>
 		</div>
