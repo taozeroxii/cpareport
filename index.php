@@ -1,5 +1,6 @@
 <?php session_start(); ?>
 <!DOCTYPE html>
+<!-- ทดสอบ -->
 <html>
 <?php include "config/pg_con.class.php";
 include "config/func.class.php";
