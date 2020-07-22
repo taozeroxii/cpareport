@@ -105,14 +105,14 @@ function thdate($datetime)
     return "";
 }
 
-$sql = "   SELECT *,firstname,lastname,username,department,jobtitle,CONCAT(firstname,' ',lastname) as flname
+$sql = "   SELECT *,firstname,lastname,username,department,jobtitle
            FROM network_ad_user 
            WHERE 1 = 1 
            AND flage <> '2'
            AND firstname  like '%{$_POST['itemname']}%'
            OR  lastname   like '%{$_POST['itemname']}%'
            OR  department   like '%{$_POST['itemname']}%'
-          --  OR  flname     like '%{$_POST['itemname']}%'
+           OR  CONCAT(firstname,' ',lastname)  like '%%{$_POST['itemname']}%%'
             ";
 if ($_POST['itemname'] != NULL) {
     $query = mysql_query($sql);
