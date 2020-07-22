@@ -110,7 +110,10 @@ $sql = "   SELECT *,firstname,lastname,username,department,jobtitle
            WHERE 1 = 1 
            AND flage <> '2'
            AND firstname  like '%{$_POST['itemname']}%'
-           OR  lastname   like '%{$_POST['itemname']}%' ";
+           OR  lastname   like '%{$_POST['itemname']}%'
+           OR  department   like '%{$_POST['itemname']}%'
+           OR  CONCAT(firstname,' ',lastname)  like '%%{$_POST['itemname']}%%'
+            ";
 if ($_POST['itemname'] != NULL) {
     $query = mysql_query($sql);
 ?>
@@ -159,7 +162,7 @@ if ($_POST['itemname'] != NULL) {
             </table>
         <?php
     } else {
-        echo "<script type='text/javascript'>alert('คุณไม่ได้ระบุชื่อ หรือ นามสกุล อย่างใดอย่างหนึ่ง เพื่อค้นหา!')</script>";
+        echo "<script type='text/javascript'>alert('คุณไม่ได้ระบุชื่อ หรือ นามสกุล หรือ หน่วยงาน อย่างใดอย่างหนึ่ง เพื่อค้นหา!')</script>";
     }
         ?>
         </div>

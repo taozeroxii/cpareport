@@ -66,6 +66,10 @@ var x = setInterval(function() {
   margin-top: 0px;
   color: #E54703;
 }
+.rrar{
+    color: #E54703;
+    font-size: 1.4em;
+}
 </style>
 </head>
 
@@ -88,8 +92,8 @@ var x = setInterval(function() {
     </div>
     <div class="cen"><span class="u"> ตรวจสอบ User ของท่านให้ตรงกับ ชื่อ - นามสกุล ของท่าน เพื่อใช้งาน Login
             เข้าใช้งานครั้งแรกด้วยรหัสผ่าน </span>
-        <span class="pass" title=" P@123456 | หมายเหตุ : P = ตัวอักษรใหญ่ "> P@123456 </span><span class="u"> หลักจาก
-            เข้าสู่ระบบแล้วให้ทำการเปลี่ยนรหัสผ่านทันที</span> </div>
+        <span class="pass" title=" P@123456 | หมายเหตุ : P = ตัวอักษรใหญ่ "> P@123456 </span><span class="u"> 
+            </span> </div>
     <br>
     <div class="cen"><span class="war"> ตรวจสอบข้อมูล  
         <!-- <span class="bspan">หากไม่พบให้ทำการ เพิ่มผู้ใช้งานใหม่</span>
@@ -99,13 +103,13 @@ var x = setInterval(function() {
     </div>
 
     <div class="cen"> <span class="war">
-    <button type="button" class="btn btn-success btn-lg" data-toggle="modal" data-target="#Modalzone"><span
+    <!-- <button type="button" class="btn btn-success btn-lg" data-toggle="modal" data-target="#Modalzone"><span
                 class="glyphicon glyphicon-home"></span>&nbsp;&nbsp;ตารางการเริ่มใช้งาน Authentication  </button>
-                &nbsp;&nbsp;&nbsp;&nbsp;
+                &nbsp;&nbsp;&nbsp;&nbsp; -->
     <!-- <p class="cpp" id="demo"></p> -->
     <!-- <span class="cp">หลังจากระบบปิด ถ้าท่านยังไม่ลงทะเบียนให้ติดต่อที่ศูนย์คอมพิวเตอร์</span> -->
-    <span class="bb"> สิ้นสุดการลงทะเบียน</span>
-    </span>
+    <!-- <span class="bb"> สิ้นสุดการลงทะเบียน</span>
+    </span> -->
     </div>
 
     <hr>
@@ -117,7 +121,7 @@ var x = setInterval(function() {
                         <label for="textsearch">
                         </label>
                         <input type="text" name="itemname" id="itemname" class="form-control"
-                            placeholder=" ค้นหาหาด้วย ชื่อ   หรือ   นามสกุล | |  อย่างใดอย่างหนึ่ง " autocomplete="off"
+                            placeholder=" ค้นหาด้วย ชื่อ   หรือ   นามสกุล หรือ หน่วยงาน | |  อย่างใดอย่างหนึ่ง " autocomplete="off"
                             autofocus />
                     </div>
                     <button type="button" class="btn success btn-lg" id="btnSearch" title="">
@@ -126,7 +130,7 @@ var x = setInterval(function() {
                     </button>
                     &nbsp;
                     <button type="button" class="btn btn-danger btn-lg" data-toggle="modal" data-target="#myModal"><span
-                            class="glyphicon glyphicon-user"></span> เพิ่มผู้ใช้งานใหม่ </button>
+                            class="glyphicon glyphicon-user"></span> ลงทะเบียนล่าช้า </button>
                 </form>
             </div>
         </div>
@@ -213,13 +217,14 @@ var x = setInterval(function() {
     }
     </script>
 
-    <!-- <div id="myModal" class="modal fade" role="dialog">
+    <div id="myModal" class="modal fade" role="dialog">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                     <h4 class="modal-title"><span class="	glyphicon glyphicon-lock"></span> กรุณากรอกข้อมูล ให้ถูกต้อง
                         ครบถ้วน </h4>
+                        <center><div class="rrar">ลงทะเบียนล่าช้า </div></center>
                 </div>
               
                 <div class="modal-body">
@@ -266,9 +271,9 @@ var x = setInterval(function() {
             </div>
 
         </div>
-    </div> -->
+    </div>
 
-    <div id="myModal" class="modal fade" role="dialog">
+    <!-- <div id="myModal" class="modal fade" role="dialog">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -319,7 +324,7 @@ var x = setInterval(function() {
             </div>
 
         </div>
-    </div>
+    </div> -->
 
 
 
@@ -331,7 +336,8 @@ var x = setInterval(function() {
                 <h4 class="modal-title">ตารางการเริ่มใช้งาน Authentication</h4>
             </div>
             <div class="modal-body" id="">
-                <table class="tt">
+            <img src="" alt="">
+                <!-- <table class="tt">
                     <tr class="ttr">
                         <td>V2020</td>
                         <td>20</td>
@@ -397,7 +403,7 @@ var x = setInterval(function() {
                         <td>44</td>
                         <td>อาคาร สูติกรรมเก่า เพชรัตน์-สุวัทนา</td>
                     </tr>
-                </table>
+                </table> -->
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>

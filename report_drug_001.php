@@ -14,6 +14,7 @@ for( $i = 0 ; $i < 100000 ; $i++ )
   $i;
 }
 $sql    =  $_GET['sql'];
+$send_excel =  $_GET['sql'];
 $topLevelItems = " SELECT * FROM cpareport_sql WHERE sql_file = '".$sql."'";
 $res=mysqli_query($con,$topLevelItems);
 foreach($res as $item) {
@@ -48,6 +49,7 @@ include "config/timestampviewer.php";//เรียกไฟล์ในส่�
                     <small><?php echo 'Viewer: '.$countview; ?></small>
                 </h3>
                 <button type="" class="btn btn-default pull-right" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal"> Template </button>
+                <button type="" class="btn btn-default pull-right" class="btn btn-info btn-lg" onclick="export_excel()" > Excel </button>
               </div>
 
               <div class="box-body table-responsive">
@@ -103,5 +105,11 @@ include "config/timestampviewer.php";//เรียกไฟล์ในส่�
     })
   })
 </script>
+<script type="text/javascript">
+		function export_excel()
+		{
+			document.location = "export_excel_no.php?send_excel=<?php echo $send_excel; ?>";
+		}
+	</script>
 </body>
 </html>
