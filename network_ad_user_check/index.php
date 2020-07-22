@@ -66,6 +66,10 @@ var x = setInterval(function() {
   margin-top: 0px;
   color: #E54703;
 }
+.rrar{
+    color: #E54703;
+    font-size: 1.4em;
+}
 </style>
 </head>
 
@@ -117,7 +121,7 @@ var x = setInterval(function() {
                         <label for="textsearch">
                         </label>
                         <input type="text" name="itemname" id="itemname" class="form-control"
-                            placeholder=" ค้นหาหาด้วย ชื่อ   หรือ   นามสกุล | |  อย่างใดอย่างหนึ่ง " autocomplete="off"
+                            placeholder=" ค้นหาด้วย ชื่อ   หรือ   นามสกุล หรือ หน่วยงาน | |  อย่างใดอย่างหนึ่ง " autocomplete="off"
                             autofocus />
                     </div>
                     <button type="button" class="btn success btn-lg" id="btnSearch" title="">
@@ -220,6 +224,7 @@ var x = setInterval(function() {
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                     <h4 class="modal-title"><span class="	glyphicon glyphicon-lock"></span> กรุณากรอกข้อมูล ให้ถูกต้อง
                         ครบถ้วน </h4>
+                        <center><div class="rrar">ลงทะเบียนล่าช้า </div></center>
                 </div>
               
                 <div class="modal-body">
