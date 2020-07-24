@@ -1,6 +1,6 @@
  <?php require "pg_con.class.php";
-	$cli = $_GET['selector'];
-	if ($cli == "cli") {
+	$usergroup = $_GET['selector'];
+	if ($usergroup == "usergroup") {
 		$result = pg_query("SELECT * FROM officer_group WHERE officer_group_name like '%%แพทย์%%'");
 		$resultArray = array();
 		while ($row = pg_fetch_assoc($result)) {

@@ -389,12 +389,12 @@
    load_cli();
 
 
-   function load_cli() {
+   function load_usergroup() {
      $.ajax({
        url: "config/usergroup.class.php",
        method: 'GET',
        data: {
-         'selector': 'cli'
+         'selector': 'usergroup'
        },
        success: function(result) {
          var htmlOption = "";
@@ -407,7 +407,7 @@
        }
      });
    }
-   load_cli();
+   load_usergroup();
  </script>
 
 
