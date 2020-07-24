@@ -19,7 +19,7 @@ date_default_timezone_set('asia/bangkok');
 
     <link rel="stylesheet" href="bootstrap.min.css">
     <script src="js/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script src="bootstrap.min.js"></script>
 
     <!-- <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script> -->
     <script src="add_ajax_script.js"></script>
