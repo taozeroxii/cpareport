@@ -131,7 +131,7 @@ var x = setInterval(function() {
                     &nbsp;
                     <button type="button" class="btn btn-danger btn-lg" data-toggle="modal" data-target="#myModal"><span
                             class="glyphicon glyphicon-user"></span> ลงทะเบียนล่าช้า </button>
-                            <a href="https://cpa-hospital.watchguard.in.th:4100/success.shtml" target="_blank" rel="noopener noreferrer"> <button type="button" class="btn btn-warning btn-lg" ><span
+                            <a href="https://cpa-hospital.watchguard.in.th:4100/" target="_blank" rel="noopener noreferrer"> <button type="button" class="btn btn-warning btn-lg" ><span
                             class="glyphicon glyphicon-off"></span> ออกจากระบบ </button></a>
                 </form>
             </div>
