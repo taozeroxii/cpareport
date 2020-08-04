@@ -15,7 +15,7 @@ date_default_timezone_set('asia/bangkok');
     <link href="css/bootstrap-theme.min.css" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="eak.css">
     <link rel="stylesheet" href="css/font-awesome.min.css">
-
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,500;1,400&display=swap" rel="stylesheet">
 
     <link rel="stylesheet" href="bootstrap.min.css">
     <script src="js/jquery.min.js"></script>
@@ -70,6 +70,24 @@ var x = setInterval(function() {
     color: #E54703;
     font-size: 1.4em;
 }
+.exp{
+    font-size: 2.0em;
+    font-weight: bold;
+    color:#E80C20;
+    text-align: center;
+    cursor: pointer;
+}
+.exp:hover{
+    font-size: 2.0em;
+    font-weight: bold;
+    color:green;
+    text-align: center;
+    cursor: pointer;
+    background-color: #C7D1DA;
+}
+*{
+    /* font-family: 'Kanit', sans-serif; */
+}
 </style>
 </head>
 
@@ -112,6 +130,12 @@ var x = setInterval(function() {
     </span> -->
     </div>
 
+    <br>
+    
+    <div class="exp">
+        <span title="ตรวจสอบ USER ใช้งานได้ถึงวันที่ 20 สิหาคม 2563 กรุณาจดจำ ชื่อผู้ใช้งาน และ รหัสผ่าน ของท่าน ">ท่านสามารถตรวจสอบ USER ใช้งานได้ถึงวันที่ 20 สิหาคม 2563 </span>
+    </div>
+
     <hr>
     <div class="container ">
         <div class="row">
@@ -124,14 +148,14 @@ var x = setInterval(function() {
                             placeholder=" ค้นหาด้วย ชื่อ   หรือ   นามสกุล หรือ หน่วยงาน | |  อย่างใดอย่างหนึ่ง " autocomplete="off"
                             autofocus />
                     </div>
-                    <button type="button" class="btn success btn-lg" id="btnSearch" title="">
+                    <button type="button" class="btn success btn-lg" id="btnSearch" title="ระบบจะทำการปิดให้ตรวจสอบ USER ในวันที่ 20 สิงหาคม 2563 นี้">
                         <span class="glyphicon glyphicon-search"></span>
                         ตรวจสอบ
                     </button>
                     &nbsp;
-                    <button type="button" class="btn btn-danger btn-lg" data-toggle="modal" data-target="#myModal"><span
+                    <button type="button" class="btn btn-danger btn-lg" data-toggle="modal" data-target="#myModal" title="หลังจากลงทะเบียนแล้ว รอการยืนยันเข้าใช้งานประมาณ 24 - 48 ชั่วโมง "><span
                             class="glyphicon glyphicon-user"></span> ลงทะเบียนล่าช้า </button>
-                            <a href="https://cpa-hospital.watchguard.in.th:4100/" target="_blank" rel="noopener noreferrer"> <button type="button" class="btn btn-warning btn-lg" ><span
+                            <a href="https://cpa-hospital.watchguard.in.th:4100/" target="_blank" rel="noopener noreferrer" title="ตรวจสอบการเข้าใช้งาน Login & Logout"> <button type="button" class="btn btn-warning btn-lg" ><span
                             class="glyphicon glyphicon-off"></span> ออกจากระบบ </button></a>
                 </form>
             </div>
