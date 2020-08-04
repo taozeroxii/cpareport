@@ -22,11 +22,12 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
   <script src="jquery-1.11.1.min.js" type="text/javascript"></script>
 
-  <!-- eaktamp -->
-  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
+<!-- eaktamp -->
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.min.css" rel="stylesheet" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script>
-    
+
+
   <script type="text/javascript">
     $(document).ready(function() {
       $('#incomes').change(function() {
@@ -44,16 +45,6 @@
       });
     });
   </script>
-
-
-  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-  <link rel="stylesheet" href="/resources/demos/style.css">
-  <!-- <script src="https://code.jquery.com/jquery-1.12.4.js"></script> -->
-  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-  
-  <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.1/i18n/datepicker-th.js"></script>
-
-
 </head>
 
 
@@ -95,8 +86,6 @@
   <?php
   include('../config/my_con.class.php');
   include('../config/pg_con.class.php');
-  date_default_timezone_set("Asia/Bangkok");
-  //echo     $datenow  =  date("d/m/").(date("Y")+543).date(" H:i:s");
   $doctorposition = " SELECT * FROM frm_res_doctorposition ORDER BY position_name";
   $doctorpositions = mysqli_query($con, $doctorposition);
 
@@ -154,7 +143,7 @@
     echo $_POST['Providertype']; echo '<br>';
      */
     date_default_timezone_set("Asia/Bangkok");
-    $datenow  =  date("d/m/").(date("Y")+543).date(" H:i:s");
+    $datenow  =  date("Y/m/d H:i:s");
     $checkcid = "select * from frm_res_require_login_hosxp where cid = '" . $_POST['cid'] . "'";
     $querycheckcid = mysqli_query($con, $checkcid);
     $havecid = mysqli_fetch_assoc($querycheckcid);
@@ -167,19 +156,8 @@
     $checkusernames = pg_query($conn, $checkusername);
     $haveusers = pg_fetch_assoc($checkusernames);
 
-
-     $valksk = $_POST['note'];
-
-     foreach ($valksk as $dep) {
-        $ksk .="" .$dep. ",";
-      }
-      $ksk = rtrim($ksk,',');
-      $decode = $ksk;
-
-    
-
     if ($havecid == null && $haveusers == null ){// &&  $havecidhosxp == null เอาส่วนเช็คว่ามี cid ในระบบ hosxp ออกเพื่อให้ผู้ใช้งานกรอกข้อมูลสมัครเข้ามาได้แม้มีข้อมูลชื่อตัวเองในระบบแล้วเพราะบางคนอาจยังไม่มีรหัสแต่มีชื่อในระบบ
-      $insertsql = "INSERT INTO frm_res_require_login_hosxp (pname,fname,lname,engfullname,gender,birthday,cid,jobclass,spclty,speciality,doctor_cert,first_day_in_job,emailaddress,username,password,status,insertdate_time,accepcert,expirecert,mobilenumber,providertype,note,phone_internal)
+      $insertsql = "INSERT INTO frm_res_require_login_hosxp (pname,fname,lname,engfullname,gender,birthday,cid,jobclass,spclty,speciality,doctor_cert,first_day_in_job,emailaddress,username,password,status,insertdate_time,accepcert,expirecert,mobilenumber,providertype,note )
       VALUES ('" . $_POST["pname"] . "'
       ,'" . $_POST["fname"] . "'
       ,'" . $_POST["lname"] . "'
@@ -201,12 +179,11 @@
       ,'" . $_POST['expirecert'] . "'
       ,'" .  $_POST['mobilephone']. "'
       ,'" . $_POST['Providertype']. "'
-      ,'" . $decode. "'
-      ,'" . $_POST['phoneinternal']. "'
+      ,'" . $_POST['note']. "'
       )";
 
       $queryInsert = mysqli_query($con, $insertsql);
-// echo $insertsql;
+
       if ($queryInsert) {
         echo "<script>alert('แจ้งข้อมูลไปยังผู้ดูแลระบบเรียบร้อย');window.location=index.php;</script>";
         //echo "<script>window.location='test.php';</script>";
@@ -229,11 +206,11 @@
         }
 
         $message = "\r\n" .
-          'วันที่ขอเพิ่ม :' .$datenow . "\r\n" .
+          'วันที่ขอเพิ่ม :' . date("Y/m/d H:i:s") . "\r\n" .
           'ชื่อ :' . $_POST["pname"] . " " .  $_POST["fname"] . "  " .  $_POST["lname"] . "\r\n" .
           'สถานะ : รอดำเนินการ';
         $token = 'd5zh3iN8q18hw1cTYxIJc2eS4OlZBOCMq6VOySo2u3z';
-       send_line_notify($message, $token);
+        send_line_notify($message, $token);
       } else   echo "<script>alert('มีการแจ้งข้อมูลนี้ไปแล้ว');window.location=index.php;</script>";
     } else   echo "<script>alert('มีข้อมูลในระบบแล้วหรือเคยแจ้งไปแล้ว');window.location=index.php;</script>";
   }
@@ -275,7 +252,6 @@
                         <option value="พทป.">ทพญ.</option>
                       </select>
                     </div>
- 
                     <div class="col-sm-3">
                       <span class="nameofinput">ชื่อ</span>
                       <input class="form-control" type="text" placeholder="ชื่อ" name="fname" pattern="^[ก-๏\s]+$" required>
@@ -300,8 +276,8 @@
                       </select>
                     </div>
                     <div class="col-sm-3">
-                      <span class="nameofinput">วันเดือนปีเกิด(พศ.)</span>
-                      <input class="form-control"  type="text" id="date-of-birth" autocomplete="off" placeholder="xx/xx/xxx" name="birthday" required>
+                      <span class="nameofinput">วันเดือนปีเกิด(คศ.)</span>
+                      <input class="form-control" type="date" placeholder="ปีเกิด" name="birthday" required>
                     </div>
                     <div class="col-sm-2">
                       <span class="nameofinput">เลขที่บัตรประชาชน</span>
@@ -347,7 +323,7 @@
                   <div class="row mt-3">
                       <div class="col-sm-3">
                           <span class="nameofinput">วันที่เข้าเริ่มงาน</span>
-                          <input class="form-control"  type="text" id="day-of-job" autocomplete="off" name="firstdayonjob" placeholder="xx/xx/xxx" required>
+                          <input class="form-control" type="date" placeholder="" name="firstdayonjob" required>
                         </div>
                         <div class="col-sm-3">
                           <span class="nameofinput">เลขที่ใบประกอบวิชาชีพ</span>
@@ -355,11 +331,11 @@
                         </div>
                         <div class="col-sm-3">
                           <span class="nameofinput">วันที่ออกใบอนุญาต</span>
-                          <input class="form-control"  type="text" id="day-of-accepcert" autocomplete="off" name="accepcert" placeholder="xx/xx/xxx" >
+                          <input class="form-control" type="date" placeholder="" name="accepcert" >
                         </div>
                         <div class="col-sm-3">
                           <span class="nameofinput">วันที่หมดอายุอนุญาต</span>
-                          <input class="form-control"  type="text" id="day-of-expirecert" autocomplete="off" name="expirecert" placeholder="xx/xx/xxx" >
+                          <input class="form-control" type="date" placeholder="" name="expirecert" >
                         </div>
                     </div>
                     <div class="row mt-3">
@@ -395,21 +371,22 @@
                     </div>
 
 
+
                     <!-- <div class="col-sm-6">
                       <span class="nameofinput">เลขห้องที่เข้าใช้งาน วิธีดูเลขที่ห้องคลิกปุ่มสีแดง -><button type="button" class="btn btn-danger " data-toggle="modal" data-target="#imginfo"><i class="glyphicon glyphicon-list"></i></button></span>
                       <input class="form-control" type="text" placeholder="ระบุตัวเลข หรือ ชื่อห้องที่ต้องการใช้งาน (สามารถระบุได้หลายห้อง)" name = "note" required></input>
                     </div> -->
 
-                    <?php
-                      $ksk = " SELECT depcode,department FROM kskdepartment WHERE depcode_active = 'Y' ";
-                      $dep = pg_query($conn, $ksk);
-                    ?>
-                    <div class="col-sm-6">
-                      <span class="nameofinput">ห้องที่เข้าใช้งาน วิธีดูเลขที่ห้องคลิกปุ่มสีแดง *เลือกได้มากกว่า 1 รายการ</span>
-                      <button type="button" class="btn btn-danger " data-toggle="modal" data-target="#imginfo" title="คลิกดูภาพตัวอย่าง">
+<?php
+   $ksk = " SELECT depcode,department FROM kskdepartment WHERE depcode_active = 'Y' ";
+   $dep = pg_query($conn, $ksk);
+?>
+                    <div class="col-sm-8">
+                      <span class="nameofinput">ห้องที่เข้าใช้งาน วิธีดูเลขที่ห้องคลิกปุ่มสีแดง</span>
+                      <button type="button" class="btn btn-danger " data-toggle="modal" data-target="#imginfo">
                       <i class="glyphicon glyphicon-list"></i></button></span>
-                            <select class="note related-post form-control" name="note[]" multiple title="เลือกห้องที่เข้าใช้งาน เลือกได้มากกว่า 1 รายการ">
-                            
+                            <select class="note related-post form-control" name="note[]" multiple>
+                          
                             <?php 
                                 while ($kskdep = pg_fetch_assoc($dep)) {
                                 ?>
@@ -418,12 +395,10 @@
                                 }
                                 ?>
                          </select>
+                        <!-- </div> -->
+
                     </div>
 
-                    <div class="col-sm-3">
-                          <span class="nameofinput">เบอร์ติดต่อภายใน</span>
-                          <input class="form-control" type="text" placeholder="๊2000" name="phoneinternal">
-                        </div>
                   </div>
                 </div>
             </div>
@@ -684,61 +659,15 @@
       });
     })();
 
-    $.datepicker.setDefaults( $.datepicker.regional[ "th" ] );
-      var currentDate = new Date();
-
-      currentDate.setYear(currentDate.getFullYear() + 543);
-        // Birth date
-        $("#date-of-birth").datepicker({
-          changeMonth: true,
-          changeYear: true,
-          yearRange: '+443:+543',
-          dateFormat: 'dd/mm/yy',
-          onSelect: function(date) {
-            $("#edit-date-of-birth").addClass('filled');
-          }
-        });
-
-        $("#day-of-job").datepicker({
-          changeMonth: true,
-          changeYear: true,
-          yearRange: '+443:+543',
-          dateFormat: 'dd/mm/yy',
-          onSelect: function(date) {
-            $("#edit-day-of-job").addClass('filled');
-          }
-        });
-        
-        $("#day-of-accepcert").datepicker({
-          changeMonth: true,
-          changeYear: true,
-          yearRange: '+443:+543',
-          dateFormat: 'dd/mm/yy',
-          onSelect: function(date) {
-            $("#edit-day-of-accepcert").addClass('filled');
-          }
-        });
-        $("#day-of-expirecert").datepicker({
-          changeMonth: true,
-          changeYear: true,
-          yearRange: '+443:+543',
-          dateFormat: 'dd/mm/yy',
-          onSelect: function(date) {
-            $("#edit-day-of-expirecert").addClass('filled');
-          }
-        });
-
         $(document).ready(function() {
             $('.note').select2();
         });
 
-       //$('#date-of-birth').datepicker("setDate",currentDate );
-       // $('#date-of-job').datepicker("setDate",currentDate );
   </script>
-  <!-- <script src="https://unpkg.com/jquery@3.3.1/dist/jquery.min.js">//เช็คตัอักษร</script>
-  <script src="https://unpkg.com/bootstrap@4.1.0/dist/js/bootstrap.min.js">//เช็คตัอักษร</script>
-  <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script> -->
-  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+   <!-- <script src="https://unpkg.com/jquery@3.3.1/dist/jquery.min.js">//เช็คตัอักษร</script> -->
+  <!-- <script src="https://unpkg.com/bootstrap@4.1.0/dist/js/bootstrap.min.js">//เช็คตัอักษร</script> -->
+  <!-- <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script> -->
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script> 
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 </body>
 
