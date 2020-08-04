@@ -39,6 +39,11 @@
                 background: white;
             }
         }
+        .ccik:hover{
+            cursor: pointer;
+            color: blue;
+            font-weight: bold;
+        }
     </style>
 
     <div class="nonprint">
@@ -215,6 +220,16 @@
                                         </td>
                                     <? } ?>
                                 </tr>
+                                <script>
+            // eaktamp
+function myFunction() {
+  var copyText = document.getElementById("myInput");
+  copyText.select();
+  copyText.setSelectionRange(0, 99999)
+  document.execCommand("copy");
+ // alert("Copied the text: " + copyText.value);
+}
+</script>
                             <?php } ?>
                         <tbody>
                     </table>
@@ -222,7 +237,7 @@
             </div>
         </div>
 
-
+ 
 
         <? foreach ($query as $item) { ?>
             <!--///////////////////////////////////////////// Modal close job  ///////////////////////////////////////////////////////-->
@@ -240,9 +255,10 @@
                             <div class="print">
                                 <h4 style="background-color: #878787;color:black;padding:10px;border-style: dotted;border-width: 0.5px;">ใบแจ้งที่: <?php echo $item['id']; ?></h4>
                                 <p>วันที่แจ้ง : <?php echo $begin = $item['insertdate_time']; ?>&nbsp;&nbsp;&nbsp; วันที่เริ่มงาน : <?php echo $item['first_day_in_job']; ?></p>
-                                <p>ชื่อ-นามสกุล : <?php echo $userregis =  $item['pname'] . $item['fname'] . '    ' . $item['lname']; ?> &nbsp;&nbsp;&nbsp;เพศ : <?php echo $item['gender']; ?></p>
+
+                                <p>ชื่อ-นามสกุล :<?php echo $userregis =  $item['pname'] . $item['fname'] . '    ' . $item['lname']; ?>&nbsp;&nbsp;&nbsp;เพศ : <?php echo $item['gender']; ?></p>
                                 <p>ชื่อภาษาอังกฤษ : <?php echo $item['engfullname'];?></p>
-                                <p>Cid : <?php echo $item['cid']; ?> </p>
+                                <p>Cid :  <input class="ccik" type="text" value="<?php echo $item['cid']; ?>" id="myInput" onclick="myFunction()" title="ดับเบิ้ลคลิก = copy"> </p>
                                 <p>ปีเกิด : <?php echo $item['birthday']; ?> </p>
                                 <p>เลขที่ใบประกอบวิชาชีพ : <?php echo $item['doctor_cert']; ?> </p>
                                 <p>วันที่ได้รับอนุญาต : <?php echo $item['accepcert']; ?> </p>
@@ -309,6 +325,7 @@
                 </div>
             </div>
             <!--//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////-->
+
         <? } ?>
 
 
@@ -381,6 +398,8 @@
             });
 
         });
+
+
     </script>
 
 
