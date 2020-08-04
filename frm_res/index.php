@@ -50,13 +50,10 @@
   <link rel="stylesheet" href="/resources/demos/style.css">
   <!-- <script src="https://code.jquery.com/jquery-1.12.4.js"></script> -->
   <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-  
   <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.1/i18n/datepicker-th.js"></script>
 
 
 </head>
-
-
 
 
 <body style="font-family: 'Prompt', sans-serif;">
@@ -97,6 +94,8 @@
   include('../config/pg_con.class.php');
   date_default_timezone_set("Asia/Bangkok");
   //echo     $datenow  =  date("d/m/").(date("Y")+543).date(" H:i:s");
+  $todate  =  date("d/m/").(date("Y")+543);
+
   $doctorposition = " SELECT * FROM frm_res_doctorposition ORDER BY position_name";
   $doctorpositions = mysqli_query($con, $doctorposition);
 
@@ -155,6 +154,7 @@
      */
     date_default_timezone_set("Asia/Bangkok");
     $datenow  =  date("d/m/").(date("Y")+543).date(" H:i:s");
+
     $checkcid = "select * from frm_res_require_login_hosxp where cid = '" . $_POST['cid'] . "'";
     $querycheckcid = mysqli_query($con, $checkcid);
     $havecid = mysqli_fetch_assoc($querycheckcid);
@@ -301,7 +301,7 @@
                     </div>
                     <div class="col-sm-3">
                       <span class="nameofinput">วันเดือนปีเกิด(พศ.)</span>
-                      <input class="form-control"  type="text" id="date-of-birth" autocomplete="off" placeholder="xx/xx/xxx" name="birthday" required>
+                      <input class="form-control"  type="text" id="date-of-birth" autocomplete="off" value="<?php echo $todate;?>" name="birthday" required>
                     </div>
                     <div class="col-sm-2">
                       <span class="nameofinput">เลขที่บัตรประชาชน</span>
@@ -347,7 +347,7 @@
                   <div class="row mt-3">
                       <div class="col-sm-3">
                           <span class="nameofinput">วันที่เข้าเริ่มงาน</span>
-                          <input class="form-control"  type="text" id="day-of-job" autocomplete="off" name="firstdayonjob" placeholder="xx/xx/xxx" required>
+                          <input class="form-control"  type="text" id="day-of-job" autocomplete="off" name="firstdayonjob" value="<?php echo $todate;?>" required>
                         </div>
                         <div class="col-sm-3">
                           <span class="nameofinput">เลขที่ใบประกอบวิชาชีพ</span>
@@ -355,11 +355,11 @@
                         </div>
                         <div class="col-sm-3">
                           <span class="nameofinput">วันที่ออกใบอนุญาต</span>
-                          <input class="form-control"  type="text" id="day-of-accepcert" autocomplete="off" name="accepcert" placeholder="xx/xx/xxx" >
+                          <input class="form-control"  type="text" id="day-of-accepcert" autocomplete="off" name="accepcert" value="<?php echo $todate;?>" required>
                         </div>
                         <div class="col-sm-3">
                           <span class="nameofinput">วันที่หมดอายุอนุญาต</span>
-                          <input class="form-control"  type="text" id="day-of-expirecert" autocomplete="off" name="expirecert" placeholder="xx/xx/xxx" >
+                          <input class="form-control"  type="text" id="day-of-expirecert" autocomplete="off" name="expirecert" value="<?php echo $todate;?>" required>
                         </div>
                     </div>
                     <div class="row mt-3">
@@ -718,15 +718,22 @@
             $("#edit-day-of-accepcert").addClass('filled');
           }
         });
+
+
+
+
         $("#day-of-expirecert").datepicker({
           changeMonth: true,
           changeYear: true,
           yearRange: '+443:+543',
           dateFormat: 'dd/mm/yy',
+          setDate: '01/01/2563',
           onSelect: function(date) {
-            $("#edit-day-of-expirecert").addClass('filled');
+            $("#edit-day-of-accepcert").addClass('filled');
           }
         });
+
+
 
         $(document).ready(function() {
             $('.note').select2();
