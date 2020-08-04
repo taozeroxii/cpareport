@@ -254,6 +254,7 @@
                                 <p>e-mail : <?php echo $item['emailaddress']; ?> &nbsp;&nbsp;&nbsp;โทรศัพท์ : <?php echo $item['mobilenumber']; ?>  </p>
                                 <p>user : <?php echo $item['username']; ?>&nbsp;&nbsp;&nbsp; password : <?php echo $item['password']; ?></p>
                                 <p>หมายเหตุ : <?php echo $item['note']; ?> </p>
+                                <p>เบอร์ภายใน : <?php echo $item['phone_internal']; ?> </p>
                                  <?php if($item['it_getrequest'] != null){ ?><p>ผู้ดำเนินการ : <?php echo $item['it_getrequest']; ?> </p><?}?>
                             </div>
                             <?php if($item['it_getrequest'] == null){ ?>
@@ -289,9 +290,9 @@
                                     date_default_timezone_set("Asia/Bangkok"); //ตั้งโซนเวลา
                                     $month = date('m');
                                     $day = date('d');
-                                    $year = (date('Y'));
+                                    $year = (date('Y')+543);
                                     $TIME = date("H:i:s");   //date("h:i:s a"); แบบมีpm am
-                                    $today = $year . '-' . $month . '-' . $day . '  ' . $TIME;
+                                    $today =  $day . '/'. $month . '/' . $year  .  '  ' . $TIME;
                                     ?>
                                 <input type="hidden" name="status" value="done">
                                 <input type="hidden" name="userregis" value="<? echo $userregis; ?>">

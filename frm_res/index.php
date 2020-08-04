@@ -38,6 +38,16 @@
       });
     });
   </script>
+
+
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+  <link rel="stylesheet" href="/resources/demos/style.css">
+  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+  
+  <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.1/i18n/datepicker-th.js"></script>
+
+
 </head>
 
 
@@ -79,6 +89,8 @@
   <?php
   include('../config/my_con.class.php');
   include('../config/pg_con.class.php');
+  date_default_timezone_set("Asia/Bangkok");
+  //echo     $datenow  =  date("d/m/").(date("Y")+543).date(" H:i:s");
   $doctorposition = " SELECT * FROM frm_res_doctorposition ORDER BY position_name";
   $doctorpositions = mysqli_query($con, $doctorposition);
 
@@ -136,7 +148,7 @@
     echo $_POST['Providertype']; echo '<br>';
      */
     date_default_timezone_set("Asia/Bangkok");
-    $datenow  =  date("Y/m/d H:i:s");
+    $datenow  =  date("d/m/").(date("Y")+543).date(" H:i:s");
     $checkcid = "select * from frm_res_require_login_hosxp where cid = '" . $_POST['cid'] . "'";
     $querycheckcid = mysqli_query($con, $checkcid);
     $havecid = mysqli_fetch_assoc($querycheckcid);
@@ -150,7 +162,7 @@
     $haveusers = pg_fetch_assoc($checkusernames);
 
     if ($havecid == null && $haveusers == null ){// &&  $havecidhosxp == null เอาส่วนเช็คว่ามี cid ในระบบ hosxp ออกเพื่อให้ผู้ใช้งานกรอกข้อมูลสมัครเข้ามาได้แม้มีข้อมูลชื่อตัวเองในระบบแล้วเพราะบางคนอาจยังไม่มีรหัสแต่มีชื่อในระบบ
-      $insertsql = "INSERT INTO frm_res_require_login_hosxp (pname,fname,lname,engfullname,gender,birthday,cid,jobclass,spclty,speciality,doctor_cert,first_day_in_job,emailaddress,username,password,status,insertdate_time,accepcert,expirecert,mobilenumber,providertype,note )
+      $insertsql = "INSERT INTO frm_res_require_login_hosxp (pname,fname,lname,engfullname,gender,birthday,cid,jobclass,spclty,speciality,doctor_cert,first_day_in_job,emailaddress,username,password,status,insertdate_time,accepcert,expirecert,mobilenumber,providertype,note,phone_internal)
       VALUES ('" . $_POST["pname"] . "'
       ,'" . $_POST["fname"] . "'
       ,'" . $_POST["lname"] . "'
@@ -173,6 +185,7 @@
       ,'" .  $_POST['mobilephone']. "'
       ,'" . $_POST['Providertype']. "'
       ,'" . $_POST['note']. "'
+      ,'" . $_POST['phoneinternal']. "'
       )";
 
       $queryInsert = mysqli_query($con, $insertsql);
@@ -199,7 +212,7 @@
         }
 
         $message = "\r\n" .
-          'วันที่ขอเพิ่ม :' . date("Y/m/d H:i:s") . "\r\n" .
+          'วันที่ขอเพิ่ม :' .$datenow . "\r\n" .
           'ชื่อ :' . $_POST["pname"] . " " .  $_POST["fname"] . "  " .  $_POST["lname"] . "\r\n" .
           'สถานะ : รอดำเนินการ';
         $token = 'd5zh3iN8q18hw1cTYxIJc2eS4OlZBOCMq6VOySo2u3z';
@@ -245,6 +258,7 @@
                         <option value="พทป.">ทพญ.</option>
                       </select>
                     </div>
+ 
                     <div class="col-sm-3">
                       <span class="nameofinput">ชื่อ</span>
                       <input class="form-control" type="text" placeholder="ชื่อ" name="fname" pattern="^[ก-๏\s]+$" required>
@@ -269,8 +283,8 @@
                       </select>
                     </div>
                     <div class="col-sm-3">
-                      <span class="nameofinput">วันเดือนปีเกิด(คศ.)</span>
-                      <input class="form-control" type="date" placeholder="ปีเกิด" name="birthday" required>
+                      <span class="nameofinput">วันเดือนปีเกิด(พศ.)</span>
+                      <input class="form-control"  type="text" id="date-of-birth" autocomplete="off" placeholder="xx/xx/xxx" name="birthday" required>
                     </div>
                     <div class="col-sm-2">
                       <span class="nameofinput">เลขที่บัตรประชาชน</span>
@@ -316,7 +330,7 @@
                   <div class="row mt-3">
                       <div class="col-sm-3">
                           <span class="nameofinput">วันที่เข้าเริ่มงาน</span>
-                          <input class="form-control" type="date" placeholder="" name="firstdayonjob" required>
+                          <input class="form-control"  type="text" id="day-of-job" autocomplete="off" name="firstdayonjob" placeholder="xx/xx/xxx" required>
                         </div>
                         <div class="col-sm-3">
                           <span class="nameofinput">เลขที่ใบประกอบวิชาชีพ</span>
@@ -324,11 +338,11 @@
                         </div>
                         <div class="col-sm-3">
                           <span class="nameofinput">วันที่ออกใบอนุญาต</span>
-                          <input class="form-control" type="date" placeholder="" name="accepcert" >
+                          <input class="form-control"  type="text" id="day-of-accepcert" autocomplete="off" name="accepcert" placeholder="xx/xx/xxx" >
                         </div>
                         <div class="col-sm-3">
                           <span class="nameofinput">วันที่หมดอายุอนุญาต</span>
-                          <input class="form-control" type="date" placeholder="" name="expirecert" >
+                          <input class="form-control"  type="text" id="day-of-expirecert" autocomplete="off" name="expirecert" placeholder="xx/xx/xxx" >
                         </div>
                     </div>
                     <div class="row mt-3">
@@ -366,6 +380,10 @@
                       <span class="nameofinput">เลขห้องที่เข้าใช้งาน วิธีดูเลขที่ห้องคลิกปุ่มสีแดง -><button type="button" class="btn btn-danger " data-toggle="modal" data-target="#imginfo"><i class="glyphicon glyphicon-list"></i></button></span>
                       <input class="form-control" type="text" placeholder="ระบุตัวเลข หรือ ชื่อห้องที่ต้องการใช้งาน (สามารถระบุได้หลายห้อง)" name = "note" required></input>
                     </div>
+                    <div class="col-sm-3">
+                          <span class="nameofinput">เบอร์ติดต่อภายใน</span>
+                          <input class="form-control" type="text" placeholder="๊2000" name="phoneinternal">
+                        </div>
                   </div>
                 </div>
             </div>
@@ -625,6 +643,53 @@
         new CBPFWTabs(el);
       });
     })();
+
+    $.datepicker.setDefaults( $.datepicker.regional[ "th" ] );
+      var currentDate = new Date();
+
+      currentDate.setYear(currentDate.getFullYear() + 543);
+        // Birth date
+        $("#date-of-birth").datepicker({
+          changeMonth: true,
+          changeYear: true,
+          yearRange: '+443:+543',
+          dateFormat: 'dd/mm/yy',
+          onSelect: function(date) {
+            $("#edit-date-of-birth").addClass('filled');
+          }
+        });
+
+        $("#day-of-job").datepicker({
+          changeMonth: true,
+          changeYear: true,
+          yearRange: '+443:+543',
+          dateFormat: 'dd/mm/yy',
+          onSelect: function(date) {
+            $("#edit-day-of-job").addClass('filled');
+          }
+        });
+        
+        $("#day-of-accepcert").datepicker({
+          changeMonth: true,
+          changeYear: true,
+          yearRange: '+443:+543',
+          dateFormat: 'dd/mm/yy',
+          onSelect: function(date) {
+            $("#edit-day-of-accepcert").addClass('filled');
+          }
+        });
+        $("#day-of-expirecert").datepicker({
+          changeMonth: true,
+          changeYear: true,
+          yearRange: '+443:+543',
+          dateFormat: 'dd/mm/yy',
+          onSelect: function(date) {
+            $("#edit-day-of-expirecert").addClass('filled');
+          }
+        });
+
+       //$('#date-of-birth').datepicker("setDate",currentDate );
+       // $('#date-of-job').datepicker("setDate",currentDate );
   </script>
   <script src="https://unpkg.com/jquery@3.3.1/dist/jquery.min.js">//เช็คตัอักษร</script>
   <script src="https://unpkg.com/bootstrap@4.1.0/dist/js/bootstrap.min.js">//เช็คตัอักษร</script>
