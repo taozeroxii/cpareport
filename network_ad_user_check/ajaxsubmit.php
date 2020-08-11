@@ -30,8 +30,8 @@ $line       = "เพิ่มข้อมูล ".$firstname." ".$lastname." US
 $status_pass = "N";
 
 
-$query = mysql_query("insert into network_ad_user(firstname,lastname,username,email,department,password,telephone,jobtitle,company,vpn,ou,dateupdate,flage,status_pass) 
-                      values ('$firstname','$lastname','$username','$email','$department','$password','$telephone','$jobtitle','$company','$vpn','$ou','$dateupdate','$flage','$status_pass')");
+$query = mysql_query("insert into network_ad_user(firstname,lastname,username,email,department,password,status_pass,telephone,jobtitle,company,vpn,ou,dateupdate,flage) 
+                      values ('$firstname','$lastname','$username','$email','$department','$password','$status_pass','$telephone','$jobtitle','$company','$vpn','$ou','$dateupdate','$flage')");
 echo "บันทึกข้อมูลของคุณ".$firstname." ".$lastname." สำเร็จ กรุณารอการยืนยันการใช้งาน";
 
 define('LINE_API',"https://notify-api.line.me/api/notify");
