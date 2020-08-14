@@ -355,11 +355,11 @@
                         </div>
                         <div class="col-sm-3">
                           <span class="nameofinput">วันที่ออกใบอนุญาต</span>
-                          <input class="form-control"  type="text" id="day-of-accepcert" autocomplete="off" name="accepcert" value="<?php echo $todate;?>" required>
+                          <input class="form-control"  type="text" id="day-of-accepcert" autocomplete="off" name="accepcert" value="<?php echo $todate;?>" >
                         </div>
                         <div class="col-sm-3">
                           <span class="nameofinput">วันที่หมดอายุอนุญาต</span>
-                          <input class="form-control"  type="text" id="day-of-expirecert" autocomplete="off" name="expirecert" value="<?php echo $todate;?>" required>
+                          <input class="form-control"  type="text" id="day-of-expirecert" autocomplete="off" name="expirecert" value="<?php echo $todate;?>" >
                         </div>
                     </div>
                     <div class="row mt-3">
@@ -725,7 +725,7 @@
         $("#day-of-expirecert").datepicker({
           changeMonth: true,
           changeYear: true,
-          yearRange: '+443:+543',
+          yearRange: '+443:+555',
           dateFormat: 'dd/mm/yy',
           setDate: '01/01/2563',
           onSelect: function(date) {
