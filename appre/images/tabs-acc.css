@@ -1,0 +1,212 @@
+
+/* root element for accordion. decorated with rounded borders and gradient background image */
+body{
+	font-family: 'Kanit', sans-serif;
+}
+
+
+#accordion {
+	/* background:#333 url(h3.png) 0 0; */
+	width: 98%;
+	padding: 1%;
+	float: right;
+	font-family: 'Kanit', sans-serif;
+	/* border:1px solid #333;	 */
+	color: #008CBA;
+	/* -background:#666; */
+}
+
+/* accordion header */
+#accordion h2 {
+	/* background:#ccc url(h31.png); */
+	font-family: 'Kanit', sans-serif;
+	margin:0;
+	padding:5px 15px;
+	font-size:1.2em;
+	font-weight:normal;
+	border:1px solid #fff;
+	border-bottom:1px solid #ddd;
+	cursor:pointer;		
+}
+
+/* currently active header */
+#accordion h2.current {
+	font-family: 'Kanit', sans-serif;
+	cursor:default;
+	background-color:#fff;
+}
+
+/* accordion pane */
+#accordion .pane {
+	border:1px solid #fff;
+	font-family: 'Kanit', sans-serif;
+	border-width:0 2px;
+	display:none;
+	/* height:180px; */
+	padding:15px;
+	/* color:#fff; */
+	font-size:12px;
+}
+
+/* a title inside pane */
+#accordion .pane h3 {
+	font-family: 'Kanit', sans-serif;
+	font-weight:normal;
+	margin:0 0 -5px 0;
+	font-size:16px;
+	/* color:#999; */
+}
+
+table {
+  border-collapse: collapse;
+  font-family: 'Kanit', sans-serif;
+  width: 100%;
+}
+
+th, td {
+	font-family: 'Kanit', sans-serif;
+  padding: 8px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+
+/* Removes the clear button from date inputs */
+input[type="date"]::-webkit-clear-button {
+    display: none;
+}
+
+/* Removes the spin button */
+input[type="date"]::-webkit-inner-spin-button { 
+    display: none;
+}
+
+/* Always display the drop down caret */
+input[type="date"]::-webkit-calendar-picker-indicator {
+    color: #2c3e50;
+}
+
+/* A few custom styles for date inputs */
+input[type="date"] {
+	font-family: 'Kanit', sans-serif;
+    appearance: none;
+    -webkit-appearance: none;
+    color: #95a5a6;
+    font-family: "Helvetica", arial, sans-serif;
+    font-size: 18px;
+    border:1px solid #ecf0f1;
+    background:#ecf0f1;
+    padding:5px;
+    display: inline-block !important;
+    visibility: visible !important;
+}
+
+input[type="date"], focus {
+	font-family: 'Kanit', sans-serif;
+    color: #95a5a6;
+    box-shadow: none;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+}
+.w3-container{
+	font-family: 'Kanit', sans-serif;
+	text-align: center;
+}
+
+
+.button {
+	font-family: 'Kanit', sans-serif;
+	border: none;
+	color: white;
+	padding: 15px 32px;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	font-size: 16px;
+	margin: 4px 2px;
+	cursor: pointer;
+  }
+  
+  .button1 {background-color: #4CAF50;} /* Green */
+  .button2 {background-color: #008CBA;} /* Blue */
+.mmm{
+	font-family: 'Kanit', sans-serif;
+	color: #008CBA;
+}
+  .trh{
+	font-family: 'Kanit', sans-serif;
+	  text-align: left;
+	  color: #077CBF;
+	  font-size: 1.4em;
+	  background-color: #FDEBD0;
+  }
+  .trd{
+	font-family: 'Kanit', sans-serif;
+	  text-align: center;
+	  font-weight: bold;
+	  font-size: 1.4em;
+  }
+
+  .trd:hover{
+	  cursor: pointer;
+	font-family: 'Kanit', sans-serif;
+	  text-align: center;
+	 background-color: powderblue;
+	  font-weight: bold;
+	  font-size: 1.6em;
+
+  }
+
+  .trdate{
+	font-family: 'Kanit', sans-serif;
+	  text-align: left;
+	  color: #D35400;
+	  font-size: 1.4em;
+  }
+  .trtotal{
+	font-family: 'Kanit', sans-serif;
+	  text-align: center;
+	  color: red;
+	  font-size: 1.6em;
+	  font-weight: bold;
+	  background-color: #D5DBDB;
+  }
+  .trtotal:hover{
+	  cursor: pointer;
+	font-family: 'Kanit', sans-serif;
+	  text-align: center;
+	  color: #fff;
+	  font-size: 1.6em;
+	  font-weight: bold;
+	  background-color: #0E6655;
+  }
+  .mainh{
+	  text-align: center;
+	  width: 30%;
+	  padding: 1%;
+	  font-family: 'Kanit', sans-serif;
+	  font-size: 1.2em;
+	  color:#0C559E;
+  }
+  /* .mainh:hover{
+	text-align: center;
+	width: 30%;
+	padding: 1%;
+	font-family: 'Kanit', sans-serif;
+	font-size: 1.2em;
+	color:#170536;
+} */
+.hhh:hover{
+	color: #085508;
+}
+.ddd{
+	color: #E74C3C;
+	font-size: 1.4em;
+	font-weight: bold;
+}
+.ttt{
+	color: #21618C;
+}
+.fff{
+	color: #AAB7B8;
+}
