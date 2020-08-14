@@ -140,6 +140,52 @@ input[type="date"], focus {
 	  font-size: 1.4em;
 	  background-color: #FDEBD0;
   }
+  
+  .tru{
+	font-family: 'Kanit', sans-serif;
+	  text-align: center;
+	  color:#000;
+	  font-size: 1.4em;
+	  background-color: #A2D9CE;
+  }
+  .tru:hover{
+	  cursor: pointer;
+	font-family: 'Kanit', sans-serif;
+	  text-align: center;
+	  color:#EE0A0A;
+	  font-size: 1.4em;
+	  background-color: #000;
+  }
+
+  .trhu{
+	font-family: 'Kanit', sans-serif;
+	  text-align: left;
+	  font-size: 1.4em;
+	  background-color: #FADBD8;
+  }
+
+
+  .trsum{
+	cursor: pointer;
+	font-family: 'Kanit', sans-serif;
+	  text-align: center;
+	  color:#EE0A0A;
+	  background-color: #000;
+	  font-size: 1.4em;
+	  /* background-color: #FDEBD0; */
+  }
+ 
+  .trsum:hover{
+	  cursor: pointer;
+	font-family: 'Kanit', sans-serif;
+	  text-align: center;
+	  color:#FFF;
+	  background-color: #000;
+	  font-size: 1.4em;
+	  /* background-color: #FDEBD0; */
+  }
+
+
   .trd{
 	font-family: 'Kanit', sans-serif;
 	  text-align: center;
@@ -209,4 +255,9 @@ input[type="date"], focus {
 }
 .fff{
 	color: #AAB7B8;
+}
+.ss{
+	font-weight: bold;
+	color: #EE0A0A;
+	font-size: 1.6em;
 }
