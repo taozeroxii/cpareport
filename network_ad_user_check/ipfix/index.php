@@ -40,7 +40,7 @@ $today =  date('Y-m-d H:i:s');
                 <button class="btn btn-warning" name="vlan" type="submit" value=""><b> main </b> </button>
                 <button class="btn btn-warning" name="vlan" type="submit" value="0','1','2','4','5','8,','20','22','24','25','26','27','28','29','31','32','36','43','44','50"><b> All </b> </button>
                 <button class="btn btn-warning" name="vlan" type="submit" value="170"><b> Public </b> </button>
-                <button class="btn btn-warning" name="vlan" type="vlan" value="8','14"><b> Other </b> </button>
+                <button class="btn btn-warning" name="vlan" type="vlan" value="8','14',21',5"><b> Other </b> </button>
                 <button class="btn btn-warning" name="vlan" type="submit" value="0"><b> 0 </b> </button>
                 <button class="btn btn-warning" name="vlan" type="submit" value="1"><b> 1 </b> </button>
                 <button class="btn btn-warning" name="vlan" type="submit" value="2"><b> 2 </b> </button>
