@@ -34,28 +34,8 @@ $edate	= $_GET['edate'];
 
 IF(isset($sdate)) { ?>
 
-<div class="mainh"> ข้อมูลช่วงวันที่&nbsp;&nbsp;<span class="ddd"> <?php echo thaidate($sdate)." -  ".thaidate($edate); ?><span> <a href="total_oapp.php?sdate=<?php echo $sdate;?>&&edate=<?php echo $edate;?>" target="_blank" > <button class="button w3-button w3-teal " title="รวมตามรายการที่เลือกทุกคลินิก">รายการรวม</button></a></div>
+<div class="mainh"> ข้อมูลช่วงวันที่&nbsp;&nbsp;<span class="ddd"> <?php echo thaidate($sdate)." -  ".thaidate($edate); ?><span> </div>
 
-	<div id="accordion">
-		<?php
-
-		$sql = " SELECT c.name AS clinic ,c.location 
-				FROM oapp as o
-				INNER JOIN clinic as c ON c.clinic = o.clinic
-				INNER JOIN oapp_cause as p on p.name = o.app_cause
-				WHERE 1 = 1
-				AND active_status = 'Y'
-				AND o.nextdate BETWEEN '$sdate' AND  '$edate'
-				AND app_cause IN ('รับยา Refill ครั้งที่ 1','รับยา Refill ครั้งที่ 2','รับยาไปรษณีย์ครั้งที่ 1','รับยาไปรษณีย์ครั้งที่ 2','เติมยาครั้งที่ 1','เติมยาครั้งที่ 2','เติมยาครั้งที่ 3')
-				GROUP BY c.name,c.location
-				ORDER BY c.location ASC , c.name ASC ";
-		$result = pg_query($sql);
-		$rw = 0;
-		while ($row_result = pg_fetch_array($result)) {
-			$rw++;
-			$clinic	 = $row_result['clinic'];
-
-		?>
 
 			<h2 class="hhh" title="คลิกดูรายการ"><?php echo $clinic; ?></h2>
 
@@ -64,7 +44,8 @@ IF(isset($sdate)) { ?>
 				<!-- <hr> -->
 				<table>
 					<tr >
-						<th class="trh">วันที่</th>
+                        <th class="trh">วันที่</th>	
+                        <th class="trh">คลินิก</th>
 						<th class="trh">รับยา Refill ครั้งที่ 1</th>
 						<th class="trh">รับยา Refill ครั้งที่ 2</th>
 						<th class="trh">รับยาไปรษณีย์ครั้งที่ 1</th>
@@ -92,10 +73,10 @@ INNER JOIN clinic as c ON c.clinic = o.clinic
 INNER JOIN oapp_cause as p on p.name = o.app_cause
 WHERE 1 = 1
 AND o.nextdate BETWEEN '$sdate' AND  '$edate'
-AND c.name = '$clinic'
+-- AND c.name = '$clinic'
 AND app_cause IN ('รับยา Refill ครั้งที่ 1','รับยา Refill ครั้งที่ 2','รับยาไปรษณีย์ครั้งที่ 1','รับยาไปรษณีย์ครั้งที่ 2','เติมยาครั้งที่ 1','เติมยาครั้งที่ 2','เติมยาครั้งที่ 3')
 GROUP BY o.nextdate,c.name
-ORDER BY o.nextdate DESC ";
+ORDER BY c.name ASC ,o.nextdate DESC ";
 					$result2 = pg_query($sql2);
 						$rw = 0;
 					while ($row_result2 = pg_fetch_array($result2)) {
@@ -103,7 +84,8 @@ ORDER BY o.nextdate DESC ";
 
 					?>
 						<tr>
-							<td class="trdate"><?php echo thaidate($row_result2['nextdate']); ?></td>
+                            <td class="trdate"><?php echo thaidate($row_result2['nextdate']); ?></td>
+                            <td class="trdate"><?php echo $row_result2['clinic']; ?></td>
 							<td class="trd">
 								<?php  $r1 = $row_result2['r1']; 
 									   $rr1+=$r1;
@@ -186,7 +168,8 @@ ORDER BY o.nextdate DESC ";
 
 					?>
 					<tr >
-						<td class="trhu">จำนวนรวม <span class="ss"><?php echo $rw; ?> </span>วัน</td>
+                        <td class="trhu"><span class="ss"><?php// echo $rw; ?> </span></td>
+                        <td class="tru"><?php //echo $name; ?></td>
 						<td class="tru"><?php echo $rr1; ?></td>
 						<td class="tru"><?php echo $rr2; ?></td>
 						<td class="tru"><?php echo $rr3; ?></td>
@@ -214,18 +197,18 @@ ORDER BY o.nextdate DESC ";
 		}
 		?>
 	</div>
-	<?php } ?>
+	<?php// } ?>
 
 
 	
 	<script>
-		$(function() {
-			$("#accordion").tabs("#accordion div.pane", {
-				tabs: 'h2',
-				effect: 'slide',
-				initialIndex: null
-			});
-		});
+		// $(function() {
+		// 	$("#accordion").tabs("#accordion div.pane", {
+		// 		tabs: 'h2',
+		// 		effect: 'slide',
+		// 		initialIndex: null
+		// 	});
+		// });
 	</script>
 </body>
 
