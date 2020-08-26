@@ -71,6 +71,7 @@ IF(isset($sdate)) { ?>
 FROM oapp as o
 INNER JOIN clinic as c ON c.clinic = o.clinic
 INNER JOIN oapp_cause as p on p.name = o.app_cause
+INNER JOIN ovst AS vv ON vv.vn = o.visit_vn
 WHERE 1 = 1
 AND o.nextdate BETWEEN '$sdate' AND  '$edate'
 -- AND c.name = '$clinic'
@@ -78,7 +79,7 @@ AND app_cause IN ('รับยา Refill ครั้งที่ 1','รับ
 GROUP BY o.nextdate,c.name
 ORDER BY c.name ASC ,o.nextdate DESC ";
 					$result2 = pg_query($sql2);
-				//	echo $sql2;
+					//echo $sql2;
 						$rw = 0;
 					while ($row_result2 = pg_fetch_array($result2)) {
 						$rw++;

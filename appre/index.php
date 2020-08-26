@@ -34,7 +34,13 @@ $edate	= $_GET['edate'];
 
 IF(isset($sdate)) { ?>
 
-<div class="mainh"> ข้อมูลช่วงวันที่&nbsp;&nbsp;<span class="ddd"> <?php echo thaidate($sdate)." -  ".thaidate($edate); ?><span> <a href="total_oapp.php?sdate=<?php echo $sdate;?>&&edate=<?php echo $edate;?>" target="_blank" > <button class="button w3-button w3-teal " title="รวมตามรายการที่เลือกทุกคลินิก">รายการรวม</button></a></div>
+<div class="mainh"> ข้อมูลช่วงวันที่&nbsp;&nbsp;<span class="ddd"> <?php echo thaidate($sdate)." -  ".thaidate($edate); ?><span> 
+	<a href="total_oapp.php?sdate=<?php echo $sdate;?>&&edate=<?php echo $edate;?>" target="_blank" > 
+	<button class="button w3-button w3-teal " title="รวมตามรายการที่เลือกทุกคลินิก">รายการนัด</button></a>&nbsp;
+	<a href="total_visit.php?sdate=<?php echo $sdate;?>&&edate=<?php echo $edate;?>" target="_blank" > 
+	<button class="button w3-button w3-teal " title="รวมตามรายการที่เลือกทุกคลินิก">มาตามนัด</button></a>
+</div>
+
 
 	<div id="accordion">
 		<?php

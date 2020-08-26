@@ -228,7 +228,8 @@ input[type="date"], focus {
   }
   .mainh{
 	  text-align: center;
-	  width: 30%;
+	  float: left;
+	  width: 50%;
 	  padding: 1%;
 	  font-family: 'Kanit', sans-serif;
 	  font-size: 1.2em;
