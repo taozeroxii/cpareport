@@ -133,8 +133,10 @@ include "config/timestampviewer.php";//เรียกไฟล์ในส่�
         <div class="box">
           <div class="box-body table-responsive">
          <div class="box-body table-responsive ">   
-           <?php if($_GET['sql']  == 'sql_0121'){ echo '<span class="fcol">เบิกโลหิต</span>'; }
+           <?php 
+            if($_GET['sql']  == 'sql_0121'){ echo '<span class="fcol">เบิกโลหิต</span>'; }
             if($_GET['sql']  == 'sql_0214'){ echo '<span class="fcol">นับจำนวนสั่ง lab แต่ละ item เป็นจำนวนครั้ง</span>'; }
+            if($_GET['sql']  == 'sql_0251'){ echo '<span class="fcol">OPD</span>'; }
             else echo '<span class="fcol">สรุปสถิติ</span>';
           ?> 
          <button type="" class="btn btn-default pull-right" class="btn btn-info btn-lg" onclick="export_excel()" > Excel </button>
@@ -183,6 +185,7 @@ include "config/timestampviewer.php";//เรียกไฟล์ในส่�
          <?php
           if($_GET['sql']  == 'sql_0121'){ echo '<span class="fcol">จ่ายโลหิต</span>'; }
           else if($_GET['sql']  == 'sql_0214'){echo '<span class="fcol">group visitตามแบบฟอร์มที่ถูกสั่ง</span>';}
+          else if($_GET['sql']  == 'sql_0251'){ echo '<span class="fcol">IPD</span>'; }
           else{echo '<span class="fcol">ข้อมูลแบบละเอียด</span>';} 
         ?>  
          <button type="" class="btn btn-default pull-right" class="btn btn-info btn-lg" onclick="export_excel1()" > Excel </button>
