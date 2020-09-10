@@ -105,16 +105,25 @@ function thdate($datetime)
     return "";
 }
 
-$sql = "   SELECT *,firstname,lastname,username,department,jobtitle
+$sql = "   SELECT *,firstname,lastname,username,department,jobtitle,new_pass
            FROM network_ad_user  
            WHERE 1 = 1 
            AND flage <> '2'
            AND (firstname  like '%{$_POST['itemname']}%' OR  CONCAT(firstname,' ',lastname)  like '%%{$_POST['itemname']}%%')
            OR  lastname   like '%{$_POST['itemname']}%'
-           OR  department   like '%{$_POST['itemname']}%'
-           
+           OR  department like '%{$_POST['itemname']}%'
+           OR  chksum     like '%{$_POST['itemname']}%'
             ";
-if ($_POST['itemname'] != NULL) {
+
+
+$value = $_POST['itemname'];
+
+if ( $value != NULL) {
+
+
+
+
+
     $query = mysql_query($sql);
 ?>
 
@@ -130,7 +139,10 @@ if ($_POST['itemname'] != NULL) {
                         <th style="text-align: center;">กลุ่มงาน</th>
                         <th style="text-align: center;">ตำแหน่ง</th>
                         <th style="text-align: center;">สถานะ</th>
-
+<!-- ############################################################################################################################# -->  
+<!-- ส่วนที่เปลี่ยนรหัวผ่านได้ 20200910-->                      
+                        <!-- <th style="text-align: center;">รีเซ็ตรหัสผ่านใหม่</th> -->
+<!-- ############################################################################################################################# -->
                     </tr>
                 </thead>
                 <tbody>
@@ -155,6 +167,42 @@ if ($_POST['itemname'] != NULL) {
                                 echo $cs;
                                 ?>
                             </td>
+
+ <!-- ############################################################################################################################# -->
+<!-- ส่วนที่เปลี่ยนรหัวผ่านได้ 20200910 -->
+                         
+                    <!-- <td> -->
+                        <?php 
+                              /*      $status_pass = $result['status_pass'];
+                                if ($status_pass == "N") {   
+                               */     
+                                   ?>
+                            <!-- <center>  
+                                    <a href="editpassnew.php?userid=<?php //echo $result['username']; ?>" target="" rel="noopener noreferrer" title=""> 
+                                        <button type="button" class="btn btn-primary" ><span class="glyphicon glyphicon-refresh"></span> เปลี่ยนรหัสผ่าน </button>
+                                    </a>
+                            </center> -->
+                                           
+                        <?php  //  } else if ($status_pass == "O" ) {                                                 
+                                  ?>
+                            <!-- <center>  
+                                    <a href="#" target="" rel="noopener noreferrer" title=""> 
+                                        <button type="button" class="btn btn-warning" ><span class="glyphicon glyphicon-refresh"></span> กำลังรีเซ็ตรหัส </button>
+                                    </a>
+                            </center>                                              -->
+                        <?php //  } else if ($status_pass == "Y" ) {  
+                                 ?> 
+                            <!-- <center>  
+                                    <a href="#" target="" rel="noopener noreferrer" title=""> 
+                                        <button type="button" class="btn btn-danger" ><span class="glyphicon glyphicon-refresh"></span> รหัสใหม่แล้ว </button>
+                                    </a>
+                            </center> -->
+                       <?php
+                                     //           } 
+                        ?>
+                        <!-- </td> -->
+<!-- ############################################################################################################################# -->
+
                         </tr>
                     <?php $i++;
                     } ?>

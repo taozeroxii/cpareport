@@ -133,7 +133,7 @@ var x = setInterval(function() {
     <br>
     
     <div class="exp">
-        <span title="ตรวจสอบ USER ใช้งานได้ถึงวันที่ 20 สิหาคม 2563 กรุณาจดจำ ชื่อผู้ใช้งาน และ รหัสผ่าน ของท่าน ">ท่านสามารถตรวจสอบ USER ใช้งานได้ถึงวันที่ 20 สิหาคม 2563 </span>
+        <!-- <span title="ตรวจสอบ USER ใช้งานได้ถึงวันที่ 20 สิหาคม 2563 กรุณาจดจำ ชื่อผู้ใช้งาน และ รหัสผ่าน ของท่าน ">ท่านสามารถตรวจสอบ USER ใช้งานได้ถึงวันที่ 20 สิหาคม 2563 </span> -->
     </div>
 
     <hr>
@@ -155,8 +155,14 @@ var x = setInterval(function() {
                     &nbsp;
                     <button type="button" class="btn btn-danger btn-lg" data-toggle="modal" data-target="#myModal" title="หลังจากลงทะเบียนแล้ว รอการยืนยันเข้าใช้งานประมาณ 24 - 48 ชั่วโมง "><span
                             class="glyphicon glyphicon-user"></span> ลงทะเบียนล่าช้า </button>
-                            <a href="https://cpa-hospital.watchguard.in.th:4100/" target="_blank" rel="noopener noreferrer" title="ตรวจสอบการเข้าใช้งาน Login & Logout"> <button type="button" class="btn btn-warning btn-lg" ><span
-                            class="glyphicon glyphicon-off"></span> ออกจากระบบ </button></a>
+                            <a href="https://cpa-hospital.watchguard.in.th:4100/" target="_blank" rel="noopener noreferrer" title="ตรวจสอบการเข้าใช้งาน Login & Logout"> 
+                            <button type="button" class="btn btn-warning btn-lg" ><span
+                            class="glyphicon glyphicon-off"></span> ตรวจสอบการใช้งาน </button>
+                          </a>
+                          <!-- <a href="https://cpa-hospital.watchguard.in.th:4100/" target="_blank" rel="noopener noreferrer" title="ตรวจสอบการเข้าใช้งาน Login & Logout"> 
+                            <button type="button" class="btn btn-info btn-lg" ><span
+                            class="	glyphicon glyphicon-refresh"></span> เปลี่ยนรหัสผ่าน </button>
+                          </a> -->
                 </form>
             </div>
         </div>
@@ -299,6 +305,10 @@ var x = setInterval(function() {
         </div>
     </div>
 
+
+
+
+    
     <!-- <div id="myModal" class="modal fade" role="dialog">
         <div class="modal-dialog">
             <div class="modal-content">
