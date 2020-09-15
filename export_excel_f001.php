@@ -9,7 +9,7 @@ header("Content-Disposition: attachment; filename=export".$todate.".xls");
     require "config/pg_con.class.php";
     include('config/my_con.class.php');
 //รับค่าตัวแปรจากform ดึงค่ามา
- $sql            = $_GET['send_excel'];
+$sql            = $_GET['send_excel'];
 $datepickers    = $_GET['datepickers'];
 $datepickert    = $_GET['datepickert'];
 $i_dropdown     = $_GET['i_dropdown'];
@@ -21,10 +21,11 @@ $dental_diag    =  $_GET['dental_diag'];
 $room           =  $_GET['room'];
 $diag_1         =  $_GET['diag_1'];
 $diag_2         =  $_GET['diag_2'];
+$multiward_dropdown =  $_GET['multiward_dropdown']; // select 2 ward
 // ส่วนฟอร์มยา
 $timeindrug     =  $_GET['timeindrug'];
 $timeoutdrug    =  $_GET['timeoutdrug'];
-echo $user_k    =  $_GET['userdrug'];
+$user_k    =  $_GET['userdrug'];
 $pct_dropdown    =  $_GET['pct_dropdown'];//SPCLTY แผนก
 $u_group_dropdown    =  $_GET['usergroup_dropdown'];//SPCLTY usergroup
 
@@ -55,10 +56,12 @@ foreach($res as $item) {
                     $sql = str_replace("{pct_dropdown}", "'$pct_dropdown '", $sql);
                     $sql = str_replace("{usergroup_dropdown}", "$u_group_dropdown", $sql);
 
+                    $sql = str_replace("{multiward_dropdown}", "$multiward_dropdown", $sql);
+
 
                     
           
-                     $result = pg_query($sql);
+                    $result = pg_query($sql);
     ?>
     <table width="100%" border="1">
         <thead>
