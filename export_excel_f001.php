@@ -22,6 +22,7 @@ $room           =  $_GET['room'];
 $diag_1         =  $_GET['diag_1'];
 $diag_2         =  $_GET['diag_2'];
 $multiward_dropdown =  $_GET['multiward_dropdown']; // select 2 ward
+$multiplespclty_dropdown = $_GET['multiplespclty_dropdown'];// select 2 spclty
 // ส่วนฟอร์มยา
 $timeindrug     =  $_GET['timeindrug'];
 $timeoutdrug    =  $_GET['timeoutdrug'];
@@ -57,6 +58,8 @@ foreach($res as $item) {
                     $sql = str_replace("{usergroup_dropdown}", "$u_group_dropdown", $sql);
 
                     $sql = str_replace("{multiward_dropdown}", "$multiward_dropdown", $sql);
+                    $sql = str_replace("{multiplespclty_dropdown}", "$multiplespclty_dropdown", $sql);
+                   
 
 
                     

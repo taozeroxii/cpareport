@@ -45,7 +45,7 @@ include "config/timestampviewer.php"; //เรียกไฟล์ในส่�
 									<form class="form-inline" method="POST" action="#">
 										<input type="text" class="form-control" id="datepickers" placeholder="ช่วงวันที่เริ่ม" name="datepickers" data-provide="datepicker" data-date-language="th" autocomplete="off">
 										<input type="text" class="form-control" id="datepickert" placeholder="ถึงวันที่" name="datepickert" data-provide="datepicker" data-date-language="th" autocomplete="off">
-										<select class="select2" name="pct_dropdown" id="pct_dropdown" style="width: 20%;" placeholder="คลินิก" title="เลือกคลินิก"></select>
+										<select class="select2" name="pct_dropdown" id="pct_dropdown" style="width: 20%;" placeholder="คลินิก" title="เลือกแผนก"></select>
 										<button type="submit" class="btn btn-default">Submit</button>
 									</form>
 								</div>
