@@ -107,7 +107,13 @@ $sql = "   SELECT *,date(gsb_update) as du ,time(gsb_update) as dt
                                 <?php    }
                                 else
                                 {
-                                    echo "<script type='text/javascript'>alert('คุณไม่ได้ระบุข้อมูลที่ต้องการค้นหา กรุณาระบุข้อมูลอย่างใดอย่างหนึ่ง เพื่อค้นหา!')</script>";
+                                    ?>
+                                    <script>
+                                        swal("กรอกข้อมูลที่ต้องการค้นหา !", "กรุณาระบุข้อมูลอย่างใดอย่างหนึ่ง เพื่อค้นหา!", "warning")
+                                    </script>
+
+                                <?php
+                                    // echo "<script type='text/javascript'>alert('คุณไม่ได้ระบุข้อมูลที่ต้องการค้นหา กรุณาระบุข้อมูลอย่างใดอย่างหนึ่ง เพื่อค้นหา!')</script>";
                                 }
                                 ?>
                             </div>

@@ -141,7 +141,7 @@ if ( $value != NULL) {
                         <th style="text-align: center;">สถานะ</th>
 <!-- ############################################################################################################################# -->  
 <!-- ส่วนที่เปลี่ยนรหัวผ่านได้ 20200910-->                      
-                        <!-- <th style="text-align: center;">รีเซ็ตรหัสผ่านใหม่</th> -->
+                        <th style="text-align: center;">รีเซ็ตรหัสผ่านใหม่</th>
 <!-- ############################################################################################################################# -->
                     </tr>
                 </thead>
@@ -171,36 +171,36 @@ if ( $value != NULL) {
  <!-- ############################################################################################################################# -->
 <!-- ส่วนที่เปลี่ยนรหัวผ่านได้ 20200910 -->
                          
-                    <!-- <td> -->
+                    <td>
                         <?php 
-                              /*      $status_pass = $result['status_pass'];
+                                    $status_pass = $result['status_pass'];
                                 if ($status_pass == "N") {   
-                               */     
+                                    
                                    ?>
-                            <!-- <center>  
-                                    <a href="editpassnew.php?userid=<?php //echo $result['username']; ?>" target="" rel="noopener noreferrer" title=""> 
+                             <center>  
+                                    <a href="editpassnew.php?userid=<?php echo $result['username']; ?>" target="" rel="noopener noreferrer" title=""> 
                                         <button type="button" class="btn btn-primary" ><span class="glyphicon glyphicon-refresh"></span> เปลี่ยนรหัสผ่าน </button>
                                     </a>
-                            </center> -->
+                            </center> 
                                            
-                        <?php  //  } else if ($status_pass == "O" ) {                                                 
+                        <?php    } else if ($status_pass == "O" ) {                                                 
                                   ?>
-                            <!-- <center>  
+                             <center>  
                                     <a href="#" target="" rel="noopener noreferrer" title=""> 
                                         <button type="button" class="btn btn-warning" ><span class="glyphicon glyphicon-refresh"></span> กำลังรีเซ็ตรหัส </button>
                                     </a>
-                            </center>                                              -->
-                        <?php //  } else if ($status_pass == "Y" ) {  
+                            </center>                                              
+                        <?php   } else if ($status_pass == "Y" ) {  
                                  ?> 
-                            <!-- <center>  
+                             <center>  
                                     <a href="#" target="" rel="noopener noreferrer" title=""> 
-                                        <button type="button" class="btn btn-danger" ><span class="glyphicon glyphicon-refresh"></span> รหัสใหม่แล้ว </button>
+                                        <button type="button" class="btn btn-success" ><span class="glyphicon glyphicon-refresh"></span> รหัสใหม่แล้ว </button>
                                     </a>
-                            </center> -->
+                            </center> 
                        <?php
-                                     //           } 
+                                                } 
                         ?>
-                        <!-- </td> -->
+                        </td>
 <!-- ############################################################################################################################# -->
 
                         </tr>
