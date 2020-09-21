@@ -89,7 +89,7 @@ if(!empty($_POST["txtPassword"]) && ($_POST["txtPassword"] == $_POST["txtConPass
             window.location.href='./';
               </script>");
    
-              $line       = "ReSETPass || UserName: ".$user." PassWord: ".$txtPassword;             
+              $line       = "ReSETPass || UserName: ".$user." PassWord: ".$txtPassword." AdminTool: http://172.16.0.251/report/network_ad_user_check/admin_uppass.php ";             
 define('LINE_API',"https://notify-api.line.me/api/notify");
 define('LINE_TOKEN','jthNhCWSp3XYNZxy5ZF29SecT0zvKuFBs2kmWQb7sWH');
 
