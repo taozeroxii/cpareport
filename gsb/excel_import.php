@@ -84,7 +84,7 @@ for ($row = 2; $row <= $highestRow; ++$row) {
     }
 }
  
-$sql = " DELETE FROM gsb_datacheck_import ";
+$sql = " DELETE FROM gsb_datacheck ";
 $res = $mysqli->query($sql);
 
 foreach ($namedDataArray as $resx) {
@@ -115,7 +115,7 @@ foreach ($namedDataArray as $resx) {
      $yyy  =  ($ee[2]-543);
     $gsb_enddate = $yyy.'-'.$mmm.'-'.$ddd; 
 
-      $query = " INSERT INTO gsb_datacheck_import (gsb_personid,pname,fname,lname,gsb_cid,gsb_startdate,gsb_perstatus,gsb_emp_type,gsb_enddate,gsb_age,gsb_groupname) 
+      $query = " INSERT INTO gsb_datacheck (gsb_personid,pname,fname,lname,gsb_cid,gsb_startdate,gsb_perstatus,gsb_emp_type,gsb_enddate,gsb_age,gsb_groupname) 
       VALUES ('$gsb_personid','$pname','$fname','$lname','$gsb_cid','$gsb_startdate','$gsb_perstatus','$gsb_emp_type','$gsb_enddate','$gsb_age','$gsb_groupname')";
       $res_i = $mysqli->query($query); 
 }
