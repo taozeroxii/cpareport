@@ -71,20 +71,20 @@ var x = setInterval(function() {
     font-size: 1.4em;
 }
 .exp{
-    font-size: 2.0em;
+    font-size: 1.2em;
     font-weight: bold;
     color:#E80C20;
     text-align: center;
     cursor: pointer;
 }
-.exp:hover{
+/* .exp:hover{
     font-size: 2.0em;
     font-weight: bold;
     color:green;
     text-align: center;
     cursor: pointer;
     background-color: #C7D1DA;
-}
+} */
 *{
     /* font-family: 'Kanit', sans-serif; */
 }
@@ -112,6 +112,12 @@ var x = setInterval(function() {
             เข้าใช้งานครั้งแรกด้วยรหัสผ่าน </span>
         <span class="pass" title=" P@123456 | หมายเหตุ : P = ตัวอักษรใหญ่ "> P@123456 </span><span class="u"> 
             </span> </div>
+<hr>
+            <div class="exp">
+        <span title="">ท่านสามารถเปลี่ยนแปลงรหัสผ่านที่เข้าใช้งานครั้งแรก โดยกำหนดรหัสผ่านใหม่ของท่าน ตามเงื่อนไขที่กำหนด </span>
+        <p title="">โดย ค้นหา ชื่อ หรือ นามสกุล ของท่าน เพื่อใช้งานในการเปลี่ยนแปลงรหัสผ่านใหม่ </p>
+    </div>
+
     <br>
     <div class="cen"><span class="war">   
         <!-- <span class="bspan">หากไม่พบให้ทำการ เพิ่มผู้ใช้งานใหม่</span>
