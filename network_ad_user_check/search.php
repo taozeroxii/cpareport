@@ -3,6 +3,31 @@
 
 <head>
     <title></title>
+    
+<meta property="og:title" content="Social Buttons for Bootstrap" />
+    <meta property="og:description" content="A beautiful replacement for JavaScript's 'alert' for Bootstrap" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="http://lipis.github.io/bootstrap-sweetalert/" />
+    <meta property="og:image" content="http://lipis.github.io/bootstrap-social/assets/bootstrap-sweetalert.png" />
+
+    <!-- <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet"> -->
+    <!-- <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet"> -->
+    <script src="//code.jquery.com/jquery-2.1.1.js"></script>
+    <!-- <link href="assets/docs.css" rel="stylesheet"> -->
+
+    <!-- This is what you need -->
+    <script src="dist/sweetalert.js"></script>
+    <link rel="stylesheet" href="dist/sweetalert.css">
+    <!--.......................-->
+
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+      ga('create', 'UA-42119746-3', 'auto');
+      ga('send', 'pageview');
+    </script>
 </head>
 <?php
 include 'connect.php';
@@ -210,7 +235,12 @@ if ( $value != NULL) {
             </table>
         <?php
     } else {
-        echo "<script type='text/javascript'>alert('คุณไม่ได้ระบุชื่อ หรือ นามสกุล หรือ หน่วยงาน อย่างใดอย่างหนึ่ง เพื่อค้นหา!')</script>";
+       //echo "<script type='text/javascript'>alert('คุณไม่ได้ระบุชื่อ หรือ นามสกุล หรือ หน่วยงาน อย่างใดอย่างหนึ่ง เพื่อค้นหา!')</script>";
+        ?>
+        <script type='text/javascript'>
+        swal("คุณ ไม่ได้ระบุ!", "ชื่อ หรือ นามสกุล อย่างใดอย่างหนึ่ง เพื่อค้นหา!!", "warning");
+        </script>
+        <?php
     }
         ?>
         </div>
@@ -218,3 +248,6 @@ if ( $value != NULL) {
     </body>
 
 </html>
+<script>
+      !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');
+    </script>

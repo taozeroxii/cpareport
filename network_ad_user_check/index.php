@@ -148,7 +148,7 @@ var x = setInterval(function() {
                             placeholder=" ค้นหาด้วย ชื่อ   หรือ   นามสกุล หรือ หน่วยงาน | |  อย่างใดอย่างหนึ่ง " autocomplete="off"
                             autofocus />
                     </div>
-                    <button type="button" class="btn success btn-lg" id="btnSearch" title="ระบบจะทำการปิดให้ตรวจสอบ USER ในวันที่ 20 สิงหาคม 2563 นี้">
+                    <button type="button" class="btn success btn-lg" id="btnSearch" title="">
                         <span class="glyphicon glyphicon-search"></span>
                         ตรวจสอบ
                     </button>
