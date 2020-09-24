@@ -206,6 +206,16 @@
             }, 1000);
         });
 
+
+        $(document).ready(function() {
+            var shownIds = new Array();
+            setInterval(function() {
+                $.get("sql_rt/realtime_snap_ipd.php", function(data) {
+                    data = $.parseJSON(data);
+                    $("#realtime_snap_ipd").html("" + data + "");
+                });
+            }, 1000);
+        });
     </script>
 
 </head>
