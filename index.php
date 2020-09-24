@@ -403,7 +403,7 @@ $yd = $betweentodate;
 
 
       <div class="row">
-        <div class="col-md-12">
+        <div class="col-md-6">
           <div class="box">
             <div class="box-header with-border">
               <h3 class="box-title">ข้อมูลผู้ป่วย IPD รายวันราย ward </h3>
@@ -418,6 +418,12 @@ $yd = $betweentodate;
             </div>
           </div>
         </div>
+
+        <div class="col-md-6">
+                      ...
+        </div>
+
+
       </div>
 
 

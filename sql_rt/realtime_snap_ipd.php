@@ -30,12 +30,11 @@ return "";
 }
 $sql_rt = "SELECT
 
-ipt.ward as codeward, w.NAME  AS ward ,count(ipt.an)as จำนวนคนนอน
+spclty.name as แผนก,concat( ipt.ward ,' ' , w.NAME ) AS ward ,count(ipt.an)as จำนวนคนนอน
 ,(select count(an) from an_stat where regdate = CURRENT_DATE AND ward = ipt.ward )as รับเข้าในวัน
 ,(select count(an) from an_stat where dchdate = CURRENT_DATE AND ward = ipt.ward)as จำหน่ายในวัน
 FROM
 ipt
-LEFT OUTER JOIN spclty ON spclty.spclty = ipt.spclty
 LEFT OUTER JOIN iptadm ON iptadm.an = ipt.an
 LEFT OUTER JOIN bedno bn ON bn.bedno = iptadm.bedno
 LEFT OUTER JOIN patient ON patient.hn = ipt.hn
@@ -75,12 +74,15 @@ AND il1.active_doctor = 'Y'
 LEFT OUTER JOIN ipt_coll_stat ict ON ict.an = ipt.an
 LEFT OUTER JOIN ipt_coll_status_type it ON it.ipt_coll_status_type_id = ict.ipt_coll_status_type_id
 LEFT OUTER JOIN doctor dct1 ON dct1.code = il1.doctor 
+LEFT OUTER JOIN spclty ON spclty.spclty = w.spclty
 WHERE
 1 = 1 
--- 		and w.ward_active = 'Y'
 AND ipt.confirm_discharge = 'N' 
-group by (w.NAME,ipt.ward)
-ORDER BY w.NAME";
+group by  spclty.name,w.NAME,ipt.ward
+
+
+
+";
 $result_rt = pg_query($sql_rt);
 
 $curdate = strtotime("now");
@@ -94,7 +96,7 @@ $dhc_rt = //'<br><table class="table table-bordered " style= "margin-left:9px">
 <table class="table">
 <thead>
 <tr>
-<th class="text-center">รหัสวอร์ด</th>
+<th class="text-center">แผนก</th>
 <th class="text-center">วอร์ด</th>
 <th class="text-center">จำนวนผู้ป่วยในวอร์ด</th>
 <th class="text-center">รับเข้าในวัน</th>
@@ -103,7 +105,7 @@ $dhc_rt = //'<br><table class="table table-bordered " style= "margin-left:9px">
 while ($row_result = pg_fetch_assoc($result_rt)) {
  $dhc_rt .= 
  '<tr>
- <td class="">'.$row_result['codeward'].' </td>
+ <td class="">'.$row_result['แผนก'].' </td>
  <td class="text-center">'.$row_result['ward'].'</td>
  <td class="text-center">'.$row_result['จำนวนคนนอน'].'</td>
  <td class="text-center">'.$row_result['รับเข้าในวัน'].'</td>
