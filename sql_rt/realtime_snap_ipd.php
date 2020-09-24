@@ -29,8 +29,9 @@ function thf($datetime)
 return "";
 }
 $sql_rt = "SELECT
-spclty.NAME as แผนก,ipt.ward as codeward, w.NAME  AS ward ,count(ipt.an)as จำนวนคนนอน
-,(select count(an) from an_stat where regdate = CURRENT_DATE AND ward = ipt.ward)as รับเข้าในวัน
+
+ipt.ward as codeward, w.NAME  AS ward ,count(ipt.an)as จำนวนคนนอน
+,(select count(an) from an_stat where regdate = CURRENT_DATE AND ward = ipt.ward )as รับเข้าในวัน
 ,(select count(an) from an_stat where dchdate = CURRENT_DATE AND ward = ipt.ward)as จำหน่ายในวัน
 FROM
 ipt
@@ -78,8 +79,8 @@ WHERE
 1 = 1 
 -- 		and w.ward_active = 'Y'
 AND ipt.confirm_discharge = 'N' 
-
-GROUP BY  spclty.NAME,w.NAME,ipt.ward ";
+group by (w.NAME,ipt.ward)
+ORDER BY w.NAME";
 $result_rt = pg_query($sql_rt);
 
 $curdate = strtotime("now");
@@ -93,7 +94,6 @@ $dhc_rt = //'<br><table class="table table-bordered " style= "margin-left:9px">
 <table class="table">
 <thead>
 <tr>
-<th class="text-center">แผนก</th>
 <th class="text-center">รหัสวอร์ด</th>
 <th class="text-center">วอร์ด</th>
 <th class="text-center">จำนวนผู้ป่วยในวอร์ด</th>
@@ -103,7 +103,6 @@ $dhc_rt = //'<br><table class="table table-bordered " style= "margin-left:9px">
 while ($row_result = pg_fetch_assoc($result_rt)) {
  $dhc_rt .= 
  '<tr>
- <td class="">'.$row_result['แผนก'].' </td>
  <td class="">'.$row_result['codeward'].' </td>
  <td class="text-center">'.$row_result['ward'].'</td>
  <td class="text-center">'.$row_result['จำนวนคนนอน'].'</td>
