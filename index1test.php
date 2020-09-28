@@ -29,7 +29,7 @@ $e = date(("Y/m/d"), strtotime("last day of last month")); //ดึงค่า�
 //เมื่อเข้ามาตอนแรกให้ทำอันนี้เอาไปแสดงผลก่อน
 if (isset($_POST['summit']) == null) {
     $query = "SELECT pt.pttype,pt.name,count(*)as cc FROM ovst ov inner join pttype pt on pt.pttype = ov.pttype 
-    where ov.vstdate between '" . $b . "' and '" . $b  . "' group by pt.name,pt.pttype  order by  cc desc limit 10";
+    where ov.vstdate between '" . $b . "' and '" . $e  . "' group by pt.name,pt.pttype  order by  cc desc limit 10";
     $showsql = $query;
     $result = pg_query($query); //test คำสั่ง sql เพื่อแสดงผลกราฟ
     $result1 = pg_query($query); //test คำสั่ง sql เพื่อแสดงผลตาราง
