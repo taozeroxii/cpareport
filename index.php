@@ -49,6 +49,7 @@ $yd = $betweentodate;
     color: red;
     font-weight: bold;
     font-size: 1.4em;
+  }
 </style>
 
 <body class="hold-transition skin-blue sidebar-mini">
@@ -186,18 +187,7 @@ $yd = $betweentodate;
         </div>
 
         <div class="col-md-9">
-          <div class="box">
-            <div class="box-header with-border">
-              <h3 class="box-title"><?php echo "ข้อมูลจำนวนผู้มารับบริการรายเดือน " . $yd; ?> </h3>
-              <span class="small">&nbsp;&nbsp;<?php echo " ข้อมูลวันที่ ณ " . thaidatefull(date('Y-m-d')); ?></span>
-            </div>
-            <div class="box-body">
-              <div id="">
-                <div id="chartContainer" style="min-width: 110px; height: 430px; margin: 0 auto"></div>
-                <!-- <div class="chartContainer" id="chartContainer">132</div> -->
-              </div>
-            </div>
-          </div>
+          <iframe src="http://localhost/clonegit/cpareport/index1test.php" height="440" width="100%" title="Iframe Example"></iframe>
         </div>
       </div>
 
@@ -207,9 +197,6 @@ $yd = $betweentodate;
         <div class="col-md-9">
           <div class="box">
             <div class="box-header with-border">
-              <!--                       <div class="spinner-border text-warning" role="status">
-                        <span class="sr-only">Loading...</span>
-                      </div> -->
               <h3 class="box-title ">
                 ข้อมูลจำนวนผู้รับบริการปัจจุบัน - ย้อนหลัง </h3>
               &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
@@ -402,6 +389,7 @@ $yd = $betweentodate;
 
 
 
+
       <div class="row">
         <div class="col-md-6">
           <div class="box">
@@ -420,10 +408,8 @@ $yd = $betweentodate;
         </div>
 
         <div class="col-md-6">
-                      ...
+                      .......
         </div>
-
-
       </div>
 
 
@@ -431,48 +417,6 @@ $yd = $betweentodate;
  
 
 
-      <!--   <div class="row">
-                <div class="col-md-3">
-                  <div class="box">
-                    <div class="box-header with-border">
-                      <h3 class="box-title">test</h3>
-                    </div>
-                    <div class="box-body">
-                      <div id="test"></div>
-                    </div>
-                  </div>
-                </div>
-              <div class="col-md-3">
-                  <div class="box">
-                    <div class="box-header with-border">
-                      <h3 class="box-title">test</h3>
-                    </div>
-                    <div class="box-body">
-                      <div id="photoUploadChart"></div>
-                    </div>
-                  </div>
-                </div>
-                 <div class="col-md-3">
-                  <div class="box">
-                    <div class="box-header with-border">
-                      <h3 class="box-title">test</h3>
-                    </div>
-                    <div class="box-body">
-                      <div id="vendorChart"></div>
-                    </div>
-                  </div>
-                </div>
-                 <div class="col-md-3">
-                  <div class="box">
-                    <div class="box-header with-border">
-                      <h3 class="box-title">test</h3>
-                    </div>
-                    <div class="box-body">
-                      <div id="vendorChart"></div>
-                    </div>
-                  </div>
-                </div>
-              </div> -->
 
       <div class="row">
         <div class="col-md-6">
@@ -629,51 +573,10 @@ $yd = $betweentodate;
         </div>
       </div>
 
-      <!--   <div class="row">
-        <div class="col-md-4">
-          <div class="box">
-            <div class="box-header with-border">
-              <h3 class="box-title">ข้อมูลการนัด <small><?php // echo " ข้อมูลการนัดวันที่ ".thaidatefull(date('Y-m-d')) ;
-                                                        ?></small></h3>
-            </div>
-            <div class="box-body">
-              <table  id="example1" class="table table-bordered table-hover">
-                 <thead>
-                  <tr>
-                    <th>#</th>
-                    <th>รายการคลินิก</th>
-                    <th style="width: 40px">จำนวน</th>
-                  </tr>
-                </thead>
-                <tbody>
-
-                 <?php /* $rw=0;
-                           while($row_result = pg_fetch_array($result)) 
-                                { 
-                                $rw++;
-                                */
-                  ?>
-                                        <tr>
-                                          <td><?php // echo $rw; 
-                                              ?></td>
-                                          <td><?php // echo $row_result['clinic_name']; 
-                                              ?></td>
-                                          <td><?php //echo $row_result['c_clinic']; 
-                                              ?> </td>
-                                        </tr>
-                                     <?php
-                                      //       }
-                                      ?>                                   
-                </tbody>
-              </table>
-            </div>
-          </div>
-        </div>
-      </div> -->
 
     </section>
   </div>
-  <?php include "canvas/data_hos.php"; ?>
+  <?php //include "canvas/data_hos.php"; ?>
   <?php include "config/footer.class.php"; ?>
   <?php include "config/js.class.php" ?>
   <?php include "modal/modal.class.php" ?>
@@ -681,37 +584,7 @@ $yd = $betweentodate;
   <script src="hchart/js/data.js"></script>
   <script src="hchart/js/exporting.js"></script>
   <script src="config/js/jschart.js"></script>
-  <!--  <script>
-    $(function() {
 
-      $('#container').highcharts({
-        data: {
-          table: 'datatable'
-        },
-        chart: {
-          type: 'column',
-        },
-
-        title: {
-          text: ' '
-        },
-        yAxis: {
-          allowDecimals: false,
-          title: {
-            text: 'ค่า'
-          }
-        },
-        tooltip: {
-          formatter: function() {
-            return '<b>' + this.series.name + '</b><br/>' +
-            this.point.y; + ' ' + this.point.name.toLowerCase();
-          }
-        }
-      });
-    });
-
-
-  </script> -->
   <script>
     $(function() {
       $('#example1').DataTable()
