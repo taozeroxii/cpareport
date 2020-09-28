@@ -187,7 +187,7 @@ $yd = $betweentodate;
         </div>
 
         <div class="col-md-9">
-          <iframe src="http://localhost/clonegit/cpareport/index1test.php" height="440" width="100%" title="Iframe Example"></iframe>
+          <iframe src="http://172.16.0.251/report/index1test.php" height="440" width="100%" title="Iframe Example"></iframe>
         </div>
       </div>
 
