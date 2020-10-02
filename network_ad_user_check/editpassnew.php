@@ -168,6 +168,10 @@ function test_input($data) {
         <input type="submit" class="fadeIn fourth" value="แก้ไข" >
     </form>
 
+    <div id="">
+      <a class="" href="#" title=""><font color="red" size="4px" >กำหนดรหัสผ่าน 8 ตัวอักษร ประกอบด้วย : <br> อักษรภาษาอังกฤษ ตัวใหญ่ ตัวเล็ก และตัวเลข </font></a>
+    </div>
+    <hr>
     <div id="formFooter">
       <a class="underlineHover" href="#" data-toggle="modal" data-target="#myModal" title="คลิกอ่าน กรุณาทำความเข้าใจในการใช้งาน ">คำเตือน</a>
     </div>
