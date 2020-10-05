@@ -170,6 +170,9 @@ function test_input($data) {
 
     <div id="">
       <a class="" href="#" title=""><font color="red" size="4px" >กำหนดรหัสผ่าน 8 ตัวอักษร ประกอบด้วย : <br> อักษรภาษาอังกฤษ ตัวใหญ่ ตัวเล็ก และตัวเลข </font></a>
+      <hr>
+      <a class="" href="#" title=""><font color="green" size="4px" > กรณีที่เปลี่ยนแปลงรหัสผ่าน จะต้องรอยืนยันรหัสผ่านใหม่ <br> แต่ยังสามารถใช้รหัสผ่านเดิมได้จนกว่าจะมีการ Update <br> ตรวจสอบสถานะการเปลี่ยนแปลงได้ที่หน้าค้นหา </font></a>
+      <a class="" href="#" title=""><font color="blue" size="4px" > ตรวจสอบสถานะการเปลี่ยนแปลงได้ที่หน้าค้นหา </font></a>
     </div>
     <hr>
     <div id="formFooter">
@@ -213,6 +216,7 @@ $browserAgent = $_SERVER['HTTP_USER_AGENT'];
           <p>เวลา : <?php echo $todate = date('H:i:s');?></p>
           <hr>
           <center><span class="ww"> รหัสผ่านสามารถเปลี่ยนแปลงได้ครั้งเดียว | กรุณาตรวจสอบข้อมูลให้ถูกต้องว่าเป็นของท่านจริง</span> </center>
+          
 
 
         </div>
