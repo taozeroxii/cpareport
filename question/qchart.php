@@ -38,6 +38,7 @@ $sult = mysqli_query($con, $qorther);
 
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="refresh" content="60;"url="">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>สรุปความพึงพอใจสารสนเทศ</title>
     <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@500&display=swap" rel="stylesheet">
@@ -269,7 +270,7 @@ $sult = mysqli_query($con, $qorther);
                     colorSet: "c3",
                     title: {
                         fontSize: 15,
-                        text: "การจัดหมวดหมู่ให้ง่ายต่อกาค้นหา และทำความเข้าใจ"
+                        text: "การจัดหมวดหมู่ให้ง่ายต่อการค้นหา และทำความเข้าใจ"
                     },
                     toolTip: {
                         shared: true
