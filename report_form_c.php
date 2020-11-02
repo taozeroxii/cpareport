@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html>
 <?php
-include"config/pg_con.class.php";
-include"config/func.class.php";
-include"config/time.class.php";
-include"config/head.class.php"; 
-include('config/my_con.class.php');
+include "config/pg_con.class.php";
+include "config/func.class.php";
+include "config/time.class.php";
+include "config/head.class.php"; 
+include ('config/my_con.class.php');
 session_start();
 $bm = new Timer; 
 $bm->start();
@@ -42,8 +42,10 @@ include "config/timestampviewer.php";//เรียกไฟล์ในส่�
 								<h3 class="box-title">
 									<div class="container">
 										<form class="form-inline" method="POST" action="#">
+											<?php if($_GET['sql'] != 'sql_0286'){?>
 											<input type="text" class="form-control" id="datepickers" placeholder="ช่วงวันที่เริ่ม" name="datepickers" data-provide="datepicker" data-date-language="th" autocomplete="off" >
 											<input type="text" class="form-control" id="datepickert" placeholder="ถึงวันที่" name="datepickert" data-provide="datepicker" data-date-language="th" autocomplete="off" >
+											<?php }?>
 											<select class="select2" name="cli_dropdown" id="cli_dropdown" style="width: 20%;" placeholder="คลินิก" title="เลือกคลินิก"></select>
 											<button type="submit" class="btn btn-default">ค้นหาข้อมูล</button>
 										</form>
@@ -62,30 +64,34 @@ include "config/timestampviewer.php";//เรียกไฟล์ในส่�
 				list($m,$d,$Y)  = split('/',$datepickert); 
 				$datepickert    = trim($Y)."-".trim($m)."-".trim($d);
 
+				if($_GET['sql'] == 'sql_0286')	{$datepickers = '1999-01-01';$cli_dropdown  = ''; }		
 				$cli_dropdown   = $_POST['cli_dropdown'];    
 
-
 				if($datepickers != "--") {
-					$sql = " $sql_detail ";
-					$sql = str_replace("{datepickers}", "'$datepickers'", $sql);
-					$sql = str_replace("{datepickert}", "'$datepickert'", $sql);
-					$sql = str_replace("{cli_dropdown}", "'$cli_dropdown'", $sql);
-					$result = pg_query($sql);
+						
+						$sql = " $sql_detail ";
+						$sql = str_replace("{datepickers}", "'$datepickers'", $sql);
+						$sql = str_replace("{datepickert}", "'$datepickert'", $sql);
+						$sql = str_replace("{cli_dropdown}", "'$cli_dropdown'", $sql);
+						if($_GET['sql'] == 'sql_0286')	{$sql = $sql.' limit 10';}
+						$result = pg_query($sql);
 
-					$qcc  = " SELECT * FROM clinic WHERE clinic = '".$cli_dropdown ."'";
-				$selectcc = pg_query($qcc);
-				$resqcc   = pg_fetch_array($selectcc);
-				$cccc	  = $resqcc['clinic']." ".$resqcc['name'];
+						$qcc  = " SELECT * FROM clinic WHERE clinic = '".$cli_dropdown ."'";
+						$selectcc = pg_query($qcc);
+						$resqcc   = pg_fetch_array($selectcc);
+						$cccc	  = $resqcc['clinic']." ".$resqcc['name'];
 
+						if(($_GET['sql'] == 'sql_0286' && $cli_dropdown !='' )|| $_GET['sql'] != 'sql_0286'){
+					
 					?>
 					<div class="row">
 						<div class="col-xs-12">
 							<div class="box">
 								<div class="box-header">
-									<h3 class="box-title co_dep"><?php echo " ข้อมูลช่วงวันที่ ".thaiDatefull($datepickers)." ถึงวันที่ ".thaiDatefull($datepickert)." || ".$cccc; ?> 
+									<h3 class="box-title co_dep"><?php if($_GET['sql'] != 'sql_0286'){ echo " ข้อมูลช่วงวันที่ ".thaiDatefull($datepickers)." ถึงวันที่ ".thaiDatefull($datepickert)." || ".$cccc;}else echo 'ข้อมูลผู้ป่วย '.$cccc.'  ทั้งหมดในทะเบียน ** ตารางแสดงผลด้านล่างจำกัดไว้ที่ 10 รายการเป็นข้อมูลตัวอย่าง ให้ export excel  เพื่อดูข้อมูลทั้งหมด**'; ?> 
 									<small><?php echo " เวลาที่ใช้ในการประมวลผล ".$bm->stop()." วินาที "; ?></small>
 								</h3>
-								<button type="" class="btn btn-default pull-right" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal"> Template </button>
+								<button type="" class="btn btn-default pull-right" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal"> SQL </button>
 								<button type="" class="btn btn-default pull-right" class="btn btn-info btn-lg" onclick="export_excel()" > Excel </button>
 							</div>
 							<div class="box-body table-responsive"><span class="fcol"> </span>
@@ -93,6 +99,7 @@ include "config/timestampviewer.php";//เรียกไฟล์ในส่�
 									<thead>
 										<tr>
 											<?php
+											
 											$i = pg_num_fields($result);
 											for ($j = 0 ; $j < $i ; $j++) {
 												$fieldname = pg_field_name($result, $j);
@@ -102,7 +109,7 @@ include "config/timestampviewer.php";//เรียกไฟล์ในส่�
 										</tr> 
 									</thead>
 									<tbody>
-										<? $rw=0;
+										<?php $rw=0;
 										while($row_result = pg_fetch_array($result)) 
 										{ 
 											$rw++;
@@ -125,12 +132,13 @@ include "config/timestampviewer.php";//เรียกไฟล์ในส่�
 					</div>
 				</div>  
 				<?php 
+						}
 			}
 			?>
 		</section>
 	</div>
-	<?php include"config/footer.class.php"; ?>
-	<?php include"config/js.class.php" ?>
+	<?php include "config/footer.class.php"; ?>
+	<?php include "config/js.class.php" ?>
 	<script>
 		$(function () {
 			$('#example1').DataTable()
