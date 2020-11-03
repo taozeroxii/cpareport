@@ -30,7 +30,7 @@ $res_b = mysqli_query($con, $inx_sql_b);
 $row_b = mysqli_fetch_array($res_b);
 $qsum_b =  $row_b['qsum'];
 
-$qorther = " SELECT  other  FROM question_detail WHERE other <> ' ' ORDER BY id DESC ";
+$qorther = " SELECT  other,aws_orther  FROM question_detail WHERE other <> ' '  AND other <> 'ไม่มี' AND other <> '-' ORDER BY id DESC ";
 $sult = mysqli_query($con, $qorther);
 ?>
 <!DOCTYPE html>
@@ -410,7 +410,12 @@ $sult = mysqli_query($con, $qorther);
                         $rw = 0;
                         while ($qrow = mysqli_fetch_array($sult)) {
                             $rw++;
-                            echo "<div class='mod'>" . $rw . " : " . $qrow['other'] . "<div><hr>";
+                            echo "<div class='mod'>";
+                            echo $rw . " : " . $qrow['other']."<br>";
+                            //echo "AWS:";
+                            echo "<center><span class='aws'>".$qrow['aws_orther']."</span></center>";
+                            echo "<div>";
+                            echo "<hr>";
                         }
                         ?>
                     </div>
