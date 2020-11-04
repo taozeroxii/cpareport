@@ -128,7 +128,7 @@ include "config/timestampviewer.php";//เรียกไฟล์ในส่�
               </h3>
               <button type="" class="btn btn-default pull-right" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModalpdf_<?php echo strtolower($sql_namekpi);?>"> นิยาม </button>
               <button type="" class="btn btn-default pull-right" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal"> SQL </button>
-              <a href="config/excel.class.php?sql=<?php //echo $sql; ?>" class="btn btn-default pull-right" class="btn btn-info btn-lg" > Excel </a> 
+              <a href="config/excel.class.php?sql=<?php echo $sql; ?>" class="btn btn-default pull-right" class="btn btn-info btn-lg" > Excel </a> 
 
             </div>  
             <div class="box-body table-responsive">
