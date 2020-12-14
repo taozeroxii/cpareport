@@ -21,7 +21,7 @@ date_default_timezone_set('Asia/Bangkok');
 
 <body>
 <?
-$sql = " SELECT * FROM cpa_wifiauthen WHERE flage <> 'OK' ";
+$sql = " SELECT * FROM cpa_wifiauthen ORDER BY id DESC ";
 $row = mysqli_query($conn, $sql);
 ?>
     <div class="w3-container fbody">
@@ -57,9 +57,23 @@ $row = mysqli_query($conn, $sql);
       <td><?php echo $result['user_count'];?></td>
       <td><?php echo $result['startdate'];?></td>
       <td><?php echo $result['enddate'];?></td>
-      <td><a href="https://172.16.36.1:8080/wirelessguest" target="_blank" title="จัดการสร้างรหัส">  <button class="w3-button w3-xlarge w3-circle w3-teal">+</button></a></td>
-      <td><a href="update_wifi.php?id=<?php echo $result['id'];?>" title="UPDATE แจ้งผู้ขอ"><button class="w3-button w3-xlarge w3-circle w3-red w3-card-4">+</button></a></td>
-
+      <td>
+           <?php
+           if ( $result['flage'] =='Y') {
+              echo '<a href="https://172.16.36.1:8080/wirelessguest" target="_blank" title="จัดการสร้างรหัส">  <button class="w3-button w3-xlarge w3-circle w3-teal">+</button></a>';
+           }else{
+             echo '<button class="w3-button w3-xlarge w3-circle w3-black">x</button></a>';          
+            } 
+           ?>
+      </td>
+      <td>
+      <?php
+           if ( $result['flage'] =='Y') {
+           echo '<a href="update_wifi.php?id='.$result["id"].' title="UPDATE แจ้งผู้ขอ"><button class="w3-bar-item w3-button w3-teal">+</button></a></td>';
+    }else{
+        echo '<button class="w3-bar-item w3-button w3-red">x</button></a>';          
+       } 
+       ?>
     </tr>
     <?
 }
