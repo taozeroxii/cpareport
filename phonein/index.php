@@ -17,6 +17,7 @@ if($_GET['del']){
 <style>
 body{
   font-family: 'Kanit', sans-serif;
+  /* background-color: #E8F8F0; */
 }
 .cc {
 	border-top:solid #CCC 1px;
@@ -30,15 +31,16 @@ text-align: center;
 width: 100%;
 padding: 1%;
 margin: 1%;
-font-size: 1.4em;
+font-size: 1.6em;
 font-weight: bold;
-color: #D35400;
+color: #17A589;
 font-family: 'Kanit', sans-serif;
 }
 .hoho:hover{
-background: #0B5345;
+background: #0A7885;
 cursor: pointer;
 color: #fff;
+font-size: 1.2em;
 }
 .tel_ole:hover{
   color: #DD1C65;
@@ -48,6 +50,12 @@ color: #fff;
   color: #43A28F;
   cursor: pointer;
 }
+.hcon{
+  color: #0A7885;
+  background-color: #D5F5E3;
+  font-size: 1.2em;
+}
+
 </style>
 <script src="js/j182.js"></script>
 <script src="js/j-dtb.js"></script>
@@ -63,25 +71,26 @@ function chkdel(){if(confirm('  กรุณายืนยันการลบ
 </head>
 <body>
     <div class="phone_head">เบอร์โทรศัพท์ โรงพยาบาลเจ้าพระยาอภัยภูเบศร 
-      <span class="tel_ole" title="รายชื่อเบอร์โทรเว็บเก่า"><a href="http://172.16.0.3/phone" target="_blank"> &nbsp;[ สมุดเดิม ]</a></span>
+      <!-- <span class="tel_ole" title="รายชื่อเบอร์โทรเว็บเก่า"><a href="http://172.16.0.3/phone" target="_blank"> &nbsp;[ สมุดเดิม ]</a></span> -->
     </div>
 
-</CENTER><div class="container" style="margin-top: 10px">
+</CENTER><div class="container" style="margin-top: 6px">
   <table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered" id="example">
     <thead>
-      <tr>
-        <th><CENTER>ลำดับ</CENTER></th>
-        <th><CENTER>คลิกนิก/แผนก/หน่วยงาน</CENTER></th>
-        <th><CENTER>เบอร์โทร</CENTER></th>
-        <th><CENTER>อาคาร/ตึก/ชั้น</CENTER></th>
-        <th><CENTER>ประเภท</CENTER></th>
-        <th><CENTER>จัดการ</CENTER></th>
+      <tr class="hcon">
+        <th>ลำดับ</th>
+        <th>คลิกนิก/แผนก/หน่วยงาน</th>
+        <th>เบอร์โทร</th>
+        <th>อาคาร/ตึก/ชั้น</th>
+        <th>ประเภท</th>
+        <th>จัดการ</th>
       </tr>
     </thead>
     <tbody>
       <?php 
 			$sqlr = "SELECT * FROM phone_tbl p
 				  	 LEFT JOIN phone_type t ON t.type_id = p.type_id
+             WHERE p.type_id <> '4'
 					 ORDER BY p.phone_id ASC";
 			$queryr = mysql_query($sqlr);
 			$ii = 1;
@@ -92,23 +101,23 @@ function chkdel(){if(confirm('  กรุณายืนยันการลบ
       <tr class="odd gradeX hoho">
         <td><CENTER><?=$i?></CENTER></td>
         <td><?=$rowr["name"]?></td>
-        <td><left><b><?=$rowr["phone_num"]?></b></left></td>
+        <td class="tel"><left><b><?=$rowr["phone_num"]?></b></left></td>
         <td class="center"><?=$rowr["nickname"]?></td>
         <td class="center">
           <span class="label 
-          <?php if($rowr["type_id"]=="1") echo "btn-success"; 
-			else if($rowr["type_id"]=="2") echo "btn-danger";
-			else if($rowr["type_id"]=="3") echo "btn-warning";
-			else if($rowr["type_id"]=="4") echo "btn-inverse"; ไม่เปิดใช้งาน
+          <?php if($rowr["type_id"]=="1") echo "btn btn-success btn-block"; 
+			else if($rowr["type_id"]=="2") echo "btn btn-danger btn-block";
+			else if($rowr["type_id"]=="3") echo "btn btn-warning btn-block";
+			else if($rowr["type_id"]=="4") echo "btn btn-inverse btn-block"; 
 		 ?>
      <!-- ">
           <?php echo $rowr["type_name"]?>
           </span>
         </td>
         <td class="center">
-             <a class="btn btn-info" href="?editid=<?=$rowr['phone_id']?>#edit"> แก้ไข </a>
+             <a class="btn btn-info btn-block" href="?editid=<?=$rowr['phone_id']?>#edit"> แก้ไข </a>
           <?php if(isset($_GET['admin'])){ ?>
-          <a class="btn btn-danger" data-toggle="modal" href="?del=<?=$rowr["phone_id"]?>" OnClick="return chkdel();"> 
+          <a class="btn btn-danger btn-block" data-toggle="modal" href="?del=<?=$rowr["phone_id"]?>" OnClick="return chkdel();"> 
             <i class="icon-remove icon-white"></i> ลบ </a>
           <? }?>
         </td>
@@ -119,8 +128,7 @@ function chkdel(){if(confirm('  กรุณายืนยันการลบ
   <div id="static" class="modal hide fade" tabindex="-1" data-backdrop="static" data-keyboard="false">
     <div class="modal-body">
       <p>Would you like to continue with some arbitrary task?</p>
-      <p>del ===
-        <?=$_GET[del];?>
+      <p>del === <?=$_GET[del];?>
       </p>
     </div>
     <div class="modal-footer">
@@ -265,10 +273,10 @@ if(isset($_GET['editid'])){
           <label class="radio">
             <input type="radio" name="radios" id="radios-2" value="3" <? if($rowe['type_id']==3) echo "checked='checked'"; ?>>
             ใช้บ่อย </label>
-          <!--     <label class="radio">
-      <input type="radio" name="radios<?//=$i?>" id="radios-3<?//=$i?>" value="4" >
-      สำคัญ
-    </label>  ไม่เปิดใช้งาน --> 
+            <label class="radio">
+            <input type="radio" name="radios" id="radios-3" value="4" <? if($rowe['type_id']==4) echo "checked='checked'"; ?>>
+            ยกเลิก </label>
+     <!-- ไม่เปิดใช้งาน  -->
         </div>
       </div>
       <input name="phone_id" type="hidden" value="<?=$rowe['phone_id']?>">
