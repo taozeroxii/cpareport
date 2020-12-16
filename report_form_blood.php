@@ -253,10 +253,10 @@ include "config/timestampviewer.php";//เรียกไฟล์ในส่�
 <script type="text/javascript">
 		function export_excel()
 		{
-			document.location = "export_excel_f001.php?send_excel=<?php echo $send_excel; ?>&datepickers=<?php echo $datepickers; ?>&datepickert=<?php echo $datepickert; ?>";
+			document.location = "export_excel_f001.php?send_excel=<?php echo $send_excel; ?>&datepickers=<?php echo $datepickers; ?>&datepickert=<?php echo $datepickert; ?>&l_dropdown=<?php echo $l_dropdown  ;?>";
 		}
   </script>
-  
+   
   <script type="text/javascript">
 		function export_excel1()
 		{
