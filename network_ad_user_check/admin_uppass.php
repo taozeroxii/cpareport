@@ -182,7 +182,6 @@ $query = mysql_query($sql);
     <br>
     <hr>
     <div class="cen">
-
         <body style="text-align:center;">
             <h1 style="color:green;">
                 Admin Update User Authentication Reset Password.
@@ -268,6 +267,76 @@ $query = mysql_query($sql);
 
         </div>
     </div>
+<hr>
+<?php    
+$sql_add = " SELECT flage,firstname,lastname,username
+                   ,email,department,`password`
+                   ,status_pass,telephone,jobtitle,company
+             FROM network_ad_user
+             WHERE flage = '0'  
+            ";
+$query_add = mysql_query($sql_add);
+?>
+  <div class="cen">
+        <body style="text-align:center;">
+            <h1 style="color:green;">
+               ADD USER AD NEW.
+            </h1>
+    </div>
+
+    <div class="container ">
+        <div class="row">
+            <div class="col-md-12">
+                <table class="table table-bordered ta">
+                    <thead>
+                        <tr class="detail">
+                            <th style="text-align: center;">#</th>
+                            <th style="text-align: center;">firstname</th>
+                            <th style="text-align: center;">lastname</th>
+                            <th style="text-align: center;">username</th>
+                            <th style="text-align: center;">email</th>
+                            <th style="text-align: center;">department</th>
+                            <th style="text-align: center;">password</th>
+                            <th style="text-align: center;">telephone</th>
+                            <th style="text-align: center;">jobtitle</th>
+                            <th style="text-align: center;">company</th>
+                            <th style="text-align: center;">flage</th>
+                            <th style="text-align: center;">เพิ่มรายการ</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php $i = 1;
+                        while ($result_add = mysql_fetch_assoc($query_add)) { ?>
+                            <tr class="">
+                                <td><?php echo $i; ?>.</td>
+                                <td><?php echo $result_add['firstname']; ?></td>
+                                <td><?php echo $result_add['lastname']; ?></td>
+                                <td><?php echo $result_add['username']; ?></td>
+                                <td><?php echo $result_add['email']; ?></td>
+                                <td><?php echo $result_add['department']; ?></td>
+                                <td><?php echo $result_add['password']; ?></td>
+                                <td><?php echo $result_add['telephone']; ?></td>
+                                <td><?php echo $result_add['jobtitle']; ?></td>
+                                <td><?php echo $result_add['company']; ?></td>
+                                <td><?php echo $result_add['flage']; ?></td>
+                               
+                                <td>
+                                <div class="text-center" id="main_content">
+                                    <a href="add_newuser.php?username=<?php echo $result_add['username'];?>">
+                                <button type="button" title="คลิกเมื่อทำการ update ในระบบ AD แล้ว" class="btn btn-danger btn-block add_data" id="<?php echo $username; ?>">&nbsp;เพิ่ม&nbsp;</button></div>
+                                </a>
+                            </td>
+                            </tr>
+                        <?php $i++;
+                        } ?>
+
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+    </div>
+
 </body>
 
 </html>
