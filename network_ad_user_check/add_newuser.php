@@ -9,8 +9,8 @@
 <?php
 include 'connect.php';
 date_default_timezone_set('asia/bangkok');
- $username = $_POST['username'];
- $sql = "  UPDATE network_ad_user SET flage = '1' WHERE username = '$id' ";
+$username = $_GET['username'];
+ $sql = "  UPDATE network_ad_user SET flage = '1' WHERE username = '$username' ";
 $query = mysql_query($sql);
 ?>  
     </body>
