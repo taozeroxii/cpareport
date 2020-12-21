@@ -30,6 +30,8 @@ $user_k    =  $_GET['userdrug'];
 $pct_dropdown    =  $_GET['pct_dropdown'];//SPCLTY แผนก
 $u_group_dropdown    =  $_GET['usergroup_dropdown'];//SPCLTY usergroup
 
+$l_dropdown  = $_GET['l_dropdown']; //labgroup
+
 
 $topLevelItems = " SELECT sql_code,sql_head FROM cpareport_sql WHERE sql_file = '".$sql."'";
 $res=mysqli_query($con,$topLevelItems);
@@ -59,10 +61,9 @@ foreach($res as $item) {
 
                     $sql = str_replace("{multiward_dropdown}", "$multiward_dropdown", $sql);
                     $sql = str_replace("{multiplespclty_dropdown}", "$multiplespclty_dropdown", $sql);
-                   
 
-
-                    
+                    $sql = str_replace("{lab_group}", " $l_dropdown", $sql);  
+                                  
           
                     $result = pg_query($sql);
     ?>
