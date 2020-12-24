@@ -244,6 +244,25 @@
   loadclinic();
 </script>
 
+<script type="text/javascript">                
+  function loadhost(){
+    $.ajax({
+      url: "hostcode.class.php",
+      method: 'GET',
+      data: {'selector':'host'},
+      success: function(result){
+        var htmlOption = "";
+        data = JSON.parse(result);
+        $.each(data, function(i, item) {
+          htmlOption += "<option value='"+ item.hospcode +"'> "+ item.hostname + "</option>";
+        });
+        $('#host_ropdown').html(htmlOption);
+        
+      }});
+  }
+  loadhost();
+</script>
+
 
 <script type="text/javascript">                
   function load_room(){

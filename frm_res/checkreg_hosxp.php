@@ -284,7 +284,8 @@ function myFunction() {
                                                 <select id="inputState" name="txtassisadmin" class="form-control" required>
                                                     <option selected value="">...</option>
                                                     <option value="จิรกร">จิรกร</option>
-                                                    <option value="ณรงค์">ณรงค์</option>
+                                                    <option value="AdminEaktamp">Admin eaktamp</option>
+                                                    <option value="AdminFirst">AdminFirst</option>
                                                     <option value="รัชวิทย์">รัชวิทย์</option>
                                                     <option value="ชานิศักดิ์">ชานิศักดิ์</option>
                                                     <option value="ปฐมพงศ์">ปฐมพงศ์</option>
