@@ -79,7 +79,7 @@ include "config/timestampviewer.php";//เรียกไฟล์ในส่�
                                                              IN( SELECT concat(d.name,' ',d.strength,'  (',d.units,')') AS dname 
                                                              FROM drugitems d, opitemrece o 
                                                              WHERE o.icode = d.icode 
-                                                             AND o.rxdate BETWEEN '2021-01-01' AND '2021-01-05' 
+                                                            --  AND o.rxdate BETWEEN '2021-01-01' AND '2021-01-05' 
                                                              GROUP BY dname 
                                                              ORDER BY dname) ";
                                                     $res_dd = pg_query($sql_dd);
