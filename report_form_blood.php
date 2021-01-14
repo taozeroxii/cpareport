@@ -190,7 +190,7 @@ include "config/timestampviewer.php";//เรียกไฟล์ในส่�
         ?>  
         
          <button type="" class="btn btn-default pull-right" class="btn btn-info btn-lg" onclick="export_excel1()" > Excel </button>
-            <table id="example3" class="table table-bordered  table-hover table-striped ">
+            <table id="example2" class="table table-bordered  table-hover table-striped ">
               <thead>
                 <tr>
                   <?php
