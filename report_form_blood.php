@@ -139,7 +139,7 @@ include "config/timestampviewer.php";//เรียกไฟล์ในส่�
             if($_GET['sql']  == 'sql_0251' ||$_GET['sql'] == 'sql_0252'){ echo '<span class="fcol">OPD</span>'; }
             else echo '<span class="fcol">สรุปสถิติ</span>';
           ?> 
-         <button type="" class="btn btn-default pull-right" class="btn btn-info btn-lg" onclick="export_excel()" > Excel </button>
+         <button type="" class="btn btn-default pull-right" class="btn btn-success btn-lg" onclick="export_excel()" > Excel </button>
             <table id="example3" class="table table-bordered  table-hover table-striped ">
               <thead>
                 <tr>
@@ -189,7 +189,7 @@ include "config/timestampviewer.php";//เรียกไฟล์ในส่�
           else{echo '<span class="fcol">ข้อมูลแบบละเอียด</span>';} 
         ?>  
         
-         <button type="" class="btn btn-default pull-right" class="btn btn-info btn-lg" onclick="export_excel1()" > Excel </button>
+         <button type="" class="btn btn-default pull-right" class="btn btn-danger btn-lg" onclick="export_excel1()" > Excel </button>
             <table id="example2" class="table table-bordered  table-hover table-striped ">
               <thead>
                 <tr>
