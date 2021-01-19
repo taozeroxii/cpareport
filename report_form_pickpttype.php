@@ -44,7 +44,7 @@ include "config/timestampviewer.php";//เรียกไฟล์ในส่�
 										<form class="form-inline" method="POST" action="#">
 											<input type="text" class="form-control" id="datepickers" placeholder="ช่วงวันที่เริ่ม" name="datepickers" data-provide="datepicker" data-date-language="th" autocomplete="off" >
 											<input type="text" class="form-control" id="datepickert" placeholder="ถึงวันที่" name="datepickert" data-provide="datepicker" data-date-language="th" autocomplete="off" >
-											<select class="select2" name="i_dropdown[]" id="i_dropdown" multiple="multiple" style="width: 20%;" placeholder="สิทธิ" title="เลือกสิทธิ์"></select>
+											<select class="select2" name="multiple_pttype[]" id="multiple_pttype" multiple="multiple" style="width: 20%;" placeholder="สิทธิ" title="เลือกสิทธิ์"></select>
 											<button type="submit" class="btn btn-default">Submit</button><small style="color:brown">**หมายเหตุ:หากไม่เลือกสิทธิจะแสดงทุกสิทธิ**</small>
 										</form>
 									</div>
@@ -62,7 +62,7 @@ include "config/timestampviewer.php";//เรียกไฟล์ในส่�
 				list($m,$d,$Y)  = split('/',$datepickert); 
 				$datepickert    = trim($Y)."-".trim($m)."-".trim($d);
 
-				$c_pttype       = $_POST['i_dropdown']; 
+				$c_pttype       = $_POST['multiple_pttype']; 
 
 				if($datepickers != "--") {
 					$sql = " $sql_detail ";
@@ -89,9 +89,9 @@ include "config/timestampviewer.php";//เรียกไฟล์ในส่�
 						}
 						$sum_pttypes = rtrim($sum_pttypes,',');
 						$sum_pttypes .= ") ";
-						$sql = str_replace("{i_dropdown}", "$sum_pttypes", $sql);
+						$sql = str_replace("{multiple_pttype}", "$sum_pttypes", $sql);
 					}
-			 		$sql = str_replace("{i_dropdown}", "$sum_pttypes", $sql);
+			 		$sql = str_replace("{multiple_pttype}", "$sum_pttypes", $sql);
 				
               
 					$result = pg_query($sql);
