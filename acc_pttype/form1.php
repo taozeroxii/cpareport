@@ -137,7 +137,7 @@
         }
 
         $sqlgethosxp = str_replace("{multiple_pttype}", "$sum_pttypes", $sqlgethosxp);
-        $sqlgethosxp = str_replace("{multiple_spclty}", "$sum_pttypes", $sqlgethosxp);
+        $sqlgethosxp = str_replace("{multiple_spclty}", "$sum_spclty", $sqlgethosxp);
         $sqlgethosxp = str_replace("{multiple_ward}", "$sum_wards", $sqlgethosxp);
         $resultqueryhos = pg_query($conn, $sqlgethosxp . 'limit 3');
     }
