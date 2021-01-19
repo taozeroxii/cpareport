@@ -36,8 +36,8 @@
     $sqlgethosxp = str_replace("{datepickers}", "'$datepickers'", $sqlgethosxp);
     $sqlgethosxp = str_replace("{datepickert}", "'$datepickert'", $sqlgethosxp);
     $sqlgethosxp = str_replace("{multiple_pttype}", "$multiplepttype", $sqlgethosxp);
-    $sqlgethosxp = str_replace("{multipleSpclty}", "$multipleSpclty", $sqlgethosxp);
-    $sqlgethosxp = str_replace("{multipleward}", "$multipleward", $sqlgethosxp);
+    $sqlgethosxp = str_replace("{multiple_spclty}", "$multipleSpclty", $sqlgethosxp);
+    $sqlgethosxp = str_replace("{multiple_ward}", "$multipleward", $sqlgethosxp);
     $resultqueryhos =   pg_query($conn, $sqlgethosxp);
     ?>
 

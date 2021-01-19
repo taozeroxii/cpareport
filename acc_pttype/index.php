@@ -31,7 +31,7 @@
                     <div class="container">
                         <div class="list-group">
                         <?php   while ($property = mysqli_fetch_assoc($qreportmenyu)) {?>
-                            <a href="./form1.php?sql_file=<?php echo $property['menu_file']?>">
+                            <a href="./form1.php?sql=<?php echo $property['menu_file']?>">
                             <button type="button" class="list-group-item list-group-item-action" ><?php echo $property['id'].' : '.$property['menu_title'];?> </button></a>
                         <?php } ?>
                         </div>

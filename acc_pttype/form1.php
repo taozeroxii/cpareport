@@ -16,7 +16,7 @@
     include("../config/my_con.class.php");
     include("../config/pg_con.class.php");
     // GET SEL ดึง query มาตาม id 
-    $sql_file = $_GET['sql_file'];
+    $sql_file = $_GET['sql'];
     $sqlgethosxp = "";
     $selectQuery_fromdb = "select cs.*,cmt.menu_type_id,cmt.menu_type_name_th from cpareport_sql  cs LEFT JOIN cpareport_menu_type cmt on cmt.menu_type_id = cs.sql_type where cs.sql_file ='$sql_file'";
     $query_fromGet = mysqli_query($con, $selectQuery_fromdb);
