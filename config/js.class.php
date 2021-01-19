@@ -389,6 +389,34 @@
    load_cli();
 
 
+   function load_host() {
+     $.ajax({
+       url: "config/hostcode.class.php",
+       method: 'GET',
+       data: {
+         'selector': 'host'
+       },
+       success: function(result) {
+         var htmlOption = "";
+         data = JSON.parse(result);
+         $.each(data, function(i, item) {
+           htmlOption += "<option value='" + item.hospcode + "'> " + item.hostname + "</option>";
+         });
+         $('#host_dropdown').html(htmlOption);
+
+       }
+     });
+   }
+   load_host();
+
+
+
+
+
+
+
+
+
    function load_usergroup() {
      $.ajax({
        url: "config/usergroup.class.php",

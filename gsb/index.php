@@ -83,10 +83,10 @@ date_default_timezone_set('asia/bangkok');
 
    <br>     
   <div class="hmain">Patient GSB Member<sup> โรงพยาบาลเจ้าพระยาอภัยภูเบศร & ธนาคารออมสิน</sup> &nbsp;
-    <!-- <a href="#" title="นำไฟล์ excel เข้าระบบ"><button type="button" class="btn btn-danger" onclick="fup()" > Upload Excel </button></a> &nbsp;
-    <a href="#" title="นำเข้า excel ไฟล์"><button type="button" class="btn btn-primary" onclick="fim()"> Import Excel </button></a> &nbsp; -->
-    <a href="uploadfile/index.php" title="นำไฟล์ excel เข้าระบบ"><button type="button" class="btn btn-danger" > Upload Excel </button></a> &nbsp;
-    <a href="excel_import.php" title="นำเข้า excel ไฟล์"><button type="button" class="btn btn-primary" > Import Excel </button></a> &nbsp;
+    <a href="#" title="นำไฟล์ excel เข้าระบบ"><button type="button" class="btn btn-danger" onclick="fup()" > Upload Excel </button></a> &nbsp;
+    <a href="#" title="นำเข้า excel ไฟล์"><button type="button" class="btn btn-primary" onclick="fim()"> Import Excel </button></a> &nbsp;
+    <!-- <a href="uploadfile/index.php" title="นำไฟล์ excel เข้าระบบ"><button type="button" class="btn btn-danger" > Upload Excel </button></a> &nbsp;
+    <a href="excel_import.php" title="นำเข้า excel ไฟล์"><button type="button" class="btn btn-primary" > Import Excel </button></a> &nbsp; -->
     <a href="../logout.php" title="กรุณาออกจากระบบทุกครั้งหลังการใช้งาน"><button type="button" class="btn btn-warning"> ออกจากระบบ</button></a> 
   </div>
   <hr>
