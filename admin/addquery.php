@@ -82,27 +82,27 @@ include('../config/my_con.class.php');
 
     <?php if (isset($_POST['submit'])) {
         /*
-        echo 'id :'.$_POST['id'] . '<br> ';
-        echo 'sql_names :'.$_POST['sql_names'] . '<br> ';
-        echo 'sql_file  :'.$_POST['sql_file'] . '<br>';
-        echo 'textquery  :'.$_POST['textquery'] . '<br>';
-        echo 'textquerycode1  :'.$_POST['textquerycode1'] . '<br>';
-        echo 'textquerycode2  :'.$_POST['textquerycode2'] . '<br>';
-        echo 'textquerycode3 : '.$_POST['textquerycode3'] . '<br>';
-        echo 'sql_type :'.$_POST['sql_type'] . '<br>';
-        echo 'sql_link :'.$_POST['sql_link'] . '<br>';
-        echo 'sql_heads :'.$_POST['sql_heads'] . '<br>';
-        echo 'insertdate  :'.$_POST['insertdate'] . '<br>';
-        echo 'sql_status :'.$_POST['sql_status'] . '<br><br>';
+            echo 'id :'.$_POST['id'] . '<br> ';
+            echo 'sql_names :'.$_POST['sql_names'] . '<br> ';
+            echo 'sql_file  :'.$_POST['sql_file'] . '<br>';
+            echo 'textquery  :'.$_POST['textquery'] . '<br>';
+            echo 'textquerycode1  :'.$_POST['textquerycode1'] . '<br>';
+            echo 'textquerycode2  :'.$_POST['textquerycode2'] . '<br>';
+            echo 'textquerycode3 : '.$_POST['textquerycode3'] . '<br>';
+            echo 'sql_type :'.$_POST['sql_type'] . '<br>';
+            echo 'sql_link :'.$_POST['sql_link'] . '<br>';
+            echo 'sql_heads :'.$_POST['sql_heads'] . '<br>';
+            echo 'insertdate  :'.$_POST['insertdate'] . '<br>';
+            echo 'sql_status :'.$_POST['sql_status'] . '<br><br>';
 
-        echo 'menuid :'.$_POST['menuid'] . '<br>';
-        echo 'mainmenu :'.$_POST['categories'] . '<br>';
-        echo 'menu_sub :'.$_POST['menu_sub'] . '<br>';
-     
-        echo 'menu_title : '. $reptitle. '<br>';
-        echo 'menu_order :'.$_POST['products'] . '<br>';
-        echo 'menu_link :'.$_POST['menu_link'] . '<br>';
-        echo 'menu_order :'.$_POST['sql_userupdate'] . '<br>';
+            echo 'menuid :'.$_POST['menuid'] . '<br>';
+            echo 'mainmenu :'.$_POST['categories'] . '<br>';
+            echo 'menu_sub :'.$_POST['menu_sub'] . '<br>';
+        
+            echo 'menu_title : '. $reptitle. '<br>';
+            echo 'menu_order :'.$_POST['products'] . '<br>';
+            echo 'menu_link :'.$_POST['menu_link'] . '<br>';
+            echo 'menu_order :'.$_POST['sql_userupdate'] . '<br>';
         */
         $reptitle = str_replace(' ', '_', $_POST["menu_title"]);
 
@@ -114,7 +114,7 @@ include('../config/my_con.class.php');
         ,'" . addslashes($_POST["textquerycode1"]) . "'
         ,'" . addslashes($_POST["textquerycode2"]) . "'
         ,'" . addslashes($_POST["textquerycode3"]) . "'
-        ,'" . $_POST["sql_type"] . "'
+        ,'" . $_POST["menu_type"] . "'
         ,'" . $_POST["sql_link"] . "'
         ,'" . $_POST["sql_heads"] . "'
         ,'" . $_POST["insertdate"] . "'
@@ -250,8 +250,8 @@ include('../config/my_con.class.php');
                                         <span class="input-group-text">menu_type </span>
                                         <select class="form-control" name="menu_type" >
                                             <option value="" selected>menu_type</option>
-                                            <?php while ($menut = mysqli_fetch_assoc($Qmenutype)) { ?>
-                                                <option value="<?php echo $menut['menu_type']; ?>"><?php echo $menut['menu_type_name_th']; ?></option>
+                                            <?php while ($menut = mysqli_fetch_assoc($Qmenutype)) {?>
+                                                <option value="<?php echo  $menut['menu_type_id']; ?>"><?php echo $menut['menu_type_name_th']; ?></option>
                                             <? } ?>
                                         </select>
                                     </div>
@@ -278,7 +278,6 @@ include('../config/my_con.class.php');
                                     <input type="hidden" class="form-control" name="insertdate" value="<?php echo $today; ?>" /><!-- ใส่ค่าใน 2 ตารางวันเวลาที่เพิ่มข้อมูล-->
                                     <input type="hidden" class="form-control" name="sql_userupdate" value="<?php echo $_SESSION['niname']; ?>" /><!-- เอาชื่อผู้ login ไปใส่ -->
                                     <input type="hidden" class="form-control" name="sql_status" value="1" />
-                                    <input type="hidden" class="form-control" name="sql_type" value="1" />
                                 </div>
                                 <center> <button class="btn btn-info btn-block" style="font-size:24px" name="submit" type="submit"><i class="fa fa-save"></i> บันทึก </button></center>
                         </div>
