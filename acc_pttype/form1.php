@@ -11,8 +11,6 @@
 
 <body>
     <?php
-    // ขาดเพิ่ม field แสดงว่ามีตัวต้อง replace อะไรบ้าง
-
     include("../config/my_con.class.php");
     include("../config/pg_con.class.php");
     // GET SEL ดึง query มาตาม id 
@@ -27,7 +25,6 @@
         $sqltypeid    = $sql_selecthos['menu_type_id'];
         $sqlgethosxp  = $sql_selecthos['sql_code']; // ดึง query เพื่อ replace
     }
-
 
     // SELECT ค่าลง INPUT 
     if ($sqltypeid  == '1') { //OPD
@@ -56,8 +53,6 @@
         $qselectward = pg_query($conn, $selectward);
     }
     //
-
-
 
     //เช็คตัวแปร query ว่ามีค่าอะไรที่ต้องแปลงบ้างแล้วนำไปจัดการกับปุ่มเลือกข้อมูล
     $ckdatebegin = "";
@@ -88,9 +83,22 @@
         $messageInput .= ' วอร์ด ';
     }
 
-
+    function checkhavereplace($havereplace){//function เช็คตัวแปรที่เก็บค่าว่ามีคำนั้นๆในข้อความหรือไม่และให้ disabled กับ required ปุ่ม
+        if ($havereplace == '' || $havereplace == null) { echo 'disabled'; } else {echo 'required';}
+    }
     //เช็คตัวแปร query ว่ามีค่าอะไรที่ต้องแปลงบ้างแล้วนำไปจัดการกับปุ่มเลือกข้อมูล
 
+    function cstring_multipleinput($getdatamultiple){ // function ต่อ string จาก select 2 
+        if (sizeof($getdatamultiple) > 0) {
+            $sums = "(";
+            foreach ($getdatamultiple as $value) {
+                $sums .= "'" . $value . "',";
+            }
+            $sums = rtrim($sums, ',');
+            $sums .= ") ";
+        }
+        return($sums) ;
+    }
 
 
     //นำ query มาแทนที่จากค่าที่เลือกใน form input----------------------------------------------------------------------------------
@@ -101,49 +109,25 @@
         $multipleSpclty = $_POST['spclty'];
         $multipleward   = $_POST['ward'];
 
-
-
         $sqlgethosxp = str_replace("{datepickers}", "'$datepickers'", $sqlgethosxp); // แทนค่า
         $sqlgethosxp = str_replace("{datepickert}", "'$datepickert'", $sqlgethosxp); // แทนค่า
 
         //multiple pttype
-        if (sizeof($multiplepttype) > 0) {
-            $sum_pttypes = "(";
-            foreach ($multiplepttype as $value) {
-                $sum_pttypes .= "'" . $value . "',";
-            }
-            $sum_pttypes = rtrim($sum_pttypes, ',');
-            $sum_pttypes .= ") ";
-        }
+            // if (sizeof($multiplepttype) > 0) {
+            //     $sum_pttypes = "(";
+            //     foreach ($multiplepttype as $value) {
+            //         $sum_pttypes .= "'" . $value . "',";
+            //     }
+            //     $sum_pttypes = rtrim($sum_pttypes, ',');
+            //     $sum_pttypes .= ") ";
+            // }
+        //เปลี่ยนไปเรียกใช้ function การใช้งานแทนเพื่อลดการเขียนโค๊ดซ้ำไปมา
 
-        //multiple spclty
-        if (sizeof($multipleSpclty) > 0) {
-            $sum_spclty = "(";
-            foreach ($multipleSpclty as $value) {
-                $sum_spclty .= "'" . $value . "',";
-            }
-            $sum_spclty = rtrim($sum_spclty, ',');
-            $sum_spclty .= ") ";
-        }
-
-        //multiple ward
-        if (sizeof($multipleward) > 0) {
-            $sum_wards = "(";
-            foreach ($multipleward as $value) {
-                $sum_wards .= "'" . $value . "',";
-            }
-            $sum_wards = rtrim($sum_wards, ',');
-            $sum_wards .= ") ";
-        }
-
-        $sqlgethosxp = str_replace("{multiple_pttype}", "$sum_pttypes", $sqlgethosxp);
-        $sqlgethosxp = str_replace("{multiple_spclty}", "$sum_spclty", $sqlgethosxp);
-        $sqlgethosxp = str_replace("{multiple_ward}", "$sum_wards", $sqlgethosxp);
+        $sqlgethosxp = str_replace("{multiple_pttype}", cstring_multipleinput($multiplepttype), $sqlgethosxp);
+        $sqlgethosxp = str_replace("{multiple_spclty}", cstring_multipleinput($multipleSpclty), $sqlgethosxp);
+        $sqlgethosxp = str_replace("{multiple_ward}"  , cstring_multipleinput($multipleward), $sqlgethosxp);
         $resultqueryhos = pg_query($conn, $sqlgethosxp . 'limit 3');
     }
-
-
-
     ?>
 
 
@@ -193,7 +177,7 @@
                 </div>
                 <div class="col-lg-4 ">
                     <label for="pttype"> โปรเลือกสิทธิ : </label>
-                    <select class="js-example-basic-multiple form-control" name="pttype[]" multiple="multiple" <?php if ($ckpttype == '' || $ckpttype == null) { echo 'disabled'; }else {echo 'required';} ?>>
+                    <select class="js-example-basic-multiple form-control" name="pttype[]" multiple="multiple" <?php checkhavereplace($ckpttype); ?>>
                         <?php while ($datapty = pg_fetch_assoc($qselect2pty)) { ?>
                             <option value="<?php echo $datapty['pttype']; ?>"><?php echo  $datapty['pttype'] . ' : ' . $datapty['name'] ?></option>
                         <?php } ?>
@@ -204,7 +188,7 @@
             <div class="row mt-2">
                 <div class="col-lg-12">
                     <label for="spclty"> โปรดเลือกแผนก : </label>
-                    <select class="js-example-basic-multiple form-control" name="spclty[]" multiple="multiple" <?php if ($ckspclty == '' || $ckspclty == null) { echo 'disabled';} else {echo 'required';} ?>>
+                    <select class="js-example-basic-multiple form-control" name="spclty[]" multiple="multiple" <?php checkhavereplace($ckspclty);  ?>>
                         <?php while ($datasp = pg_fetch_assoc($qselectspclty)) { ?>
                             <option value="<?php echo $datasp['spclty']; ?>"><?php echo  $datasp['spclty'] . ' : ' . $datasp['name'] ?></option>
                         <?php } ?>
@@ -216,7 +200,7 @@
                 <div class="row mt-2">
                     <div class="col-lg-12">
                         <label for="spclty"> โปรดเลือกวอร์ด : </label>
-                        <select class="js-example-basic-multiple form-control" name="spclty[]" multiple="multiple" <?php if ($ckward == '' || $ckward == null) { echo 'disabled';} else {echo 'required';}?>>
+                        <select class="js-example-basic-multiple form-control" name="ward[]" multiple="multiple" <?php checkhavereplace($ckward); ?>>
                             <?php while ($datasp = pg_fetch_assoc($qselectward)) { ?>
                                 <option value="<?php echo $datasp['ward']; ?>"><?php echo  $datasp['ward'] . ' : ' . $datasp['name'] ?></option>
                             <?php } ?>
@@ -284,11 +268,7 @@
                 ?>
             </table>
 
-
-
     </div>
-
-
 <?php } ?>
 
 
@@ -304,5 +284,4 @@
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
 
 </body>
-
 </html>
