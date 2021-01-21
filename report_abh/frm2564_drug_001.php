@@ -20,7 +20,7 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-sm-4 btn-info">&nbsp;</div>
+            <div class="col-sm-4 btn-danger">&nbsp;</div>
             <div class="col-sm-4 ">&nbsp;</div>
             <div class="col-sm-4 ">&nbsp;</div>
         </div>

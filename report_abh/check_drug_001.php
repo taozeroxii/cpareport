@@ -10,7 +10,7 @@ if (isset($stdate)) {
     exit();
     }
 
-$sql = " SELECT icode,name 
+$sql = " SELECT icode,name,generic_name 
 FROM drugitems 
 WHERE concat(name,' ',strength,'  (',units,')') 
 IN( SELECT concat(d.name,' ',d.strength,'  (',d.units,')') AS dname 
@@ -36,9 +36,15 @@ $res = pg_query($sql);
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
-    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs/dt-1.10.23/datatables.min.css"/>
+    <!-- <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs/dt-1.10.23/datatables.min.css"/> -->
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.23/css/jquery.dataTables.min.css"/>
+    
     <script type="text/javascript" src="https://cdn.datatables.net/v/bs/dt-1.10.23/datatables.min.js"></script>
 
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/css/bootstrap-select.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/js/bootstrap-select.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/js/i18n/defaults-*.min.js"></script>
+    
     <title>Report-รายการติดตามการใช้ยา-เลือกรายการ</title>
 
 </head>
@@ -53,38 +59,50 @@ $res = pg_query($sql);
         </div>
         <div class="row">
             <div class="col-sm-4 ">&nbsp;</div>
-            <div class="col-sm-4 btn-info">&nbsp;</div>
+            <div class="col-sm-4 btn-warning">&nbsp;</div>
             <div class="col-sm-4 ">&nbsp;</div>
         </div>
         <br>
         <form name="register" action="#" method="GET" class="form-horizontal">
             
         <div class="row">
-            <div class="col-sm-3 ">
+            <div class="col-sm-2">
             วันที่เริ่ม <input name="stdate" type="date" required class="form-control" value="<?php echo $stdate; ?>" id="stdate" placeholder="" readonly />
             </div>
-            <div class="col-sm-3">
+            <div class="col-sm-2">
             วันที่สิ้นสุด <input name="endate" type="date" class="form-control" id="endate" value="<?php echo $endate; ?>" placeholder="" readonly />
             </div>
             <div class="col-sm-3">เลือกรายการยา
-                    <select name="drug" class="form-control select2" required>
-                        <option value="" selected disabled>-เลือกรายการยา-</option>
-                        <?php while ($list = pg_fetch_assoc($res)) { ?>
+                    <select id="select-testing" class="selectpicker form-control " name="drug" data-live-search="true" title="เลือกรายการ" required>
+                    <?php while ($list = pg_fetch_assoc($res)) { ?>
                             <option value="<?php echo $list["icode"]; ?>">
-                                <?php echo $list["icode"] . " " . $list["name"]; ?>
+                                <?php echo $list["icode"] . " " . $list["generic_name"]; ?>
                             </option>
                         <?php } ?>
                     </select>
             </div>
-            <div class="col-sm-3">&nbsp;&nbsp;
-                <button type="submit" class="form-control btn btn-info" id="btn"><span class="glyphicon glyphicon-ok"></span> ค้นหารายการ  </button> </div>
+
+            <div class="col-sm-2">ประเภท
+                    <select id="select-testing" class="selectpicker form-control " name="typein" data-live-search="true" title="เลือกรายการ" required>
+                    <option value=" 1 = 1 ">ทั้งหมด</option>
+                    <option value=" op.vn IS NOT NULL ">OPD</option>
+                    <option value=" op.an IS NOT NULL ">IPD</option>
+                  </select>
+            </div>
+
+            <div class="col-sm-2">&nbsp;&nbsp;
+                <button type="submit" class="form-control btn btn-info " id="btn"><span class="glyphicon glyphicon-ok"></span>ค้นหารายการ</button> 
+                </div>
         </div>
+
         </form>
     </div>
     </div>
 
     <?php
-    $drug = $_GET['drug'];
+    $drug   = $_GET['drug'];
+    $typein = $_GET['typein'];
+    
     if (isset($drug)) {
         $sql_detail = " SELECT 
 			 CASE
@@ -108,17 +126,24 @@ $res = pg_query($sql);
 		 ,pt.name AS pttypename
 		 ,d.name AS doctorname
 		 ,CASE WHEN d.licenseno LIKE '%-%' THEN d.shortname ELSE d.licenseno END AS licenseno 
+     ,CONCAT(oo.icd10,' ',ioo.name) AS diag_opd
+    ,CONCAT(ii.icd10,' ',iii.name) AS diag_ipd
      from opitemrece op 
      LEFT JOIN medreturn_ipd m ON op.hos_guid = m.opi_guid AND m.return_qty > 0 AND m.confirm_return = 'Y' 
      LEFT JOIN patient pa ON pa.hn = op.hn 
      LEFT JOIN drugitems dg ON dg.icode = op.icode 
      LEFT JOIN an_stat a ON a.an=op.an  
+     LEFT JOIN iptdiag ii ON ii.an = op.an 
+     LEFT JOIN icd101 as iii ON iii.code = ii.icd10
+     LEFT JOIN ovstdiag oo ON oo.vn = op.vn 
+     LEFT JOIN icd101 as ioo ON ioo.code = oo.icd10
      LEFT JOIN doctor d ON d.code=op.doctor 
      LEFT JOIN pttype pt ON pt.pttype=op.pttype 
      LEFT JOIN thaiaddress t ON pa.tmbpart = t.tmbpart AND pa.amppart = t.amppart AND pa.chwpart = t.chwpart 
      WHERE 1 = 1
 	 	 AND op.rxdate BETWEEN '$stdate' AND '$endate' 
 	 	 AND op.icode IN ('$drug')
+     AND $typein
      AND op.icode IN (SELECT icode 
 		FROM drugitems 
 		WHERE concat(name,' ',strength,'  (',units,')') IN( SELECT concat(d.name,' ',d.strength,'  (',d.units,')') AS dname 
@@ -128,9 +153,10 @@ $res = pg_query($sql);
 		ORDER BY dname)) AND d.code NOT IN(SELECT code FROM doctor WHERE LOWER(name) LIKE '%bms%') AND op.hn NOT IN(SELECT hn FROM patient WHERE LOWER(fname) LIKE '%ทดสอบ%')
     ORDER BY drug,op.rxdate,op.rxtime ";
         $result = pg_query($sql_detail);
+      //  echo $sql_detail;
     ?>
     <br>
-      <div class="container">
+      <div class="container-fulid">
     <div class="row">
             <div class="col-sm-12">
           <center> 
@@ -179,7 +205,9 @@ $res = pg_query($sql);
 									</tbody>
 								</table>			
 							<!-- </div> -->
-<?php }?>
+<?php 
+}
+?>
                             </div>
      
       <!-- The Modal -->
@@ -206,11 +234,20 @@ $res = pg_query($sql);
 
         <script type="text/javascript">
 $(document).ready(function() {
-    $('#example').DataTable();
+    $('#example').DataTable(
+      {
+					'paging'      : true,
+					'lengthChange': true,
+					'searching'   : true,
+					'ordering'    : true,
+					'info'        : true,
+					'autoWidth'   : true
+				}
+    );
 } );
-  
+
        function export_excel(){
-			document.location = "export_drug_001.php?stdate=<?php echo $stdate; ?>&endate=<?php echo $endate; ?>&drug=<?php echo $drug; ?>";
+			document.location = "export_drug_001.php?stdate=<?php echo $stdate; ?>&endate=<?php echo $endate; ?>&drug=<?php echo $drug; ?>&typein=<?php echo $typein; ?>";
         }
         
         function export_home(){
