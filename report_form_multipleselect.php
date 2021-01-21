@@ -20,10 +20,11 @@
 	for ($i = 0; $i < 100000; $i++) {
 		$i;
 	}
-	$sql 		=  $_GET['sql'];
+	$sql =  $_GET['sql'];
 
 	$topLevelItems = " SELECT sql_code,sql_head FROM cpareport_sql WHERE sql_file = '" . $sql . "'";
 	$res = mysqli_query($con, $topLevelItems);
+
 	foreach ($res as $item) {
 		$sqlgethosxp = $sql_detail = $item['sql_code'];
 		$sql_head   = $item['sql_head'];
@@ -156,7 +157,8 @@
 		$sqlgethosxp = str_replace("{multiple_pttype}", cstring_multipleinput($multiplepttype), $sqlgethosxp);
 		$sqlgethosxp = str_replace("{multiple_spclty}", cstring_multipleinput($multipleSpclty), $sqlgethosxp);
 		$sqlgethosxp = str_replace("{multiple_ward}"  , cstring_multipleinput($multipleward), $sqlgethosxp);
-		$sqlgethosxp = str_replace("{multiple_doctor}"  , cstring_multipleinput($multipledoctor), $sqlgethosxp);
+		$sqlgethosxp = str_replace("{multiple_doctor}", cstring_multipleinput($multipledoctor), $sqlgethosxp);
+		$sql = $sqlgethosxp;// ไว้แสดงใน model SQL หลังจาก get ไปดึงค่าแล้ว post ให้ค่าเปลี่ยน
 		$result = pg_query($conn, $sqlgethosxp );
 	}
 	?>
@@ -264,7 +266,7 @@
 
 
 			<?php
-			if ($datepickers != "--" || $_POST['submit'] != '') {
+			if ($_POST['submit'] != '' || $_POST['submit'] != null ) {
 			?>
 				<div class="row">
 					<div class="col-xs-12">
@@ -277,7 +279,7 @@
 									<button type="" class="btn btn-default pull-right" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal"> SQL </button>
 
 									<form class="form" method="POST" action="./exportexcel.php" target="_blank">
-										<input type="hidden" name="sendsql" value="<?php echo $sql; ?>">
+										<input type="hidden" name="sendsql" value="<?php echo $sqlgethosxp; ?>">
 										<button type="submit" name="submitexcel" class="btn btn-default pull-right" class="btn btn-info btn-lg"> Excel </button>
 									</form>
 								</div>
@@ -350,5 +352,4 @@
 	<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
 
 </body>
-
 </html>
