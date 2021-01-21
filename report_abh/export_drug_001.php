@@ -5,7 +5,7 @@ include "conn/pg_con.class.php";
  $stdate = $_GET['stdate'];
  $endate = $_GET['endate'];
  $drug   = $_GET['drug'];
-
+ $typein = $_GET['typein'];
  if (isset($stdate)) {
 }else{
 header('location: frm2564_drug_001.php');
@@ -58,17 +58,24 @@ header("Content-Disposition: attachment; filename=Export_Drug_".$todate.".xls");
 		 ,pt.name AS pttypename
 		 ,d.name AS doctorname
 		 ,CASE WHEN d.licenseno LIKE '%-%' THEN d.shortname ELSE d.licenseno END AS licenseno 
+		 ,CONCAT(oo.icd10,' ',ioo.name) AS diag_opd
+		 ,CONCAT(ii.icd10,' ',iii.name) AS diag_ipd
      from opitemrece op 
      LEFT JOIN medreturn_ipd m ON op.hos_guid = m.opi_guid AND m.return_qty > 0 AND m.confirm_return = 'Y' 
      LEFT JOIN patient pa ON pa.hn = op.hn 
      LEFT JOIN drugitems dg ON dg.icode = op.icode 
      LEFT JOIN an_stat a ON a.an=op.an  
+	 LEFT JOIN iptdiag ii ON ii.an = op.an 
+	 LEFT JOIN icd101 as iii ON iii.code = ii.icd10
+	 LEFT JOIN ovstdiag oo ON oo.vn = op.vn 
+	 LEFT JOIN icd101 as ioo ON ioo.code = oo.icd10
      LEFT JOIN doctor d ON d.code=op.doctor 
      LEFT JOIN pttype pt ON pt.pttype=op.pttype 
      LEFT JOIN thaiaddress t ON pa.tmbpart = t.tmbpart AND pa.amppart = t.amppart AND pa.chwpart = t.chwpart 
      WHERE 1 = 1
 	 	 AND op.rxdate BETWEEN '$stdate' AND '$endate' 
 	 	 AND op.icode IN ('$drug')
+		 AND $typein
      AND op.icode IN (SELECT icode 
 		FROM drugitems 
 		WHERE concat(name,' ',strength,'  (',units,')') IN( SELECT concat(d.name,' ',d.strength,'  (',d.units,')') AS dname 
@@ -83,7 +90,7 @@ header("Content-Disposition: attachment; filename=Export_Drug_".$todate.".xls");
     <div class="row">
             <div class="col-sm-12">
     <div class="table">
-								<table id="" class="table">
+								<table id="" class="table" border="1px">
 									<thead>
 										<tr>
 											<?php
