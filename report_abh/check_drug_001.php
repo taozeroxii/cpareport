@@ -10,7 +10,7 @@ if (isset($stdate)) {
     exit();
     }
 
-$sql = " SELECT icode,name,generic_name 
+$sql = " SELECT icode,name,generic_name ,strength
 FROM drugitems 
 WHERE concat(name,' ',strength,'  (',units,')') 
 IN( SELECT concat(d.name,' ',d.strength,'  (',d.units,')') AS dname 
@@ -46,7 +46,11 @@ $res = pg_query($sql);
     <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/js/i18n/defaults-*.min.js"></script>
     
     <title>Report-รายการติดตามการใช้ยา-เลือกรายการ</title>
-
+<style>
+.sss{
+  color: red;
+}
+</style>
 </head>
 
 <body>
@@ -76,7 +80,7 @@ $res = pg_query($sql);
                     <select id="select-testing" class="selectpicker form-control " name="drug" data-live-search="true" title="เลือกรายการ" required>
                     <?php while ($list = pg_fetch_assoc($res)) { ?>
                             <option value="<?php echo $list["icode"]; ?>">
-                                <?php echo $list["icode"] . " " . $list["generic_name"]; ?>
+                                <?php echo $list["icode"] . " " . $list["generic_name"]." || ".$list["strength"]; ?>
                             </option>
                         <?php } ?>
                     </select>
@@ -114,6 +118,7 @@ $res = pg_query($sql);
 		 ,op.rxtime
 		 ,op.icode
 		 ,concat(dg.name,' ',dg.strength,'  (',dg.units,')') AS drug
+
 		 ,op.hn
 		 ,op.vn
 		 ,op.an
