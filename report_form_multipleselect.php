@@ -37,19 +37,6 @@
 	include "config/timestampviewer.php"; //เรียกไฟล์ในส่วนที่ทำงานนับจำนวนผู้กดเข้ามาหน้า sql นั้นๆ
 
 
-	///////////////// ปั่นเอาค่าลง multiple input /////////////////////////////////////////////////////////////
-	$selectpty = "select pttype,name from pttype order by  pttype";
-	$qselect2pty = pg_query($conn, $selectpty);
-
-	$selectspclty = "select spclty,name from spclty order by spclty";
-	$qselectspclty = pg_query($conn, $selectspclty);
-
-	$selectward = "select ward,name from ward  where name not like '%ยกเลิก%'order by ward";
-	$qselectward = pg_query($conn, $selectward);
-
-	$selectdoctor = "select code,licenseno,name from doctor  where name not like '%ยกเลิก%' order by code";
-	$qselectdoctor = pg_query($conn, $selectdoctor);
-
 	//เช็คตัวแปร query ว่ามีค่าอะไรที่ต้องแปลงบ้างแล้วนำไปจัดการกับปุ่มเลือกข้อมูล
 	$ckdatebegin = "";
 	$ckdateend   = "";
@@ -93,18 +80,30 @@
 	$ckpttype =  strpos($sqlgethosxp, "{multiple_pttype}");
 	if ($ckpttype !== false) {
 		$messageInput .= ' สิทธิ ';
+		$selectpty = "select pttype,name from pttype order by  pttype";
+		$qselect2pty = pg_query($conn, $selectpty);
 	}
+
 	$ckspclty =  strpos($sqlgethosxp, "{multiple_spclty}");
 	if ($ckspclty !== false) {
 		$messageInput .= ' แผนก ';
+		$selectspclty = "select spclty,name from spclty order by spclty";
+		$qselectspclty = pg_query($conn, $selectspclty);
 	}
+
 	$ckward =  strpos($sqlgethosxp, "{multiple_ward}");
 	if ($ckward !== false) {
 		$messageInput .= ' วอร์ด ';
+		$selectward = "select ward,name from ward  where name not like '%ยกเลิก%'order by ward";
+		$qselectward = pg_query($conn, $selectward);
+	
 	}
+	
 	$ckdoctor =  strpos($sqlgethosxp, "{mutiple_doctor}");
 	if ($ckdoctor !== false) {
 		$messageInput .= ' แพทย์ ';
+		$selectdoctor = "select code,licenseno,name from doctor  where name not like '%ยกเลิก%' order by code";
+		$qselectdoctor = pg_query($conn, $selectdoctor);
 	}
 
 	function checkhavereplace($havereplace)
@@ -156,7 +155,7 @@
 
 		$sqlgethosxp = str_replace("{multiple_pttype}", cstring_multipleinput($multiplepttype), $sqlgethosxp);
 		$sqlgethosxp = str_replace("{multiple_spclty}", cstring_multipleinput($multipleSpclty), $sqlgethosxp);
-		$sqlgethosxp = str_replace("{multiple_ward}"  , cstring_multipleinput($multipleward), $sqlgethosxp);
+		$sqlgethosxp = str_replace("{multiple_ward}"  , cstring_multipleinput($multipleward)  , $sqlgethosxp);
 		$sqlgethosxp = str_replace("{multiple_doctor}", cstring_multipleinput($multipledoctor), $sqlgethosxp);
 		$sql = $sqlgethosxp;// ไว้แสดงใน model SQL หลังจาก get ไปดึงค่าแล้ว post ให้ค่าเปลี่ยน
 		$result = pg_query($conn, $sqlgethosxp );
