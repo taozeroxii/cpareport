@@ -48,6 +48,7 @@
 	$ckspclty    = "";
 	$ckward      = "";
 	$ckdoctor    = "";
+	$ckroom      = "";
 	$messageInput = "";
 
 	$ckdatebegin =  strpos($sqlgethosxp, "{datepickers}");
@@ -106,6 +107,14 @@
 		$qselectdoctor = pg_query($conn, $selectdoctor);
 	}
 
+
+	$ckroom =  strpos($sqlgethosxp, "{multiple_room}");
+	if ($ckroom !== false) {
+		$messageInput .= ' ห้องตรวจ ';
+		$selectroom = "SELECT depcode,department FROM kskdepartment where depcode_active = 'Y' order by depcode";
+		$qselectroom = pg_query($conn, $selectroom);
+	}
+
 	function checkhavereplace($havereplace)
 	{
 		//function เช็คตัวแปรที่เก็บค่าว่ามีคำนั้นๆในข้อความหรือไม่และให้ disabled กับ required ปุ่ม
@@ -143,6 +152,7 @@
 		$multipleSpclty = $_POST['spclty'];
 		$multipleward   = $_POST['ward'];
 		$multipledoctor   = $_POST['doctor'];
+		$multipleroom   = $_POST['room'];
 
 		$sqlgethosxp = str_replace("{datepickers}", "'$datepickers'", $sqlgethosxp); // แทนค่า
 		$sqlgethosxp = str_replace("{datepickert}", "'$datepickert'", $sqlgethosxp); // แทนค่า
@@ -157,6 +167,7 @@
 		$sqlgethosxp = str_replace("{multiple_spclty}", cstring_multipleinput($multipleSpclty), $sqlgethosxp);
 		$sqlgethosxp = str_replace("{multiple_ward}"  , cstring_multipleinput($multipleward)  , $sqlgethosxp);
 		$sqlgethosxp = str_replace("{multiple_doctor}", cstring_multipleinput($multipledoctor), $sqlgethosxp);
+		$sqlgethosxp = str_replace("{multiple_room}"  , cstring_multipleinput($multipleroom)  , $sqlgethosxp);
 		$sql = $sqlgethosxp;// ไว้แสดงใน model SQL หลังจาก get ไปดึงค่าแล้ว post ให้ค่าเปลี่ยน
 		$result = pg_query($conn, $sqlgethosxp );
 	}
@@ -209,7 +220,7 @@
 									</div>
 
 									<div class="row mt-2">
-										<div class="col-lg-6">
+										<div class="col-lg-4">
 											<label for="spclty"> โปรดเลือกแผนก : </label>
 											<select class="js-example-basic-multiple form-control" name="spclty[]" data-search="true" multiple="multiple" <?php checkhavereplace($ckspclty);  	?>>
 												<?php while ($datasp = pg_fetch_assoc($qselectspclty)) { ?>
@@ -218,7 +229,16 @@
 											</select>
 										</div>
 
-										<div class="col-lg-6">
+										<div class="col-lg-4">
+											<label for="room"> โปรดเลือกห้องตรวจ: </label>
+											<select class="js-example-basic-multiple form-control" name="room[]" multiple="multiple" <?php checkhavereplace($ckroom); ?>>
+												<?php while ($dataroom = pg_fetch_assoc($qselectroom)) { ?>
+													<option value="<?php echo $dataroom['depcode']; ?>"><?php echo  $dataroom['department'] ?></option>
+												<?php } ?>
+											</select>
+										</div>
+
+										<div class="col-lg-4">
 											<label for="spclty"> โปรดเลือกวอร์ด : </label>
 											<select class="js-example-basic-multiple form-control" name="ward[]" multiple="multiple" <?php checkhavereplace($ckward); ?>>
 												<?php while ($datasp = pg_fetch_assoc($qselectward)) { ?>
@@ -226,11 +246,12 @@
 												<?php } ?>
 											</select>
 										</div>
+										
 									</div>
 
 									<div class="row mt-3">
 										<div class="col-lg-6 ">
-											<label for="spclty"> โปรดเลือกสิทธิ : </label>
+											<label for="pttype"> โปรดเลือกสิทธิ : </label>
 											<select class="js-example-basic-multiple form-control" name="pttype[]" multiple="multiple" <?php checkhavereplace($ckpttype); ?>>
 												<?php while ($datapty = pg_fetch_assoc($qselect2pty)) { ?>
 													<option value="<?php echo $datapty['pttype']; ?>"><?php echo  $datapty['pttype'] . ' : ' . $datapty['name'] ?></option>
@@ -239,14 +260,13 @@
 										</div>
 
 										<div class="col-lg-6 ">
-											<label for="spclty"> โปรดเลือกแพทย์ : </label>
+											<label for="doctor"> โปรดเลือกแพทย์ : </label>
 											<select class="js-example-basic-multiple form-control" name="doctor[]" multiple="multiple" <?php checkhavereplace($ckdoctor); ?>>
 												<?php while ($datapdc = pg_fetch_assoc($qselectdoctor)) { ?>
 													<option value="<?php echo $datapdc['code']; ?>"><?php echo  $datapdc['code'] . ' : ' . $datapdc['name'] ?></option>
 												<?php } ?>
 											</select>
 										</div>
-
 									</div>
 
 									<div class="row">
