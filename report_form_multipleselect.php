@@ -195,7 +195,7 @@
 									<div class="row">
 										<div class="col-lg-3">
 											<label for="day"> โปรดเลือกวันที่เริ่มต้น : </label>
-											<input type="text" class="form-control" id="datepickers" name="datepickers" placeholder="วันที่เริ่มต้น" data-provide="datepicker" data-date-language="th" autocomplete="off" <?php checkhavereplace($ckdatebegin); ?>>
+											<input type="text" class="form-control" id="datepickers" data-search="true"  name="datepickers" placeholder="วันที่เริ่มต้น" data-provide="datepicker" data-date-language="th" autocomplete="off" <?php checkhavereplace($ckdatebegin); ?>>
 										</div>
 										<div class="col-lg-3">
 											<label for="datepickert"> วันที่สิ้นสุด :</label>
@@ -231,7 +231,7 @@
 
 										<div class="col-lg-4">
 											<label for="room"> โปรดเลือกห้องตรวจ: </label>
-											<select class="js-example-basic-multiple form-control" name="room[]" multiple="multiple" <?php checkhavereplace($ckroom); ?>>
+											<select class="js-example-basic-multiple form-control" name="room[]" data-search="true" multiple="multiple" <?php checkhavereplace($ckroom); ?>>
 												<?php while ($dataroom = pg_fetch_assoc($qselectroom)) { ?>
 													<option value="<?php echo $dataroom['depcode']; ?>"><?php echo  $dataroom['department'] ?></option>
 												<?php } ?>
@@ -240,7 +240,7 @@
 
 										<div class="col-lg-4">
 											<label for="spclty"> โปรดเลือกวอร์ด : </label>
-											<select class="js-example-basic-multiple form-control" name="ward[]" multiple="multiple" <?php checkhavereplace($ckward); ?>>
+											<select class="js-example-basic-multiple form-control" name="ward[]" data-search="true"  multiple="multiple" <?php checkhavereplace($ckward); ?>>
 												<?php while ($datasp = pg_fetch_assoc($qselectward)) { ?>
 													<option value="<?php echo $datasp['ward']; ?>"><?php echo  $datasp['ward'] . ' : ' . $datasp['name'] ?></option>
 												<?php } ?>
@@ -252,7 +252,7 @@
 									<div class="row mt-3">
 										<div class="col-lg-6 ">
 											<label for="pttype"> โปรดเลือกสิทธิ : </label>
-											<select class="js-example-basic-multiple form-control" name="pttype[]" multiple="multiple" <?php checkhavereplace($ckpttype); ?>>
+											<select class="js-example-basic-multiple form-control" name="pttype[]" data-search="true"   multiple="multiple" <?php checkhavereplace($ckpttype); ?>>
 												<?php while ($datapty = pg_fetch_assoc($qselect2pty)) { ?>
 													<option value="<?php echo $datapty['pttype']; ?>"><?php echo  $datapty['pttype'] . ' : ' . $datapty['name'] ?></option>
 												<?php } ?>
@@ -261,7 +261,7 @@
 
 										<div class="col-lg-6 ">
 											<label for="doctor"> โปรดเลือกแพทย์ : </label>
-											<select class="js-example-basic-multiple form-control" name="doctor[]" multiple="multiple" <?php checkhavereplace($ckdoctor); ?>>
+											<select class="js-example-basic-multiple form-control" name="doctor[]" data-search="true"  multiple="multiple" <?php checkhavereplace($ckdoctor); ?>>
 												<?php while ($datapdc = pg_fetch_assoc($qselectdoctor)) { ?>
 													<option value="<?php echo $datapdc['code']; ?>"><?php echo  $datapdc['code'] . ' : ' . $datapdc['name'] ?></option>
 												<?php } ?>
