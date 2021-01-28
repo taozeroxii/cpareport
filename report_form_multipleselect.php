@@ -206,11 +206,11 @@
 									<div class="row">
 										<div class="col-lg-3">
 											<label for="day"> โปรดเลือกวันที่เริ่มต้น : </label>
-											<input type="text" class="form-control" id="datepickers" data-search="true"  name="datepickers" placeholder="วันที่เริ่มต้น" data-provide="datepicker" data-date-language="th" autocomplete="off" <?php checkhavereplace($ckdatebegin); ?> >
+											<input type="date" class="form-control" name="datepickers"  autocomplete="off" <?php checkhavereplace($ckdatebegin); ?> >
 										</div>
 										<div class="col-lg-3">
 											<label for="datepickert"> วันที่สิ้นสุด :</label>
-											<input type="text" class="form-control" id="datepickert" name="datepickert" placeholder="วันที่สิ้นสุด" data-provide="datepicker" data-date-language="th" autocomplete="off" <?php checkhavereplace($ckdateend); ?> >
+											<input type="date" class="form-control" name="datepickert" autocomplete="off" <?php checkhavereplace($ckdateend); ?> >
 										</div>
 										<div class="col-lg-1">
 											<label for="datepickert"> เวลาเริ่มต้น :</label>
@@ -307,7 +307,7 @@
 					<div class="col-xs-12">
 						<div class="box">
 							<div class="box-header">
-								<h3 class="box-title co_dep"><?php echo " ข้อมูลช่วงวันที่ " . $datepickers . " ถึงวันที่ " . $datepickert; ?>
+								<h3 class="box-title co_dep"><?php echo " ข้อมูลช่วงวันที่ " . date_format(date_create($datepickers),'d/m/Y') . " ถึงวันที่ " .  date_format(date_create($datepickert),'d/m/Y'); ?>
 									<small><?php echo " เวลาที่ใช้ในการประมวลผล " . $bm->stop() . " วินาที "; ?></small>
 								</h3>
 								<div class="row" style="margin-right:15px">
