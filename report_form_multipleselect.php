@@ -203,11 +203,11 @@
 									<div class="row">
 										<div class="col-lg-3">
 											<label for="day"> โปรดเลือกวันที่เริ่มต้น : </label>
-											<input type="text" class="form-control" id="datepickers" data-search="true"  name="datepickers" placeholder="วันที่เริ่มต้น" data-provide="datepicker" data-date-language="th" autocomplete="off" <?php checkhavereplace($ckdatebegin); ?>>
+											<input type="text" class="form-control" id="datepickers" data-search="true"  name="datepickers" placeholder="วันที่เริ่มต้น" data-provide="datepicker" data-date-language="th" autocomplete="off" <?php checkhavereplace($ckdatebegin); ?> required>
 										</div>
 										<div class="col-lg-3">
 											<label for="datepickert"> วันที่สิ้นสุด :</label>
-											<input type="text" class="form-control" id="datepickert" name="datepickert" placeholder="วันที่สิ้นสุด" data-provide="datepicker" data-date-language="th" autocomplete="off" <?php checkhavereplace($ckdateend); ?>>
+											<input type="text" class="form-control" id="datepickert" name="datepickert" placeholder="วันที่สิ้นสุด" data-provide="datepicker" data-date-language="th" autocomplete="off" <?php checkhavereplace($ckdateend); ?> required>
 										</div>
 										<div class="col-lg-1">
 											<label for="datepickert"> เวลาเริ่มต้น :</label>
