@@ -335,7 +335,7 @@
 											$i = pg_num_fields($result);
 											for ($j = 0; $j < $i; $j++) {
 												$fieldname = pg_field_name($result, $j);
-												echo '<th>' . $fieldname . '</th>';
+												echo '<th class="text-nowrap">' . $fieldname . '</th>';
 											}
 											?>
 										</tr>
