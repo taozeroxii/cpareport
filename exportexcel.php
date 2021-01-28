@@ -12,7 +12,7 @@
     include("./config/my_con.class.php");
     include("./config/pg_con.class.php");
     $todate = date('Ymd_His');
-    //header("Content-Disposition: attachment; filename=export".$todate.".xls");
+    header("Content-Disposition: attachment; filename=export".$todate.".xls");
     $sql = $_POST['sendsql'];
     $sql = str_replace("SELECTDATA", 'SELECT', $sql);  // แปลง select กลับมาเพื่อ query มาทำตาราง export excel
     $sql = str_replace("FROMTABLES", 'FROM', $sql);   // แปลง select กลับมาเพื่อ query มาทำตาราง export excel
