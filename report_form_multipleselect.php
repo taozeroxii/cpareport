@@ -315,14 +315,14 @@
 
 									<form class="form" method="POST" action="./exportexcel.php" target="_blank">
 									<?php 
-										$sqlgethosxp = strtoupper (str_replace("SELECT", 'SELECTDATA', $sqlgethosxp)); //แปลงชุดคำสั่งบางตัวเพื่อไม่ให้ watchgard ตรวจจับเป็นคำสั่ง sql
-										$sqlgethosxp = strtoupper (str_replace("FROM", 'FROMTABLES', $sqlgethosxp)); 
+										//แปลงชุดคำสั่งบางตัวเพื่อไม่ให้ watchgard ตรวจจับเป็นคำสั่ง sql
+										$sqlgethosxp =  str_replace("SELECT", 'SELECTDATA', $sqlgethosxp); 
+										$sqlgethosxp =  str_replace("Select", 'SELECTDATA', $sqlgethosxp); 
+										$sqlgethosxp =  str_replace("select", 'SELECTDATA', $sqlgethosxp); 
+										$sqlgethosxp =  str_replace("FROM", 'FROMTABLES', $sqlgethosxp); 
+										$sqlgethosxp =  str_replace("from", 'FROMTABLES', $sqlgethosxp); 
 									?>
 										<input type="hidden" name="sendsql" value="<?php echo $sqlgethosxp; ?>">
-									<?php 
-										$sqlgethosxp = strtoupper(str_replace("SELECTDATA", 'SELECT', $sqlgethosxp)); 
-										$sqlgethosxp = strtoupper (str_replace("FROMTABLES", 'FROM', $sqlgethosxp)); 
-									?>
 										<button type="submit" name="submitexcel" class="btn btn-default pull-right" class="btn btn-info btn-lg"> Excel </button>
 									</form>
 								</div>
