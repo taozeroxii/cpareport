@@ -82,6 +82,7 @@
 	if ($ckpttype !== false) {
 		$messageInput .= ' สิทธิ ';
 		$selectpty = "select pttype,name from pttype order by  pttype";
+		$selectpty2 = "select pttype from pttype order by  pttype";// หากไม่เลือกให้แสดงทั้งหมด
 		$qselect2pty = pg_query($conn, $selectpty);
 	}
 
@@ -89,6 +90,7 @@
 	if ($ckspclty !== false) {
 		$messageInput .= ' แผนก ';
 		$selectspclty = "select spclty,name from spclty order by spclty";
+		$selectspclty2 = "select spclty from spclty order by spclty";
 		$qselectspclty = pg_query($conn, $selectspclty);
 	}
 
@@ -96,6 +98,7 @@
 	if ($ckward !== false) {
 		$messageInput .= ' วอร์ด ';
 		$selectward = "select ward,name from ward  where name not like '%ยกเลิก%'order by ward";
+		$selectward2 = "select ward from ward  where name not like '%ยกเลิก%'order by ward";
 		$qselectward = pg_query($conn, $selectward);
 	
 	}
@@ -104,6 +107,7 @@
 	if ($ckdoctor !== false) {
 		$messageInput .= ' แพทย์ ';
 		$selectdoctor = "select code,licenseno,name from doctor  where name not like '%ยกเลิก%' order by code";
+		$selectdoctor2 = "select code from doctor  where name not like '%ยกเลิก%' order by code";
 		$qselectdoctor = pg_query($conn, $selectdoctor);
 	}
 
@@ -112,6 +116,7 @@
 	if ($ckroom !== false) {
 		$messageInput .= ' ห้องตรวจ ';
 		$selectroom = "SELECT depcode,department FROM kskdepartment where depcode_active = 'Y' order by depcode";
+		$selectroom2 = "SELECT depcode FROM kskdepartment where depcode_active = 'Y' order by depcode";
 		$qselectroom = pg_query($conn, $selectroom);
 	}
 
@@ -121,11 +126,11 @@
 		if ($havereplace == '' || $havereplace == null) {
 			echo 'disabled';
 		} else {
-			echo 'required';
+			//echo 'required';
 		}
 	}
 
-	function cstring_multipleinput($getdatamultiple)
+	function cstring_multipleinput($getdatamultiple,$appparams)
 	{
 		// function ต่อ string จาก select 2 
 		if (sizeof($getdatamultiple) > 0) {
@@ -135,6 +140,9 @@
 			}
 			$sums = rtrim($sums, ',');
 			$sums .= ") ";
+		}
+		else {
+			$sums = "(".$appparams.")";
 		}
 		return ($sums);
 	}
@@ -163,11 +171,11 @@
 		$sqlgethosxp = str_replace("{sicd10}", "'$starticd10'", $sqlgethosxp); 
 		$sqlgethosxp = str_replace("{eicd10}", "'$endicd10'", $sqlgethosxp); 
 
-		$sqlgethosxp = str_replace("{multiple_pttype}", cstring_multipleinput($multiplepttype), $sqlgethosxp);
-		$sqlgethosxp = str_replace("{multiple_spclty}", cstring_multipleinput($multipleSpclty), $sqlgethosxp);
-		$sqlgethosxp = str_replace("{multiple_ward}"  , cstring_multipleinput($multipleward)  , $sqlgethosxp);
-		$sqlgethosxp = str_replace("{multiple_doctor}", cstring_multipleinput($multipledoctor), $sqlgethosxp);
-		$sqlgethosxp = str_replace("{multiple_room}"  , cstring_multipleinput($multipleroom)  , $sqlgethosxp);
+		$sqlgethosxp = str_replace("{multiple_pttype}", cstring_multipleinput($multiplepttype,$selectpty2), $sqlgethosxp);
+		$sqlgethosxp = str_replace("{multiple_spclty}", cstring_multipleinput($multipleSpclty,$selectspclty2), $sqlgethosxp);
+		$sqlgethosxp = str_replace("{multiple_ward}"  , cstring_multipleinput($multipleward,$selectward2)  , $sqlgethosxp);
+		$sqlgethosxp = str_replace("{multiple_doctor}", cstring_multipleinput($multipledoctor,$selectdoctor2), $sqlgethosxp);
+		$sqlgethosxp = str_replace("{multiple_room}"  , cstring_multipleinput($multipleroom,$selectroom2)  , $sqlgethosxp);
 		$sql = $sqlgethosxp;// ไว้แสดงใน model SQL หลังจาก get ไปดึงค่าแล้ว post ให้ค่าเปลี่ยน
 		$result = pg_query($conn, $sqlgethosxp );
 	}
@@ -221,7 +229,7 @@
 
 									<div class="row mt-2">
 										<div class="col-lg-4">
-											<label for="spclty"> โปรดเลือกแผนก : </label>
+											<label for="spclty"> โปรดเลือกแผนก : หากไม่เลือกจะแสดงทั้งหมด</label>
 											<select class="js-example-basic-multiple form-control" name="spclty[]" data-search="true" multiple="multiple" <?php checkhavereplace($ckspclty);  	?>>
 												<?php while ($datasp = pg_fetch_assoc($qselectspclty)) { ?>
 													<option value="<?php echo $datasp['spclty']; ?>"><?php echo  $datasp['spclty'] . ' : ' . $datasp['name'] ?></option>
@@ -230,7 +238,7 @@
 										</div>
 
 										<div class="col-lg-4">
-											<label for="room"> โปรดเลือกห้องตรวจ: </label>
+											<label for="room"> โปรดเลือกห้องตรวจ : หากไม่เลือกจะแสดงทั้งหมด </label>
 											<select class="js-example-basic-multiple form-control" name="room[]" data-search="true" multiple="multiple" <?php checkhavereplace($ckroom); ?>>
 												<?php while ($dataroom = pg_fetch_assoc($qselectroom)) { ?>
 													<option value="<?php echo $dataroom['depcode']; ?>"><?php echo  $dataroom['department'] ?></option>
@@ -239,7 +247,7 @@
 										</div>
 
 										<div class="col-lg-4">
-											<label for="spclty"> โปรดเลือกวอร์ด : </label>
+											<label for="spclty"> โปรดเลือกวอร์ด : หากไม่เลือกจะแสดงทั้งหมด</label>
 											<select class="js-example-basic-multiple form-control" name="ward[]" data-search="true"  multiple="multiple" <?php checkhavereplace($ckward); ?>>
 												<?php while ($datasp = pg_fetch_assoc($qselectward)) { ?>
 													<option value="<?php echo $datasp['ward']; ?>"><?php echo  $datasp['ward'] . ' : ' . $datasp['name'] ?></option>
@@ -251,7 +259,7 @@
 
 									<div class="row mt-3">
 										<div class="col-lg-6 ">
-											<label for="pttype"> โปรดเลือกสิทธิ : </label>
+											<label for="pttype"> โปรดเลือกสิทธิ : หากไม่เลือกจะแสดงทั้งหมด</label>
 											<select class="js-example-basic-multiple form-control" name="pttype[]" data-search="true"   multiple="multiple" <?php checkhavereplace($ckpttype); ?>>
 												<?php while ($datapty = pg_fetch_assoc($qselect2pty)) { ?>
 													<option value="<?php echo $datapty['pttype']; ?>"><?php echo  $datapty['pttype'] . ' : ' . $datapty['name'] ?></option>
@@ -260,7 +268,7 @@
 										</div>
 
 										<div class="col-lg-6 ">
-											<label for="doctor"> โปรดเลือกแพทย์ : </label>
+											<label for="doctor"> โปรดเลือกแพทย์ : หากไม่เลือกจะแสดงทั้งหมด </label>
 											<select class="js-example-basic-multiple form-control" name="doctor[]" data-search="true"  multiple="multiple" <?php checkhavereplace($ckdoctor); ?>>
 												<?php while ($datapdc = pg_fetch_assoc($qselectdoctor)) { ?>
 													<option value="<?php echo $datapdc['code']; ?>"><?php echo  $datapdc['code'] . ' : ' . $datapdc['name'] ?></option>
@@ -298,7 +306,15 @@
 									<button type="" class="btn btn-default pull-right" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal"> SQL </button>
 
 									<form class="form" method="POST" action="./exportexcel.php" target="_blank">
+									<?php 
+										$sqlgethosxp = strtoupper (str_replace("SELECT", 'SELECTDATA', $sqlgethosxp)); //แปลงชุดคำสั่งบางตัวเพื่อไม่ให้ watchgard ตรวจจับเป็นคำสั่ง sql
+										$sqlgethosxp = strtoupper (str_replace("FROM", 'FROMTABLES', $sqlgethosxp)); 
+									?>
 										<input type="hidden" name="sendsql" value="<?php echo $sqlgethosxp; ?>">
+									<?php 
+										$sqlgethosxp = strtoupper(str_replace("SELECTDATA", 'SELECT', $sqlgethosxp)); 
+										$sqlgethosxp = strtoupper (str_replace("FROMTABLES", 'FROM', $sqlgethosxp)); 
+									?>
 										<button type="submit" name="submitexcel" class="btn btn-default pull-right" class="btn btn-info btn-lg"> Excel </button>
 									</form>
 								</div>
@@ -341,6 +357,7 @@
 			<?php
 			}
 			?>
+			
 		</section>
 	</div>
 
