@@ -311,8 +311,8 @@
 									<small><?php echo " เวลาที่ใช้ในการประมวลผล " . $bm->stop() . " วินาที "; ?></small>
 								</h3>
 								<div class="row" style="margin-right:15px">
+									<?php $sql = $sqlgethosxp;// ปรับแก้เวลา login แสดงผล sql เป็นของ session?>
 									<button type="" class="btn btn-default pull-right" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal"> SQL </button>
-
 									<form class="form" method="POST" action="./exportexcel.php" target="_blank">
 									<?php 
 										//แปลงชุดคำสั่งบางตัวเพื่อไม่ให้ watchgard ตรวจจับเป็นคำสั่ง sql
