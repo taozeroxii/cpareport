@@ -106,7 +106,7 @@ while ($row_result = pg_fetch_assoc($result_rt)) {
  $dhc_rt .= 
  '<tr>
  <td class="">'.$row_result['แผนก'].' </td>
- <td class="text-center">'.$row_result['ward'].'</td>
+ <td class="">'.$row_result['ward'].'</td>
  <td class="text-center">'.$row_result['จำนวนคนนอน'].'</td>
  <td class="text-center">'.$row_result['รับเข้าในวัน'].'</td>
  <td class="text-center">'.$row_result['จำหน่ายในวัน'].'</td>
