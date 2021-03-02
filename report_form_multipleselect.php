@@ -169,7 +169,7 @@
 		$sqlgethosxp = str_replace("{datepickert}", "'$datepickert'", $sqlgethosxp); // แทนค่า
 
 		$sqlgethosxp = str_replace("{stime}", "'$starttime'", $sqlgethosxp); 
-		$sqlgethosxp = str_replace("{etime}", "'$endicd10'", $sqlgethosxp); 
+		$sqlgethosxp = str_replace("{etime}", "'$endtime'", $sqlgethosxp); 
 		
 		$sqlgethosxp = str_replace("{sicd10}", "'$starticd10'", $sqlgethosxp); 
 		$sqlgethosxp = str_replace("{eicd10}", "'$endicd10'", $sqlgethosxp); 
