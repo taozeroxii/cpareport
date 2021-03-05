@@ -38,9 +38,11 @@ $today =  date('Y-m-d H:i:s');
             <button data-toggle="modal" data-target="#myModal" class="btn btn-dark "><b> Vlan Help Zone NetWork</b> </button>
             <form method='GET' action='index.php'>
                 <button class="btn btn-warning" name="vlan" type="submit" value=""><b> main </b> </button>
-                <button class="btn btn-warning" name="vlan" type="submit" value="0','1','2','4','5','8,','20','21','22','24','25','26','27','28','29','31','32','36','43','44','50"><b> All </b> </button>
+                <button class="btn btn-warning" name="vlan" type="submit" value="0','1','2','4','5','8,','20','21','22','24','25','26','27','28','29','31','32','36','43','44','76','80','50"><b> All </b> </button>
                 <button class="btn btn-warning" name="vlan" type="submit" value="170"><b> Public </b> </button>
                 <button class="btn btn-warning" name="vlan" type="submit" value="8','14"><b> Other </b> </button>
+                <button class="btn btn-warning" name="vlan" type="submit" value="76"><b> Wifi 76 </b> </button>
+                <button class="btn btn-warning" name="vlan" type="submit" value="vpn"><b>Clinic 304 </b> </button>
                 <button class="btn btn-warning" name="vlan" type="submit" value="0"><b> 0 </b> </button>
                 <button class="btn btn-warning" name="vlan" type="submit" value="1"><b> 1 </b> </button>
                 <button class="btn btn-warning" name="vlan" type="submit" value="2"><b> 2 </b> </button>
@@ -61,6 +63,8 @@ $today =  date('Y-m-d H:i:s');
                 <button class="btn btn-warning" name="vlan" type="submit" value="40"><b> 40 </b> </button>
                 <button class="btn btn-warning" name="vlan" type="submit" value="43"><b> 43 </b> </button>
                 <button class="btn btn-warning" name="vlan" type="submit" value="44"><b> 44 </b> </button>
+                <button class="btn btn-warning" name="vlan" type="submit" value="80"><b> 80 </b> </button>
+
             </form>
         </h1>
     </div>
