@@ -1033,6 +1033,12 @@ $filename = "gsb_" . date('Y_m');
 		font-weight: bold;
 		font-size: 1.4em;
 	}
+	.rr {
+		color: green;
+		text-align: center;
+		font-weight: bold;
+		font-size: 1em;
+	}
 
 	.ff {
 		color: red;
@@ -1058,9 +1064,19 @@ $filename = "gsb_" . date('Y_m');
 		color: blue;
 		font-weight: bold;
 	}
+	.jj {
+		text-align: left;
+		padding-left: 20em;
+		color: #000;
+		font-weight: bold;
+	}
 </style>
 <br>
-<div class="tt">รูปแบบ FILE Excel |ตัวอย่าง : gsb_2020_09 | gsb_ปีค.ศ._เดือน | gsb_xxxx_xx | <?php echo $filename; ?> </div>
+<div class="tt">รูปแบบ FILE Excel |ตัวอย่าง : gsb_2020_09 | gsb_ปีค.ศ._เดือน | gsb_xxxx_xx | <?php echo $filename; ?> </div><hr>
+<div class="rr">ตั้งชื่อหัวตารางตามรายการนี้ </div>
+<div class="jj">
+gsb_personid <br> pname <br> fname <br> lname <br> gsb_cid <br> gsb_startdate <br> gsb_perstatus <br> gsb_emp_type <br>  gsb_enddate <br> gsb_age <br> gsb_groupname
+</div>
 <hr>
 <div class="ff">กรุณาตั้งชื่อไฟล์ตามรูปแบบ ||> <span class="gg"><?php echo $filename; ?> <span></div>
 
