@@ -113,14 +113,22 @@
         $sqlgethosxp = str_replace("{datepickert}", "'$datepickert'", $sqlgethosxp); // แทนค่า
 
         //multiple pttype
-            // if (sizeof($multiplepttype) > 0) {
-            //     $sum_pttypes = "(";
-            //     foreach ($multiplepttype as $value) {
-            //         $sum_pttypes .= "'" . $value . "',";
-            //     }
-            //     $sum_pttypes = rtrim($sum_pttypes, ',');
-            //     $sum_pttypes .= ") ";
-            // }
+            if (sizeof($multiplepttype) > 0) {
+                $sum_pttypes = "(";
+                foreach ($multiplepttype as $value) {
+                    $sum_pttypes .= "'" . $value . "',";
+                }
+                $sum_pttypes = rtrim($sum_pttypes, ',');
+                $sum_pttypes .= ") ";
+            }
+            if (sizeof($multipleSpclty) > 0) {
+                $sum_spclty = "(";
+                foreach ($multipleSpclty as $value) {
+                    $sum_spclty .= "'" . $value . "',";
+                }
+                $sum_spclty = rtrim($sum_spclty, ',');
+                $sum_spclty .= ") ";
+            }
         //เปลี่ยนไปเรียกใช้ function การใช้งานแทนเพื่อลดการเขียนโค๊ดซ้ำไปมา
 
         $sqlgethosxp = str_replace("{multiple_pttype}", cstring_multipleinput($multiplepttype), $sqlgethosxp);

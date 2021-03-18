@@ -38,6 +38,7 @@
     $sqlgethosxp = str_replace("{multiple_pttype}", "$multiplepttype", $sqlgethosxp);
     $sqlgethosxp = str_replace("{multiple_spclty}", "$multipleSpclty", $sqlgethosxp);
     $sqlgethosxp = str_replace("{multiple_ward}", "$multipleward", $sqlgethosxp);
+    //echo   $sqlgethosxp;
     $resultqueryhos =   pg_query($conn, $sqlgethosxp);
     ?>
 

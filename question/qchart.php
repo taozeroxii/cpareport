@@ -38,7 +38,7 @@ $sult = mysqli_query($con, $qorther);
 
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="refresh" content="60;"url="">
+    <!-- <meta http-equiv="refresh" content="60;"url=""> -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>สรุปความพึงพอใจสารสนเทศ</title>
     <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@500&display=swap" rel="stylesheet">
@@ -99,6 +99,8 @@ $sult = mysqli_query($con, $qorther);
                 "#40AE20",
                 "#CEA716"
             ]);
+
+
 
         $(document).ready(function() {
             $.getJSON("qdata/qsex.php", function(sex) {
@@ -394,7 +396,11 @@ $sult = mysqli_query($con, $qorther);
                 <!-- <div id="" > <button type=""  name="" class="btn btn-outline-info btn-block" > </button></div> -->
             </div>
         </div>
-
+<style>
+           .aws{
+              color: red; 
+            } 
+</style>
         <!-- Modal -->
         <div class="modal fade bd-example-modal-lg" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
             <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
