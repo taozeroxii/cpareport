@@ -315,7 +315,7 @@
 	
 									<div class="row mt-3">
 										<div class="col-lg-6 ">
-											<label for="hmain"> โปรดเลือกสถนาพยาบาลหลัก หากเป็น refer = refer in : </label>
+											<label for="hmain"> โปรดเลือกสถานพยาบาลหลัก หากเป็น refer = refer in : </label>
 											<select class="js-example-basic-multiple form-control" name="hmain[]" data-search="true"   multiple="multiple" <?php checkhavereplace($chmain_ri ); ?>>
 												<option value="ALL">เลือกทั้งหมด</option>
 												<?php while ($datapty = pg_fetch_assoc($qselecthmain_ri)) { ?>
@@ -325,7 +325,7 @@
 										</div>
 
 										<div class="col-lg-6 ">
-											<label for="hsub">  โปรดเลือกสถนาพยาบาลรอง หากเป็น refer =  refer out  :  </label>
+											<label for="hsub">  โปรดเลือกสถานพยาบาลรอง หากเป็น refer =  refer out  :  </label>
 											<select class="js-example-basic-multiple form-control" name="hsub[]" data-search="true"  multiple="multiple" <?php checkhavereplace($chsub_ro ); ?>>
 												<option value="ALL">เลือกทั้งหมด</option>
 												<?php while ($datapdc = pg_fetch_assoc($qselecthsub_ro)) { ?>
