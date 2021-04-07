@@ -50,7 +50,8 @@
 	$ckdoctor    = "";
 	$ckroom      = "";
 	$messageInput = "";
-
+	$chmain_ri   = "";// เช็ค hospmain หรือ refer in
+	$chsub_ro    = ""; // เช็ค hospsub  หรือ refer out
 
 	$ckdatebegin =  strpos($sqlgethosxp, "{datepickers}");
 	if ($ckdatebegin !== false) {
@@ -121,6 +122,26 @@
 		$qselectroom = pg_query($conn, $selectroom);
 	}
 
+	$chmain_ri =  strpos($sqlgethosxp, "{hmain_referin}");
+	if ($chmain_ri !== false  ) {
+		$messageInput .= ' hospmain หรือ referin ';
+		$selecthmain_ri = "	SELECT hospcode,name from hospcode where chwpart = '25' and name  ~ 'โรงพยาบาล|คลินิก' ";
+		$selecthmain_ri2 = " SELECT hospcode FROM kskdepartment  where chwpart = '25' and name  ~ 'โรงพยาบาล|คลินิก' order by hospcode";// หากไม่เลือกให้แสดงทั้งหมด
+		$qselecthmain_ri = pg_query($conn, $selecthmain_ri);
+	}
+
+	$chsub_ro  =  strpos($sqlgethosxp, "{hsub_referout}");
+	if ($chsub_ro !== false  ) {
+		$messageInput .= ' hospsub หรือ referout ';
+		$selecthsub_ro = "SELECT hospcode,name from hospcode where chwpart = '25' and name  ~ 'โรงพยาบาล|คลินิก' ";
+		$selecthsub_ro2 = "SELECT hospcode FROM kskdepartment  where chwpart = '25' and name  ~ 'โรงพยาบาล|คลินิก' order by hospcode";// หากไม่เลือกให้แสดงทั้งหมด
+		$qselecthsub_ro = pg_query($conn, $selecthsub_ro);
+	}
+
+
+
+
+
 	function checkhavereplace($havereplace)
 	{
 		//function เช็คตัวแปรที่เก็บค่าว่ามีคำนั้นๆในข้อความหรือไม่และให้ disabled กับ required ปุ่ม
@@ -162,8 +183,10 @@
 		$multiplepttype = $_POST['pttype'];
 		$multipleSpclty = $_POST['spclty'];
 		$multipleward   = $_POST['ward'];
-		$multipledoctor   = $_POST['doctor'];
+		$multipledoctor = $_POST['doctor'];
 		$multipleroom   = $_POST['room'];
+		$multiplehmain  = $_POST['hmain'];
+		$multiplehsub   = $_POST['hsub'];
 
 		$sqlgethosxp = str_replace("{datepickers}", "'$datepickers'", $sqlgethosxp); // แทนค่า
 		$sqlgethosxp = str_replace("{datepickert}", "'$datepickert'", $sqlgethosxp); // แทนค่า
@@ -174,11 +197,14 @@
 		$sqlgethosxp = str_replace("{sicd10}", "'$starticd10'", $sqlgethosxp); 
 		$sqlgethosxp = str_replace("{eicd10}", "'$endicd10'", $sqlgethosxp); 
 
-		$sqlgethosxp = str_replace("{multiple_pttype}", cstring_multipleinput($multiplepttype,$selectpty2), $sqlgethosxp);
+		$sqlgethosxp = str_replace("{multiple_pttype}", cstring_multipleinput($multiplepttype,$selectpty2)   , $sqlgethosxp);
 		$sqlgethosxp = str_replace("{multiple_spclty}", cstring_multipleinput($multipleSpclty,$selectspclty2), $sqlgethosxp);
-		$sqlgethosxp = str_replace("{multiple_ward}"  , cstring_multipleinput($multipleward,$selectward2)  , $sqlgethosxp);
+		$sqlgethosxp = str_replace("{multiple_ward}"  , cstring_multipleinput($multipleward,$selectward2)    , $sqlgethosxp);
 		$sqlgethosxp = str_replace("{multiple_doctor}", cstring_multipleinput($multipledoctor,$selectdoctor2), $sqlgethosxp);
-		$sqlgethosxp = str_replace("{multiple_room}"  , cstring_multipleinput($multipleroom,$selectroom2)  , $sqlgethosxp);
+		$sqlgethosxp = str_replace("{multiple_room}"  , cstring_multipleinput($multipleroom,$selectroom2)    , $sqlgethosxp);
+
+		$sqlgethosxp = str_replace("{hmain_referin}"  , cstring_multipleinput($multiplehmain,$selecthmain_ri2) , $sqlgethosxp);
+		$sqlgethosxp = str_replace("{hsub_referout}"  , cstring_multipleinput($multiplehsub,$selecthsub_ro2)   , $sqlgethosxp);
 		$sql = $sqlgethosxp;// ไว้แสดงใน model SQL หลังจาก get ไปดึงค่าแล้ว post ให้ค่าเปลี่ยน
 		$result = pg_query($conn, $sqlgethosxp );
 	}
@@ -280,6 +306,30 @@
 												<option value="ALL">เลือกทั้งหมด</option>
 												<?php while ($datapdc = pg_fetch_assoc($qselectdoctor)) { ?>
 													<option value="<?php echo $datapdc['code']; ?>"><?php echo  $datapdc['code'] . ' : ' . $datapdc['name'] ?></option>
+												<?php } ?>
+											</select>
+										</div>
+									</div>
+
+									
+	
+									<div class="row mt-3">
+										<div class="col-lg-6 ">
+											<label for="hmain"> โปรดเลือกสถนาพยาบาลหลัก หากเป็น refer = refer in : </label>
+											<select class="js-example-basic-multiple form-control" name="hmain[]" data-search="true"   multiple="multiple" <?php checkhavereplace($chmain_ri ); ?>>
+												<option value="ALL">เลือกทั้งหมด</option>
+												<?php while ($datapty = pg_fetch_assoc($qselecthmain_ri)) { ?>
+													<option value="<?php echo $datapty['hospcode']; ?>"><?php echo  $datapty['hospcode'] . ' : ' . $datapty['name'] ?></option>
+												<?php } ?>
+											</select>
+										</div>
+
+										<div class="col-lg-6 ">
+											<label for="hsub">  โปรดเลือกสถนาพยาบาลรอง หากเป็น refer =  refer out  :  </label>
+											<select class="js-example-basic-multiple form-control" name="hsub[]" data-search="true"  multiple="multiple" <?php checkhavereplace($chsub_ro ); ?>>
+												<option value="ALL">เลือกทั้งหมด</option>
+												<?php while ($datapdc = pg_fetch_assoc($qselecthsub_ro)) { ?>
+													<option value="<?php echo $datapdc['hospcode']; ?>"><?php echo  $datapdc['hospcode'] . ' : ' . $datapdc['name'] ?></option>
 												<?php } ?>
 											</select>
 										</div>
