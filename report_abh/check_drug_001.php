@@ -131,8 +131,10 @@ $res = pg_query($sql);
 		 ,pt.name AS pttypename
 		 ,d.name AS doctorname
 		 ,CASE WHEN d.licenseno LIKE '%-%' THEN d.shortname ELSE d.licenseno END AS licenseno 
-     ,CONCAT(oo.icd10,' ',ioo.name) AS diag_opd
-    ,CONCAT(ii.icd10,' ',iii.name) AS diag_ipd
+     ,string_agg(oo.icd10 , ' | ')AS diag_opd
+	  ,string_agg(ii.icd10 , ' | ')AS diag_ipd
+    -- ,CONCAT(oo.icd10,' ',ioo.name) AS diag_opd
+    -- ,CONCAT(ii.icd10,' ',iii.name) AS diag_ipd
      from opitemrece op 
      LEFT JOIN medreturn_ipd m ON op.hos_guid = m.opi_guid AND m.return_qty > 0 AND m.confirm_return = 'Y' 
      LEFT JOIN patient pa ON pa.hn = op.hn 
@@ -156,6 +158,24 @@ $res = pg_query($sql);
     WHERE o.icode = d.icode AND o.rxdate BETWEEN '$stdate' AND '$endate' 
 		GROUP BY dname 
 		ORDER BY dname)) AND d.code NOT IN(SELECT code FROM doctor WHERE LOWER(name) LIKE '%bms%') AND op.hn NOT IN(SELECT hn FROM patient WHERE LOWER(fname) LIKE '%ทดสอบ%')
+    GROUP BY op.an
+			,op.vstdate
+		 ,op.rxdate
+		 ,op.rxtime
+		 ,op.icode
+		 ,drug
+	 	 ,op.hn
+		 ,op.vn
+		 ,op.an
+		 ,pa.pname,pa.fname,pa.lname
+		 ,pa.cid
+		 ,pa.birthday
+		 ,op.finance_number,op.qty,m.return_qty
+     ,pa.addrpart,t.full_name
+		 ,a.admdate
+		 ,pttypename
+		 ,doctorname
+     ,d.licenseno,d.shortname,d.licenseno
     ORDER BY drug,op.rxdate,op.rxtime ";
         $result = pg_query($sql_detail);
       //  echo $sql_detail;
