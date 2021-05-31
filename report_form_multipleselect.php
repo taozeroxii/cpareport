@@ -76,7 +76,7 @@
 		$messageInput .= ' รหัสโรคเริ่มต้น ';
 	}
 
-	$ckeicd10  =  strpos($sqlgethosxp, "{sicd10}");
+	$ckeicd10  =  strpos($sqlgethosxp, "{eicd10}");
 	if ($ckeicd10   !== false) {
 		$messageInput .= ' รหัสโรคเริ่มสิ้นสุด ';
 	}
