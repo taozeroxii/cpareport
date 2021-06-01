@@ -59,7 +59,7 @@ if (isset($_SESSION['username']) != "" || isset($_SESSION['username']) != null) 
           </a>
           <? //echo $insertlog.' '.$ud;
           ?>
-            <a href="http://172.16.0.251:81/" class="sidebar-toggle" role="button">  Report New Version </a>
+            <a style="   color: yellow;text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;" href="http://172.16.0.251:81/" class="sidebar-toggle" role="button">  Report ตัวทดสอบเวอร์ชั่นใหม่ คลิ๊ก !!</a>
         </div>
 
         <ul class="nav navbar-nav navbar-right">
