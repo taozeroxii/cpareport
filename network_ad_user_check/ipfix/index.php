@@ -35,11 +35,12 @@ $today =  date('Y-m-d H:i:s');
 <body>
     <div class="w3-container w3-teal">
         <h1>IP Addess Fix Cpa Hospital.
-            <button data-toggle="modal" data-target="#myModal" class="btn btn-dark "><b> Vlan Help Zone NetWork</b> </button>
+            <button data-toggle="modal" data-target="#myModal" class="btn btn-dark "><b>VLAN CHECK Gatway Subnet DNS</b> </button>
             <form method='GET' action='index.php'>
                 <button class="btn btn-warning" name="vlan" type="submit" value=""><b> main </b> </button>
                 <button class="btn btn-warning" name="vlan" type="submit" value="0','1','2','4','5','8,','20','21','22','24','25','26','27','28','29','31','32','36','43','44','76','80','50"><b> All </b> </button>
                 <button class="btn btn-warning" name="vlan" type="submit" value="170"><b> Public </b> </button>
+                <button class="btn btn-danger" name="vlan" type="submit" value="serv"><b> Server </b> </button>
                 <button class="btn btn-warning" name="vlan" type="submit" value="8','14"><b> Other </b> </button>
                 <button class="btn btn-warning" name="vlan" type="submit" value="76"><b> Wifi 76 </b> </button>
                 <button class="btn btn-warning" name="vlan" type="submit" value="vpn"><b>Clinic 304 </b> </button>
@@ -78,7 +79,8 @@ $today =  date('Y-m-d H:i:s');
        } else {
         $vlan = " vlan in ('$nullvlan') ";
       }
-     $vlan = $vlan;
+      
+    $vlan = $vlan;
     $query = " SELECT * 
                FROM network_ipfix_zone 
                WHERE $vlan 
@@ -133,6 +135,9 @@ $today =  date('Y-m-d H:i:s');
         padding: 1%;
         font-weight: bold;
     }
+    .fo{
+        color: #000;
+    }
 </style>
 
 <div id="myModal" class="modal fade">
@@ -140,75 +145,39 @@ $today =  date('Y-m-d H:i:s');
         <div class="modal-content">
             <div class="modal-header">
                 <!-- <button type="button" class="close" data-dismiss="modal">&times;</button> -->
-                <h4 class="modal-title">VLAN ZONE CHECK</h4>
-            </div>
+                <h4 class="modal-title">VLAN CHECK Gatway Subnet DNS</h4>
+            </div>         
+<?php
+            $sql1 = " SELECT * FROM network_vlan_subnet ";
+    $sql_row = mysqli_query($connect, $sql1);
+?>
             <div class="modal-body" id="">
-                <table class="tt">
-                    <tr class="ttr">
-                        <td>V2020</td>
-                        <td>20</td>
-                        <td>อาคารเฉลิมพระเกียรติฯ</td>
-                    </tr>
-                    <tr class="ttr">
-                        <td>V2022 </td>
-                        <td>22</td>
-                        <td>อาคารชวนโปรดทิพย์</td>
-                    </tr>
-                    <tr class="ttr">
-                        <td>V2024</td>
-                        <td>24</td>
-                        <td>อาคารสุวัทนา</td>
-                    </tr>
-                    <tr class="ttr">
-                        <td>V2025</td>
-                        <td>25</td>
-                        <td>อาคาร สูติกรรมพิเศษ 114เตียง</td>
-                    </tr>
-                    <tr class="ttr">
-                        <td>V2026 </td>
-                        <td>26</td>
-                        <td>อาคารแผนไทย</td>
-                    </tr>
-                    <tr class="ttr">
-                        <td>V2027 </td>
-                        <td>27</td>
-                        <td>อาคารอาชีวะ อาชีวเวชกรรม</td>
-                    </tr>
-                    <tr class="ttr">
-                        <td>V2028 </td>
-                        <td>28</td>
-                        <td>อาคาร 75 ปี</td>
-                    </tr>
-                    <tr class="ttr">
-                        <td> V2029 </td>
-                        <td>29</td>
-                        <td></td>
-                    </tr>
-                    <tr class="ttr">
-                        <td> V2031 </td>
-                        <td>31</td>
-                        <td></td>
-                    </tr>
-                    <tr class="ttr">
-                        <td> V2032 </td>
-                        <td>32</td>
-                        <td>อาคารอุติเหตุฉุกเฉิน</td>
-                    </tr>
-                    <tr class="ttr">
-                        <td> V2036 </td>
-                        <td>36</td>
-                        <td></td>
-                    </tr>
-                    <tr class="ttr">
-                        <td> V2043 </td>
-                        <td>43</td>
-                        <td></td>
-                    </tr>
-                    <tr class="ttr">
-                        <td> V2044</td>
-                        <td>44</td>
-                        <td>อาคาร สูติกรรมเก่า เพชรัตน์-สุวัทนา</td>
-                    </tr>
+                <table class="tt">  
+                <tr>
+  <td class="bg-warning text-center ttr">Vlan<td>
+  <td class="bg-warning text-center ttr">Gateway<td>
+  <td class="bg-warning text-center ttr">Subnet<td>
+  <td class="bg-warning text-center ttr">DNS1<td>
+  <!-- <td class="bg-warning text-center ttr">DNS2<td> -->
+  <!-- <td class="bg-warning text-center ttr">Type<td> -->
+</tr>          
+                    <?php
+            while ($row_sub = mysqli_fetch_array($sql_row)) {
+                ?>
+             
+             <?php // echo "Gateway : ".$row_sub['gateway']." | "."Subnet : ".$row_sub['subnet']." | DNS : ".$row_sub['dns1']; ?>
+<tr>
+  <td class="bg-info text-center fo ttr"><?php echo $row_sub['vlan']; ?><td>
+  <td class="bg-info text-center fo ttr"><?php echo $row_sub['gateway']; ?><td>
+  <td class="bg-info text-center fo ttr"><?php echo $row_sub['subnet']; ?><td>
+  <td class="bg-info text-center fo ttr"><?php echo $row_sub['dns1']; ?><td>
+  <!-- <td class="bg-info text-center fo ttr"><?php //echo $row_sub['dns2']; ?><td> -->
+  <!-- <td class="bg-info text-center fo ttr"><?php //echo $row_sub['iptype']; ?><td> -->
+</tr>
+                  
+<?php   
+            }
+            ?>              
                 </table>
             </div>
             <div class="modal-footer">
