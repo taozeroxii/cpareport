@@ -72,14 +72,14 @@ $today =  date('Y-m-d H:i:s');
 
     <br>
     <?php
-     $vlangroup =  $_GET['vlan'];
-     $nullvlan = "20";
+    $vlangroup =  $_GET['vlan'];
+    $nullvlan = "20";
     if ($vlangroup != "") {
-        $vlan = " vlan in ('$vlangroup') "; 
-       } else {
+        $vlan = " vlan in ('$vlangroup') ";
+    } else {
         $vlan = " vlan in ('$nullvlan') ";
-      }
-      
+    }
+
     $vlan = $vlan;
     $query = " SELECT * 
                FROM network_ipfix_zone 
@@ -101,7 +101,7 @@ $today =  date('Y-m-d H:i:s');
                     <button title="<?php echo $row["ipaddess"]; ?> ว่าง ใช้งานได้ " name="edit" value="<?php echo $row["id"]; ?>" id="<?php echo $row["id"]; ?>" class="btn btn-primary  edit_data col-1 bb"> <?php echo $row["ipaddess"]; ?></button>
                     <!-- </div> -->
                 <?php
-                } else  {
+                } else {
                 ?>
                     <!-- <div class="col-2 bb"> -->
                     <button title="<?php echo $row["ipaddess"]; ?> มีคนครอบครอง" name="view" value="<?php echo $row["id"]; ?>" id="<?php echo $row["id"]; ?>" class="btn btn-danger  view_data col-1 bb "> <?php echo $row["ipaddess"]; ?></button>
@@ -127,6 +127,7 @@ $today =  date('Y-m-d H:i:s');
         display: table;
 
         width: 100%;
+        
     }
 
     .ttr {
@@ -135,53 +136,73 @@ $today =  date('Y-m-d H:i:s');
         padding: 1%;
         font-weight: bold;
     }
-    .fo{
+
+    .fo {
         color: #000;
     }
 </style>
 
 <div id="myModal" class="modal fade">
-    <div class="modal-dialog">
+    <div class="modal-dialog modal-xl">
         <div class="modal-content">
             <div class="modal-header">
                 <!-- <button type="button" class="close" data-dismiss="modal">&times;</button> -->
-                <h4 class="modal-title">VLAN CHECK Gatway Subnet DNS</h4>
-            </div>         
-<?php
+                <h4 class="modal-title">Data VLAN CHECK Gatway Subnet DNS</h4>
+            </div>
+            <?php
             $sql1 = " SELECT * FROM network_vlan_subnet ";
-    $sql_row = mysqli_query($connect, $sql1);
-?>
+            $sql_row = mysqli_query($connect, $sql1);
+            ?>
             <div class="modal-body" id="">
-                <table class="tt">  
-                <tr>
-  <td class="bg-warning text-center ttr">Vlan<td>
-  <td class="bg-warning text-center ttr">Gateway<td>
-  <td class="bg-warning text-center ttr">Subnet<td>
-  <td class="bg-warning text-center ttr">DNS1<td>
-  <!-- <td class="bg-warning text-center ttr">DNS2<td> -->
-  <!-- <td class="bg-warning text-center ttr">Type<td> -->
-</tr>          
+                <table class="tt">
+                    <tr>
+                        <td class="bg-warning text-center ttr">location
+                        <td>
+                        <td class="bg-warning text-center ttr">Vlan
+                        <td>
+                        <td class="bg-warning text-center ttr">IP
+                        <td>
+                        <td class="bg-warning text-center ttr">Gateway
+                        <td>
+                        <td class="bg-warning text-center ttr">Subnet
+                        <td>
+                        <td class="bg-warning text-center ttr">DNS1
+                        <td>
+                            <!-- <td class="bg-warning text-center ttr">DNS2<td> -->
+                            <!-- <td class="bg-warning text-center ttr">Type<td> -->
+                    </tr>
                     <?php
-            while ($row_sub = mysqli_fetch_array($sql_row)) {
-                ?>
-             
-             <?php // echo "Gateway : ".$row_sub['gateway']." | "."Subnet : ".$row_sub['subnet']." | DNS : ".$row_sub['dns1']; ?>
-<tr>
-  <td class="bg-info text-center fo ttr"><?php echo $row_sub['vlan']; ?><td>
-  <td class="bg-info text-center fo ttr"><?php echo $row_sub['gateway']; ?><td>
-  <td class="bg-info text-center fo ttr"><?php echo $row_sub['subnet']; ?><td>
-  <td class="bg-info text-center fo ttr"><?php echo $row_sub['dns1']; ?><td>
-  <!-- <td class="bg-info text-center fo ttr"><?php //echo $row_sub['dns2']; ?><td> -->
-  <!-- <td class="bg-info text-center fo ttr"><?php //echo $row_sub['iptype']; ?><td> -->
-</tr>
-                  
-<?php   
-            }
-            ?>              
+                    while ($row_sub = mysqli_fetch_array($sql_row)) {
+                    ?>
+
+                        <?php // echo "Gateway : ".$row_sub['gateway']." | "."Subnet : ".$row_sub['subnet']." | DNS : ".$row_sub['dns1']; 
+                        ?>
+                        <tr>
+                            <td class="bg-info text-left fo ttr"><?php echo $row_sub['location']; ?>
+                            <td>
+                            <td class="bg-info text-center fo ttr"><?php echo $row_sub['vlan']; ?>
+                            <td>
+                            <td class="bg-info text-center fo ttr"><?php echo $row_sub['ip']; ?>
+                            <td>
+                            <td class="bg-info text-center fo ttr"><?php echo $row_sub['gateway']; ?>
+                            <td>
+                            <td class="bg-info text-center fo ttr"><?php echo $row_sub['subnet']; ?>
+                            <td>
+                            <td class="bg-info text-center fo ttr" title="DNS1 Default 172.16.0.62 | DNS2 Fix Random 1 IP [1.1.1.1 | 8.8.8.8 | 8.8.4.4]"><?php echo $row_sub['dns1']." | 1.1.1.1"; ?>
+                            <td>
+                                <!-- <td class="bg-info text-center fo ttr"><?php //echo $row_sub['dns2']; 
+                                                                            ?><td> -->
+                                <!-- <td class="bg-info text-center fo ttr"><?php //echo $row_sub['iptype']; 
+                                                                            ?><td> -->
+                        </tr>
+
+                    <?php
+                    }
+                    ?>
                 </table>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-danger btn-block" data-dismiss="modal">Close</button>
             </div>
         </div>
     </div>
