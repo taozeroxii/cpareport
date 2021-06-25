@@ -31,15 +31,21 @@
                 width: 100%;
                 float: left;
             }
-            .print p{
-               font-size: 16px;
+
+            .print p {
+                font-size: 16px;
             }
-            .modal-backdrop { display: none;}
+
+            .modal-backdrop {
+                display: none;
+            }
+
             body {
                 background: white;
             }
         }
-        .ccik:hover{
+
+        .ccik:hover {
             cursor: pointer;
             color: blue;
             font-weight: bold;
@@ -210,8 +216,8 @@
                                     <td><?php echo $result['spclty']; ?> </td>
                                     <td style="text-align:center;"><?php echo $result['it_getrequest']; ?> </td>
                                     <td class="<?php if (($result['status'] == 'waiting')) {
-                                                        echo 'fontstatusa';
-                                                    } else echo 'fontstatusb'; ?>" style="text-align:center;"><?php echo $result['status']; ?> </td>
+                                                    echo 'fontstatusa';
+                                                } else echo 'fontstatusb'; ?>" style="text-align:center;"><?php echo $result['status']; ?> </td>
                                     <td style="text-align:center;"><?php echo $result['insertdate_time']; ?> </td>
                                     <td style="text-align:center;"><?php echo $result['enddate_time']; ?> </td>
                                     <? if ($_SESSION['status'] == '1') { ?>
@@ -221,15 +227,15 @@
                                     <? } ?>
                                 </tr>
                                 <script>
-            // eaktamp
-function myFunction() {
-  var copyText = document.getElementById("myInput");
-  copyText.select();
-  copyText.setSelectionRange(0, 99999)
-  document.execCommand("copy");
- // alert("Copied the text: " + copyText.value);
-}
-</script>
+                                    // eaktamp
+                                    function myFunction() {
+                                        var copyText = document.getElementById("myInput");
+                                        copyText.select();
+                                        copyText.setSelectionRange(0, 99999)
+                                        document.execCommand("copy");
+                                        // alert("Copied the text: " + copyText.value);
+                                    }
+                                </script>
                             <?php } ?>
                         <tbody>
                     </table>
@@ -237,7 +243,7 @@ function myFunction() {
             </div>
         </div>
 
- 
+
 
         <? foreach ($query as $item) { ?>
             <!--///////////////////////////////////////////// Modal close job  ///////////////////////////////////////////////////////-->
@@ -257,8 +263,8 @@ function myFunction() {
                                 <p>วันที่แจ้ง : <?php echo $begin = $item['insertdate_time']; ?>&nbsp;&nbsp;&nbsp; วันที่เริ่มงาน : <?php echo $item['first_day_in_job']; ?></p>
 
                                 <p>ชื่อ-นามสกุล :<?php echo $userregis =  $item['pname'] . $item['fname'] . '    ' . $item['lname']; ?>&nbsp;&nbsp;&nbsp;เพศ : <?php echo $item['gender']; ?></p>
-                                <p>ชื่อภาษาอังกฤษ : <?php echo $item['engfullname'];?></p>
-                                <p>Cid :  <input class="ccik" type="text" value="<?php echo $item['cid']; ?>" id="myInput" onclick="myFunction()" title="ดับเบิ้ลคลิก = copy"> </p>
+                                <p>ชื่อภาษาอังกฤษ : <?php echo $item['engfullname']; ?></p>
+                                <p>Cid : <input class="ccik" type="text" value="<?php echo $item['cid']; ?>" id="myInput" onclick="myFunction()" title="ดับเบิ้ลคลิก = copy"> </p>
                                 <p>ปีเกิด : <?php echo $item['birthday']; ?> </p>
                                 <p>เลขที่ใบประกอบวิชาชีพ : <?php echo $item['doctor_cert']; ?> </p>
                                 <p>วันที่ได้รับอนุญาต : <?php echo $item['accepcert']; ?> </p>
@@ -267,13 +273,261 @@ function myFunction() {
                                 <p>แผนก : <?php echo $item['spclty']; ?> </p>
                                 <p>เฉพาะทาง : <?php echo $item['speciality']; ?> </p>
                                 <p>Providertype : <?php echo $item['providertype']; ?> </p>
-                                <p>e-mail : <?php echo $item['emailaddress']; ?> &nbsp;&nbsp;&nbsp;โทรศัพท์ : <?php echo $item['mobilenumber']; ?>  </p>
+                                <p>e-mail : <?php echo $item['emailaddress']; ?> &nbsp;&nbsp;&nbsp;โทรศัพท์ : <?php echo $item['mobilenumber']; ?> </p>
                                 <p>user : <?php echo $item['username']; ?>&nbsp;&nbsp;&nbsp; password : <?php echo $item['password']; ?></p>
                                 <p>หมายเหตุ : <?php echo $item['note']; ?> </p>
-                                <p>เบอร์ภายใน : <?php echo $item['phone_internal']; ?> </p>
-                                 <?php if($item['it_getrequest'] != null){ ?><p>ผู้ดำเนินการ : <?php echo $item['it_getrequest']; ?> </p><?}?>
+                                <p>เบอร์ภายใน : <?php echo $item['phone_internal']; ?></p>
+                                <?php if ($item['it_getrequest'] != null) { ?>
+                                    <p>ผู้ดำเนินการ : <?php echo $item['it_getrequest']; ?> </p>
+                                <? } else { ?>
+                                    <?php
+                                    $SQLc = "";
+                                    $SQLv = "";
+                                    if ($item['first_day_in_job'] != null) {
+                                        if ($SQLc != "") {
+                                            $SQLc += "," . "start_date";
+                                        } else {
+                                            $SQLc += "start_date";
+                                        }
+                                        if ($SQLv != "") {
+                                            $SQLv += "," . $item['first_day_in_job'];
+                                        } else {
+                                            $SQLv += $item['first_day_in_job'];
+                                        }
+                                    }
+                                    if ($item['sex'] != null) {
+                                        if ($SQLc != "") {
+                                            $SQLc += "," . "sex";
+                                        } else {
+                                            $SQLc += "sex";
+                                        }
+                                        if ($SQLv != "") {
+                                            $SQLv += "," . $item['gender'] = "ชาย" ? "1" : "2";
+                                        } else {
+                                            $SQLv += $item['gender'] = "ชาย " ? "1" : "2";
+                                        }
+                                    }
+                                    if ($item['pname'] != null || $item['fname'] != null || $item['lname'] != null) {
+                                        if ($SQLc != "") {
+                                            $SQLc += "," . "name";
+                                        } else {
+                                            $SQLc += "name";
+                                        }
+                                        if ($SQLv != "") {
+                                            $SQLv += "," . $item['pname'] . $item['fname'] . ' ' . $item['lname'];
+                                        } else {
+                                            $SQLv += $item['pname'] . $item['fname'] . ' ' . $item['lname'];
+                                        }
+                                    }
+                                    if ($item['pname'] != null) {
+                                        if ($SQLc != "") {
+                                            $SQLc += "," . "pname";
+                                        } else {
+                                            $SQLc += "pname";
+                                        }
+                                        if ($SQLv != "") {
+                                            $SQLv += "," . $item['pname'];
+                                        } else {
+                                            $SQLv += $item['pname'];
+                                        }
+                                    }
+                                    if ($item['fname'] != null) {
+                                        if ($SQLc != "") {
+                                            $SQLc += "," . "fname";
+                                        } else {
+                                            $SQLc += "fname";
+                                        }
+                                        if ($SQLv != "") {
+                                            $SQLv += "," . $item['fname'];
+                                        } else {
+                                            $SQLv += $item['fname'];
+                                        }
+                                    }
+                                    if ($item['lname'] != null) {
+                                        if ($SQLc != "") {
+                                            $SQLc += "," . "lname";
+                                        } else {
+                                            $SQLc += "lname";
+                                        }
+                                        if ($SQLv != "") {
+                                            $SQLv += "," . $item['lname'];
+                                        } else {
+                                            $SQLv += $item['lname'];
+                                        }
+                                    }
+                                    if ($item['engfullname'] != null) {
+                                        if ($SQLc != "") {
+                                            $SQLc += "," . "ename";
+                                        } else {
+                                            $SQLc += "ename";
+                                        }
+                                        if ($SQLv != "") {
+                                            $SQLv += "," . $item['engfullname'];
+                                        } else {
+                                            $SQLv += $item['engfullname'];
+                                        }
+                                    }
+                                    if ($item['cid'] != null) {
+                                        if ($SQLc != "") {
+                                            $SQLc += "," . "cid";
+                                        } else {
+                                            $SQLc += "cid";
+                                        }
+                                        if ($SQLv != "") {
+                                            $SQLv += "," . $item['cid'];
+                                        } else {
+                                            $SQLv += $item['cid'];
+                                        }
+                                    }
+                                    if ($item['birthday'] != null) {
+                                        if ($SQLc != "") {
+                                            $SQLc += "," . "birth_date";
+                                        } else {
+                                            $SQLc += "birth_date";
+                                        }
+                                        if ($SQLv != "") {
+                                            $SQLv += "," . $item['birthday'];
+                                        } else {
+                                            $SQLv += $item['birthday'];
+                                        }
+                                    }
+                                    if ($item['doctor_cert'] != null) {
+                                        if ($SQLc != "") {
+                                            $SQLc += "," . "shortname" . "," . "licenseno";
+                                        } else {
+                                            $SQLc += "shortname" . "," . "licenseno";
+                                        }
+                                        if ($SQLv != "") {
+                                            $SQLv += "," . $item['doctor_cert'] . "," . $item['doctor_cert'];
+                                        } else {
+                                            $SQLv += $item['doctor_cert'] . "," . $item['doctor_cert'];
+                                        }
+                                    }
+                                    if ($item['accepcert'] != null) {
+                                        if ($SQLc != "") {
+                                            $SQLc += "," . "license_issue_date";
+                                        } else {
+                                            $SQLc += "license_issue_date";
+                                        }
+                                        if ($SQLv != "") {
+                                            $SQLv += "," . $item['accepcert'];
+                                        } else {
+                                            $SQLv += $item['accepcert'];
+                                        }
+                                    }
+                                    if ($item['expirecert'] != null) {
+                                        if ($SQLc != "") {
+                                            $SQLc += "," . "license_expire_date";
+                                        } else {
+                                            $SQLc += "license_expire_date";
+                                        }
+                                        if ($SQLv != "") {
+                                            $SQLv += "," . $item['expirecert'];
+                                        } else {
+                                            $SQLv += $item['expirecert'];
+                                        }
+                                    }
+
+                                    $doctorposition = " SELECT * FROM frm_res_doctorposition ORDER BY position_name";
+                                    $doctorpositions = mysqli_query($con, $doctorposition);
+                                    $spclty = " SELECT * FROM frm_res_spclty order by frm_res_id";
+                                    $spcltys = mysqli_query($con, $spclty);
+                                    $doctor_department = " SELECT * FROM doctor_department ";
+                                    $doctor_departments = pg_query($conn, $doctor_department);
+                                    $providertype = " SELECT * FROM provider_type";
+                                    $providertypes = pg_query($conn, $providertype);
+
+                                    if ($item['jobclass'] != null) {
+                                        while ($Result = mysqli_fetch_assoc($doctorpositions)) {
+                                            if ($Result['position_name'] == $item['jobclass']) {
+                                                if ($SQLc != "") {
+                                                    $SQLc += "," . "position_id";
+                                                } else {
+                                                    $SQLc += "position_id";
+                                                }
+                                                if ($SQLv != "") {
+                                                    $SQLv += "," . $Result['id'];
+                                                } else {
+                                                    $SQLv += $Result['id'];
+                                                }
+                                                break;
+                                            }
+                                        }
+                                    }
+                                    if ($item['spclty'] != null) {
+                                        while ($Result = mysqli_fetch_assoc($spcltys)) {
+                                            if ($Result['frm_res_spclty'] == $item['spclty']) {
+                                                if ($SQLc != "") {
+                                                    $SQLc += "," . "spclty";
+                                                } else {
+                                                    $SQLc += "spclty";
+                                                }
+                                                if ($SQLv != "") {
+                                                    $SQLv += "," . $Result['frm_res_id'];
+                                                } else {
+                                                    $SQLv += $Result['frm_res_id'];
+                                                }
+                                                break;
+                                            }
+                                        }
+                                    }
+                                    if ($item['speciality'] != null) {
+                                        while ($Result = pg_fetch_assoc($doctor_departments)) {
+                                            if ($Result['doctor_department_name'] == $item['speciality']) {
+                                                if ($SQLc != "") {
+                                                    $SQLc += "," . "doctor_department_id";
+                                                } else {
+                                                    $SQLc += "doctor_department_id";
+                                                }
+                                                if ($SQLv != "") {
+                                                    $SQLv += "," . $Result['doctor_department_id'];
+                                                } else {
+                                                    $SQLv += $Result['doctor_department_id'];
+                                                }
+                                                break;
+                                            }
+                                        }
+                                    }
+                                    if ($item['providertype'] != null) {
+                                        while ($Result = pg_fetch_assoc($doctor_departments)) {
+                                            if ($Result['provider_type_name'] == $item['providertype']) {
+                                                if ($SQLc != "") {
+                                                    $SQLc += "," . "provider_type_code";
+                                                } else {
+                                                    $SQLc += "provider_type_code";
+                                                }
+                                                if ($SQLv != "") {
+                                                    $SQLv += "," . $Result['provider_type_code'];
+                                                } else {
+                                                    $SQLv += $Result['provider_type_code'];
+                                                }
+                                                break;
+                                            }
+                                        }
+                                    }
+
+
+                                    while ($Result = pg_fetch_assoc($providertypes)) {
+                                        $Result['position_name'];
+                                    }
+                                    if ($SQLc != "") {
+                                        $SQLc += "," . "active";
+                                    } else {
+                                        $SQLc += "active";
+                                    }
+                                    if ($SQLv != "") {
+                                        $SQLv += "," . "Y";
+                                    } else {
+                                        $SQLv += "Y";
+                                    }
+                                    $SQL = "INSERT INTO doctor (" . $SQLc . ") VALUES (" . $SQLv . ");"
+                                    ?>
+
+                                    <p>SQL : <?php echo $SQL; ?></p>
+                                <? } ?>
+
                             </div>
-                            <?php if($item['it_getrequest'] == null){ ?>
+                            <?php if ($item['it_getrequest'] == null) { ?>
                                 <div class="nonprint">
                                     <hr>
                                     <h4 class="modal-title">ข้อมูลเพิ่มเติม</h4>
@@ -298,27 +552,29 @@ function myFunction() {
                                             </div>
                                         </div>
                                 </div>
-                            <?}?>
+                            <? } ?>
                         </div>
 
                         <div class="nonprint">
                             <div class="modal-footer">
                                 <?php
-                                    date_default_timezone_set("Asia/Bangkok"); //ตั้งโซนเวลา
-                                    $month = date('m');
-                                    $day = date('d');
-                                    $year = (date('Y')+543);
-                                    $TIME = date("H:i:s");   //date("h:i:s a"); แบบมีpm am
-                                    $today =  $day . '/'. $month . '/' . $year  .  '  ' . $TIME;
-                                    ?>
+                                date_default_timezone_set("Asia/Bangkok"); //ตั้งโซนเวลา
+                                $month = date('m');
+                                $day = date('d');
+                                $year = (date('Y') + 543);
+                                $TIME = date("H:i:s");   //date("h:i:s a"); แบบมีpm am
+                                $today =  $day . '/' . $month . '/' . $year  .  '  ' . $TIME;
+                                ?>
                                 <input type="hidden" name="status" value="done">
                                 <input type="hidden" name="userregis" value="<? echo $userregis; ?>">
                                 <input type="hidden" name="idform" value="<? echo $item['id']; ?>">
                                 <input type="hidden" name="enddate_time" value="<?php echo $today ?>">
                                 <input type="hidden" name="begindate" value="<?php echo $begin ?>">
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">ปิด</button>
-                                <?php if($item['it_getrequest'] != null){ ?><input type="button" class="btn btn-success" value="Print" target="_blank" onclick="window.print()"><?}?>
-                                <input type="submit" name="closejob" class="btn btn-primary"  <?php if($item['it_getrequest'] != null){echo 'value="ดำเนินการแล้ว"'.'disabled';} else echo 'value="บันทึก"' ?>>
+                                <?php if ($item['it_getrequest'] != null) { ?><input type="button" class="btn btn-success" value="Print" target="_blank" onclick="window.print()"><? } ?>
+                                <input type="submit" name="closejob" class="btn btn-primary" <?php if ($item['it_getrequest'] != null) {
+                                                                                                    echo 'value="ดำเนินการแล้ว"' . 'disabled';
+                                                                                                } else echo 'value="บันทึก"' ?>>
                             </div>
                             </form>
                         </div>
@@ -399,8 +655,6 @@ function myFunction() {
             });
 
         });
-
-
     </script>
 
 
