@@ -422,7 +422,7 @@
 
                     <div class="col-sm-3">
                           <span class="nameofinput">เบอร์ติดต่อภายใน</span>
-                          <input class="form-control" type="text" placeholder="๊2000" name="phoneinternal">
+                          <input class="form-control" type="text" placeholder="xxxx" name="phoneinternal">
                         </div>
                   </div>
                 </div>
