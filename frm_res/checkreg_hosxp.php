@@ -235,6 +235,14 @@
                                         document.execCommand("copy");
                                         // alert("Copied the text: " + copyText.value);
                                     }
+
+                                    function myFunctionCopy() {
+                                        var copyText = document.getElementById("SQL");
+                                        copyText.select();
+                                        copyText.setSelectionRange(0, 99999)
+                                        document.execCommand("copy");
+                                        // alert("Copied the text: " + copyText.value);
+                                    }
                                 </script>
                             <?php } ?>
                         <tbody>
@@ -277,155 +285,71 @@
                                 <p>user : <?php echo $item['username']; ?>&nbsp;&nbsp;&nbsp; password : <?php echo $item['password']; ?></p>
                                 <p>หมายเหตุ : <?php echo $item['note']; ?> </p>
                                 <p>เบอร์ภายใน : <?php echo $item['phone_internal']; ?></p>
+
                                 <?php if ($item['it_getrequest'] != null) { ?>
                                     <p>ผู้ดำเนินการ : <?php echo $item['it_getrequest']; ?> </p>
                                 <? } else { ?>
                                     <?php
-                                    $SQLc = "";
-                                    $SQLv = "";
+
+                                    $SQLc = "code";
+                                    $SQLv = "SELECT CAST((SELECT CAST(MAX(code)AS int)+1 FROM doctor limit 1) AS varchar)";
+
                                     if ($item['first_day_in_job'] != null) {
-                                        if ($SQLc != "") {
-                                            $SQLc += "," . "start_date";
-                                        } else {
-                                            $SQLc += "start_date";
-                                        }
-                                        if ($SQLv != "") {
-                                            $SQLv += "," . $item['first_day_in_job'];
-                                        } else {
-                                            $SQLv += $item['first_day_in_job'];
-                                        }
+                                        list($day, $month, $year) = explode('/', $item['first_day_in_job']);
+                                        $dateitem = "'" . ($year - 543) . "-" . $month . "-" . $day . "'";
+                                        $SQLc = $SQLc . ",start_date";
+                                        $SQLv = $SQLv . "," . $dateitem;
                                     }
-                                    if ($item['sex'] != null) {
-                                        if ($SQLc != "") {
-                                            $SQLc += "," . "sex";
-                                        } else {
-                                            $SQLc += "sex";
-                                        }
-                                        if ($SQLv != "") {
-                                            $SQLv += "," . $item['gender'] = "ชาย" ? "1" : "2";
-                                        } else {
-                                            $SQLv += $item['gender'] = "ชาย " ? "1" : "2";
-                                        }
+
+                                    if ($item['gender'] != null) {
+                                        $SQLc = $SQLc . ",sex";
+                                        $SQLv = $SQLv . "," . $item['gender'] == 'ชาย' ? "'1'" : "'2'";
                                     }
                                     if ($item['pname'] != null || $item['fname'] != null || $item['lname'] != null) {
-                                        if ($SQLc != "") {
-                                            $SQLc += "," . "name";
-                                        } else {
-                                            $SQLc += "name";
-                                        }
-                                        if ($SQLv != "") {
-                                            $SQLv += "," . $item['pname'] . $item['fname'] . ' ' . $item['lname'];
-                                        } else {
-                                            $SQLv += $item['pname'] . $item['fname'] . ' ' . $item['lname'];
-                                        }
+                                        $SQLc = $SQLc . ",name";
+                                        $SQLv = $SQLv . ",'" . $item['pname'] . $item['fname'] . ' ' . $item['lname'] . "'";
                                     }
                                     if ($item['pname'] != null) {
-                                        if ($SQLc != "") {
-                                            $SQLc += "," . "pname";
-                                        } else {
-                                            $SQLc += "pname";
-                                        }
-                                        if ($SQLv != "") {
-                                            $SQLv += "," . $item['pname'];
-                                        } else {
-                                            $SQLv += $item['pname'];
-                                        }
+                                        $SQLc = $SQLc . ",pname";
+                                        $SQLv = $SQLv . "," .  "'" . $item['pname'] . "'";
                                     }
                                     if ($item['fname'] != null) {
-                                        if ($SQLc != "") {
-                                            $SQLc += "," . "fname";
-                                        } else {
-                                            $SQLc += "fname";
-                                        }
-                                        if ($SQLv != "") {
-                                            $SQLv += "," . $item['fname'];
-                                        } else {
-                                            $SQLv += $item['fname'];
-                                        }
+                                        $SQLc = $SQLc . ",fname";
+                                        $SQLv = $SQLv . ",'" . $item['fname'] . "'";
                                     }
                                     if ($item['lname'] != null) {
-                                        if ($SQLc != "") {
-                                            $SQLc += "," . "lname";
-                                        } else {
-                                            $SQLc += "lname";
-                                        }
-                                        if ($SQLv != "") {
-                                            $SQLv += "," . $item['lname'];
-                                        } else {
-                                            $SQLv += $item['lname'];
-                                        }
+                                        $SQLc = $SQLc . ",lname";
+                                        $SQLv = $SQLv . "," .  "'" . $item['lname'] . "'";
                                     }
                                     if ($item['engfullname'] != null) {
-                                        if ($SQLc != "") {
-                                            $SQLc += "," . "ename";
-                                        } else {
-                                            $SQLc += "ename";
-                                        }
-                                        if ($SQLv != "") {
-                                            $SQLv += "," . $item['engfullname'];
-                                        } else {
-                                            $SQLv += $item['engfullname'];
-                                        }
+                                        $SQLc = $SQLc . ",ename";
+                                        $SQLv = $SQLv . "," .  "'" . $item['engfullname'] . "'";
                                     }
                                     if ($item['cid'] != null) {
-                                        if ($SQLc != "") {
-                                            $SQLc += "," . "cid";
-                                        } else {
-                                            $SQLc += "cid";
-                                        }
-                                        if ($SQLv != "") {
-                                            $SQLv += "," . $item['cid'];
-                                        } else {
-                                            $SQLv += $item['cid'];
-                                        }
+                                        $SQLc = $SQLc . ",cid";
+                                        $SQLv = $SQLv . ",'" . $item['cid'] . "'";
                                     }
                                     if ($item['birthday'] != null) {
-                                        if ($SQLc != "") {
-                                            $SQLc += "," . "birth_date";
-                                        } else {
-                                            $SQLc += "birth_date";
-                                        }
-                                        if ($SQLv != "") {
-                                            $SQLv += "," . $item['birthday'];
-                                        } else {
-                                            $SQLv += $item['birthday'];
-                                        }
+                                        list($day, $month, $year) = explode('/', $item['birthday']);
+                                        $dateitem = "'" . ($year - 543) . "-" . $month . "-" . $day . "'";
+                                        $SQLc = $SQLc . ",birth_date";
+                                        $SQLv = $SQLv . "," . $dateitem;
                                     }
                                     if ($item['doctor_cert'] != null) {
-                                        if ($SQLc != "") {
-                                            $SQLc += "," . "shortname" . "," . "licenseno";
-                                        } else {
-                                            $SQLc += "shortname" . "," . "licenseno";
-                                        }
-                                        if ($SQLv != "") {
-                                            $SQLv += "," . $item['doctor_cert'] . "," . $item['doctor_cert'];
-                                        } else {
-                                            $SQLv += $item['doctor_cert'] . "," . $item['doctor_cert'];
-                                        }
+                                        $SQLc = $SQLc . ",shortname,licenseno";
+                                        $SQLv = $SQLv . ",'" . $item['doctor_cert'] . "','" . $item['doctor_cert'] . "'";
                                     }
                                     if ($item['accepcert'] != null) {
-                                        if ($SQLc != "") {
-                                            $SQLc += "," . "license_issue_date";
-                                        } else {
-                                            $SQLc += "license_issue_date";
-                                        }
-                                        if ($SQLv != "") {
-                                            $SQLv += "," . $item['accepcert'];
-                                        } else {
-                                            $SQLv += $item['accepcert'];
-                                        }
+                                        list($day, $month, $year) = explode('/', $item['accepcert']);
+                                        $dateitem = "'" . ($year - 543) . "-" . $month . "-" . $day . "'";
+                                        $SQLc = $SQLc . ",license_issue_date";
+                                        $SQLv = $SQLv . "," . $dateitem;
                                     }
                                     if ($item['expirecert'] != null) {
-                                        if ($SQLc != "") {
-                                            $SQLc += "," . "license_expire_date";
-                                        } else {
-                                            $SQLc += "license_expire_date";
-                                        }
-                                        if ($SQLv != "") {
-                                            $SQLv += "," . $item['expirecert'];
-                                        } else {
-                                            $SQLv += $item['expirecert'];
-                                        }
+                                        list($day, $month, $year) = explode('/', $item['expirecert']);
+                                        $dateitem = "'" . ($year - 543) . "-" . $month . "-" . $day . "'";
+                                        $SQLc = $SQLc . ",license_expire_date";
+                                        $SQLv = $SQLv . "," . $dateitem;
                                     }
 
                                     $doctorposition = " SELECT * FROM frm_res_doctorposition ORDER BY position_name";
@@ -440,16 +364,8 @@
                                     if ($item['jobclass'] != null) {
                                         while ($Result = mysqli_fetch_assoc($doctorpositions)) {
                                             if ($Result['position_name'] == $item['jobclass']) {
-                                                if ($SQLc != "") {
-                                                    $SQLc += "," . "position_id";
-                                                } else {
-                                                    $SQLc += "position_id";
-                                                }
-                                                if ($SQLv != "") {
-                                                    $SQLv += "," . $Result['id'];
-                                                } else {
-                                                    $SQLv += $Result['id'];
-                                                }
+                                                $SQLc = $SQLc . ",position_id";
+                                                $SQLv = $SQLv . ",'" . $Result['id'] . "'";
                                                 break;
                                             }
                                         }
@@ -457,16 +373,8 @@
                                     if ($item['spclty'] != null) {
                                         while ($Result = mysqli_fetch_assoc($spcltys)) {
                                             if ($Result['frm_res_spclty'] == $item['spclty']) {
-                                                if ($SQLc != "") {
-                                                    $SQLc += "," . "spclty";
-                                                } else {
-                                                    $SQLc += "spclty";
-                                                }
-                                                if ($SQLv != "") {
-                                                    $SQLv += "," . $Result['frm_res_id'];
-                                                } else {
-                                                    $SQLv += $Result['frm_res_id'];
-                                                }
+                                                $SQLc = $SQLc . ",spclty";
+                                                $SQLv = $SQLv . ",'" . $Result['frm_res_id'] . "'";
                                                 break;
                                             }
                                         }
@@ -474,58 +382,27 @@
                                     if ($item['speciality'] != null) {
                                         while ($Result = pg_fetch_assoc($doctor_departments)) {
                                             if ($Result['doctor_department_name'] == $item['speciality']) {
-                                                if ($SQLc != "") {
-                                                    $SQLc += "," . "doctor_department_id";
-                                                } else {
-                                                    $SQLc += "doctor_department_id";
-                                                }
-                                                if ($SQLv != "") {
-                                                    $SQLv += "," . $Result['doctor_department_id'];
-                                                } else {
-                                                    $SQLv += $Result['doctor_department_id'];
-                                                }
+                                                $SQLc = $SQLc . ",doctor_department_id";
+                                                $SQLv = $SQLv . ",'" . $Result['doctor_department_id'] . "'";
                                                 break;
                                             }
                                         }
                                     }
                                     if ($item['providertype'] != null) {
-                                        while ($Result = pg_fetch_assoc($doctor_departments)) {
+                                        while ($Result = pg_fetch_assoc($providertypes)) {
                                             if ($Result['provider_type_name'] == $item['providertype']) {
-                                                if ($SQLc != "") {
-                                                    $SQLc += "," . "provider_type_code";
-                                                } else {
-                                                    $SQLc += "provider_type_code";
-                                                }
-                                                if ($SQLv != "") {
-                                                    $SQLv += "," . $Result['provider_type_code'];
-                                                } else {
-                                                    $SQLv += $Result['provider_type_code'];
-                                                }
+                                                $SQLc = $SQLc . ",provider_type_code";
+                                                $SQLv = $SQLv . ",'" . $Result['provider_type_code'] . "'";
                                                 break;
                                             }
                                         }
                                     }
-
-
-                                    while ($Result = pg_fetch_assoc($providertypes)) {
-                                        $Result['position_name'];
-                                    }
-                                    if ($SQLc != "") {
-                                        $SQLc += "," . "active";
-                                    } else {
-                                        $SQLc += "active";
-                                    }
-                                    if ($SQLv != "") {
-                                        $SQLv += "," . "Y";
-                                    } else {
-                                        $SQLv += "Y";
-                                    }
-                                    $SQL = "INSERT INTO doctor (" . $SQLc . ") VALUES (" . $SQLv . ");"
+                                    $SQLc = $SQLc . ",active";
+                                    $SQLv = $SQLv . ",'Y'";
+                                    $SQL = "INSERT INTO doctor (" . $SQLc . ") VALUES (" . $SQLv . ");";
                                     ?>
-
-                                    <p>SQL : <?php echo $SQL; ?></p>
                                 <? } ?>
-
+                                <p>SQL : <input class="ccik" type="text" value="<?php echo $SQL ?>" id="SQL" onclick="myFunctionCopy()" title="ดับเบิ้ลคลิก = copy"> </p>
                             </div>
                             <?php if ($item['it_getrequest'] == null) { ?>
                                 <div class="nonprint">
