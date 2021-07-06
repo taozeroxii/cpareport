@@ -31,15 +31,21 @@
                 width: 100%;
                 float: left;
             }
-            .print p{
-               font-size: 16px;
+
+            .print p {
+                font-size: 16px;
             }
-            .modal-backdrop { display: none;}
+
+            .modal-backdrop {
+                display: none;
+            }
+
             body {
                 background: white;
             }
         }
-        .ccik:hover{
+
+        .ccik:hover {
             cursor: pointer;
             color: blue;
             font-weight: bold;
@@ -210,8 +216,8 @@
                                     <td><?php echo $result['spclty']; ?> </td>
                                     <td style="text-align:center;"><?php echo $result['it_getrequest']; ?> </td>
                                     <td class="<?php if (($result['status'] == 'waiting')) {
-                                                        echo 'fontstatusa';
-                                                    } else echo 'fontstatusb'; ?>" style="text-align:center;"><?php echo $result['status']; ?> </td>
+                                                    echo 'fontstatusa';
+                                                } else echo 'fontstatusb'; ?>" style="text-align:center;"><?php echo $result['status']; ?> </td>
                                     <td style="text-align:center;"><?php echo $result['insertdate_time']; ?> </td>
                                     <td style="text-align:center;"><?php echo $result['enddate_time']; ?> </td>
                                     <? if ($_SESSION['status'] == '1') { ?>
@@ -221,15 +227,23 @@
                                     <? } ?>
                                 </tr>
                                 <script>
-            // eaktamp
-function myFunction() {
-  var copyText = document.getElementById("myInput");
-  copyText.select();
-  copyText.setSelectionRange(0, 99999)
-  document.execCommand("copy");
- // alert("Copied the text: " + copyText.value);
-}
-</script>
+                                    // eaktamp
+                                    function myFunction() {
+                                        var copyText = document.getElementById("myInput");
+                                        copyText.select();
+                                        copyText.setSelectionRange(0, 99999)
+                                        document.execCommand("copy");
+                                        // alert("Copied the text: " + copyText.value);
+                                    }
+
+                                    function myFunctionCopy() {
+                                        var copyText = document.getElementById("SQL");
+                                        copyText.select();
+                                        copyText.setSelectionRange(0, 99999)
+                                        document.execCommand("copy");
+                                        // alert("Copied the text: " + copyText.value);
+                                    }
+                                </script>
                             <?php } ?>
                         <tbody>
                     </table>
@@ -237,7 +251,7 @@ function myFunction() {
             </div>
         </div>
 
- 
+
 
         <? foreach ($query as $item) { ?>
             <!--///////////////////////////////////////////// Modal close job  ///////////////////////////////////////////////////////-->
@@ -257,8 +271,8 @@ function myFunction() {
                                 <p>วันที่แจ้ง : <?php echo $begin = $item['insertdate_time']; ?>&nbsp;&nbsp;&nbsp; วันที่เริ่มงาน : <?php echo $item['first_day_in_job']; ?></p>
 
                                 <p>ชื่อ-นามสกุล :<?php echo $userregis =  $item['pname'] . $item['fname'] . '    ' . $item['lname']; ?>&nbsp;&nbsp;&nbsp;เพศ : <?php echo $item['gender']; ?></p>
-                                <p>ชื่อภาษาอังกฤษ : <?php echo $item['engfullname'];?></p>
-                                <p>Cid :  <input class="ccik" type="text" value="<?php echo $item['cid']; ?>" id="myInput" onclick="myFunction()" title="ดับเบิ้ลคลิก = copy"> </p>
+                                <p>ชื่อภาษาอังกฤษ : <?php echo $item['engfullname']; ?></p>
+                                <p>Cid : <input class="ccik" type="text" value="<?php echo $item['cid']; ?>" id="myInput" onclick="myFunction()" title="ดับเบิ้ลคลิก = copy"> </p>
                                 <p>ปีเกิด : <?php echo $item['birthday']; ?> </p>
                                 <p>เลขที่ใบประกอบวิชาชีพ : <?php echo $item['doctor_cert']; ?> </p>
                                 <p>วันที่ได้รับอนุญาต : <?php echo $item['accepcert']; ?> </p>
@@ -267,13 +281,130 @@ function myFunction() {
                                 <p>แผนก : <?php echo $item['spclty']; ?> </p>
                                 <p>เฉพาะทาง : <?php echo $item['speciality']; ?> </p>
                                 <p>Providertype : <?php echo $item['providertype']; ?> </p>
-                                <p>e-mail : <?php echo $item['emailaddress']; ?> &nbsp;&nbsp;&nbsp;โทรศัพท์ : <?php echo $item['mobilenumber']; ?>  </p>
+                                <p>e-mail : <?php echo $item['emailaddress']; ?> &nbsp;&nbsp;&nbsp;โทรศัพท์ : <?php echo $item['mobilenumber']; ?> </p>
                                 <p>user : <?php echo $item['username']; ?>&nbsp;&nbsp;&nbsp; password : <?php echo $item['password']; ?></p>
                                 <p>หมายเหตุ : <?php echo $item['note']; ?> </p>
-                                <p>เบอร์ภายใน : <?php echo $item['phone_internal']; ?> </p>
-                                 <?php if($item['it_getrequest'] != null){ ?><p>ผู้ดำเนินการ : <?php echo $item['it_getrequest']; ?> </p><?}?>
+                                <p>เบอร์ภายใน : <?php echo $item['phone_internal']; ?></p>
+
+                                <?php if ($item['it_getrequest'] != null) { ?>
+                                    <p>ผู้ดำเนินการ : <?php echo $item['it_getrequest']; ?> </p>
+                                <? } else { ?>
+                                    <?php
+
+                                    $SQLc = "code";
+                                    $SQLv = "SELECT CAST((SELECT CAST(MAX(code)AS int)+1 FROM doctor limit 1) AS varchar)";
+
+                                    if ($item['first_day_in_job'] != null) {
+                                        list($day, $month, $year) = explode('/', $item['first_day_in_job']);
+                                        $dateitem = "'" . ($year - 543) . "-" . $month . "-" . $day . "'";
+                                        $SQLc = $SQLc . ",start_date";
+                                        $SQLv = $SQLv . "," . $dateitem;
+                                    }
+
+                                    if ($item['gender'] != null) {
+                                        $SQLc = $SQLc . ",sex";
+                                        $SQLv = $SQLv . "," . $item['gender'] == 'ชาย' ? "'1'" : "'2'";
+                                    }
+                                    if ($item['pname'] != null || $item['fname'] != null || $item['lname'] != null) {
+                                        $SQLc = $SQLc . ",name";
+                                        $SQLv = $SQLv . ",'" . $item['pname'] . $item['fname'] . ' ' . $item['lname'] . "'";
+                                    }
+                                    if ($item['pname'] != null) {
+                                        $SQLc = $SQLc . ",pname";
+                                        $SQLv = $SQLv . "," .  "'" . $item['pname'] . "'";
+                                    }
+                                    if ($item['fname'] != null) {
+                                        $SQLc = $SQLc . ",fname";
+                                        $SQLv = $SQLv . ",'" . $item['fname'] . "'";
+                                    }
+                                    if ($item['lname'] != null) {
+                                        $SQLc = $SQLc . ",lname";
+                                        $SQLv = $SQLv . "," .  "'" . $item['lname'] . "'";
+                                    }
+                                    if ($item['engfullname'] != null) {
+                                        $SQLc = $SQLc . ",ename";
+                                        $SQLv = $SQLv . "," .  "'" . $item['engfullname'] . "'";
+                                    }
+                                    if ($item['cid'] != null) {
+                                        $SQLc = $SQLc . ",cid";
+                                        $SQLv = $SQLv . ",'" . $item['cid'] . "'";
+                                    }
+                                    if ($item['birthday'] != null) {
+                                        list($day, $month, $year) = explode('/', $item['birthday']);
+                                        $dateitem = "'" . ($year - 543) . "-" . $month . "-" . $day . "'";
+                                        $SQLc = $SQLc . ",birth_date";
+                                        $SQLv = $SQLv . "," . $dateitem;
+                                    }
+                                    if ($item['doctor_cert'] != null) {
+                                        $SQLc = $SQLc . ",shortname,licenseno";
+                                        $SQLv = $SQLv . ",'" . $item['doctor_cert'] . "','" . $item['doctor_cert'] . "'";
+                                    }
+                                    if ($item['accepcert'] != null) {
+                                        list($day, $month, $year) = explode('/', $item['accepcert']);
+                                        $dateitem = "'" . ($year - 543) . "-" . $month . "-" . $day . "'";
+                                        $SQLc = $SQLc . ",license_issue_date";
+                                        $SQLv = $SQLv . "," . $dateitem;
+                                    }
+                                    if ($item['expirecert'] != null) {
+                                        list($day, $month, $year) = explode('/', $item['expirecert']);
+                                        $dateitem = "'" . ($year - 543) . "-" . $month . "-" . $day . "'";
+                                        $SQLc = $SQLc . ",license_expire_date";
+                                        $SQLv = $SQLv . "," . $dateitem;
+                                    }
+
+                                    $doctorposition = " SELECT * FROM frm_res_doctorposition ORDER BY position_name";
+                                    $doctorpositions = mysqli_query($con, $doctorposition);
+                                    $spclty = " SELECT * FROM frm_res_spclty order by frm_res_id";
+                                    $spcltys = mysqli_query($con, $spclty);
+                                    $doctor_department = " SELECT * FROM doctor_department ";
+                                    $doctor_departments = pg_query($conn, $doctor_department);
+                                    $providertype = " SELECT * FROM provider_type";
+                                    $providertypes = pg_query($conn, $providertype);
+
+                                    if ($item['jobclass'] != null) {
+                                        while ($Result = mysqli_fetch_assoc($doctorpositions)) {
+                                            if ($Result['position_name'] == $item['jobclass']) {
+                                                $SQLc = $SQLc . ",position_id";
+                                                $SQLv = $SQLv . ",'" . $Result['id'] . "'";
+                                                break;
+                                            }
+                                        }
+                                    }
+                                    if ($item['spclty'] != null) {
+                                        while ($Result = mysqli_fetch_assoc($spcltys)) {
+                                            if ($Result['frm_res_spclty'] == $item['spclty']) {
+                                                $SQLc = $SQLc . ",spclty";
+                                                $SQLv = $SQLv . ",'" . $Result['frm_res_id'] . "'";
+                                                break;
+                                            }
+                                        }
+                                    }
+                                    if ($item['speciality'] != null) {
+                                        while ($Result = pg_fetch_assoc($doctor_departments)) {
+                                            if ($Result['doctor_department_name'] == $item['speciality']) {
+                                                $SQLc = $SQLc . ",doctor_department_id";
+                                                $SQLv = $SQLv . ",'" . $Result['doctor_department_id'] . "'";
+                                                break;
+                                            }
+                                        }
+                                    }
+                                    if ($item['providertype'] != null) {
+                                        while ($Result = pg_fetch_assoc($providertypes)) {
+                                            if ($Result['provider_type_name'] == $item['providertype']) {
+                                                $SQLc = $SQLc . ",provider_type_code";
+                                                $SQLv = $SQLv . ",'" . $Result['provider_type_code'] . "'";
+                                                break;
+                                            }
+                                        }
+                                    }
+                                    $SQLc = $SQLc . ",active";
+                                    $SQLv = $SQLv . ",'Y'";
+                                    $SQL = "INSERT INTO doctor (" . $SQLc . ") VALUES (" . $SQLv . ");";
+                                    ?>
+                                <? } ?>
+                                <p>SQL : <input class="ccik" type="text" value="<?php echo $SQL ?>" id="SQL" onclick="myFunctionCopy()" title="ดับเบิ้ลคลิก = copy"> </p>
                             </div>
-                            <?php if($item['it_getrequest'] == null){ ?>
+                            <?php if ($item['it_getrequest'] == null) { ?>
                                 <div class="nonprint">
                                     <hr>
                                     <h4 class="modal-title">ข้อมูลเพิ่มเติม</h4>
@@ -298,27 +429,29 @@ function myFunction() {
                                             </div>
                                         </div>
                                 </div>
-                            <?}?>
+                            <? } ?>
                         </div>
 
                         <div class="nonprint">
                             <div class="modal-footer">
                                 <?php
-                                    date_default_timezone_set("Asia/Bangkok"); //ตั้งโซนเวลา
-                                    $month = date('m');
-                                    $day = date('d');
-                                    $year = (date('Y')+543);
-                                    $TIME = date("H:i:s");   //date("h:i:s a"); แบบมีpm am
-                                    $today =  $day . '/'. $month . '/' . $year  .  '  ' . $TIME;
-                                    ?>
+                                date_default_timezone_set("Asia/Bangkok"); //ตั้งโซนเวลา
+                                $month = date('m');
+                                $day = date('d');
+                                $year = (date('Y') + 543);
+                                $TIME = date("H:i:s");   //date("h:i:s a"); แบบมีpm am
+                                $today =  $day . '/' . $month . '/' . $year  .  '  ' . $TIME;
+                                ?>
                                 <input type="hidden" name="status" value="done">
                                 <input type="hidden" name="userregis" value="<? echo $userregis; ?>">
                                 <input type="hidden" name="idform" value="<? echo $item['id']; ?>">
                                 <input type="hidden" name="enddate_time" value="<?php echo $today ?>">
                                 <input type="hidden" name="begindate" value="<?php echo $begin ?>">
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">ปิด</button>
-                                <?php if($item['it_getrequest'] != null){ ?><input type="button" class="btn btn-success" value="Print" target="_blank" onclick="window.print()"><?}?>
-                                <input type="submit" name="closejob" class="btn btn-primary"  <?php if($item['it_getrequest'] != null){echo 'value="ดำเนินการแล้ว"'.'disabled';} else echo 'value="บันทึก"' ?>>
+                                <?php if ($item['it_getrequest'] != null) { ?><input type="button" class="btn btn-success" value="Print" target="_blank" onclick="window.print()"><? } ?>
+                                <input type="submit" name="closejob" class="btn btn-primary" <?php if ($item['it_getrequest'] != null) {
+                                                                                                    echo 'value="ดำเนินการแล้ว"' . 'disabled';
+                                                                                                } else echo 'value="บันทึก"' ?>>
                             </div>
                             </form>
                         </div>
@@ -399,8 +532,6 @@ function myFunction() {
             });
 
         });
-
-
     </script>
 
 
