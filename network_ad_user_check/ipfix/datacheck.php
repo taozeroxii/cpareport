@@ -8,7 +8,31 @@ $dbName = "cpareportdb";
 
 $conn = mysqli_connect($serverName, $userName, $userPassword, $dbName);
 $id_device = $_POST['id_device'];
-$cstatus = $_POST['cstatus'];
+
+$aa = $_POST['cstatus-aa'];
+$bb = $_POST['cstatus-bb'];
+$cc = $_POST['cstatus-cc'];
+$dd = $_POST['cstatus-dd'];
+$ee = $_POST['cstatus-ee'];
+$ff = $_POST['cstatus-ff'];
+
+if ($aa != "" ) {
+   $cs = $aa;
+  } elseif ($bb != "") {
+    $cs = $bb;
+  } elseif ($cc != "") {
+    $cs = $cc;
+  }elseif ($dd != "") {
+    $cs = $dd;
+  }elseif ($ee != "") {
+    $cs = $ee;
+  }elseif ($ff != "") {
+    $cs = $ff;
+  }else{
+    $cs ="Y";
+  }
+$cstatus = $cs;
+
 $msg = $_POST['msg'];
 $datecheck = DATE('Y-m-d H:i:s');
 $usercheck = "Bear";
@@ -21,9 +45,9 @@ $query = mysqli_query($conn, $sql);
 
 
 if ($query) {
-    echo json_encode(array('status' => '1', 'message' => 'Record add Successfully'));
+    echo json_encode(array('status' => '1', 'message' => 'บันทึกการตรวจสอบ สำเร็จ'));
 } else {
-    echo json_encode(array('status' => '0', 'message' => 'Error Insert Data!'));
+    echo json_encode(array('status' => '0', 'message' => 'ไม่สามารถบันทึกข้อมูลได้!'));
 }
 
 mysqli_close($conn);

@@ -73,10 +73,10 @@ $resultu = mysqli_query($connect, $queryu);
                                                     <form action="" name="frm-aa" id="frm-aa" method="POST">
                                                             <div class="mb-3">
                                                                 <div id="radioBtn" class="btn-group ">
-                                                                    <a class="btn btn-primary btn-lg active" data-toggle="cstatus" data-title="Y"><i class="fa fa-check" aria-hidden="true"></i> ปกติ </a>
-                                                                    <a class="btn btn-danger btn-lg notActive" data-toggle="cstatus" data-title="N"><i class="fa fa-times" aria-hidden="true"></i> ผิดปกติ</a>
+                                                                    <a class="btn btn-primary btn-lg active" data-toggle="cstatus-aa" data-title="Y"><i class="fa fa-check" aria-hidden="true"></i> ปกติ </a>
+                                                                    <a class="btn btn-danger btn-lg notActive" data-toggle="cstatus-aa" data-title="N"><i class="fa fa-times" aria-hidden="true"></i> ผิดปกติ</a>
                                                                 </div>
-                                                                <input type="hidden" name="cstatus" id="cstatus" value="Y" >
+                                                                <input type="hidden" name="cstatus-aa" id="cstatusaa" value="Y" >
                                                             </div>
                                                             <div class="mb-3">
                                                                 <textarea class="form-control" id="msg" name="msg" placeholder="บันทึกเพิ่มเติม"></textarea>
@@ -113,10 +113,10 @@ $resultu = mysqli_query($connect, $queryu);
                                                     <form action="" name="frm-bb" id="frm-bb" method="POST">
                                                             <div class="mb-3">
                                                                 <div id="radioBtn" class="btn-group ">
-                                                                    <a class="btn btn-primary btn-lg active" data-toggle="cstatus" data-title="Y"><i class="fa fa-check" aria-hidden="true"></i> ปกติ </a>
-                                                                    <a class="btn btn-danger btn-lg notActive" data-toggle="cstatus" data-title="N"><i class="fa fa-times" aria-hidden="true"></i> ผิดปกติ</a>
+                                                                    <a class="btn btn-primary btn-lg active" data-toggle="cstatus-bb" data-title="Y"><i class="fa fa-check" aria-hidden="true"></i> ปกติ </a>
+                                                                    <a class="btn btn-danger btn-lg notActive" data-toggle="cstatus-bb" data-title="N"><i class="fa fa-times" aria-hidden="true"></i> ผิดปกติ</a>
                                                                 </div>
-                                                                <input type="hidden" name="cstatus" id="cstatus" value="Y" >
+                                                                <input type="hidden" name="cstatus-bb" id="cstatus-bb" value="Y" >
                                                             </div>
                                                             <div class="mb-3">
                                                                 <textarea class="form-control" id="msg" name="msg" placeholder="บันทึกเพิ่มเติม"></textarea>
@@ -169,10 +169,10 @@ $resultu = mysqli_query($connect, $queryu);
                                                     <form action="" name="frm-cc" id="frm-cc" method="POST">
                                                             <div class="mb-3">
                                                                 <div id="radioBtn" class="btn-group ">
-                                                                    <a class="btn btn-primary btn-lg active" data-toggle="cstatus" data-title="Y"><i class="fa fa-check" aria-hidden="true"></i> ปกติ </a>
-                                                                    <a class="btn btn-danger btn-lg notActive" data-toggle="cstatus" data-title="N"><i class="fa fa-times" aria-hidden="true"></i> ผิดปกติ</a>
+                                                                    <a class="btn btn-primary btn-lg active" data-toggle="cstatus-cc" data-title="Y"><i class="fa fa-check" aria-hidden="true"></i> ปกติ </a>
+                                                                    <a class="btn btn-danger btn-lg notActive" data-toggle="cstatus-cc" data-title="N"><i class="fa fa-times" aria-hidden="true"></i> ผิดปกติ</a>
                                                                 </div>
-                                                                <input type="hidden" name="cstatus" id="cstatus" value="Y" >
+                                                                <input type="hidden" name="cstatus-cc" id="cstatus-cc" value="Y" >
                                                             </div>
                                                             <div class="mb-3">
                                                                 <textarea class="form-control" id="msg" name="msg" placeholder="บันทึกเพิ่มเติม"></textarea>
@@ -209,10 +209,10 @@ $resultu = mysqli_query($connect, $queryu);
                                                     <form action="" name="frm-dd" id="frm-dd" method="POST">
                                                             <div class="mb-3">
                                                                 <div id="radioBtn" class="btn-group ">
-                                                                    <a class="btn btn-primary btn-lg active" data-toggle="cstatus" data-title="Y"><i class="fa fa-check" aria-hidden="true"></i> ปกติ </a>
-                                                                    <a class="btn btn-danger btn-lg notActive" data-toggle="cstatus" data-title="N"><i class="fa fa-times" aria-hidden="true"></i> ผิดปกติ</a>
+                                                                    <a class="btn btn-primary btn-lg active" data-toggle="cstatus-dd" data-title="Y"><i class="fa fa-check" aria-hidden="true"></i> ปกติ </a>
+                                                                    <a class="btn btn-danger btn-lg notActive" data-toggle="cstatus-dd" data-title="N"><i class="fa fa-times" aria-hidden="true"></i> ผิดปกติ</a>
                                                                 </div>
-                                                                <input type="hidden" name="cstatus" id="cstatus" value="Y" >
+                                                                <input type="hidden" name="cstatus-dd" id="cstatus-dd" value="Y" >
                                                             </div>
                                                             <div class="mb-3">
                                                                 <textarea class="form-control" id="msg" name="msg" placeholder="บันทึกเพิ่มเติม"></textarea>
@@ -263,10 +263,10 @@ $resultu = mysqli_query($connect, $queryu);
                                                     <form action="" name="frm-ee" id="frm-ee" method="POST">
                                                             <div class="mb-3">
                                                                 <div id="radioBtn" class="btn-group ">
-                                                                    <a class="btn btn-primary btn-lg active" data-toggle="cstatus" data-title="Y"><i class="fa fa-check" aria-hidden="true"></i> ปกติ </a>
-                                                                    <a class="btn btn-danger btn-lg notActive" data-toggle="cstatus" data-title="N"><i class="fa fa-times" aria-hidden="true"></i> ผิดปกติ</a>
+                                                                    <a class="btn btn-primary btn-lg active" data-toggle="cstatus-ee" data-title="Y"><i class="fa fa-check" aria-hidden="true"></i> ปกติ </a>
+                                                                    <a class="btn btn-danger btn-lg notActive" data-toggle="cstatus-ee" data-title="N"><i class="fa fa-times" aria-hidden="true"></i> ผิดปกติ</a>
                                                                 </div>
-                                                                <input type="hidden" name="cstatus" id="cstatus" value="Y" >
+                                                                <input type="hidden" name="cstatus-ee" id="cstatus-ee" value="Y" >
                                                             </div>
                                                             <div class="mb-3">
                                                                 <textarea class="form-control" id="msg" name="msg" placeholder="บันทึกเพิ่มเติม"></textarea>
@@ -303,10 +303,10 @@ $resultu = mysqli_query($connect, $queryu);
                                                     <form action="" name="frm-ff" id="frm-ff" method="POST">
                                                             <div class="mb-3">
                                                                 <div id="radioBtn" class="btn-group ">
-                                                                    <a class="btn btn-primary btn-lg active" data-toggle="cstatus" data-title="Y"><i class="fa fa-check" aria-hidden="true"></i> ปกติ </a>
-                                                                    <a class="btn btn-danger btn-lg notActive" data-toggle="cstatus" data-title="N"><i class="fa fa-times" aria-hidden="true"></i> ผิดปกติ</a>
+                                                                    <a class="btn btn-primary btn-lg active" data-toggle="cstatus-ff" data-title="Y"><i class="fa fa-check" aria-hidden="true"></i> ปกติ </a>
+                                                                    <a class="btn btn-danger btn-lg notActive" data-toggle="cstatus-ff" data-title="N"><i class="fa fa-times" aria-hidden="true"></i> ผิดปกติ</a>
                                                                 </div>
-                                                                <input type="hidden" name="cstatus" id="cstatus" value="Y" >
+                                                                <input type="hidden" name="cstatus-ff" id="cstatus-ff" value="Y" >
                                                             </div>
                                                             <div class="mb-3">
                                                                 <textarea class="form-control" id="msg" name="msg" placeholder="บันทึกเพิ่มเติม"></textarea>
