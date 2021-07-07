@@ -303,7 +303,6 @@
                                     if ($item['gender'] != null) {
                                         $SQLc = $SQLc . ",sex";
                                         $SQLv = $SQLv . "," . ($item['gender'] == 'ชาย' ? "'1'" : "'2'");
-                                        echo $SQLv;
                                     }
 
                                     if ($item['pname'] != null || $item['fname'] != null || $item['lname'] != null) {

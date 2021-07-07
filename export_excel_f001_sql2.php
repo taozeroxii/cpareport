@@ -45,7 +45,7 @@ foreach($res as $item) {
                     <?php
                     for ($j = 0 ; $j < $i ; $j++) {
                         $fieldname = pg_field_name($result, $j);
-                        echo '<td>' . $row_result[$fieldname] . '</td>';
+                        echo '<td>' ." ". $row_result[$fieldname] . '</td>';
                     } 
                     ?>
                 </tr>
