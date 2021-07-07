@@ -292,7 +292,7 @@
                                     <?php
 
                                     $SQLc = "code";
-                                    $SQLv = "SELECT CAST((SELECT CAST(MAX(code)AS int)+1 FROM doctor limit 1) AS varchar)";
+                                    $SQLv = "(SELECT CAST((SELECT CAST(MAX(code)AS int)+1 FROM doctor limit 1) AS varchar))";
 
                                     if ($item['first_day_in_job'] != null) {
                                         list($day, $month, $year) = explode('/', $item['first_day_in_job']);
