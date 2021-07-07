@@ -297,3 +297,10 @@ h2.ssb-title-ff {
     padding: 0;
     /* text-transform: uppercase; */
 }
+
+
+
+#radioBtn .notActive{
+    color: #3276b1;
+    background-color: #fff;
+}
