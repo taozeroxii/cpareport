@@ -292,7 +292,7 @@
                                     <?php
 
                                     $SQLc = "code";
-                                    $SQLv = "SELECT CAST((SELECT CAST(MAX(code)AS int)+1 FROM doctor limit 1) AS varchar)";
+                                    $SQLv = "(SELECT CAST((SELECT CAST(MAX(code)AS int)+1 FROM doctor limit 1) AS varchar))";
 
                                     if ($item['first_day_in_job'] != null) {
                                         list($day, $month, $year) = explode('/', $item['first_day_in_job']);
@@ -300,11 +300,11 @@
                                         $SQLc = $SQLc . ",start_date";
                                         $SQLv = $SQLv . "," . $dateitem;
                                     }
-
                                     if ($item['gender'] != null) {
                                         $SQLc = $SQLc . ",sex";
-                                        $SQLv = $SQLv . "," . $item['gender'] == 'ชาย' ? "'1'" : "'2'";
+                                        $SQLv = $SQLv . "," . ($item['gender'] == 'ชาย' ? "'1'" : "'2'");
                                     }
+
                                     if ($item['pname'] != null || $item['fname'] != null || $item['lname'] != null) {
                                         $SQLc = $SQLc . ",name";
                                         $SQLv = $SQLv . ",'" . $item['pname'] . $item['fname'] . ' ' . $item['lname'] . "'";
@@ -402,6 +402,7 @@
                                     $SQL = "INSERT INTO doctor (" . $SQLc . ") VALUES (" . $SQLv . ");";
                                     ?>
                                 <? } ?>
+
                                 <p>SQL : <input class="ccik" type="text" value="<?php echo $SQL ?>" id="SQL" onclick="myFunctionCopy()" title="ดับเบิ้ลคลิก = copy"> </p>
                             </div>
                             <?php if ($item['it_getrequest'] == null) { ?>
