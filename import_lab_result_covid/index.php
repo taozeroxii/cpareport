@@ -15,7 +15,7 @@
         <h1> นำเข้าข้อมูล lab result จากไฟล์ excel </h1>
         <p> โปรดอัพโหลดไฟล์ที่เป็น excel 97-2003 เท่านั้น</p>
         <form action="upload.php" method="post" enctype="multipart/form-data">
-            Select .xlsx to upload:
+            Select .xls to upload:
             <input type="file" name="fileToUpload" id="fileToUpload">
             <input type="submit" class="btn btn-primary" value="Upload" name="submit">
         </form>
