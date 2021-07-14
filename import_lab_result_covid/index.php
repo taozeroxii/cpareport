@@ -20,7 +20,7 @@
             <input type="submit" class="btn btn-primary" value="Upload" name="submit">
         </form>
         <hr>
-        <a href="./PHPExcel/PHPExcelReadToMySQL.php"> <button class="btn btn-danger">... Update Data ...</button></a>
+        <a href="./PHPExcel/PHPExcelReadToMySQL.php"> <button class="btn btn-danger">... Update Data อิงตามไฟล์ที่อัพขึ้นครั้งล่าสุด...</button></a>
         <button class="btn btn-warning" onclick="myFunction()">... Clear Data ลบข้อมูลทั้งหมด...</button>
         <a href="./tableshowdata.php"> <button class="btn btn-success">... ตรวจสอบข้อมูลในฐานข้อมูล คลิ๊ก !! ...</button></a>
         <hr>
