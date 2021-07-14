@@ -15,13 +15,13 @@
         <h1> นำเข้าข้อมูล lab result จากไฟล์ excel </h1>
         <p> โปรดอัพโหลดไฟล์ที่เป็น excel 97-2003 เท่านั้น</p>
         <form action="upload.php" method="post" enctype="multipart/form-data">
-            Select .xls to upload : 
+            Select .xls to upload :
             <input type="file" name="fileToUpload" id="fileToUpload">
             <input type="submit" class="btn btn-primary" value="Upload" name="submit">
         </form>
         <hr>
         <a href="./PHPExcel/PHPExcelReadToMySQL.php"> <button class="btn btn-danger">... Update Data ...</button></a>
-        <a href="./cleardata.php"> <button class="btn btn-warning">... Clear Data ลบข้อมูลทั้งหมด...</button></a>
+        <button class="btn btn-warning" onclick="myFunction()">... Clear Data ลบข้อมูลทั้งหมด...</button>
         <a href="./tableshowdata.php"> <button class="btn btn-success">... ตรวจสอบข้อมูลทั้งหมดในฐานข้อมูล คลิ๊ก !! ...</button></a>
         <hr>
         <p class="mt-5"> ขั้นตอนการอัพโหลดข้อมูล</p>
@@ -32,7 +32,15 @@
         <p style="color:red">**โปรดเลือกไฟล์อัพโหลดที่ถูกต้องและใช้ข้อมูลทั้งหมดจากไฟล์อัพโหลดได้เลย**</p>
         <p style="color:green">**การ Update Data จะอิงจากไฟล์ล่าสุดที่ทำการ upload ขึ้น server ไว้ โดยโปรแกรมจะล้างข้อมูลเดิมทั้งหมดออกและนำเข้าใหม่ทั้งหมด**</p>
     </div>
-
+    <script>
+        function myFunction() {
+            var check =   confirm("ยืนยันลบข้อมูลทั้งหมดหรือไม่");
+            if(check === true){
+                console.log("ลบ")
+                window.location.assign("./cleardata.php")
+            }
+        }
+    </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 

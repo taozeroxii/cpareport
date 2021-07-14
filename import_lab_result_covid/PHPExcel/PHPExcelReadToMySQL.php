@@ -54,7 +54,7 @@ foreach ($namedDataArray as $result) {
 	$strSQL .= ",'" . $result["pre_name"] . "','" . $result["name"] . "','" . $result["lname"] . "','" . $result["name_eng"] . "','" . $result["lname_eng"] . "' ";
 	$strSQL .= ",'" . $result["collection_date"] . "','" . $result["results"] . "','" . $result["results_date"] . "','" . $result["approve_results"] . "','" . $result["approve_date"] . "' ";
 	$strSQL .= ",'" . $result["remark"] . "') ";
-	mysql_query($strSQL) or die(mysql_error());
+	mysql_query($strSQL) ;
 	// echo $strSQL;
 	echo "Row $i Inserted...<br>";
 }
