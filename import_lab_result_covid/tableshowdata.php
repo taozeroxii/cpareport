@@ -15,7 +15,7 @@
         <div class="row ">
             <div class="col-3"><a href="./"> <button class="btn btn-success">กลับหน้าแรก</button> </a></div>
             <div class="col-9">
-                <h5>ข้อมูลทั้งหมดในฐานข้อมูล</h5>
+                <h5>ตัวอย่างข้อมูลในฐานข้อมูล limit 300 รายการ</h5>
             </div>
         </div>
 
@@ -51,7 +51,7 @@
                     <?php
                     $r = 1;
                     $mysqli = new mysqli("172.18.2.2", "webcvhost", "WebCpa10665Hos!", "lab_rs_covid_19");
-                    $select = "select * FROM lab_result ";
+                    $select = "select * FROM lab_result limit 300";
                     $query  = mysqli_query($mysqli, $select);
                     while ($row = mysqli_fetch_array($query)) {
                     ?>

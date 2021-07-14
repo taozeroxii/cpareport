@@ -21,7 +21,7 @@
         </form>
         <hr>
         <a href="./PHPExcel/PHPExcelReadToMySQL.php"> <button class="btn btn-danger">... Update Data ...</button></a>
-        <a href="./cleardata.php"> <button class="btn btn-warning">... Clear Data ...</button></a>
+        <a href="./cleardata.php"> <button class="btn btn-warning">... Clear Data ลบข้อมูลทั้งหมด...</button></a>
         <a href="./tableshowdata.php"> <button class="btn btn-success">... ตรวจสอบข้อมูลทั้งหมดในฐานข้อมูล คลิ๊ก !! ...</button></a>
         <hr>
         <p class="mt-5"> ขั้นตอนการอัพโหลดข้อมูล</p>

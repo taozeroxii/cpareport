@@ -40,7 +40,7 @@ for ($row = 2; $row <= $highestRow; ++$row) {
 //*** Connect to MySQL Database ***//
 $objConnect = mysql_connect("172.18.2.2", "webcvhost", "WebCpa10665Hos!") or die(mysql_error());
 $objDB = mysql_select_db("lab_rs_covid_19");
-mysql_query('TRUNCATE TABLE lab_result;') or die(mysql_error()); // เครียข้อมูลเก่าทั้งหมด
+// mysql_query('TRUNCATE TABLE lab_result;') or die(mysql_error()); // เครียข้อมูลเก่าทั้งหมด
 $i = 0;
 foreach ($namedDataArray as $result) {
 	$i++;
