@@ -24,6 +24,7 @@
             <table class="table align-middle">
                 <thead class="table-dark">
                     <th> #</th>
+                    <th> วันที่อัพโหลด </th>
                     <th> vn_lab</th>
                     <th> send_department</th>
                     <th> recieve_department</th>
@@ -51,12 +52,13 @@
                     <?php
                     $r = 1;
                     $mysqli = new mysqli("172.18.2.2", "webcvhost", "WebCpa10665Hos!", "lab_rs_covid_19");
-                    $select = "select * FROM lab_result limit 300";
+                    $select = "select * FROM lab_result order by  insert_datetime desc limit 300";
                     $query  = mysqli_query($mysqli, $select);
                     while ($row = mysqli_fetch_array($query)) {
                     ?>
                         <tr>
                             <td><?php echo  $r++;?></td>
+                            <td><?php echo $row['insert_datetime'] ?></td>
                             <td><?php echo $row['vn_lab'] ?></td>
                             <td><?php echo $row['send_department'] ?></td>
                             <td><?php echo $row['recieve_department'] ?></td>

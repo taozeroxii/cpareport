@@ -22,7 +22,7 @@
         <hr>
         <a href="./PHPExcel/PHPExcelReadToMySQL.php"> <button class="btn btn-danger">... Update Data ...</button></a>
         <button class="btn btn-warning" onclick="myFunction()">... Clear Data ลบข้อมูลทั้งหมด...</button>
-        <a href="./tableshowdata.php"> <button class="btn btn-success">... ตรวจสอบข้อมูลทั้งหมดในฐานข้อมูล คลิ๊ก !! ...</button></a>
+        <a href="./tableshowdata.php"> <button class="btn btn-success">... ตรวจสอบข้อมูลในฐานข้อมูล คลิ๊ก !! ...</button></a>
         <hr>
         <p class="mt-5"> ขั้นตอนการอัพโหลดข้อมูล</p>
         <p> 1. นำไฟล์ excel ที่ export จากโปรแกรม lab ชื่อไฟล์จะเป็นประมาณ speciment_export_1625887017860 มาเปิดและบันทึกใหม่ให้เป็น excel 97-2003 worksheet</p>
