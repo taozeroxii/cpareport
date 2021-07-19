@@ -5,24 +5,13 @@ mysqli_set_charset($connect, "utf8");
 $today =  date('Y-m-d');
 $ttime =  date('H:i:s');
 //server
-$query = " SELECT * 
-FROM network_check_server 
-WHERE 1=1
-ORDER BY id ASC ";
+$query = " SELECT * FROM network_check_server WHERE 1=1 ORDER BY id ASC ";
 $result = mysqli_query($connect, $query);
-
 //SW
-$querys = " SELECT * 
-FROM network_check_swicth 
-WHERE 1=1
-ORDER BY id ASC ";
+$querys = " SELECT * FROM network_check_swicth WHERE 1=1 ORDER BY id ASC ";
 $results = mysqli_query($connect, $querys);
-
 //UPS
-$queryu = " SELECT * 
-FROM network_check_ups 
-WHERE 1=1
-ORDER BY id ASC ";
+$queryu = " SELECT * FROM network_check_ups WHERE 1=1 ORDER BY id ASC ";
 $resultu = mysqli_query($connect, $queryu);
 
 ?>
@@ -54,10 +43,11 @@ $resultu = mysqli_query($connect, $queryu);
                                     $exp = $row['server_expdate'];
                                     if ($exp > $today) {
                                 ?>
-                                        <div class="col-md-3">
+                                        <div class="col-md-6">
                                             <div class="square-service-block-aa">
                                                 <a href="#" data-bs-toggle="modal" data-bs-target="#exampleModal<?php echo $row["s_id"]; ?>">
                                                     <div class="ssb-icon-aa"><i class="fa fa-desktop" aria-hidden="true"></i></div>
+                                                    <h2 class="ssb-title-aa"><?php echo $row["server_name"]; ?></h2>
                                                     <h2 class="ssb-title-aa"><?php echo $row["server_ip"]; ?></h2>
 
                                                 </a>
@@ -95,11 +85,12 @@ $resultu = mysqli_query($connect, $queryu);
                                     <?php
                                     } else {
                                     ?>
-                                        <div class="col-md-3">
+                                        <div class="col-md-6">
                                             <div class="square-service-block-bb">
                                             <a href="#" data-bs-toggle="modal" data-bs-target="#exampleModal<?php echo $row["s_id"]; ?>">
                                                     <div class="ssb-icon-bb"><i class="fa fa-desktop" aria-hidden="true"></i></div>
-                                                    <h2 class="ssb-title-bb"><?php echo $row["server_ip"]; ?></h2>
+                                                    <h2 class="ssb-title-aa"><?php echo $row["server_name"]; ?></h2>
+                                                    <h2 class="ssb-title-aa"><?php echo $row["server_ip"]; ?></h2>
                                                 </a>
                                             </div>
                                         </div>
@@ -151,11 +142,12 @@ $resultu = mysqli_query($connect, $queryu);
                                                 $exp = $rows['sw_expdate'];
                                                 if ($exp > $today) {
                                             ?>
-                                                    <div class="col-md-3">
+                                                    <div class="col-md-6">
                                                         <div class="square-service-block-cc">
                                                         <a href="#" data-bs-toggle="modal" data-bs-target="#exampleModal<?php echo $rows["w_id"]; ?>">
                                                                 <div class="ssb-icon-cc"><i class="fa fa-desktop" aria-hidden="true"></i></div>
                                                                 <h2 class="ssb-title-cc"><?php echo $rows["sw_name"]; ?></h2>
+                                                                <h2 class="ssb-title-cc"><?php echo $rows["sw_ip"]; ?></h2>
                                                             </a>
                                                         </div>
                                                     </div>
@@ -191,11 +183,12 @@ $resultu = mysqli_query($connect, $queryu);
                                                 <?php
                                                 } else {
                                                 ?>
-                                                    <div class="col-md-3">
+                                                    <div class="col-md-6">
                                                         <div class="square-service-block-dd">
                                                         <a href="#" data-bs-toggle="modal" data-bs-target="#exampleModal<?php echo $rows["w_id"]; ?>">
                                                                 <div class="ssb-icon-dd"><i class="fa fa-desktop" aria-hidden="true"></i></div>
-                                                                <h2 class="ssb-title-dd"><?php echo $rows["sw_name"]; ?></h2>
+                                                                <h2 class="ssb-title-cc"><?php echo $rows["sw_name"]; ?></h2>
+                                                                <h2 class="ssb-title-cc"><?php echo $rows["sw_ip"]; ?></h2>
                                                             </a>
                                                         </div>
                                                     </div>
@@ -245,10 +238,11 @@ $resultu = mysqli_query($connect, $queryu);
                                                 $exp = $rowu['ups_expdate'];
                                                 if ($exp > $today) {
                                             ?>
-                                                    <div class="col-md-3">
+                                                    <div class="col-md-6">
                                                         <div class="square-service-block-ee">
                                                         <a href="#" data-bs-toggle="modal" data-bs-target="#exampleModal<?php echo $rowu["u_id"]; ?>">
                                                                 <div class="ssb-icon-ee"><i class="fa fa-desktop" aria-hidden="true"></i></div>
+                                                                <h2 class="ssb-title-ee"><?php echo $rowu["ups_ip"]; ?></h2>
                                                                 <h2 class="ssb-title-ee"><?php echo $rowu["ups_name"]; ?></h2>
                                                             </a>
                                                         </div>
@@ -285,11 +279,12 @@ $resultu = mysqli_query($connect, $queryu);
                                                 <?php
                                                 } else {
                                                 ?>
-                                                    <div class="col-md-3">
+                                                    <div class="col-md-6">
                                                         <div class="square-service-block-ff">
                                                         <a href="#" data-bs-toggle="modal" data-bs-target="#exampleModal<?php echo $rowu["u_id"]; ?>">
                                                                 <div class="ssb-icon-ff"><i class="fa fa-desktop" aria-hidden="true"></i></div>
-                                                                <h2 class="ssb-title-ff"><?php echo $rowu["ups_name"]; ?></h2>
+                                                                <h2 class="ssb-title-ee"><?php echo $rowu["ups_ip"]; ?></h2>
+                                                                <h2 class="ssb-title-ee"><?php echo $rowu["ups_name"]; ?></h2>
                                                             </a>
                                                         </div>
                                                     </div>
