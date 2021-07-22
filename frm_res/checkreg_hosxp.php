@@ -9,6 +9,7 @@
     <title>table reg hosxp</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css?family=Prompt" rel="stylesheet">
+
 </head>
 
 
@@ -50,6 +51,27 @@
             color: blue;
             font-weight: bold;
         }
+
+
+        /* eaktamp */
+        .tooltip-inner {
+            background-color: #18009B !important;
+            color: #fff;
+            max-width: 1000px;
+            max-height: 600px;
+            padding: 3px 8px;
+            font-size: 2em;
+            text-align: center;
+            border-radius: 2.25rem 1.25rem;
+        }
+        .inp {
+            border-top: none;
+            border-left: none;
+            border-right: none;
+            background-color: transparent;
+            cursor: copy;
+        }
+
     </style>
 
     <div class="nonprint">
@@ -220,6 +242,7 @@
                                                 } else echo 'fontstatusb'; ?>" style="text-align:center;"><?php echo $result['status']; ?> </td>
                                     <td style="text-align:center;"><?php echo $result['insertdate_time']; ?> </td>
                                     <td style="text-align:center;"><?php echo $result['enddate_time']; ?> </td>
+
                                     <? if ($_SESSION['status'] == '1') { ?>
                                         <td>
                                             <center><button class="btn btn-info" data-toggle="modal" data-target="#closejob<?php echo $result['id']; ?>">เพิ่มเติม</button> </center>
@@ -228,20 +251,25 @@
                                 </tr>
                                 <script>
                                     // eaktamp
-                                    function myFunction() {
-                                        var copyText = document.getElementById("myInput");
-                                        copyText.select();
-                                        copyText.setSelectionRange(0, 99999)
-                                        document.execCommand("copy");
-                                        // alert("Copied the text: " + copyText.value);
-                                    }
+                                    // function myFunction() {
+                                    //     var copyText = document.getElementById("myInput");
+                                    //     copyText.select();
+                                    //     copyText.setSelectionRange(0, 99999)
+                                    //     document.execCommand("copy");
+                                    //     // alert("Copied the text: " + copyText.value);
+                                    // }
 
-                                    function myFunctionCopy() {
-                                        var copyText = document.getElementById("SQL");
-                                        copyText.select();
-                                        copyText.setSelectionRange(0, 99999)
+                                    // function myFunctionCopy() {
+                                    //     var copyText = document.getElementById("SQL");
+                                    //     copyText.select();
+                                    //     copyText.setSelectionRange(0, 99999)
+                                    //     document.execCommand("copy");
+                                    //     //  alert("Copied the text: " + copyText.value);
+                                    // }
+                                    //eaktamp อยากมีส่วนร่วม 555 2021-07-22
+                                    function copyTo(input) {
+                                        input.select();
                                         document.execCommand("copy");
-                                        // alert("Copied the text: " + copyText.value);
                                     }
                                 </script>
                             <?php } ?>
@@ -256,7 +284,7 @@
         <? foreach ($query as $item) { ?>
             <!--///////////////////////////////////////////// Modal close job  ///////////////////////////////////////////////////////-->
             <div class="modal fade" id="closejob<?php echo  $item['id']; ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModal" aria-hidden="true">
-                <div class="modal-dialog">
+                <div class="modal-dialog modal-lg">
                     <!-- Modal content-->
                     <div class="modal-content">
                         <div class="nonprint">
@@ -268,23 +296,15 @@
                         <div class="modal-body">
                             <div class="print">
                                 <h4 style="background-color: #878787;color:black;padding:10px;border-style: dotted;border-width: 0.5px;">ใบแจ้งที่: <?php echo $item['id']; ?></h4>
-                                <p>วันที่แจ้ง : <?php echo $begin = $item['insertdate_time']; ?>&nbsp;&nbsp;&nbsp; วันที่เริ่มงาน : <?php echo $item['first_day_in_job']; ?></p>
-
-                                <p>ชื่อ-นามสกุล :<?php echo $userregis =  $item['pname'] . $item['fname'] . '    ' . $item['lname']; ?>&nbsp;&nbsp;&nbsp;เพศ : <?php echo $item['gender']; ?></p>
-                                <p>ชื่อภาษาอังกฤษ : <?php echo $item['engfullname']; ?></p>
-                                <p>Cid : <input class="ccik" type="text" value="<?php echo $item['cid']; ?>" id="myInput" onclick="myFunction()" title="ดับเบิ้ลคลิก = copy"> </p>
-                                <p>ปีเกิด : <?php echo $item['birthday']; ?> </p>
-                                <p>เลขที่ใบประกอบวิชาชีพ : <?php echo $item['doctor_cert']; ?> </p>
-                                <p>วันที่ได้รับอนุญาต : <?php echo $item['accepcert']; ?> </p>
-                                <p>วันที่หมดอายุรับอนุญาต : <?php echo $item['expirecert']; ?> </p>
-                                <p>ตำแหน่งหลัก : <?php echo $item['jobclass']; ?> </p>
-                                <p>แผนก : <?php echo $item['spclty']; ?> </p>
-                                <p>เฉพาะทาง : <?php echo $item['speciality']; ?> </p>
-                                <p>Providertype : <?php echo $item['providertype']; ?> </p>
-                                <p>e-mail : <?php echo $item['emailaddress']; ?> &nbsp;&nbsp;&nbsp;โทรศัพท์ : <?php echo $item['mobilenumber']; ?> </p>
-                                <p>user : <?php echo $item['username']; ?>&nbsp;&nbsp;&nbsp; password : <?php echo $item['password']; ?></p>
-                                <p>หมายเหตุ : <?php echo $item['note']; ?> </p>
-                                <p>เบอร์ภายใน : <?php echo $item['phone_internal']; ?></p>
+                                <p>วันที่แจ้ง : <b><?php echo $begin = $item['insertdate_time']; ?></b>&nbsp;&nbsp;&nbsp; วันที่เริ่มงาน : <b><?php echo $item['first_day_in_job']; ?></b></p>
+                                <p>ชื่อ-นามสกุลไทย :<b><?php echo $userregis =  $item['pname'] . $item['fname'] . '    ' . $item['lname']; ?></b>&nbsp;ชื่อภาษาอังกฤษ : <b><?php echo $item['engfullname']; ?></b>&nbsp;&nbsp;เพศ : <b><?php echo $item['gender']; ?></b></p>
+                                <p>ปีเกิด : <b><?php echo $item['birthday']; ?></b> &nbsp;&nbsp;&nbsp; Cid : <b><?php echo $item['cid']; ?></b></p>
+                                <p>e-mail : <b><?php echo $item['emailaddress']; ?></b></b> &nbsp;&nbsp;&nbsp;โทรศัพท์ : <b><?php echo $item['mobilenumber']; ?></b>  &nbsp;&nbsp;&nbsp;                               
+                                <p>user : <b style="color:#E50F0F; font-size:1.6em;"><?php echo $item['username']; ?></b>&nbsp;&nbsp;&nbsp; password :  <b><?php echo $item['password']; ?></b></p>                  
+                                <p>เลขที่ใบประกอบวิชาชีพ : <b><?php echo $item['doctor_cert']; ?></b>&nbsp;วันที่ได้รับอนุญาต : <b><?php echo $item['accepcert']; ?>&nbsp;</b>วันที่หมดอายุรับอนุญาต : <b><?php echo $item['expirecert']; ?> </b></p>
+                                <p>แผนก :  <b><?php echo $item['spclty']; ?> </b>&nbsp;&nbsp; ตำแหน่งหลัก :  <b><?php echo $item['jobclass']; ?> </b> </p>
+                                <p>Providertype : <b><?php echo $item['providertype']; ?> </b>&nbsp;&nbsp;  เฉพาะทาง : <b><?php echo $item['speciality']; ?></b> </p>
+                                <p>เบอร์ภายใน : <b><?php echo $item['phone_internal']; ?></b>&nbsp;&nbsp; หมายเหตุ : <b><?php echo $item['note']; ?> </b></p>
 
                                 <?php if ($item['it_getrequest'] != null) { ?>
                                     <p>ผู้ดำเนินการ : <?php echo $item['it_getrequest']; ?> </p>
@@ -401,14 +421,15 @@
                                     $SQLv = $SQLv . ",'Y'";
                                     $SQL = "INSERT INTO doctor (" . $SQLc . ") VALUES (" . $SQLv . ");";
                                     ?>
-                                <? } ?>
 
-                                <p>SQL : <input class="ccik" type="text" value="<?php echo $SQL ?>" id="SQL" onclick="myFunctionCopy()" title="ดับเบิ้ลคลิก = copy"> </p>
+                                <? } ?>
+<hr>
+                                <p class="text-center"> <b style="color:#1F0776; font-size:1.2em;">SQL Tool. : </b><input class="ccik inp btn" data-toggle="tooltip" data-placement="top" title="<?php echo $SQL ?>" type="text" value="<?php echo $SQL ?>" id="SQL" onclick="copyTo(this)"> <span class="cco"><b style="color:#1F0776; font-size:1.2em;">คลิก = copy</b></span></p>
                             </div>
                             <?php if ($item['it_getrequest'] == null) { ?>
                                 <div class="nonprint">
                                     <hr>
-                                    <h4 class="modal-title">ข้อมูลเพิ่มเติม</h4>
+                                    <!-- <h4 class="modal-title">ข้อมูลเพิ่มเติม</h4> -->
                                     <form action="#" method="POST" name='colsejob'>
                                         <div class="row">
                                             <div class="col-4">
@@ -462,8 +483,6 @@
             <!--//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////-->
 
         <? } ?>
-
-
 
         <!--  /////////////////// ส่วนของ paginatorทำ query มาใหม่และนับจำนวนแถว //////////////////     -->
         <?php
@@ -540,6 +559,12 @@
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.0/js/bootstrap.min.js" integrity="sha384-3qaqj0lc6sV/qpzrc1N5DC6i1VRn/HyX4qdPaiEFbn54VjQBEU341pvjz7Dv3n6P" crossorigin="anonymous"></script>
+    <script>
+        $(document).ready(function() {
+            $('[data-toggle="tooltip"]').tooltip();
+
+        });
+    </script>
 </body>
 
 </html>
