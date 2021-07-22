@@ -242,8 +242,8 @@ $resultu = mysqli_query($connect, $queryu);
                                                         <div class="square-service-block-ee">
                                                         <a href="#" data-bs-toggle="modal" data-bs-target="#exampleModal<?php echo $rowu["u_id"]; ?>">
                                                                 <div class="ssb-icon-ee"><i class="fa fa-desktop" aria-hidden="true"></i></div>
-                                                                <h2 class="ssb-title-ee"><?php echo $rowu["ups_ip"]; ?></h2>
-                                                                <h2 class="ssb-title-ee"><?php echo $rowu["ups_name"]; ?></h2>
+                                                                <h2 class="ssb-title-ee" title=" UPS Name & ups_rate"><?php echo $rowu["ups_product"]." : ".$rowu["ups_rate"]; ?></h2>
+                                                                <h5 class="ssb-title-ee" title=""><?php echo $rowu["ups_zone"]." : ".$rowu["ups_location"] ;?></h5>
                                                             </a>
                                                         </div>
                                                     </div>
@@ -283,8 +283,9 @@ $resultu = mysqli_query($connect, $queryu);
                                                         <div class="square-service-block-ff">
                                                         <a href="#" data-bs-toggle="modal" data-bs-target="#exampleModal<?php echo $rowu["u_id"]; ?>">
                                                                 <div class="ssb-icon-ff"><i class="fa fa-desktop" aria-hidden="true"></i></div>
-                                                                <h2 class="ssb-title-ee"><?php echo $rowu["ups_ip"]; ?></h2>
-                                                                <h2 class="ssb-title-ee"><?php echo $rowu["ups_name"]; ?></h2>
+                                                                <h2 class="ssb-title-ee" title=" UPS Name & ups_rate"><?php echo $rowu["ups_product"]." : ".$rowu["ups_rate"]; ?></h2>
+                                                                <h5 class="ssb-title-ee" title=""><?php echo $rowu["ups_zone"]." : ".$rowu["ups_location"] ;?></h5>
+                                                                
                                                             </a>
                                                         </div>
                                                     </div>
@@ -295,6 +296,17 @@ $resultu = mysqli_query($connect, $queryu);
                                                         <h5 class="modal-title" id="exampleModalLabel">บันทึกการตรวจสอบระบบ <?php echo "Date : <sup>".$today." ".$ttime."</sup>";?></h5>
                                                     </div>
                                                     <div class="modal-body">
+
+
+                                                    <?php echo $rowu["ups_product"]." : ".$rowu["ups_rate"]; ?><br>
+                                                       <?php echo $rowu["ups_zone"]." : ".$rowu["ups_location"] ;?>
+                                                       <?php echo $rowu["ups_zone"]." : ".$rowu["ups_location"] ;?>
+                                                        <hr>
+
+
+
+
+
                                                     <form action="" name="frm-ff" id="frm-ff" method="POST">
                                                             <div class="mb-3">
                                                                 <div id="radioBtn" class="btn-group ">

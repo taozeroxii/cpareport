@@ -98,7 +98,7 @@ h2.ssb-title-aa {
     margin: 15px auto;
 }
 .square-service-block-bb a {
-    background-color: #8c53d8;
+    background-color: #F55C32;
     border-radius: 5px;
     display: block;
     padding: 60px 20px;
@@ -106,7 +106,7 @@ h2.ssb-title-aa {
     width: 100%;
 }
 .square-service-block-bb a {
-    background-color: #8c53d8;
+    background-color: #F55C32;
     border-radius: 5px;
     display: block;
     padding: 60px 20px;
@@ -182,7 +182,7 @@ h2.ssb-title-cc {
     margin: 15px auto;
 }
 .square-service-block-dd a {
-    background-color: #8c53d8;
+    background-color: #F55C32;
     border-radius: 5px;
     display: block;
     padding: 60px 20px;
@@ -190,7 +190,7 @@ h2.ssb-title-cc {
     width: 100%;
 }
 .square-service-block-dd a {
-    background-color: #8c53d8;
+    background-color: #F55C32;
     border-radius: 5px;
     display: block;
     padding: 60px 20px;
@@ -264,7 +264,7 @@ h2.ssb-title-ee {
     margin: 15px auto;
 }
 .square-service-block-ff a {
-    background-color: #8c53d8;
+    background-color: #F55C32;
     border-radius: 5px;
     display: block;
     padding: 60px 20px;
@@ -272,7 +272,7 @@ h2.ssb-title-ee {
     width: 100%;
 }
 .square-service-block-ff a {
-    background-color: #8c53d8;
+    background-color: #F55C32;
     border-radius: 5px;
     display: block;
     padding: 60px 20px;
@@ -303,4 +303,8 @@ h2.ssb-title-ff {
 #radioBtn .notActive{
     color: #3276b1;
     background-color: #fff;
+}
+
+h5{
+    color: #000;;
 }
