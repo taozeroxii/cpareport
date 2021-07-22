@@ -51,6 +51,24 @@ date_default_timezone_set('asia/bangkok');
     <script src="dist/sweetalert.js"></script>
     <link rel="stylesheet" href="dist/sweetalert.css">
     <!--.......................-->
+    <style>
+        body {
+            background-color: #000;
+            color: #fff;
+        }
+
+        .detail {
+            background-color: #D33306;
+        }
+
+        .inp {
+            border-top: none;
+            border-left: none;
+            border-right: none;
+            background-color: transparent;
+            cursor: copy;
+        }
+    </style>
 
     <script>
         (function(i, s, o, g, r, a, m) {
@@ -182,6 +200,7 @@ $query = mysql_query($sql);
     <br>
     <hr>
     <div class="cen">
+
         <body style="text-align:center;">
             <h1 style="color:green;">
                 Admin Update User Authentication Reset Password.
@@ -192,7 +211,7 @@ $query = mysql_query($sql);
     </div>
 
     <hr>
-    <div class="container ">
+    <div class="container-fuild ">
         <div class="row">
             <div class="col-md-12">
                 <table class="table table-bordered ta">
@@ -253,8 +272,9 @@ $query = mysql_query($sql);
                                 $username    = $result['username'];
                                 ?>
                                 <td>
-                                <div class="text-center" id="main_content">
-                                <button type="button" title="คลิกเมื่อทำการ update ในระบบ AD แล้ว" class="btn btn-success btn-block view_data glyphicon glyphicon-refresh" id="<?php echo $username; ?>">&nbsp;Update&nbsp;รหัส</button></div>
+                                    <div class="text-center" id="main_content">
+                                        <button type="button" title="คลิกเมื่อทำการ update ในระบบ AD แล้ว" class="btn btn-success btn-block view_data glyphicon glyphicon-refresh" id="<?php echo $username; ?>">&nbsp;Update&nbsp;รหัส</button>
+                                    </div>
                                 </td>
 
                             </tr>
@@ -267,24 +287,25 @@ $query = mysql_query($sql);
 
         </div>
     </div>
-<hr>
-<?php    
-$sql_add = " SELECT flage,firstname,lastname,username
+    <hr>
+    <?php
+    $sql_add = " SELECT flage,firstname,lastname,username
                    ,email,department,`password`
                    ,status_pass,telephone,jobtitle,company
              FROM network_ad_user
              WHERE flage = '0'  
             ";
-$query_add = mysql_query($sql_add);
-?>
-  <div class="cen">
+    $query_add = mysql_query($sql_add);
+    ?>
+    <div class="cen">
+
         <body style="text-align:center;">
             <h1 style="color:green;">
-               ADD USER AD NEW.
+                ADD USER AD NEW.
             </h1>
     </div>
 
-    <div class="container ">
+    <div class="container-fuild ">
         <div class="row">
             <div class="col-md-12">
                 <table class="table table-bordered ta">
@@ -294,11 +315,11 @@ $query_add = mysql_query($sql_add);
                             <th style="text-align: center;">firstname</th>
                             <th style="text-align: center;">lastname</th>
                             <th style="text-align: center;">username</th>
-                            <th style="text-align: center;">email</th>
-                            <th style="text-align: center;">department</th>
                             <th style="text-align: center;">password</th>
                             <th style="text-align: center;">telephone</th>
+                            <th style="text-align: center;">email</th>
                             <th style="text-align: center;">jobtitle</th>
+                            <th style="text-align: center;">department</th>
                             <th style="text-align: center;">company</th>
                             <th style="text-align: center;">flage</th>
                             <th style="text-align: center;">เพิ่มรายการ</th>
@@ -309,39 +330,43 @@ $query_add = mysql_query($sql_add);
                         while ($result_add = mysql_fetch_assoc($query_add)) { ?>
                             <tr class="">
                                 <td><?php echo $i; ?>.</td>
-                                <td><?php echo $result_add['firstname']; ?></td>
-                                <td><?php echo $result_add['lastname']; ?></td>
-                                <td><?php echo $result_add['username']; ?></td>
-                                <td><?php echo $result_add['email']; ?></td>
-                                <td><?php echo $result_add['department']; ?></td>
-                                <td><?php echo $result_add['password']; ?></td>
-                                <td><?php echo $result_add['telephone']; ?></td>
-                                <td><?php echo $result_add['jobtitle']; ?></td>
-                                <td><?php echo $result_add['company']; ?></td>
+                                <td> <input class="inp" title="Copy Link" type="text" id="copy_this" value='<?php echo  $result_add['firstname']; ?>' onclick="copyTo(this)" /></td>
+                                <td><input type="text" value="<?php echo $result_add['lastname']; ?>" class="inp" onclick="copyTo(this)"></td>
+                                <td><input type="text" value="<?php echo $result_add['username']; ?>"  class="inp" onclick="copyTo(this)"></td>
+                                <td><input type="text" value="<?php echo $result_add['password']; ?>"  class="inp" onclick="copyTo(this)"></td>
+                                <td><input type="text" value="<?php echo $result_add['telephone']; ?>"  class="inp" onclick="copyTo(this)"></td>
+                                <td><input type="text" value="<?php echo $result_add['email']; ?>"  class="inp" onclick="copyTo(this)"></td>
+                                <td><input type="text" value="<?php echo $result_add['jobtitle']; ?>"  class="inp" onclick="copyTo(this)"></td>
+                                <td><input type="text" value="<?php echo $result_add['department']; ?>"  class="inp" onclick="copyTo(this)"></td>
+                                <td><input type="text" value="<?php echo $result_add['company']; ?>"  class="inp" onclick="copyTo(this)"></td>
                                 <td><?php echo $result_add['flage']; ?></td>
-                               
+
                                 <td>
-                                <div class="text-center" id="main_content">
-                                    <a href="add_newuser.php?username=<?php echo $result_add['username'];?>">
-                                <button type="button" title="คลิกเมื่อทำการ update ในระบบ AD แล้ว" class="btn btn-danger btn-block add_data" id="<?php echo $username; ?>">&nbsp;เพิ่ม&nbsp;</button></div>
-                                </a>
-                            </td>
+                                    <div class="text-center" id="main_content">
+                                        <a href="add_newuser.php?username=<?php echo $result_add['username']; ?>">
+                                            <button type="button" title="คลิกเมื่อทำการ update ในระบบ AD แล้ว" class="btn btn-info btn-block add_data" id="<?php echo $username; ?>">&nbsp;เพิ่ม&nbsp;</button>
+                                    </div>
+                                    </a>
+                                </td>
                             </tr>
                         <?php $i++;
                         } ?>
-
                     </tbody>
                 </table>
             </div>
 
         </div>
     </div>
-
 </body>
 
 </html>
 
 <script>
+    function copyTo(input) {
+        input.select();
+        document.execCommand("copy");
+    }
+
     function copy(clickedBtn) {
         clickedBtn.value = "Copied to clipboard";
         clickedBtn.disabled = false;
@@ -384,41 +409,43 @@ $query_add = mysql_query($sql_add);
 </script>
 
 <script>
-$(document).ready(function(){
-$('.view_data').click(function(){
-var uid=$(this).attr("id");
-swal({
-title: "ต้องการ Update รายการนี้ ?",
-text: "ใช่ หรือ ไม่ !!",
-type: "warning",
-showCancelButton:true,
-confirmButtonText:"ใช่",
-cancelButtonText: "ไม่ใช่",
-closeOnConfirm:false,
-closeOnCancel: false
-},
-function(isConfirm){
-if (isConfirm)
-{
-swal({title: "Update", text: "รายการนี้สำเร็จ!", type: "success"},
-   function(){ 
-       location.reload();
-   }
-);
-$.ajax({
-url:"update_passnew.php",
-method :"post",
-data:{id:uid},
-success:function(data)
-{
-}
+    $(document).ready(function() {
+        $('.view_data').click(function() {
+            var uid = $(this).attr("id");
+            swal({
+                    title: "ต้องการ Update รายการนี้ ?",
+                    text: "ใช่ หรือ ไม่ !!",
+                    type: "warning",
+                    showCancelButton: true,
+                    confirmButtonText: "ใช่",
+                    cancelButtonText: "ไม่ใช่",
+                    closeOnConfirm: false,
+                    closeOnCancel: false
+                },
+                function(isConfirm) {
+                    if (isConfirm) {
+                        swal({
+                                title: "Update",
+                                text: "รายการนี้สำเร็จ!",
+                                type: "success"
+                            },
+                            function() {
+                                location.reload();
+                            }
+                        );
+                        $.ajax({
+                            url: "update_passnew.php",
+                            method: "post",
+                            data: {
+                                id: uid
+                            },
+                            success: function(data) {}
 
-});
-}
-else {
-swal("ยกเลิก", " การ Update รายการนี้ ", "error");
-}
-})
-});
-});
+                        });
+                    } else {
+                        swal("ยกเลิก", " การ Update รายการนี้ ", "error");
+                    }
+                })
+        });
+    });
 </script>
