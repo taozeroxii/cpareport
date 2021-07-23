@@ -159,8 +159,8 @@ var x = setInterval(function() {
                         ตรวจสอบ
                     </button>
                     &nbsp;
-                    <button type="button" class="btn btn-danger btn-lg" data-toggle="modal" data-target="#myModal" title="หลังจากลงทะเบียนแล้ว รอการยืนยันเข้าใช้งานประมาณ 24 - 48 ชั่วโมง "><span
-                            class="glyphicon glyphicon-user"></span> ลงทะเบียนล่าช้า </button>
+                    <button type="button" class="btn btn-danger btn-lg" data-toggle="modal" data-target="#myModal" title="หลังจากลงทะเบียนแล้ว รอการยืนยันเข้าใช้งานประมาณ 24 ชั่วโมง "><span
+                            class="glyphicon glyphicon-user"></span> ลงทะเบียนเข้าใช้งาน </button>
                             <a href="https://cpa-hospital.watchguard.in.th:4100/" target="_blank" rel="noopener noreferrer" title="ตรวจสอบการเข้าใช้งาน Login & Logout"> 
                             <button type="button" class="btn btn-warning btn-lg" ><span
                             class="glyphicon glyphicon-off"></span> ตรวจสอบการใช้งาน </button>
