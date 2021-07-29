@@ -58,8 +58,8 @@ header("Content-Disposition: attachment; filename=Export_Drug_".$todate.".xls");
 		 ,pt.name AS pttypename
 		 ,d.name AS doctorname
 		 ,CASE WHEN d.licenseno LIKE '%-%' THEN d.shortname ELSE d.licenseno END AS licenseno 
-		 ,CONCAT(oo.icd10,' ',ioo.name) AS diag_opd
-		 ,CONCAT(ii.icd10,' ',iii.name) AS diag_ipd
+		--  ,CONCAT(oo.icd10,' ',ioo.name) AS diag_opd
+		 --,CONCAT(ii.icd10,' ',iii.name) AS diag_ipd
      from opitemrece op 
      LEFT JOIN medreturn_ipd m ON op.hos_guid = m.opi_guid AND m.return_qty > 0 AND m.confirm_return = 'Y' 
      LEFT JOIN patient pa ON pa.hn = op.hn 

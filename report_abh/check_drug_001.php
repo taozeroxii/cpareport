@@ -131,8 +131,8 @@ $res = pg_query($sql);
 		 ,pt.name AS pttypename
 		 ,d.name AS doctorname
 		 ,CASE WHEN d.licenseno LIKE '%-%' THEN d.shortname ELSE d.licenseno END AS licenseno 
-     ,string_agg(oo.icd10 , ' | ')AS diag_opd
-	  ,string_agg(ii.icd10 , ' | ')AS diag_ipd
+     -- ,string_agg(oo.icd10 , ' | ')AS diag_opd
+	   -- ,string_agg(ii.icd10 , ' | ')AS diag_ipd
     -- ,CONCAT(oo.icd10,' ',ioo.name) AS diag_opd
     -- ,CONCAT(ii.icd10,' ',iii.name) AS diag_ipd
      from opitemrece op 
