@@ -42,7 +42,7 @@ $resultu = mysqli_query($connect, $queryu);
 </head>
 
 <body>
-    <h3 class="text-center hhh">CHECK : SERVER | NETWORK | SWITCH | UPS | TEMP | ELECTRIC <a href="add_device.php" target="_blank" title="เพิ่มรายการ">Add Device</a><h3>
+    <h3 class="text-center hhh">CHECK : SERVER | NETWORK | SWITCH | UPS | TEMP | ELECTRIC <h3>
             <div class="container-fluid text-center">
 
 
