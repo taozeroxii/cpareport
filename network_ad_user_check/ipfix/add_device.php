@@ -88,6 +88,9 @@ $newid = str_pad($uuu, 3, "0", STR_PAD_LEFT);
             <div class="w3-third">
                 <input class="w3-input w3-border" name="ups_location" type="text" placeholder="ups_location ตัวอย่าง : เฉลิมพระเกียรติฯ ชั้น 3" required>
             </div>
+            <!-- <div class="w3-third">
+                <input class="w3-input w3-border" name="keycode" type="text" placeholder="Keycode" required>
+            </div> -->
             <div class="w3-third">
                 <button class="w3-btn w3-blue" type="submit" value="">เพิ่มรายการ Add Device UPS </button></p>
 
@@ -95,11 +98,48 @@ $newid = str_pad($uuu, 3, "0", STR_PAD_LEFT);
         </div>
         <br>
     </form>
+    <!-- 
+    UPS RACK  
+  
+  1 ห้องบัตรOPD ชั้น1 อาคารเฉลิมพระเกียรติ
+  2 ห้องยาบันไดชั้นลอย 
+  3 จิตเวช/จักษุ ชั้น2 
+  * server ชั้น3 
+  4 บัญชี ชั้น5 
+  5 หลังลิฟท์ ap wifi ชั้น5 
+  6 ชั้น2 สุวัทนา
+  7 ห้องพักพยาบาล ชั้น1 ชินวันทนานน(สูติ-นรีเวช)
+  8 ห้องพักพยาบาล ชั้น2 
+  9 ห้องพักพยาบาล ชั้น3 
+  10 ห้องไฟ ชั้น1 เด็ก/พิเศษ
+  11 ห้องพักแพทย์ ชั้น2 ศัลยกรรม
+  12 ห้องคลอดเก่า ชั้น2 
+  13 ห้องพักแพทย์ ชั้น1 ยาใน
+  14 ชั้น1 สำราญสำรวจกิจ(75ปี)
+  * server ชั้น2 
+  15 ชั้น3 
+  16 ชั้น4 
+  17 ชั้น5 
+  18 แผนเทยเก่าชั้น1 ตรวจโควิท
+  19 ห้องธนาคารเลือด ชั้น2 X-ray/Lab
+  20 บัตรIPD ชั้น1 อาชีวะเวชกรรม
+  21 ห้องป้าแคทรียา ชั้น2 
+  22 ชั้น2 อาคารเภสัชกรรม
+  23 ชั้น2 อาคารคลังเวชภัณฑ์ยา/มิใช่ยา
+  * server ชั้น2 อาคารอุบัติเหตุและฉุกเฉิน
+  24 ชั้น3 
+  25 ชั้น4 
+  26 ชั้น5 -->
 
 
-<?php
+    <?php
+    // $token    =     MD5($_POST['keycode']);
+    // if ($token != '7b8025f2e8713caf76bbeb26808a27e3') {
+    //     Header("Location: add_device.php?errorkeycode!");  
+       
+    // }
 
-    $u_id           = "U".$newid;
+    $u_id           = "U" . $newid;
     $ups_product    = $_POST['ups_product'];
     $ups_model      = $_POST['ups_model'];
     $ups_serial     = $_POST['ups_serial'];
@@ -120,20 +160,21 @@ $newid = str_pad($uuu, 3, "0", STR_PAD_LEFT);
 
     $sqlinsert = " INSERT INTO network_check_ups (u_id,ups_product,ups_model,ups_serial,ups_ip,ups_rate,ups_status,ups_startdate,ups_expdate,ups_ma,ups_detail,ups_ma_tel,ups_type,ups_note,ups_group,ups_zone,ups_location) 
     VALUES ('$u_id','$ups_product','$ups_model','$ups_serial','$ups_ip','$ups_rate','$ups_status','$ups_startdate','$ups_expdate','$ups_ma','$ups_detail','$ups_ma_tel','$ups_type','$ups_note','$ups_group','$ups_zone','$ups_location')";
-$querynew = mysqli_query($connect, $sqlinsert);
+    $querynew = mysqli_query($connect, $sqlinsert);
 
-if ($querynew) {
-    echo "<script language='javascript'>";
-    echo "if(!alert('OK Add Device UPS Successful ')){
+    if ($querynew) {
+        echo "<script language='javascript'>";
+        echo "if(!alert('OK Add Device UPS Successful ')){
         window.location.replace('add_device.php');
     }";
-    echo "</script>";
-} else {
-   // echo "ERROR INSERT DATA";
-}
-mysqli_close($connect);
-    
-?>
+        echo "</script>";
+    } else {
+        // echo "ERROR INSERT DATA";
+    }
+    mysqli_close($connect);
+
+    ?>
 
 </body>
+
 </html>
