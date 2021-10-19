@@ -262,7 +262,7 @@ var x = setInterval(function() {
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                     <h4 class="modal-title"><span class="	glyphicon glyphicon-lock"></span> กรุณากรอกข้อมูล ให้ถูกต้อง
                         ครบถ้วน </h4>
-                        <center><div class="rrar">ลงทะเบียนล่าช้า </div></center>
+                        <center><div class="rrar">ลงทะเบียน </div></center>
                 </div>
               
                 <div class="modal-body">
