@@ -105,7 +105,7 @@
 		$qselectward = pg_query($conn, $selectward);
 	}
 	
-	$ckdoctor =  strpos($sqlgethosxp, "{mutiple_doctor}");
+	$ckdoctor =  strpos($sqlgethosxp, "{multiple_doctor}");
 	if ($ckdoctor !== false) {
 		$messageInput .= ' แพทย์ ';
 		$selectdoctor = "select code,licenseno,name from doctor  where name not like '%ยกเลิก%' order by code";
