@@ -1,0 +1,102 @@
+body {
+    font-family: 'Lato', sans-serif;
+    background-color: #f4b927;
+}
+
+.wrapper {
+    padding-top: 120px;
+
+}
+.hover-div:hover{
+    cursor: pointer;
+    background-color: #ea4c89;
+    border-radius: 12px 12px;
+}
+
+.card-img-top {
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.5);
+}
+
+.card-body {
+    text-align: center;
+    box-shadow: 0px 15px 15px -8px rgba(0, 0, 0, 0.5)
+}
+
+.card-body h6 {
+    font-size: 14px;
+    text-transform: uppercase;
+    color: deeppink;
+}
+
+.card-title {
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 24px;
+}
+
+.socials a {
+    width: 40px;
+    height: 40px;
+    display: inline-block;
+    border-radius: 50%;
+    margin: 0 5px;
+}
+
+.socials a i {
+    color: #fff;
+    padding: 12px 0;
+}
+
+.socials a:nth-child(1) {
+    background: #366ee7;
+}
+
+.socials a:nth-child(2) {
+    background: #ff0000;
+}
+
+.socials a:nth-child(3) {
+    background: #007bb5;
+}
+
+.socials a:nth-child(4) {
+    background: #ea4c89;
+}
+
+@media (max-width: 800px) {
+    .mx-30 {
+        margin-bottom: 30px;
+    }
+}
+
+.nid{
+    font-size: 1.2em;
+    color: #ff0000;
+}
+ .mo{
+     font-weight: bold;
+ }
+ .sok{
+ color: #1dc239;
+ font-weight: bold;
+ 
+ }
+ .son{
+    color: #da0a0a;
+    font-weight: bold;
+ }
+
+ .mmh{
+     color: lightseagreen;
+ }
+ 
+
+ .header {
+    font-family: 'Lato', sans-serif;
+    background-color: #f1f1f1;
+    padding: 10px;
+    text-align: center;
+    font-size: 25px;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.5);
+  }
+  

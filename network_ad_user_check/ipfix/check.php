@@ -31,10 +31,18 @@ $resultu = mysqli_query($connect, $queryu);
     <link rel="stylesheet" href="st.css">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 
+    <style>
+        .expy{
+            color: blue;
+        }
+        .expn{
+            color: green;
+        }
+    </style>
 </head>
 
 <body>
-    <h3 class="text-center hhh">CHECK : SERVER | NETWORK | SWITCH | UPS | TEMP | ELECTRIC <h3>
+    <h3 class="text-center hhh">CHECK : SERVER | NETWORK | SWITCH | UPS | TEMP | ELECTRIC <a href="add_device.php" target="_blank" title="เพิ่มรายการ">Add Device</a><h3>
             <div class="container-fluid text-center">
 
 
@@ -51,6 +59,7 @@ $resultu = mysqli_query($connect, $queryu);
                                                                 <div class="ssb-icon-ee"><i class="fa fa-desktop" aria-hidden="true"></i></div>
                                                                 <h2 class="ssb-title-ee" title=" UPS Name & ups_rate"><?php echo $rowu["ups_product"]." : ".$rowu["ups_rate"]; ?></h2>
                                                                 <h5 class="ssb-title-ee" title=""><?php echo $rowu["ups_zone"]." : ".$rowu["ups_location"] ;?></h5>
+                                                                <h6 class="ssb-title-ee expn" title=""><?php echo $rowu["ups_expdate"]." | ".$rowu["ups_ma"]." | ".$rowu["ups_detail"] ;?></h6>  
                                                             </a>
                                                         </div>
                                                     </div>
@@ -96,7 +105,7 @@ $resultu = mysqli_query($connect, $queryu);
                                                                 <div class="ssb-icon-ff"><i class="fa fa-desktop" aria-hidden="true"></i></div>
                                                                 <h2 class="ssb-title-ee" title=" UPS Name & ups_rate"><?php echo $rowu["ups_product"]." : ".$rowu["ups_rate"]; ?></h2>
                                                                 <h5 class="ssb-title-ee" title=""><?php echo $rowu["ups_zone"]." : ".$rowu["ups_location"] ;?></h5>
-                                                                
+                                                                <h6 class="ssb-title-ee expy" title=""><?php echo $rowu["ups_expdate"]." | ".$rowu["ups_ma"]." | ".$rowu["ups_detail"] ;?></h6>                                                                
                                                             </a>
                                                         </div>
                                                     </div>

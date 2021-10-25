@@ -1,0 +1,130 @@
+body{
+    font-family: 'Kanit', sans-serif;
+}
+.row-header{
+    font-weight: bold;
+    background-color: #2653d4;
+    padding: 1%;
+    border-radius: 6px;
+    color: #fff;
+}
+
+.row-body{
+    font-weight: bold;
+    color: #000;
+    padding: 1%;
+}
+.row-body:hover{
+    font-weight: bold;
+    color: #fff;
+    background-color: #0A495C;
+    border-radius: 6px;
+    cursor: pointer;
+    padding: 1%;
+}
+.btn-h{
+    font-weight: bold;
+    color: #DC3808;
+    font-size: 1.2em;
+
+}
+.row-table{
+    font-weight: bold;
+    color: #000;
+    padding: 1%;
+}
+.row-table:hover{
+    font-weight: bold;
+    color: #fff;
+    background-color: #ABB2B9;
+    border-radius: 6px;
+    cursor: pointer;
+    padding: 1%;
+}
+
+/* ### */
+
+/**
+* Tooltip Styles
+*/
+/* Add this attribute to the element that needs a tooltip */
+[data-tooltip] {
+    position: relative;
+    z-index: 2;
+    cursor: pointer;
+    }
+    /* Hide the tooltip content by default */
+    [data-tooltip]:before,
+    [data-tooltip]:after {
+    visibility: hidden;
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+    filter: progid: DXImageTransform.Microsoft.Alpha(Opacity=0);
+    opacity: 0;
+    pointer-events: none;
+    }
+    /* Position tooltip above the element */
+    [data-tooltip]:before {
+    position: absolute;
+    bottom: 150%;
+    left: 50%;
+    margin-bottom: 5px;
+    margin-left: -80px;
+    padding: 7px;
+    width: 560px;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+    background-color: #000;
+    background-color:#17202A;
+    /* background-color: hsla(0, 0%, 20%, 0.9); */
+    color: #A8ECDE;
+    content: attr(data-tooltip);
+    text-align: LEFT;
+    font-size: 1.4em;
+    line-height: 1.2;
+    }
+    /* Triangle hack to make tooltip look like a speech bubble */
+    [data-tooltip]:after {
+    position: absolute;
+    bottom: 150%;
+    left: 50%;
+    margin-left: -5px;
+    width: 0;
+    border-top: 5px solid #000;
+    border-top: 5px solid hsla(0, 0%, 20%, 0.9);
+    border-right: 5px solid transparent;
+    border-left: 5px solid transparent;
+    content: " ";
+    font-size: 0;
+    line-height: 0;
+    }
+    /* Show tooltip content on hover */
+    [data-tooltip]:hover:before,
+    [data-tooltip]:hover:after {
+    visibility: visible;
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
+    filter: progid: DXImageTransform.Microsoft.Alpha(Opacity=100);
+    opacity: 1;
+    }
+/*####  */
+
+
+.coh{
+    color: #D01010;
+}
+
+
+.ww{
+width: 100%;
+}
+
+.user_h{
+    color: crimson;
+}
+.not{
+    color: #0A7AC8;
+    font-size: 1.4em;
+}
+.eshow{
+    color: crimson;
+}
