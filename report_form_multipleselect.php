@@ -105,8 +105,9 @@
 		$qselectward = pg_query($conn, $selectward);
 	}
 	
-	$ckdoctor =  strpos($sqlgethosxp, "{mutiple_doctor}");
-	if ($ckdoctor !== false) {
+	$ckdoctor =  strpos($sqlgethosxp, "{multiple_doctor}");
+	$ckdoctor2 = strpos($sqlgethosxp, "{mutiple_doctor}");
+	if ($ckdoctor !== false || $ckdoctor2 !== false ) {
 		$messageInput .= ' แพทย์ ';
 		$selectdoctor = "select code,licenseno,name from doctor  where name not like '%ยกเลิก%' order by code";
 		$selectdoctor2 = "select code from doctor  where name not like '%ยกเลิก%' order by code";
@@ -201,6 +202,7 @@
 		$sqlgethosxp = str_replace("{multiple_spclty}", cstring_multipleinput($multipleSpclty,$selectspclty2), $sqlgethosxp);
 		$sqlgethosxp = str_replace("{multiple_ward}"  , cstring_multipleinput($multipleward,$selectward2)    , $sqlgethosxp);
 		$sqlgethosxp = str_replace("{multiple_doctor}", cstring_multipleinput($multipledoctor,$selectdoctor2), $sqlgethosxp);
+		$sqlgethosxp = str_replace("{mutiple_doctor}", cstring_multipleinput($multipledoctor,$selectdoctor2), $sqlgethosxp);
 		$sqlgethosxp = str_replace("{multiple_room}"  , cstring_multipleinput($multipleroom,$selectroom2)    , $sqlgethosxp);
 
 		$sqlgethosxp = str_replace("{hmain_referin}"  , cstring_multipleinput($multiplehmain,$selecthmain_ri2) , $sqlgethosxp);
