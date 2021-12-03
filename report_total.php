@@ -42,11 +42,11 @@
 <?php 
 
 $datepickers    = $_POST['datepickers'];
-list($m,$d,$Y)  = split('/',$datepickers); 
+list($m,$d,$Y)  = explode('/',$datepickers); 
 $datepickers    = trim($Y)."-".trim($m)."-".trim($d);
 
 $datepickert    = $_POST['datepickert'];
-list($m,$d,$Y)  = split('/',$datepickert); 
+list($m,$d,$Y)  = explode('/',$datepickert); 
 $datepickert    = trim($Y)."-".trim($m)."-".trim($d);
  
 if($datepickers != "--") {

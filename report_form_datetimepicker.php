@@ -82,12 +82,12 @@ include "config/timestampviewer.php";//เรียกไฟล์ในส่�
 				</div>          
 				<?php 
 				$datepickers    = $_POST['datepickers'];
-				list($m,$d,$Y)  = split('/',$datepickers); 
+				list($m,$d,$Y)  = explode('/',$datepickers); 
 				$datepickers    = trim($Y)."-".trim($m)."-".trim($d);
 
 				$datepickert    = $_POST['datepickert'];
 				
-				list($m,$d,$Y)  = split('/',$datepickert); 
+				list($m,$d,$Y)  = explode('/',$datepickert); 
 				$datepickert    = trim($Y)."-".trim($m)."-".trim($d);
 
 				$time_in    = $_POST['time_in'].":00";

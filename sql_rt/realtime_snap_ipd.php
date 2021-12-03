@@ -6,8 +6,8 @@ function thf($datetime)
 {
  if(!is_null($datetime))
  {
-   list($date,$time) = split('T',$datetime);
-   list($Y,$m,$d) = split('-',$date);
+   list($date,$time) = explode('T',$datetime);
+   list($Y,$m,$d) = explode('-',$date);
    $Y = $Y+543;
    switch($m)
    {
