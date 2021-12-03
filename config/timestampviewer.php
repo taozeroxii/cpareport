@@ -1,7 +1,7 @@
 <?
 /////////////////// เช็คเก็บข้อมูลผู้เข้าชม sql นั้นๆ เพื่อเก็บ session นับจำนวน view  //////////////////////////////
 $useronline = session_id();
-$userlogin = $_SESSION['username'];
+$userlogin =  $_SESSION['username']  ?? "" ;
 if(isset($_SESSION['username'])==''||isset($_SESSION['username'])==null){ $userlogin='ผู้เยี่ยมชมทั่วไป';}
 
 $time = time();

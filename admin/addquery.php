@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<?php session_start(); ?>
+<?php session_start();?>
 <html>
 
 <link rel="stylesheet" type="text/css" href="css/DT_bst.css">

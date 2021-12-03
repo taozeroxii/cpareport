@@ -1,5 +1,5 @@
 <?php
-include('/../config/yd.php');
+// include('/../config/yd.php');
 // นัด วันนี้ แยก คลินิก
 $sql = " SELECT CURRENT_DATE, C.NAME AS clinic_name ,count(C.NAME) as c_clinic
           FROM oapp o
@@ -172,7 +172,7 @@ $sql_cmi = " SELECT  CASE
          GROUP BY md,dm ,yy 
          ORDER BY yy,dm DESC
          LIMIT 6 ";
-$row_cmi = pg_query($sql_cmi);
+// $row_cmi = pg_query($sql_cmi);
 
 //ER 
 
