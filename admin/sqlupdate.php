@@ -216,8 +216,8 @@ $res = mysqli_query($con, $topLevelItems);
 						<button class="btn btn-primary" onclick="myFunction()">คัดลอก S Q L</button>
 						<form action="#" method="POST"> 
 							<input type="hidden" name="file_sql1" value="<? echo $file ?>">
-							<?if($statusis['menu_status'] == '1'){?><button class="btn btn-danger" name="closesql" value="closesql">ปิดการใช้งานเมนูนี้</button><?}?>
-							<?if($statusis['menu_status'] == '2'){?><button class="btn btn-success" name="openesql" value="openesql" >เปิดการใช้งานเมนูนี้</button><?}?>
+							<? if(@$statusis['menu_status'] == '1'){?><button class="btn btn-danger" name="closesql" value="closesql">ปิดการใช้งานเมนูนี้</button><?}?>
+							<? if(@$statusis['menu_status'] == '2'){?><button class="btn btn-success" name="openesql" value="openesql" >เปิดการใช้งานเมนูนี้</button><?}?>
 						</form>	
 						<button class="btn btn-secondary" data-toggle="modal" data-target=".bd-example-modal-xl">log</button>
 					</div>	
