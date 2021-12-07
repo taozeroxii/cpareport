@@ -5,8 +5,8 @@ date_default_timezone_set('asia/bangkok');
 function thaiDate($datetime)
 {
   if (!is_null($datetime)) {
-    list($date, $time) = split('T', $datetime);
-    list($Y, $m, $d) = split('-', $date);
+    @list($date, $time) = explode('T', $datetime);
+    @list($Y, $m, $d) = explode('-', $date);
     $Y = $Y + 543;
     switch ($m) {
       case "01":
@@ -107,7 +107,7 @@ $queryr = pg_query($sqlr);
           <td><?= $rowr["holiday_date"] ?></td>
           <td><?= $rowr["day_name"] ?></td>
         </tr>
-        <?php $ii++;
+        <?php @$ii++;
       } ?>
     </tbody>
   </table>

@@ -109,7 +109,7 @@ $res = mysqli_query($con, $topLevelItems);
 	$searchstatus = " SELECT menu_status FROM cpareport_menu WHERE menu_file = '" . $s . "'  ";
 	$statusmenu = mysqli_query($con, $searchstatus);
 	$statusis = mysqli_fetch_assoc($statusmenu);
-	$statusis['menu_status'];
+	@$statusis['menu_status'];
 
 	if (isset($_POST['submit'])) {
 		//echo $_POST['code'];
@@ -169,14 +169,14 @@ $res = mysqli_query($con, $topLevelItems);
 	<div class="container border mt-1"  style="background-color:white;  border-radius: 25px; box-shadow: 3px 3px 3px 3px;">
 		<?php
 		foreach ($res as $item);
-		$code =  $item['sql_code'];
-		$code1 =  $item['sql_subcode_1'];
+		@$code =  $item['sql_code'];
+		@$code1 =  $item['sql_subcode_1'];
 		?>
 
 		<div class="hhh">
 			<marquee direction="down"><span></span></marquee>
-			<?php echo "ชุดคำสั่งที่ " . $item['sql_file'] . " | รายงาน | " . $item['sql_head'];
-			$file =  $item['sql_file']; ?>
+			<?php echo "ชุดคำสั่งที่ " . @$item['sql_file'] . " | รายงาน | " . @$item['sql_head'];
+			@$file =  $item['sql_file']; ?>
 			<a href='javascript:if(confirm("ต้องการปิดหน้านี้หรือไม่?"))self.close()' style="float:right"><button class="btn btn-outline-danger">X</button></a>
 			</small>
 		</div>
@@ -286,7 +286,7 @@ $res = mysqli_query($con, $topLevelItems);
 									<td class= "text-nowrap"><?echo $data['sqlsubcode1_new']; ?></td>
 									<td class= "text-nowrap"><?echo $data['update_datetime']; ?></td>
 								</tr>
-							<?php $ii++;
+							<?php @$ii++;
 							} ?>
 
 

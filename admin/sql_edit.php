@@ -1,6 +1,6 @@
 <?php
 include('../config/my_con.class.php');
-$s = $_GET['search_menu'];
+$s = "" ??   $_GET['search_menu'];
 $topLevelItems = " SELECT * FROM cpareport_menu WHERE menu_status in ('1','2') and menu_sub LIKE '%%$s%%'  ";
 $res = mysqli_query($con, $topLevelItems);
 ?>
@@ -22,43 +22,48 @@ $res = mysqli_query($con, $topLevelItems);
 		body {
 			background: #0B5345;
 		}
-		@media screen and (min-width: 320px), print and (min-width: 320px){
+
+		@media screen and (min-width: 320px),
+		print and (min-width: 320px) {
 			.aaa {
-				margin-left:3%;
-				margin-right:-32px;
+				margin-left: 3%;
+				margin-right: -32px;
 				width: 100%;
 				color: #fff;
 				display: inline-block;
 			}
 		}
 
-		@media screen and (min-width: 568px), print and (min-width: 568px){
+		@media screen and (min-width: 568px),
+		print and (min-width: 568px) {
 			.aaa {
-				margin-left:3%;
-				margin-right:-32px;
+				margin-left: 3%;
+				margin-right: -32px;
 				width: 50%;
 				color: #fff;
 				display: inline-block;
 			}
 		}
-		
 
-		@media screen and (min-width: 1000px), print and (min-width: 1000px){
+
+		@media screen and (min-width: 1000px),
+		print and (min-width: 1000px) {
 			.aaa {
-				margin-left:3%;
-				margin-right:-25px;
+				margin-left: 3%;
+				margin-right: -25px;
 				width: 30%;
 				color: #fff;
 				display: inline-block;
 			}
-			
+
 		}
 
-	
-		@media screen and (min-width: 1200px), print and (min-width:  1200px){
+
+		@media screen and (min-width: 1200px),
+		print and (min-width: 1200px) {
 			.aaa {
-				margin-left:3%;
-				margin-right:-32px;
+				margin-left: 3%;
+				margin-right: -32px;
 				width: 15%;
 				color: #fff;
 				display: inline-block;
@@ -128,10 +133,12 @@ $res = mysqli_query($con, $topLevelItems);
 		.rw {
 			color: #D35400;
 		}
-		a.statuscolor1{
+
+		a.statuscolor1 {
 			color: white;
 		}
-		a.statuscolor2{
+
+		a.statuscolor2 {
 			color: red;
 		}
 	</style>
@@ -154,7 +161,8 @@ $res = mysqli_query($con, $topLevelItems);
 
 	<div class="container-fulid">
 		<?php
-		$rw == 0;
+		$rw = "" ?? $rw  == 0;
+
 		foreach ($res as $item) {
 			$rw++;
 			$mk    = $item['menu_link'];
@@ -163,14 +171,17 @@ $res = mysqli_query($con, $topLevelItems);
 			$menustatus  = $item['menu_status'];
 			$title = "Edit SQL Report";
 			$sqlup = "sqlupdate.php";
-			if($menustatus == '1'){$statuscolor = 'statuscolor1';}else $statuscolor = 'statuscolor2';
+			if ($menustatus == '1') {
+				$statuscolor = 'statuscolor1';
+			} else $statuscolor = 'statuscolor2';
 			$link_mk =   " <a class = '$statuscolor' target='_blank'  href=" . $sqlup . "?sql=" . $mf . " title=" . $title . ">" . $ms . "</a> ";
-			?>
+		?>
 			<div class="aaa">
-			
-				<div title="<?php echo $title; ?>"><?php echo "<span class='rw'> " . $rw . ". </span> " .$link_mk; ?></div>
+
+				<div title="<?php echo $title; ?>"><?php echo "<span class='rw'> " . $rw . ". </span> " . $link_mk; ?></div>
 			</div>
-		<?php } ?>
+		<?php }
+		?>
 	</div>
 	<hr>
 </body>
