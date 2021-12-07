@@ -81,7 +81,7 @@ if(!empty($_POST["txtPassword"]) && ($_POST["txtPassword"] == $_POST["txtConPass
         $query = " UPDATE network_ad_user 
                    SET new_pass = '$txtPassword',status_pass = '$status_pass',date_editpass = '$date_editpass',ip_add_pass = '$ip_add_pass' 
                    WHERE username = '$user' ";  
-        $query = mysql_query($query);
+        $query = mysqli_query($conn,$query);
 
  
        echo ("<script LANGUAGE='JavaScript'>
@@ -133,8 +133,8 @@ function test_input($data) {
                         FROM network_ad_user 
                         WHERE 1 = 1 
                         AND username = '$user'  ";
-            $query  = mysql_query($sql);
-            $result = mysql_fetch_assoc($query);
+            $query  = mysqli_query($conn,$sql);
+            $result = mysqli_fetch_assoc($query);
                     
                         $firstname  = $result['firstname'];
                         $lastname   = $result['lastname'];

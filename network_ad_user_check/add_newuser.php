@@ -10,7 +10,7 @@ include 'connect.php';
 date_default_timezone_set('asia/bangkok');
 $username = $_GET['username'];
  $sql = "  UPDATE network_ad_user SET flage = '1' WHERE username = '$username' ";
-$query = mysql_query($sql);
+$query = mysqli_query($conn,$sql);
 ?>  
     </body>
 </html>

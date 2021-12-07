@@ -3,7 +3,6 @@ date_default_timezone_set('asia/bangkok');
 ?>
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <!-- https://www.formget.com/submit-form-using-ajax-php-and-jquery/ -->
     <meta charset="UTF-8">
@@ -92,8 +91,8 @@ date_default_timezone_set('asia/bangkok');
 function thaiDate($datetime)
 {
     if (!is_null($datetime)) {
-        list($date, $time) = split('T', $datetime);
-        list($Y, $m, $d) = split('-', $date);
+        list($date, $time) = explode('T', $datetime);
+        list($Y, $m, $d) = explode('-', $date);
         $Y = $Y;
         switch ($m) {
             case "01":
@@ -141,8 +140,8 @@ function thaiDate($datetime)
 function thdate($datetime)
 {
     if (!is_null($datetime)) {
-        list($date, $time) = split('T', $datetime);
-        list($Y, $m, $d) = split('-', $date);
+        list($date, $time) = explode('T', $datetime);
+        list($Y, $m, $d) = explode('-', $date);
         $Y = $Y + 543;
         switch ($m) {
             case "01":
@@ -192,7 +191,7 @@ $sql = "   SELECT *,firstname,lastname,username,department,jobtitle,new_pass
            WHERE 1 = 1 
            AND status_pass = 'O'  
             ";
-$query = mysql_query($sql);
+$query = mysqli_query($conn,$sql);
 ?>
 
 <body>
@@ -232,7 +231,7 @@ $query = mysql_query($sql);
                     </thead>
                     <tbody>
                         <?php $i = 1;
-                        while ($result = mysql_fetch_assoc($query)) { ?>
+                        while ($result = mysqli_fetch_assoc($query)) { ?>
                             <tr class="">
                                 <td><?php echo $i; ?>.</td>
                                 <td><?php echo $result['firstname']; ?></td>
@@ -295,7 +294,7 @@ $query = mysql_query($sql);
              FROM network_ad_user
              WHERE flage = '0'  
             ";
-    $query_add = mysql_query($sql_add);
+    $query_add = mysqli_query($conn,$sql_add);
     ?>
     <div class="cen">
 
@@ -327,7 +326,7 @@ $query = mysql_query($sql);
                     </thead>
                     <tbody>
                         <?php $i = 1;
-                        while ($result_add = mysql_fetch_assoc($query_add)) { ?>
+                        while ($result_add = mysqli_fetch_assoc($query_add)) { ?>
                             <tr class="">
                                 <td><?php echo $i; ?>.</td>
                                 <td> <input class="inp" title="Copy Link" type="text" id="copy_this" value='<?php echo  $result_add['firstname']; ?>' onclick="copyTo(this)" /></td>
