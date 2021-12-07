@@ -19,22 +19,46 @@ date_default_timezone_set("Asia/Bangkok");
 function thaiDate($datetime)
 {
   if (!is_null($datetime)) {
-    list($date, $time) = split('T', $datetime);
-    list($Y, $m, $d) = split('-', $date);
+    list($date, $time) = explode('T', $datetime);
+    list($Y, $m, $d) = explode('-', $date);
     $Y = $Y + 543 - 2500;
     switch ($m) {
-      case "01": $m = "ม.ค."; break;
-      case "02": $m = "ก.พ."; break;
-      case "03": $m = "มี.ค."; break;
-      case "04": $m = "เม.ย."; break;
-      case "05": $m = "พ.ค."; break;
-      case "06": $m = "มิ.ย."; break;
-      case "07": $m = "ก.ค."; break;
-      case "08": $m = "ส.ค."; break;
-      case "09": $m = "ก.ย."; break;
-      case "10": $m = "ต.ค."; break;
-      case "11": $m = "พ.ย."; break;
-      case "12": $m = "ธ.ค."; break;
+      case "01":
+        $m = "ม.ค.";
+        break;
+      case "02":
+        $m = "ก.พ.";
+        break;
+      case "03":
+        $m = "มี.ค.";
+        break;
+      case "04":
+        $m = "เม.ย.";
+        break;
+      case "05":
+        $m = "พ.ค.";
+        break;
+      case "06":
+        $m = "มิ.ย.";
+        break;
+      case "07":
+        $m = "ก.ค.";
+        break;
+      case "08":
+        $m = "ส.ค.";
+        break;
+      case "09":
+        $m = "ก.ย.";
+        break;
+      case "10":
+        $m = "ต.ค.";
+        break;
+      case "11":
+        $m = "พ.ย.";
+        break;
+      case "12":
+        $m = "ธ.ค.";
+        break;
     }
     return $d . " " . $m . " " . $Y . "";
   }
@@ -42,23 +66,47 @@ function thaiDate($datetime)
 }
 function thaiDateFULL($datetime)
 {
-  if (!is_null($datetime)) {
-    list($date, $time) = split('T', $datetime);
-    list($Y, $m, $d) = split('-', $date);
+  if (isset($datetime)) {
+    @list($date) = explode('T', $datetime);
+    @list($Y, $m, $d) = explode('-', $date);
     $Y = $Y + 543;
     switch ($m) {
-      case "01": $m = "มกราคม"; break;
-      case "02": $m = "กุมภาพันธ์"; break;
-      case "03": $m = "มีนาคม"; break;
-      case "04": $m = "เมษายน";break;
-      case "05": $m = "พฤษภาคม";break;
-      case "06": $m = "มิถุนายน";break;
-      case "07": $m = "กรกฎาคม";break;
-      case "08": $m = "สิงหาคม"; break;
-      case "09": $m = "กันยายน"; break;
-      case "10": $m = "ตุลาคม"; break;
-      case "11": $m = "พฤศจิกายน"; break;
-      case "12": $m = "ธันวาคม"; break;
+      case "01":
+        $m = "มกราคม";
+        break;
+      case "02":
+        $m = "กุมภาพันธ์";
+        break;
+      case "03":
+        $m = "มีนาคม";
+        break;
+      case "04":
+        $m = "เมษายน";
+        break;
+      case "05":
+        $m = "พฤษภาคม";
+        break;
+      case "06":
+        $m = "มิถุนายน";
+        break;
+      case "07":
+        $m = "กรกฎาคม";
+        break;
+      case "08":
+        $m = "สิงหาคม";
+        break;
+      case "09":
+        $m = "กันยายน";
+        break;
+      case "10":
+        $m = "ตุลาคม";
+        break;
+      case "11":
+        $m = "พฤศจิกายน";
+        break;
+      case "12":
+        $m = "ธันวาคม";
+        break;
     }
     return $d . " " . $m . " " . $Y . "";
   }
@@ -133,9 +181,9 @@ include "../config/timestampviewer.php"; //เรียกไฟล์ในส�
   <div class="main-contain">
     <div class="header" style="box-shadow:3px 3px 3px 3px rgba(0,0,0,0.5);background-color: #0B5345">
       KPI THIP ABHAI BHUBAJHR HOSPITAL
-      <?if($_SESSION['status']=='1'){?>
-      <a href="runsql.php"> <button class="btn btn-warning" style="float:right;" > Update</button></a>
-      <?}?>
+      <?php if (@$_SESSION['status'] == '1') { ?>
+        <a href="runsql.php"> <button class="btn btn-warning" style="float:right;"> Update</button></a>
+      <? } ?>
 
       <hr>
       <div class="row">
@@ -150,7 +198,7 @@ include "../config/timestampviewer.php"; //เรียกไฟล์ในส�
   <table class="table table-bordered">
     <tbody>
       <?php
-      $rw == 0;
+      @$rw == 0;
       foreach ($result as $item) {
         $kpiname  =  $item['kpi_name'];
         $kpicode  =  $item['kpi_code'];
@@ -158,7 +206,7 @@ include "../config/timestampviewer.php"; //เรียกไฟล์ในส�
         $a = $item['kpi_cal_a'];
         $b = $item['kpi_cal_b'];
         $c = $item['kpi_cal_c'];
-        $rw++;
+        @$rw++;
       ?>
     <tbody>
       <tr class='tr-hovers'>
@@ -166,7 +214,8 @@ include "../config/timestampviewer.php"; //เรียกไฟล์ในส�
         <td style="text-align:center;"><? echo $kpicode ?></td>
         <td><?= $kpiname . '  <span class="badge badge-primary badge-pill">' . $kpi_ym . '</span>'; ?> </td>
         <td style="text-align:center;">
-        <? if (($a != null && $b != null)) echo $c; else echo 'NULL'; ?></td>
+          <? if (($a != null && $b != null)) echo $c;
+          else echo 'NULL'; ?></td>
         <td><? if ($a != null) echo $a;
             else echo 'NULL'; ?></td>
         <td><? if ($b != null) echo $b;
@@ -213,8 +262,8 @@ include "../config/timestampviewer.php"; //เรียกไฟล์ในส�
     $kpicode  =  $item['kpi_code'];
     $kpievent  =  $item['kpi_event'];
   ?>
-    <div class="modal fade modal-xl"  id="<?= $kpicode ?>" tabindex="-1" role="dialog" aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">
-      <div class="modal-dialog modal-lg" >
+    <div class="modal fade modal-xl" id="<?= $kpicode ?>" tabindex="-1" role="dialog" aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-lg">
         <div class="modal-content">
           <div class="modal-header">
             <h5 class="modal-title" id="exampleModalLongTitle">
@@ -223,7 +272,7 @@ include "../config/timestampviewer.php"; //เรียกไฟล์ในส�
               </button>
               <h5><?= $kpicode . ' : ' . $kpiname; ?> </h5>
           </div>
-          <div class="modal-body" >
+          <div class="modal-body">
             <center>
               <div id="report<?= $kpicode ?>" style="width:800px;height: 200px"></div>
             </center>
@@ -297,9 +346,9 @@ include "../config/timestampviewer.php"; //เรียกไฟล์ในส�
                 ?>
                   <tr>
                     <th scope="row"><? echo thaiDateFULL($resultkpi['kpi_ym']) . '&nbsp;';
-                       if ($resultkpi['kpi_endym'] != '' || $resultkpi['kpi_endym'] != null) {
-                          echo 'ถึง ' . thaiDateFULL($resultkpi['kpi_endym']);
-                       } ?>
+                                    if ($resultkpi['kpi_endym'] != '' || $resultkpi['kpi_endym'] != null) {
+                                      echo 'ถึง ' . thaiDateFULL($resultkpi['kpi_endym']);
+                                    } ?>
                     </th>
                     <td><? echo $resultkpi['kpi_cal_c']; ?></td>
                     <td><? echo $resultkpi['kpi_cal_a']; ?></td>
@@ -308,21 +357,22 @@ include "../config/timestampviewer.php"; //เรียกไฟล์ในส�
                 <? } ?>
               </tbody>
             </table>
-            <? if($_SESSION['status']=='1'){
-                $kpi_sql = " SELECT * FROM cpareport_kpi_sql WHERE kpi_code = '$kpicode'";
-                $resultkpisql = mysqli_query($con, $kpi_sql);?>
-                 <?foreach ($resultkpisql as $responsql) { ?>  
+            <? if (@$_SESSION['status'] == '1') {
+              $kpi_sql = " SELECT * FROM cpareport_kpi_sql WHERE kpi_code = '$kpicode'";
+              $resultkpisql = mysqli_query($con, $kpi_sql); ?>
+              <? foreach ($resultkpisql as $responsql) { ?>
                 <p>
-                      <button class="btn btn-primary" type="button" data-toggle="collapse" data-target=".multi-collapse" aria-expanded="false" aria-controls="multiCollapseExample1<?= $kpicode?>">แสดงชุดคำสั่ง SQL A และ B</button>
+                  <button class="btn btn-primary" type="button" data-toggle="collapse" data-target=".multi-collapse" aria-expanded="false" aria-controls="multiCollapseExample1<?= $kpicode ?>">แสดงชุดคำสั่ง SQL A และ B</button>
                 </p>
                 <div class="row">
                   <div class="col-10">
-                    <div class="collapse multi-collapse" id="multiCollapseExample1<?= $kpicode?>"  style="background-color:#ccc;padding:3px">
-                          <center>SQL A </center><?echo $responsql['kpi_sql_a'].'<hr><center>SQL B </center>'.$responsql['kpi_sql_b'].'<br>';?>      
+                    <div class="collapse multi-collapse" id="multiCollapseExample1<?= $kpicode ?>" style="background-color:#ccc;padding:3px">
+                      <center>SQL A </center><? echo $responsql['kpi_sql_a'] . '<hr><center>SQL B </center>' . $responsql['kpi_sql_b'] . '<br>'; ?>
                     </div>
-                  </div>                 
+                  </div>
                 </div>
-                <?}}?>                   
+            <? }
+            } ?>
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -342,4 +392,5 @@ include "../config/timestampviewer.php"; //เรียกไฟล์ในส�
   </script>
   </div>
 </body>
+
 </html>
