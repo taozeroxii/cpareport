@@ -258,9 +258,9 @@ include "../config/timestampviewer.php"; //เรียกไฟล์ในส�
 
   <!-- Modal chart-->
   <? foreach ($result as $item) {
-    $kpiname  =  $item['kpi_name'];
-    $kpicode  =  $item['kpi_code'];
-    $kpievent  =  $item['kpi_event'];
+    @$kpiname  =  $item['kpi_name'];
+    @$kpicode  =  $item['kpi_code'];
+    @$kpievent  =  $item['kpi_event'];
   ?>
     <div class="modal fade modal-xl" id="<?= $kpicode ?>" tabindex="-1" role="dialog" aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">
       <div class="modal-dialog modal-lg">
