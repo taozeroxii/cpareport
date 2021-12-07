@@ -4,8 +4,8 @@ $sqlq      = " SELECT RIGHT(MAX(username),'5') as maxid
                    -- MAX(username) as maxid 
                FROM network_ad_user 
                WHERE username LIKE 'cpa%%'  ";
-$querysql  = mysql_query($sqlq);
-$resultmax = mysql_fetch_assoc($querysql);
+$querysql  = mysqli_query($conn,$sqlq);
+$resultmax = mysqli_fetch_assoc($querysql);
 //$usernew    = substr($resultmax['maxid'], -3);
 $usernew    = $resultmax['maxid'];
 
@@ -29,8 +29,8 @@ $line       = "เพิ่มข้อมูล ".$firstname." ".$lastname." US
 
 $status_pass = "N";
 
-
-$query = mysql_query("insert into network_ad_user(firstname,lastname,username,email,department,password,status_pass,telephone,jobtitle,company,vpn,ou,dateupdate,flage) 
+//$query = mysqli_query(
+$result = $conn -> query("insert into network_ad_user(firstname,lastname,username,email,department,password,status_pass,telephone,jobtitle,company,vpn,ou,dateupdate,flage) 
                       values ('$firstname','$lastname','$username','$email','$department','$password','$status_pass','$telephone','$jobtitle','$company','$vpn','$ou','$dateupdate','$flage')");
 echo "บันทึกข้อมูลของคุณ".$firstname." ".$lastname." สำเร็จ กรุณารอการยืนยันการใช้งาน";
 
@@ -56,5 +56,5 @@ function notify_message($message){
     return $res;
 }
 $res = notify_message($line);
-mysql_close($connection);
+mysqli_close($conn);
 ?>
