@@ -369,7 +369,7 @@ $yd = $betweentodate;
                   </thead>
                   <tbody>
                     <?php
-                    while ($result = pg_fetch_array($row_cmi)) {
+                    while (@$result = pg_fetch_assoc($row_cmi)) {
                       $cmi = $result['cmi'];
                     ?>
                       <tr>
