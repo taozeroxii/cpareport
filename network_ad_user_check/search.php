@@ -4,7 +4,7 @@
 <head>
     <title></title>
     
-<meta property="og:title" content="Social Buttons for Bootstrap" />
+    <meta property="og:title" content="Social Buttons for Bootstrap" />
     <meta property="og:description" content="A beautiful replacement for JavaScript's 'alert' for Bootstrap" />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="http://lipis.github.io/bootstrap-sweetalert/" />
@@ -35,8 +35,8 @@ date_default_timezone_set('asia/bangkok');
 function thaiDate($datetime)
 {
     if (!is_null($datetime)) {
-        list($date, $time) = split('T', $datetime);
-        list($Y, $m, $d) = split('-', $date);
+        list($date, $time) = explode('T', $datetime);
+        list($Y, $m, $d) = explode('-', $date);
         $Y = $Y;
         switch ($m) {
             case "01":
@@ -84,8 +84,8 @@ function thaiDate($datetime)
 function thdate($datetime)
 {
     if (!is_null($datetime)) {
-        list($date, $time) = split('T', $datetime);
-        list($Y, $m, $d) = split('-', $date);
+        list($date, $time) = explode('T', $datetime);
+        list($Y, $m, $d) = explode('-', $date);
         $Y = $Y + 543;
         switch ($m) {
             case "01":
@@ -149,7 +149,8 @@ if ( $value != NULL) {
 
 
 
-    $query = mysql_query($sql);
+    $query = mysqli_query($conn,$sql);
+    
 ?>
 
     <body>
@@ -172,7 +173,7 @@ if ( $value != NULL) {
                 </thead>
                 <tbody>
                     <?php $i = 1;
-                    while ($result = mysql_fetch_assoc($query)) { ?>
+                    while ($result = mysqli_fetch_assoc($query)) { ?>
                         <tr class="list">
                             <td><?php echo $i; ?>.</td>
                             <td><?php echo $result['firstname']; ?></td>
