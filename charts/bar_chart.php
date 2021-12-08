@@ -1,4 +1,5 @@
 <?php
+error_reporting (E_ALL ^ E_NOTICE);
 include('db.php');
 $data[] = array('ward','name');
 $sql = "select * from ward";

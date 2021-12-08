@@ -1,7 +1,20 @@
 <?php ob_start();
 date_default_timezone_set('asia/bangkok');
 include('db.php');
-include('/../config/yd.php');
+//include('/../config/yd.php');
+
+$todate2 = date('m');
+$todate3 = date('Y');
+$todate4 = date('Y')+1;
+$todate5 = date('Y')-1;
+
+if ($todate2 > '10') {
+$betweentodate =   $todate3."-10-01' AND '".$todate4."-09-30";
+} else {
+$betweentodate =   $todate5."-10-01' AND '".$todate3."-09-30";
+}
+ $yd = $betweentodate;
+
 
 $data[] = array('เดือน','ค่า CMI');
 $sql = " SELECT  CASE 
@@ -24,7 +37,7 @@ $sql = " SELECT  CASE
           ,ROUND(avg(adjrw),4) cmi
          FROM ipt i
           left join pttype p1 on i.pttype = p1.pttype
-         WHERE i.dchdate between '".$yd."'
+         WHERE i.dchdate between '".$yd."' 
          GROUP BY md,dm ,yy 
          ORDER BY yy,dm ASC";
 $query = pg_query($sql);

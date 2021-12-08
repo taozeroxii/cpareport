@@ -172,7 +172,7 @@ $sql_cmi = " SELECT  CASE
          GROUP BY md,dm ,yy 
          ORDER BY yy,dm DESC
          LIMIT 6 ";
-// $row_cmi = pg_query($sql_cmi);
+ $row_cmi = pg_query($sql_cmi);
 
 //ER 
 
