@@ -1,9 +1,5 @@
 <?php
-$host = '172.16.0.251';
-$user = 'report';
-$password = 'report';
-$database = 'cpareportdb';
-
-mysql_connect($host, $user, $password);
-mysql_select_db($database);
-mysql_query("SET NAMES UTF8");
+//  error_reporting(E_ERROR | E_PARSE);
+$con = new mysqli("172.16.0.251", "report", "report", "cpareportdb");
+mysqli_set_charset($con,"utf8");
+?>

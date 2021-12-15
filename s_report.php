@@ -131,7 +131,7 @@ input[type=text]:focus {
 				?>
 				<table width="100%">
 					<tr>
-						<td><?php//echo $link_mk; ?></td>
+						<td><?php //echo $link_mk; ?></td>
 					</tr>
 				</table>	
 

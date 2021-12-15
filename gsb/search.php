@@ -10,8 +10,8 @@ function thaiDate($datetime)
 {
    if(!is_null($datetime))
    {
-     list($date,$time) = split('T',$datetime);
-     list($Y,$m,$d) = split('-',$date);
+     list($date,$time) = explode('T',$datetime);
+     list($Y,$m,$d) = explode('-',$date);
      $Y = $Y;
      switch($m)
      {
@@ -37,8 +37,8 @@ function thdate($datetime)
 {
    if(!is_null($datetime))
    {
-     list($date,$time) = split('T',$datetime);
-     list($Y,$m,$d) = split('-',$date);
+     list($date,$time) = explode('T',$datetime);
+     list($Y,$m,$d) = explode('-',$date);
      $Y = $Y+543;
      switch($m)
      {
@@ -67,7 +67,7 @@ $sql = "   SELECT *,date(gsb_update) as du ,time(gsb_update) as dt
            OR  lname   like '%{$_POST['itemname']}%'
            OR  gsb_cid like '%{$_POST['itemname']}%' ";
                     if($_POST['itemname']!= NULL) {
-                        $query = mysql_query($sql);
+                        $query = mysqli_query($con,$sql);
                         ?>
                         <body>
                             <div class="col-md-12">
@@ -88,7 +88,7 @@ $sql = "   SELECT *,date(gsb_update) as du ,time(gsb_update) as dt
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <?php $i=1; while ($result = mysql_fetch_assoc($query)) { ?>
+                                        <?php $i=1; while ($result = mysqli_fetch_assoc($query)) { ?>
                                         <tr class="list" title="ข้อมูลนำเข้าวันที่ <?php echo thdate($result['du'])." เวลา ".$result['dt']." น."; ?>">
                                             <td><?php echo $i;?></td>
                                             <td><?php echo $result['gsb_personid'];?></td>
