@@ -12,7 +12,7 @@ if (isset($stdate)) {
     }
 */
 
-$sql = " SELECT code,name,licenseno
+$sql = " SELECT code,name as doctor_name,fname,licenseno
 FROM doctor
 WHERE licenseno LIKE 'ว%%'
 AND name NOT LIKE '%%ไม่ระบุ%%'
@@ -91,8 +91,8 @@ $res_room = pg_query($sql_room);
             <div class="col-sm-3">เลือกแพทย์
                     <select id="select-testing" class="selectpicker form-control " name="doctor" data-live-search="true" title="เลือกรายการ" required>
                     <?php while ($list = pg_fetch_assoc($res)) { ?>
-                            <option value="<?php echo $list["code"]; ?>">
-                                <?php echo $list["name"]."  ".$list["licenseno"]; ?>
+                            <option value="<?php echo $list["fname"]; ?>">
+                                <?php echo $list["doctor_name"]."  ".$list["licenseno"]; ?>
                             </option>
                         <?php } ?>
                     </select>
@@ -133,8 +133,8 @@ $res_room = pg_query($sql_room);
         o.vstdate,
             o.vsttime,
         kk3.department AS main_department_name,
-        -- oq.doctor_list_text as doctor_name,
-        doc.name as doctor_names,
+        oq.doctor_list_text as doctor_name,
+        --doc.name as doctor_names,
         o.hn,
         CAST ( concat ( P.pname, P.fname, ' ', P.lname ) AS VARCHAR ( 250 ) ) AS patient_name,
         i3.an AS admit_an
@@ -168,11 +168,11 @@ $res_room = pg_query($sql_room);
     WHERE o.vstdate BETWEEN '$stdate' AND '$endate' 
         AND ( o.anonymous_visit IS NULL OR o.anonymous_visit = 'N' ) 
         AND kk3.depcode = '$room'
-         AND o.doctor = '$doctor'
+         AND oq.doctor_list_text LIKE '%%$doctor%%'
          
     ORDER BY o.vstdate,o.vsttime DESC ";
         $result = pg_query($sql_detail);
-       // echo $sql_detail;
+    //    echo $sql_detail;
     ?>
     <br>
       <div class="container">
