@@ -13,10 +13,10 @@ exit();
 }
 */
 $todate = date('Ymd_His');
-/*
+
 header("Content-type: application/vnd.ms-excel");
 header("Content-Disposition: attachment; filename=Export_Doctor_OUT_".$todate.".xls");
-*/
+
 ?>
 
 <!DOCTYPE html>
@@ -48,7 +48,7 @@ header("Content-Disposition: attachment; filename=Export_Doctor_OUT_".$todate.".
       --   oq.doctor_list_text as doctor_name,
         o.hn,
         CAST ( concat ( P.pname, P.fname, ' ', P.lname ) AS VARCHAR ( 250 ) ) AS patient_name,
-        i3.an AS admit_an
+      --  i3.an AS admit_an
     FROM ovst o
         LEFT OUTER JOIN vn_stat v ON v.vn = o.vn
         LEFT JOIN doctor as doc ON doc.code = o.doctor 
@@ -87,7 +87,7 @@ header("Content-Disposition: attachment; filename=Export_Doctor_OUT_".$todate.".
 
 <style>
     .trrt{
-        font-size: 0.8em;
+        font-size: 0.7em;
 
     }
     </style>
