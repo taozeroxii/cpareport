@@ -2,43 +2,45 @@
 session_start();
 date_default_timezone_set("Asia/Bangkok");
 include "conn/pg_con.class.php";
-  $stdate   = $_GET['stdate'];
-  $endate   = $_GET['endate'];
-  $doctor   = $_GET['doctor'];
-  $room     = $_GET['room'];
- /*if (isset($stdate)) {
+$stdate   = $_GET['stdate'];
+$endate   = $_GET['endate'];
+$doctor   = $_GET['doctor'];
+$room     = $_GET['room'];
+/*if (isset($stdate)) {
 }else{
 header('location: opd_qty_doctor.php');
 exit();
 }
 */
 $todate = date('Ymd_His');
-
+/*
 header("Content-type: application/vnd.ms-excel");
 header("Content-Disposition: attachment; filename=Export_Doctor_OUT_".$todate.".xls");
-
+*/
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title></title>
     <style>
-    .colh{
-        color: #0E6655;
-        background-color: #D4E6F1;
-        font-weight: bold;
-    }
+        .colh {
+            color: #0E6655;
+            background-color: #D4E6F1;
+            font-weight: bold;
+        }
     </style>
 </head>
+
 <body>
-<?php
- /*   $doctor = $_GET['doctor'];
+    <?php
+    /*   $doctor = $_GET['doctor'];
     if (isset($doctor)) {
         */
-        $sql_detail = " SELECT
+    $sql_detail = " SELECT
         o.vstdate,
             o.vsttime,
         kk3.department AS main_department_name,
@@ -80,45 +82,53 @@ header("Content-Disposition: attachment; filename=Export_Doctor_OUT_".$todate.".
       --   AND o.doctor = '$doctor'
          AND oq.doctor_list_text LIKE '%%$doctor%%'
     ORDER BY o.vstdate,o.vsttime DESC ";
-        $result = pg_query($sql_detail);
+    $result = pg_query($sql_detail);
     ?>
-      <div class="container-fulid">
-    <div class="row">
+
+<style>
+    .trrt{
+        font-size: 0.8em;
+
+    }
+    </style>
+    <div class="container">
+        <div class="row">
             <div class="col-sm-12">
-    <div class="table">
-								<table id="" class="table" border="1px">
-									<thead>
-										<tr>
-											<?php
-											$i = pg_num_fields($result);
-											for ($j = 0 ; $j < $i ; $j++) {
-												$fieldname = pg_field_name($result, $j);
-												echo '<th class="colh">' . $fieldname . '</th>';
-											}
-											?>
-										</tr> 
-									</thead>
-									<tbody>
-										<? $rw=0;
-										while($row_result = pg_fetch_array($result)) 
-										{ 
-											$rw++;
-											?>
-											<tr>
-												<?php
-												for ($j = 0 ; $j < $i ; $j++) {
-													$fieldname = pg_field_name($result, $j);
-													echo '<td>' . " ".$row_result[$fieldname] . '</td>';
-												} 
-												?>
-											</tr>
-											<?php  
-										}
-										?>                                   
-									</tbody>
-								</table>			
-							</div>
-<?php // }?>
-                            </div>
+                <div class="table">
+                    <table id="" class="table trrt" border="1px">
+                        <thead>
+                            <tr>
+                                <?php
+                                $i = pg_num_fields($result);
+                                for ($j = 0; $j < $i; $j++) {
+                                    $fieldname = pg_field_name($result, $j);
+                                    echo '<th class="colh">' . $fieldname . '</th>';
+                                }
+                                ?>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <? $rw = 0;
+                            while ($row_result = pg_fetch_array($result)) {
+                                $rw++;
+                            ?>
+                                <tr>
+                                    <?php
+                                    for ($j = 0; $j < $i; $j++) {
+                                        $fieldname = pg_field_name($result, $j);
+                                        echo '<td>' . " " . $row_result[$fieldname] . '</td>';
+                                    }
+                                    ?>
+                                </tr>
+                            <?php
+                            }
+                            ?>
+                        </tbody>
+                    </table>
+                </div>
+                <?php // }
+                ?>
+            </div>
 </body>
+
 </html>
