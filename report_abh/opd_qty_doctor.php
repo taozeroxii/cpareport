@@ -182,7 +182,12 @@ $res_room = pg_query($sql_room);
                     <!-- <button type="text" class="btn btn-info" id="asd" onclick="export_home()">
                      <span class="glyphicon glyphicon-ok"></span> เลือกช่วงวันที่ใหม่ </button>&nbsp; -->
 
-                      <button type="text" class="btn btn-success" id="asd" onclick="export_excel()">
+
+                     <a href="printer_doc.php?stdate=<?php echo $stdate; ?>&endate=<?php echo $endate; ?>&doctor=<?php echo $doctor; ?>&room=<?php echo $room; ?>" onclick="window.open(this.href).print(); return false">
+                     <button type="text" class="btn btn-danger">&nbsp;Print&nbsp;</button>
+                     </a>
+                     &nbsp;
+                      <button type="text" class="btn btn-info" id="asd" onclick="export_excel()">
                      <span class="glyphicon glyphicon-ok"></span> Export File Excel </button>&nbsp;
 
                      <button type="text" class="btn btn-warning" id="mm" data-toggle="modal" data-target="#myModal" >
