@@ -83,10 +83,10 @@ $res_room = pg_query($sql_room);
             
         <div class="row">
             <div class="col-sm-2">
-            วันที่เริ่ม <input name="stdate" type="date"  class="form-control" value="" id="stdate" placeholder=""  required/>
+            วันที่เริ่ม <input name="stdate" type="date"  class="form-control"  value="2021-11-01" id="stdate" placeholder=""  required/>
             </div>
             <div class="col-sm-2">
-            วันที่สิ้นสุด <input name="endate" type="date" class="form-control" id="endate" value="" placeholder=""  required/>
+            วันที่สิ้นสุด <input name="endate" type="date" class="form-control" id="endate" value="2021-11-01" placeholder=""  required/>
             </div>
             <div class="col-sm-3">เลือกแพทย์
                     <select id="select-testing" class="selectpicker form-control " name="doctor" data-live-search="true" title="เลือกรายการ" required>
