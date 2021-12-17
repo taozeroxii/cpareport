@@ -76,7 +76,8 @@ header("Content-Disposition: attachment; filename=Export_Doctor_OUT_".$todate.".
     WHERE o.vstdate BETWEEN '$stdate' AND '$endate' 
         AND ( o.anonymous_visit IS NULL OR o.anonymous_visit = 'N' ) 
         AND kk3.depcode = '$room'
-         AND o.doctor = '$doctor'
+      --   AND o.doctor = '$doctor'
+         AND oq.doctor_list_text LIKE '%%$doctor%%'
     ORDER BY o.vstdate,o.vsttime DESC ";
         $result = pg_query($sql_detail);
     ?>
