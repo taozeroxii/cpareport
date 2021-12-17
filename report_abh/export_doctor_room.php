@@ -13,6 +13,7 @@ exit();
 }
 */
 $todate = date('Ymd_His');
+
 header("Content-type: application/vnd.ms-excel");
 header("Content-Disposition: attachment; filename=Export_Doctor_OUT_".$todate.".xls");
 
