@@ -87,7 +87,7 @@ header("Content-Disposition: attachment; filename=Export_Doctor_OUT_".$todate.".
 
 <style>
     .trrt{
-        font-size: 0.7em;
+        font-size: 0.5em;
 
     }
     </style>
