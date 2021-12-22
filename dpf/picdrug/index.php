@@ -29,9 +29,9 @@
      <tbody>
       <?php 
       $sqlr = "SELECT * FROM drug_picfile";
-      $queryr = mysql_query($sqlr);
+      $queryr = mysqli_query($mysqli,$sqlr);
       //  $ii = 1;
-      while($rowr = mysql_fetch_array($queryr)) {
+      while($rowr = mysqli_fetch_array($queryr)) {
       //  $i = str_pad($ii,2,"0",STR_PAD_LEFT);
         ?>
 
