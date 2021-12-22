@@ -1,5 +1,4 @@
-﻿<?php include("config.inc.php"); 
-?>
+﻿<?php include("config.inc.php"); ?>
 <!doctype html>
 <html>
 <head>
@@ -96,9 +95,9 @@
             <tbody>
                 <?php 
 			$sqlr = "SELECT * FROM drug_data  WHERE flage = 'Y' ";
-			$queryr = mysql_query($sqlr);
+			$queryr = mysqli_query($mysqli ,$sqlr);
 			$ii = 1;
-			while($rowr = mysql_fetch_array($queryr)) {
+			while($rowr = mysqli_fetch_array($queryr)) {
 				$i = str_pad($ii,3,"0",STR_PAD_LEFT);
 	 ?>
                 <tr class="odd gradeX hoho">

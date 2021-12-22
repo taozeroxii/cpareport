@@ -163,9 +163,9 @@
             <tbody>
                 <?php 
 			$sqlr = "SELECT trade,generic,speeddrug,iv,ysite,flage,dateupdate,type_drug FROM drug_incom  WHERE flage = '1' ";
-			$queryr = mysql_query($sqlr);
+			$queryr = mysqli_query($mysqli,$sqlr);
 			$ii = 1;
-			while($rowr = mysql_fetch_array($queryr)) {
+			while($rowr = mysqli_fetch_array($queryr)) {
 				$i = str_pad($ii,3,"0",STR_PAD_LEFT);
 	 ?>
                 <tr class="odd gradeX hoho">
