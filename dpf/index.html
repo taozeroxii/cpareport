@@ -19,20 +19,21 @@
         body {
             font-family: 'Kanit', sans-serif;
             font-weight: 300;
-            background: #014430;
-            color: #FFF;
+            background:#1B2631;
+            /* color: #117A65; */
         }
         
         .ma {
             font-size: 1.6em;
             padding: 2px;
-            color: #crimson;
+            /* color: #crimson; */
             text-align: center;
             font-weight: bolder;
+            /* color: #fff; */
         }
         
         .ma:hover {
-            color: #crimson;
+            /* color: #crimson; */
             cursor: pointer;
         }
     </style>
@@ -48,12 +49,70 @@
     }
     
     .f:hover {
-        background: #E5E8E8;
+        background: #FFF;
+        color: #117A65;
         border-radius: 8px;
+        /* font-size: 1.6em; */
     }
+p {
+  /* Center horizontally*/
+  text-align: center;
+}
+
+.button {
+  border-radius: 4px;
+  background-color: #f4511e;
+  border: none;
+  color: #FFFFFF;
+  text-align: center;
+  font-size: 28px;
+  padding: 20px;
+  width: 600px;
+  transition: all 0.5s;
+  cursor: pointer;
+  margin: 5px;
+}
+
+.button span {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
+}
+
+.button span:after {
+  content: '\00bb';
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  right: -20px;
+  transition: 0.5s;
+}
+
+.button:hover span {
+  padding-right: 25px;
+}
+
+.button:hover span:after {
+  opacity: 1;
+  right: 0;
+}
+
 </style>
 
 <body>
+
+
+    <div class="ma ">
+        <a href="frm_drug/index.php" target="_blank" title=" ">
+        <button class="button"><span>แบบฟอร์มการใช้ยาบัญชี จ2 </span>
+        </button>
+    </a>
+    </div>
+
+
+<br>
+
     <ul class="kwicks ">
         <li id="kwick1">
             <a href="file/บัญชียารพ. July18.pdf" target="_blank" title="สารบัญบัญชียาโรงพยาบาล 2560">
