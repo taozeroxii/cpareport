@@ -141,7 +141,7 @@ if (isset($_SESSION['username']) != "" || isset($_SESSION['username']) != null) 
                 <li>
                   <?php
                   if ($mf <> "") {
-                    $link_mk =   "<a href=" . $mk . "?sql=" . $mf . " title=" . $title . "><i class='fa fa-files-o text-aqua' ></i>" . $sub_menu . "</a>";
+                    $link_mk =   "<a href=" . $mk . "?sql=" . $mf . " title=" . $title . " target='_blank'><i class='fa fa-files-o text-aqua' ></i>" . $sub_menu . "</a>";
                   } else
            if ($mf == "") {
                     $link_mk =   "<a href=" . $mk . " title=" . $title . " target='_blank'><i class='fa fa-files-o text-aqua' ></i>" . $sub_menu . "</a>";
