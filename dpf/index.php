@@ -13,7 +13,7 @@ $res      = mysqli_query($con, $subItems);
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" type="image/x-icon" href="frm_drug/icon_img/favicon.ico">
+    <link rel="icon" type="image/x-icon" href="imgfile/favicon.ico">
     <title>Menu Abh Help Version 2022.3</title>
 
     <link rel="preconnect" href="https://fonts.gstatic.com">
@@ -112,7 +112,7 @@ $res      = mysqli_query($con, $subItems);
                     <div class="d-flex justify-content-between">
                         <div class="logo ">
                             <a href="#" class="ffff">
-                                <img src="frm_drug/assets/vendors/svg-loaders/circles.svg " class="me-4" style="width: 3rem" alt="audio">Drug
+                                <img src="frm_drug/assets/vendors/svg-loaders/circles.svg " class="me-4" style="width: 1rem" alt="audio">Menu Drug
                             </a>
                         </div>
                         <div class="toggler">
@@ -138,25 +138,48 @@ $res      = mysqli_query($con, $subItems);
                         <?php
                         foreach ($res as $subItem) {
                             $name_frm  = $subItem['name_frm'];
-                            $frm_drug  = $subItem['frm_drug'];
-                            $file_drug  = $subItem['file_drug'];
+                            $link_file  = $subItem['link_file'];
+                            $img_file    = $subItem['img_file'];
              
                         ?>
-                            <div class="col-6 col-lg-6 col-md-6">
-                                <a href="<? echo "frmdrug2/".$frm_drug."".$file_drug; ?>" target="_blank" rel="">
+                        <div class="col-6 col-lg-6 col-md-6">
+                                <a href="<? echo $link_file; ?>" target="_blank" rel="">
                                     <div class="card">
-                                        <div class="card-body px-6 py-4-5">
+                                        <div class="card-body px-3 py-4-5">
                                             <div class="row">
-                                              
-                                                <div class="col-md-12">
+                                                <div class="col-md-4">
+                                                    <div class="stats-icon purple">
+                                                        <span class="tooltip-toggle" data-tooltip="<?php echo $name_frm; ?>">
+                                                            <img src="imgfile/<?php echo $img_file; ?>" class="img-wh" alt="Face 1">
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-8">
                                                     <h6 class="font-extrabold mb-0"><?php echo $name_frm; ?></h6>
-                                                  
+                                                    <span class="text-muted mb-0 ">
+                                                       <hr> <?php //echo "<span class='cca'>" . $cmax_user . "</span> <span class='ccm'>" . $cmax . "</span><span class='cca'> ครั้ง</span>"; ?>
+                                                    </span>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 </a>
                             </div>
+                            <!-- <div class="col-6 col-lg-6 col-md-6">
+                                <a href="<?php //echo $link_file; ?>" target="_blank" rel="">
+                                    <div class="card">
+                                        <div class="card-body px-6 py-4-5">
+                                            <div class="row">
+                                              
+                                                <div class="col-md-12">
+                                                    <h6 class="font-extrabold mb-0"><?php //echo $name_frm; ?></h6>
+                                                  
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div> -->
                         <?php
                         }
                         ?>

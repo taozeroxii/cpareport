@@ -13,7 +13,7 @@ $res      = mysqli_query($con, $subItems);
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" type="image/x-icon" href="icon_img/favicon.ico">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
     <title>Menu Abh Help Version 2022.3</title>
 
     <link rel="preconnect" href="https://fonts.gstatic.com">
