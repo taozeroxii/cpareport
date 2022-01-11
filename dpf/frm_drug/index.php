@@ -2,7 +2,7 @@
 session_start();
 include('my_con.class.php');
 date_default_timezone_set("Asia/Bangkok");
-$subItems = " SELECT *  FROM drug_frm2 WHERE status_frm = 'Y' ORDER BY id DESC ";
+$subItems = " SELECT *  FROM drug_frm2 WHERE status_frm = 'Y' ORDER BY id ASC ";
 $res      = mysqli_query($con, $subItems);
 
 
