@@ -172,7 +172,7 @@ $res_room = pg_query($sql_room);
          
     ORDER BY o.vstdate,o.vsttime DESC ";
         $result = pg_query($sql_detail);
-       echo $sql_detail;
+      // echo $sql_detail;
     ?>
     <br>
       <div class="container">
