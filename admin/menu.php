@@ -12,7 +12,7 @@
 <a class="nav-link" id="contact-tab" data-toggle="tab" target="blank" href="http://172.16.0.251/report/network_ad_user_check/ipfix/index.php" role="tab" aria-controls="contact" aria-selected="false">SET IP FIX </a>
 <a class="nav-link" id="contact-tab" data-toggle="tab" target="blank" href="http://172.16.0.251/report/admin/f43/uploadimg/index.php" role="tab" aria-controls="contact" aria-selected="false">Upload วิธีแก้ไขข้อมูล USER</a>
 <a class="nav-link" id="contact-tab" data-toggle="tab" target="blank" href="../help" role="tab" aria-controls="contact" aria-selected="false">Help hosxp</a>
-
+<a class="nav-link" id="contact-tab" data-toggle="tab" target="blank" href="./p4p.php" role="tab" aria-controls="contact" aria-selected="false">p4p </a>
 
 
 </ul> ' ?>

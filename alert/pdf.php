@@ -1,7 +1,7 @@
 <?php session_start();
 ob_start();
 date_default_timezone_set("Asia/Bangkok");
-require_once('mpdf/mpdf.php');
+// require_once('mpdf/mpdf.php');
 include "conf.php";
 $date_todate = date('d-m-Y');
 $todate      = date('Y-m-d');
@@ -12,8 +12,8 @@ function thf($datetime)
 {
  if(!is_null($datetime))
  {
-   list($date,$time) = split('T',$datetime);
-   list($Y,$m,$d) = split('-',$date);
+   list($date,$time) = explode('T',$datetime);
+   list($Y,$m,$d) = explode('-',$date);
    $Y = $Y+543;
    switch($m)
    {
@@ -179,19 +179,19 @@ $day_5     = strtotime("-4 day");
 
 <?php 
 
-$filel = "JSON_FILE";
-$save = "pdf/".$filel.".pdf";
+// $filel = "JSON_FILE";
+// $save = "pdf/".$filel.".pdf";
 $lo   = "Location:close.php";
 
-$html = ob_get_contents();
-ob_end_clean();
-$pdf = new mPDF('th', 'A4-L', 0, 'angsa', 4, 4, 35, 30);
-$pdf->AliasNbPages('[pagetotal]');
-$pdf->SetDisplayMode('fullpage');
-$stylesheet = file_get_contents('print.css');
-$pdf->WriteHTML($stylesheet,1);
-$pdf->WriteHTML($html,2);
-$success = $pdf->Output($save);
+// $html = ob_get_contents();
+// ob_end_clean();
+// $pdf = new mPDF('th', 'A4-L', 0, 'angsa', 4, 4, 35, 30);
+// $pdf->AliasNbPages('[pagetotal]');
+// $pdf->SetDisplayMode('fullpage');
+// $stylesheet = file_get_contents('print.css');
+// $pdf->WriteHTML($stylesheet,1);
+// $pdf->WriteHTML($html,2);
+// $success = $pdf->Output($save);
 header($lo);
 die();
 ?>

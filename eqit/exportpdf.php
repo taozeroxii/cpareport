@@ -52,7 +52,7 @@ $que = mysqli_query($connect, $sqlup);
 
 		</tr>
 		<tr>
-			<td style="width:50%">กลุ่มงาน&nbsp;&nbsp;&nbsp;<u><?php echo $row['eq_position']; ?></u></td>
+			<td style="width:50%">กลุ่มงาน&nbsp;&nbsp;&nbsp;<u><?php echo $row['eq_dep']; ?></u></td>
 			<td style="width:50%">เบอร์โทรศัพท์&nbsp;&nbsp;&nbsp;<u><?php echo $row['eq_tel']; ?></u></td>
 
 		</tr>
