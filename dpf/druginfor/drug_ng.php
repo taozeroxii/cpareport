@@ -5,7 +5,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="author" content="Yui Nakorn">
-    <title> บัญชียา รวมทุก รพช. 63 </title>
+    <title> บัญชีรายการยา โรงพยาบาลเจ้าพระยาอภัยภูเบศร 2565 บัญชี ง. </title>
     <link rel="stylesheet" type="text/css" href="css/DT_bst.css">
     <link rel="stylesheet" type="text/css" href="css/bst.min.css">
     <link href="https://fonts.googleapis.com/css?family=Kanit" rel="stylesheet">
