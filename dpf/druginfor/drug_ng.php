@@ -175,7 +175,7 @@
 			$sqlr = "SELECT name_drug,name_shop,name_system,therapeutic_main_gr,therapeutic_sub_gr,
             drug_detail,drug_laver,drug_qty,drug_group,drug_group_detail,uc,sss,ocf,doctor_add,
             note,drug_group_type,drug_status,dateupdate  
-            FROM drug_acc  WHERE drug_status = 'Y'";
+            FROM drug_acc   WHERE 1 = 1 AND drug_status = 'Y' AND drug_group_type = 'NG'";
 			$queryr = mysqli_query($mysqli,$sqlr);
 			$ii = 1;
 			while($rowr = mysqli_fetch_array($queryr)) {
