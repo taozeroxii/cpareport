@@ -57,8 +57,8 @@
         }
 
         .ttr {
-            background: #0C1E66;
-            color: #FFF;
+            background: #008CBA;
+            color: #000;
             font-weight: bold;
         }
     </style>
@@ -132,6 +132,10 @@
             background-color: #555555;
             color: white;
         }
+        .submain{
+            font-size: 0.8em;
+            color: #DD1C65;
+        }
     </style>
     <script src="js/j182.js"></script>
     <script src="js/j-dtb.js"></script>
@@ -150,9 +154,13 @@
 <body>
     <div class="phone_head">บัญชีรายการยา โรงพยาบาลเจ้าพระยาอภัยภูเบศร 2565
         <hr>
-
-        <a href="drug_profile.php"> <button class="button button2" title="เลือกหัวข้อรายการ"> บัญชีรายการยา </button></a>&nbsp;&nbsp;&nbsp;
-        <a href="drug_ng.php"> <button class="button button3" title="เลือกหัวข้อรายการ"> บัญชี ง. </button></a>
+ <span class="submain">
+        <!-- <a href="drug_profile.php"> <button class="button button2" title="เลือกหัวข้อรายการ"> บัญชีรายการยา </button></a>&nbsp;&nbsp;&nbsp;
+        <a href="drug_ng.php"> <button class="button button3" title="เลือกหัวข้อรายการ"> บัญชี ง. </button></a> -->
+        <img src='img/f.png' alt='' class='iim'>	หมายถึง ไม่สามารถคีย์ยานี้ได้ สิทธิ์นี้ไม่สามารถใช้ยานี้ได้	
+        <img src='img/tt.png' alt='' class='iim'>	หมายถึง ใช้ได้ตามสิทธิการรักษา					
+        <img src='img/minusicon.png' alt='' class='iim'>	หมายถึง ให้แพทย์พิจารณาใช้ยาในบัญชียาหลักก่อน ยกเว้นไม่มียาในบัญชีหลักให้ใช้ จึงพิจารณสั่งใช้ยานี้ได้					
+				
 
     </div>
     <div class="container-fluid" style="margin-top: 10px">
@@ -201,9 +209,66 @@
                         <td><?= $rowr["drug_qty"] ?></td>
                         <td><?= $rowr["drug_group"] ?></td>
                         <td><?= $rowr["drug_group_detail"] ?></td>
-                        <td><?= $rowr["uc"] ?></td>
-                        <td><?= $rowr["sss"] ?></td>
-                        <td><?= $rowr["ocf"] ?></td>
+
+                        <!-- <td><?//= $rowr["uc"] ?></td>
+                        <td><?//= $rowr["sss"] ?></td>
+                        <td><?//= $rowr["ocf"] ?></td> -->
+   <?php 
+    $s1 = "หมายถึง ไม่สามารถคีย์ยานี้ได้ สิทธิ์นี้ไม่สามารถใช้ยานี้ได้";	
+	$s2 = "หมายถึง ใช้ได้ตามสิทธิการรักษา";					
+    $s3 = "หมายถึง ให้แพทย์พิจารณาใช้ยาในบัญชียาหลักก่อน ยกเว้นไม่มียาในบัญชีหลักให้ใช้ จึงพิจารณสั่งใช้ยานี้ได้";
+    ?>
+                    <td><CENTER>
+                    <?php $uc = $rowr["uc"];
+                          if ($uc == "0") {
+                            $uucc =  "<img src='img/f.png' alt='' class='iim' title='$s1'>";
+                          } elseif ($uc == "1") {
+                            $uucc =  "<img src='img/tt.png' alt='' class='iim' title='$s2'>";
+                          } elseif ($uc == "-1") {
+                            $uucc =  "<img src='img/minusicon.png' alt='' class='iim' title='$s3'>";
+                          }else {
+                            $uucc =  $uc;
+                          }
+                        echo  $uucc = $uucc;
+                    ?>
+                    </CENTER></td> 
+
+                    <td><CENTER>
+                    <?php $sss = $rowr["sss"];
+                          if ($ssss == "0") {
+                            $ssss =  "<img src='img/f.png' alt='' class='iim' title='$s1'>";
+                          } elseif ($sss == "1") {
+                            $ssss =  "<img src='img/tt.png' alt='' class='iim' title='$s2'>";
+                          } elseif ($sss == "-1") {
+                            $ssss =  "<img src='img/minusicon.png' alt='' class='iim' title='$s3'>";
+                          }else {
+                            $ssss =  $sss;
+                          }
+                        echo  $ssss = $ssss;
+                    ?>
+                    </CENTER></td> 
+
+                    <td><CENTER>
+                    <?php $ocf = $rowr["ocf"];
+                          if ($ocf == "0") {
+                            $cfcf =  "<img src='img/f.png' alt='' class='iim' title='$s1'>";
+                          } elseif ($ocf == "1") {
+                            $cfcf =  "<img src='img/tt.png' alt='' class='iim' title='$s2'>";
+                          } elseif ($ocf == "-1") {
+                            $cfcf =  "<img src='img/minusicon.png' alt='' class='iim' title='$s3'>";
+                          }else {
+                            $cfcf =  $ocf;
+                          }
+                        echo  $cfcf = $cfcf;
+                    ?>
+                    </CENTER></td> 
+
+
+
+
+
+
+
                         <td><?= $rowr["doctor_add"] ?></td>
                         <td><?= $rowr["note"] ?></td>
 
