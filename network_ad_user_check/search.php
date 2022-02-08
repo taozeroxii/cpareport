@@ -215,7 +215,15 @@ if ( $value != NULL) {
                                     <a href="#" target="" rel="noopener noreferrer" title=""> 
                                         <button type="button" class="btn btn-warning" ><span class="glyphicon glyphicon-refresh"></span> กำลังรีเซ็ตรหัส </button>
                                     </a>
-                            </center>                                              
+                            </center>  
+                            <?php    } else if ($status_pass == "5" ) {                                                 
+                                  ?>
+                             <center>  
+                                    <a href="#" target="" rel="noopener noreferrer" title=""> 
+                                        <button type="button" class="btn btn-danger" ><span class="glyphicon glyphicon-refresh"></span> ปิดการใช้งาน </button>
+                                    </a>
+                            </center> 
+
                         <?php   } else if ($status_pass == "Y" ) {  
                                  ?> 
                              <center>  
