@@ -189,7 +189,9 @@ if ( $value != NULL) {
                                     $cs =  "<span class='cs2'>รอยืนยันการใช้งาน</span>";
                                 } elseif ($cs == "3") {
                                     $cs =  "<span class='cs3'>ปิดใช้งาน</span>";
-                                }
+                                }elseif ($cs == "2") {
+                                    $cs =  "<span class='cs4'>Admin</span>";
+                                }                                
                                 echo $cs;
                                 ?>
                             </td>
@@ -216,14 +218,7 @@ if ( $value != NULL) {
                                         <button type="button" class="btn btn-warning" ><span class="glyphicon glyphicon-refresh"></span> กำลังรีเซ็ตรหัส </button>
                                     </a>
                             </center>  
-                            <?php    } else if ($status_pass == "5" ) {                                                 
-                                  ?>
-                             <center>  
-                                    <a href="#" target="" rel="noopener noreferrer" title=""> 
-                                        <button type="button" class="btn btn-danger" ><span class="glyphicon glyphicon-refresh"></span> ปิดการใช้งาน </button>
-                                    </a>
-                            </center> 
-
+                                                                        
                         <?php   } else if ($status_pass == "Y" ) {  
                                  ?> 
                              <center>  
