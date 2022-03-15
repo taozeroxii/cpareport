@@ -321,7 +321,7 @@ for ($i = 0; $i < 100000; $i++) {
                               AND p.chwpart <> '25' ";
                               $result4 = pg_query($sql4);
 
-                              $sql5 = " SELECT 'ขึ้นทะเบียน อำเภอเมือง แยกตำบล' as detail,ad.district ,COUNT(DISTINCT a.hn) as tatal
+                              $sql5 = " SELECT 'ขึ้นทะเบียน อำเภอเมือง แยกตำบล' as detail,ad.district ,COUNT(DISTINCT a.hn) as total
                               FROM clinicmember as a 
                                   LEFT JOIN patient as p on p.hn = a.hn
                                   LEFT JOIN thaiaddress AS r ON r.tmbpart = p.tmbpart AND r.amppart = p.amppart AND r.chwpart = p.chwpart 
@@ -331,6 +331,26 @@ for ($i = 0; $i < 100000; $i++) {
                               AND p.amppart = '01'
                               GROUP BY ad.district ";
                               $result5 = pg_query($sql5);
+                    $sql11 = " sElEct count(hn) as total
+                    from clinicmEmbEr
+                    whErE rEgdatE  bEtwEEn '$sdate' AND '$edate'
+                    and clinic IN ('001','026','013')
+                    AND hn IN (SELECT DISTINCT a.hn
+                                            FROM ovst AS a
+                                            LEFT JOIN ovst as c ON c.vn = a.vn
+                                            LEFT JOIN ovstdiag as b ON b.vn = a.vn 
+                                            WHERE 1 = 1
+                                            AND b.icd10 IN ('E105','E115','E125','E135','E145')
+                                        UNION	
+                                        SELECT DISTINCT a.hn
+                                            FROM ipt AS a
+                                            LEFT JOIN iptdiag as b ON b.an = a.an 
+                                            WHERE 1 = 1
+                                            AND b.icd10 IN ('E105','E115','E125','E135','E145'))  ";
+                                            $result11 = pg_query($sql11);
+
+
+
 
                 ?>
                     <div class="col-xs-6">
@@ -454,9 +474,36 @@ for ($i = 0; $i < 100000; $i++) {
                         </div>
                     </div>                   
                 </div>
-                
+                </div>
 
+                <div class="row">
+                <div class="col-xs-6">
+                    <div class="box">
+                        <div class="box-header">
+                            <h3 class="box-title co_dep">
+                                <div><?php echo " 11. ผู้ป่วย DM แผลที่เท้า รายใหม่ "; ?></div>
+                            </h3>
+                        </div>
+                        <div class="box-body table-responsive fcol">
+                            <tr><?php echo number_format($row11['total'], 0); ?></tr>
+                        </div>
+                    </div>                   
+                </div>
+                <div class="col-xs-6">
+                    <div class="box">
+                        <div class="box-header">
+                            <h3 class="box-title co_dep">
+                            <?php  echo " 17. ผู้ป่วยนอก DM ค่าเฉลี่ยต่อ Caes ที่มารักษาที่รพ. "; ?>
+                            </h3>
+                        </div>
+                        <div class="box-body table-responsive fcol">
+                            <tr><a href="frm_dm-detail.php?s=<?=$sdate;?>&e=<?=$edate;?>" target="_blank" rel="noopener noreferrer">Detail More...</a></tr>
+                        </div>
+                    </div>                   
+                </div>
+              
             </div>
+
 
             <div class="row">
                 <div class="col-xs-6">
@@ -552,7 +599,7 @@ for ($i = 0; $i < 100000; $i++) {
                                 ?>
                                     <table class="table table-hover table-dark">
                                         <tr>
-                                            <td class="text-left"> <?php echo $row22['amphur']; ?></td>
+                                            <td class="text-left"> <?php echo $row22['amp']; ?></td>
                                             <td class="text-right"> <?php echo number_format($row22['tatal'], 0); ?></td>
                                         </tr>
                                     </table>
@@ -699,11 +746,11 @@ for ($i = 0; $i < 100000; $i++) {
                         </table>
                     </div>
                 </div>
-                <!-- <div class="col-xs-6">
+                <div class="col-xs-6">
                     <div class="box">
                         <div class="box-header">
                             <h3 class="box-title co_dep">
-                                <div><?php // echo " 2. จำนวนผู้ป่วย DM ในโรงพยาบาลทั้งหมดแยกอำเภอ (ราย) [ IPD ]"; ?></div>
+                                <div><?php  echo " 15. ผู้ป่วย DM ที่นอน รพ.ค่าใช้จ่ายสูง "; ?></div>
                             </h3>
                         </div>
                         <div class="box-body table-responsive fcol">
@@ -714,19 +761,70 @@ for ($i = 0; $i < 100000; $i++) {
                                     <table class="table table-hover table-dark">
                                         <tr>
                                             <td class="text-left"> <?php // echo $row22['amp']; ?></td>
-                                            <td class="text-right"> <?php // echo number_format($row22['tatal'], 0); ?></td>
+                                            <td class="text-right"> <?php //  echo number_format($row22['tatal'], 0); ?></td>
                                         </tr>
                                     </table>
                                 <?php
-                              //  }
+                               // }
+                                ?>
+                        </div>
+                        </table>
+                    </div>
+                </div>
+            </div>
+   
+            <div class="row">
+                <div class="col-xs-6">
+                    <div class="box">
+                        <div class="box-header">
+                            <h3 class="box-title co_dep">
+                                <div><?php echo " 16.ผู้ป่วยนอก DM ใน รพ.ค่าใช้จ่ายสูง "; ?></div>
+                            </h3>
+                        </div>
+                        <div class="box-body table-responsive fcol">
+                            <table id="example1" class="table table-bordered table-striped">
+                                <?php
+                               // while ($row7 = pg_fetch_array($result7)) {
+                                ?>
+                                    <table class="table table-hover table-dark">
+                                        <tr>
+                                            <td class="text-left"> <?php //echo $row7['detail']; ?></td>
+                                            <td class="text-right"> <?php //echo number_format($row7['total'], 0); ?></td>
+                                        </tr>
+                                    </table>
+                                <?php
+                                //}
+                                ?>
+                        </div>
+                        </table>
+                    </div>
+                </div>
+                <!-- <div class="col-xs-6">
+                    <div class="box">
+                        <div class="box-header">
+                            <h3 class="box-title co_dep">
+                                <div><?php  //echo " 17. ผู้ป่วยนอก DM ค่าเฉลี่ยต่อ Caes ที่มารักษาที่รพ. "; ?></div>
+                            </h3>
+                        </div>
+                        <div class="box-body table-responsive fcol">
+                            <table id="example1" class="table table-bordered table-striped">
+                                <?php
+                               // while ($row22 = pg_fetch_array($result22)) {
+                                ?>
+                                    <table class="table table-hover table-dark">
+                                        <tr>
+                                            <td class="text-left"> <?php // echo $row22['amp']; ?></td>
+                                            <td class="text-right"> <?php //  echo number_format($row22['tatal'], 0); ?></td>
+                                        </tr>
+                                    </table>
+                                <?php
+                                //}
                                 ?>
                         </div>
                         </table>
                     </div>
                 </div> -->
             </div>
-   
-
 
 
 
