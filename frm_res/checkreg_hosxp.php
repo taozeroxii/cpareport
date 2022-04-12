@@ -64,6 +64,7 @@
             text-align: center;
             border-radius: 2.25rem 1.25rem;
         }
+
         .inp {
             border: none;
             border-top: none;
@@ -72,7 +73,6 @@
             background-color: transparent;
             cursor: copy;
         }
-
     </style>
 
     <div class="nonprint">
@@ -298,47 +298,48 @@
                             <div class="print">
                                 <h4 style="background-color: #878787;color:black;padding:10px;border-style: dotted;border-width: 0.5px;">ใบแจ้งที่: <?php echo $item['id']; ?></h4>
                                 <p>วันที่แจ้ง : <b><?php echo $begin = $item['insertdate_time']; ?></b>
-                                &nbsp;&nbsp;&nbsp; วันที่เริ่มงาน : <b><?php echo $item['first_day_in_job']; ?></b></p>
+                                    &nbsp;&nbsp;&nbsp; วันที่เริ่มงาน : <b><?php echo $item['first_day_in_job']; ?></b></p>
                                 <p>ชื่อ-นามสกุลไทย :<b>
-                                <input type="text" style="width:auto" value="<?php echo $userregis =  $item['pname'] . $item['fname'] . '    ' . $item['lname']; ?>" class="inp" onclick="copyTo(this)"></b>
-                                &nbsp;ชื่อภาษาอังกฤษ : <b>
-                                <input type="text" style="width:auto" value="<?php echo $item['engfullname']; ?>" class="inp" onclick="copyTo(this)"></b>
+                                        <input type="text" style="width:auto" value="<?php echo $userregis =  $item['pname'] . $item['fname'] . '    ' . $item['lname']; ?>" class="inp" onclick="copyTo(this)"></b>
+                                    &nbsp;ชื่อภาษาอังกฤษ : <b>
+                                        <input type="text" style="width:auto" value="<?php echo $item['engfullname']; ?>" class="inp" onclick="copyTo(this)"></b>
                                 <p>เพศ : <b>
-                                <input type="text" style="width:auto" value="<?php echo $item['gender']; ?>" class="inp" onclick="copyTo(this)"></b></p>
+                                        <input type="text" style="width:auto" value="<?php echo $item['gender']; ?>" class="inp" onclick="copyTo(this)"></b></p>
                                 <p>ปีเกิด : <b>
-                                <input type="text" style="width:auto" value="<?php echo $item['birthday']; ?>" class="inp" onclick="copyTo(this)"></b>
-                                 &nbsp;&nbsp;&nbsp; Cid : <b>
-                                 <input type="text" style="width:auto" value="<?php echo $item['cid']; ?>" class="inp" onclick="copyTo(this)"></b></p>
+                                        <input type="text" style="width:auto" value="<?php echo $item['birthday']; ?>" class="inp" onclick="copyTo(this)"></b>
+                                    &nbsp;&nbsp;&nbsp; Cid : <b>
+                                        <input type="text" style="width:auto" value="<?php echo $item['cid']; ?>" class="inp" onclick="copyTo(this)"></b></p>
                                 <p>e-mail : <b>
-                                <input type="text" style="width:auto" value="<?php echo $item['emailaddress']; ?>" class="inp" onclick="copyTo(this)"></b>
-                                 &nbsp;&nbsp;&nbsp;โทรศัพท์ : <b>
-                                 <input type="text" style="width:auto" value="<?php echo $item['mobilenumber']; ?>" class="inp" onclick="copyTo(this)"></b>  &nbsp;&nbsp;&nbsp;  
+                                        <input type="text" style="width:auto" value="<?php echo $item['emailaddress']; ?>" class="inp" onclick="copyTo(this)"></b>
+                                    &nbsp;&nbsp;&nbsp;โทรศัพท์ : <b>
+                                        <input type="text" style="width:auto" value="<?php echo $item['mobilenumber']; ?>" class="inp" onclick="copyTo(this)"></b> &nbsp;&nbsp;&nbsp;
 
                                 <p>user : <b style="color:#E50F0F; font-size:1.6em;">
-                                <input type="text" style="width:auto" value="<?php echo $item['username']; ?>" class="inp" onclick="copyTo(this)"></b>
-                                &nbsp;&nbsp;&nbsp; password :  <b>
-                                <input type="text" style="width:auto" value="<?php echo $item['password']; ?>" class="inp" onclick="copyTo(this)"></b></p>                  
-                               
-                                <p>เลขที่ใบประกอบวิชาชีพ : <b>
-                                <input type="text" style="width:auto" value="<?php echo $item['doctor_cert']; ?>" class="inp" onclick="copyTo(this)"></b>
-                                &nbsp;วันที่ได้รับอนุญาต : <b>
-                                <input type="text" style="width:auto" value=" <?php echo $item['accepcert']; ?>" class="inp" onclick="copyTo(this)"></b>
-                                วันที่หมดอายุรับอนุญาต : <b>
-                                <input type="text" style="width:auto" value="  <?php echo $item['expirecert']; ?>" class="inp" onclick="copyTo(this)"></b></p>
-                                <p>แผนก :  <b>
-                                <input type="text" style="width:auto" value="  <?php echo $item['spclty']; ?> " class="inp" onclick="copyTo(this)"></b>&nbsp;&nbsp; 
-                                ตำแหน่งหลัก :  <b>
-                                <input type="text" style="width:auto" value="  <?php echo $item['jobclass']; ?>" class="inp" onclick="copyTo(this)"> </b> </p>
-                                <p>Providertype : <b>
-                                <input type="text" style="width:auto" value="   <?php echo $item['providertype']; ?>" class="inp" onclick="copyTo(this)"> </b>
-                                &nbsp;&nbsp;  เฉพาะทาง : <b>
-                                <input type="text" style="width:auto" value="   <?php echo $item['speciality']; ?>" class="inp" onclick="copyTo(this)"></b> </p>
-                                <p>เบอร์ภายใน : <b>
-                                <input type="text" style="width:auto" value="  <?php echo $item['phone_internal']; ?>" class="inp" onclick="copyTo(this)"></b>
-                                &nbsp;&nbsp; หมายเหตุ : <b>
-                                <input type="text" style="width:auto" value="  <?php echo $item['note']; ?>" class="inp" onclick="copyTo(this)"> </b></p>
+                                        <input type="text" style="width:auto" value="<?php echo $item['username']; ?>" class="inp" onclick="copyTo(this)"></b>
+                                    &nbsp;&nbsp;&nbsp; password : <b>
+                                        <input type="text" style="width:auto" value="<?php echo $item['password']; ?>" class="inp" onclick="copyTo(this)"></b></p>
 
-                                <!-- <input type="text" value="<?php //echo $result_add['lastname']; ?>" class="inp" onclick="copyTo(this)"> -->
+                                <p>เลขที่ใบประกอบวิชาชีพ : <b>
+                                        <input type="text" style="width:auto" value="<?php echo $item['doctor_cert']; ?>" class="inp" onclick="copyTo(this)"></b>
+                                    &nbsp;วันที่ได้รับอนุญาต : <b>
+                                        <input type="text" style="width:auto" value=" <?php echo $item['accepcert']; ?>" class="inp" onclick="copyTo(this)"></b>
+                                    วันที่หมดอายุรับอนุญาต : <b>
+                                        <input type="text" style="width:auto" value="  <?php echo $item['expirecert']; ?>" class="inp" onclick="copyTo(this)"></b></p>
+                                <p>แผนก : <b>
+                                        <input type="text" style="width:auto" value="  <?php echo $item['spclty']; ?> " class="inp" onclick="copyTo(this)"></b>&nbsp;&nbsp;
+                                    ตำแหน่งหลัก : <b>
+                                        <input type="text" style="width:auto" value="  <?php echo $item['jobclass']; ?>" class="inp" onclick="copyTo(this)"> </b> </p>
+                                <p>Providertype : <b>
+                                        <input type="text" style="width:auto" value="   <?php echo $item['providertype']; ?>" class="inp" onclick="copyTo(this)"> </b>
+                                    &nbsp;&nbsp; เฉพาะทาง : <b>
+                                        <input type="text" style="width:auto" value="   <?php echo $item['speciality']; ?>" class="inp" onclick="copyTo(this)"></b> </p>
+                                <p>เบอร์ภายใน : <b>
+                                        <input type="text" style="width:auto" value="  <?php echo $item['phone_internal']; ?>" class="inp" onclick="copyTo(this)"></b>
+                                    &nbsp;&nbsp; หมายเหตุ : <b>
+                                        <input type="text" style="width:auto" value="  <?php echo $item['note']; ?>" class="inp" onclick="copyTo(this)"> </b></p>
+
+                                <!-- <input type="text" value="<?php //echo $result_add['lastname']; 
+                                                                ?>" class="inp" onclick="copyTo(this)"> -->
 
                                 <?php if ($item['it_getrequest'] != null) { ?>
                                     <p>ผู้ดำเนินการ : <?php echo $item['it_getrequest']; ?> </p>
@@ -457,7 +458,7 @@
                                     ?>
 
                                 <? } ?>
-<hr>
+                                <hr>
                                 <p class="text-center"> <b style="color:#1F0776; font-size:1.2em;">SQL Tool. : </b><input class="ccik inp btn" data-toggle="tooltip" data-placement="top" title="<?php echo $SQL ?>" type="text" value="<?php echo $SQL ?>" id="SQL" onclick="copyTo(this)"> <span class="cco"><b style="color:#1F0776; font-size:1.2em;">คลิก = copy</b></span></p>
                             </div>
                             <?php if ($item['it_getrequest'] == null) { ?>
@@ -538,16 +539,22 @@
             <nav aria-label="Page navigation example">
                 <ul class="pagination">
                     <li class="page-item">
-                        <a class="page-link" href="checkreg_hosxp.php?page=1" aria-label="Previous">
-                            <span aria-hidden="true">&laquo;</span></a>
+                        <a class="page-link" href="checkreg_hosxp.php?page=1" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a>
+                    </li>
+                    <?php 
+                    $active ='';
+                    for ($i = 1; $i <= $total_page; $i++) { 
+                             if($_GET['page'] == $i){ $active ='active';  } else{$active ='';  }
+                        ?>
+
+                        <li class="page-item  <?=$active;?>"><a class="page-link" href="checkreg_hosxp.php?page=<?php echo $i; ?>"><?php echo $i; ?></a></li>
+                    
+                        <?php } ?>
+
                     <li class="page-item">
-                        <?php for ($i = 1; $i <= $total_page; $i++) { ?>
-                    <li class="page-item"><a class="page-link" href="checkreg_hosxp.php?page=<?php echo $i; ?>"><?php echo $i; ?></a></li>
-                <?php } ?>
-                <li class="page-item">
-                    <a class="page-link" href="checkreg_hosxp.php?page=<?php echo $total_page; ?>" aria-label="Next">
-                        <span aria-hidden="true">&raquo;</span></a>
-                </li>
+                        <a class="page-link" href="checkreg_hosxp.php?page=<?php echo $total_page; ?>" aria-label="Next">
+                            <span aria-hidden="true">&raquo;</span></a>
+                    </li>
                 </ul>
             </nav>
         </div>
@@ -599,11 +606,10 @@
 
         });
 
-    function copyTo(input) {
-        input.select();
-        document.execCommand("copy");
-    }
-
+        function copyTo(input) {
+            input.select();
+            document.execCommand("copy");
+        }
     </script>
 </body>
 
