@@ -545,11 +545,14 @@
                     $active ='';
                     for ($i = 1; $i <= $total_page; $i++) { 
                              if($_GET['page'] == $i){ $active ='active';  } else{$active ='';  }
-                             if($i-5 <= $_GET['page'] && $i+5 >= $_GET['page'] ){
+                             if(!empty( $_GET['page']) && $i-5 <= $_GET['page'] && $i+5 >= $_GET['page'] ){
                         ?>
                             <li class="page-item  <?=$active;?>"><a class="page-link" href="checkreg_hosxp.php?page=<?php echo $i; ?>"><?php echo $i; ?></a></li>
 
-                            <?php }} ?>
+                            <?php } if(empty($_GET['page']) && $i <= 6 ){  ?>
+                                <li class="page-item  <?=$active;?>"><a class="page-link" href="checkreg_hosxp.php?page=<?php echo $i; ?>"><?php echo $i; ?></a></li>
+                        <?php }} ?>
+
                     <li class="page-item">
                         <a class="page-link" href="checkreg_hosxp.php?page=<?php echo $total_page; ?>" aria-label="Next">
                             <span aria-hidden="true">&raquo;</span></a>
