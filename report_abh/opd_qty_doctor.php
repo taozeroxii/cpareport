@@ -83,10 +83,10 @@ $res_room = pg_query($sql_room);
             
         <div class="row">
             <div class="col-sm-2">
-            วันที่เริ่ม <input name="stdate" type="date"  class="form-control"  value="2021-12-01" id="stdate" placeholder=""  required/>
+            วันที่เริ่ม <input name="stdate" type="date"  class="form-control"  value="" id="stdate" placeholder=""  />
             </div>
             <div class="col-sm-2">
-            วันที่สิ้นสุด <input name="endate" type="date" class="form-control" id="endate" value="2021-12-31" placeholder=""  required/>
+            วันที่สิ้นสุด <input name="endate" type="date" class="form-control" id="endate" value="" placeholder=""  />
             </div>
             <div class="col-sm-3">เลือกแพทย์
                     <select id="select-testing" class="selectpicker form-control " name="doctor" data-live-search="true" title="เลือกรายการ" required>
@@ -118,17 +118,26 @@ $res_room = pg_query($sql_room);
     </div>
     </div>
 
+
     <?php
-    
-    $stdate   = $_GET['stdate'];
-    $endate   = $_GET['endate']; 
-    $doctor   = $_GET['doctor'];
-    $room     = $_GET['room'];
+
+    if($_GET['stdate'] !=='' &&  $_GET['endate'] !=='' ){
+       $stdate   = @$_GET['stdate'];
+       $endate   = @$_GET['endate']; 
+    }else{
+
+       $stdate =   date("Y-n-j", strtotime("first day of previous month"));
+       $endate =   date("Y-n-j", strtotime("last day of previous month"));
+    }
+   
+
+    $doctor   = @$_GET['doctor'];
+    $room     = @$_GET['room'];
     
 
     if (isset($stdate)) {
 
-
+        // echo  $stdate.' ' .$endate;
         $sql_detail = " SELECT
         o.vstdate,
             o.vsttime,

@@ -24,8 +24,9 @@ $vpn        = "N";
 $ou         = "OU=CPA,DC=cpa,DC=local";
 $dateupdate = DATE('Y-m-d H:i:s');
 $flage      = "0";
+$link_p = " http://172.16.0.251/report/network_ad_user_check/admin_uppass.php";
 
-$line       = "เพิ่มข้อมูล ".$firstname." ".$lastname." USER:".$username;
+$line       = "เพิ่มข้อมูล ".$firstname." ".$lastname." USER:".$username." ".$link_p;
 
 $status_pass = "N";
 

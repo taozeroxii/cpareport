@@ -10,7 +10,7 @@ function thaiDate($datetime)
 {
    if(!is_null($datetime))
    {
-     list($date,$time) = explode('T',$datetime);
+     @list($date,$time) = explode('T',$datetime);
      list($Y,$m,$d) = explode('-',$date);
      $Y = $Y;
      switch($m)
@@ -37,7 +37,7 @@ function thdate($datetime)
 {
    if(!is_null($datetime))
    {
-     list($date,$time) = explode('T',$datetime);
+     @list($date,$time) = explode('T',$datetime);
      list($Y,$m,$d) = explode('-',$date);
      $Y = $Y+543;
      switch($m)
