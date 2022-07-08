@@ -136,15 +136,15 @@ function test_input($data) {
             $query  = mysqli_query($conn,$sql);
             $result = mysqli_fetch_assoc($query);
                     
-                        $firstname  = $result['firstname'];
-                        $lastname   = $result['lastname'];
-                        $username   = $result['username'];
-                        $email      = $result['email'];
-                        $department = $result['department'];
-                        $telephone  = $result['telephone'];
-                        $jobtitle   = $result['jobtitle'];
-                        $date_editpass = DATE('Y-m-d H:i:s');
-                        $ip_add_pass = $_SERVER['REMOTE_ADDR'];
+                        $firstname  = $result['firstname'] ??"";
+                        $lastname   = $result['lastname'] ??"";
+                        $username   = $result['username'] ??"";
+                        $email      = $result['email'] ??"";
+                        $department = $result['department'] ??"";
+                        $telephone  = $result['telephone'] ??"";
+                        $jobtitle   = $result['jobtitle'] ??"";
+                        $date_editpass = DATE('Y-m-d H:i:s') ??"";
+                        $ip_add_pass = $_SERVER['REMOTE_ADDR'] ??"";
                         $new_pass = "";
                         $status_pass = "";
                         $chksum = "";
@@ -163,7 +163,7 @@ function test_input($data) {
         <input type="text" id="login" class="fadeIn second" name="login" title="ชื่อ-นามสกุล ผู้ใช้งาน " value="<?php echo $firstname."&nbsp;&nbsp;&nbsp;".$lastname; ?>" readonly >
         <input type="text" id="login" class="fadeIn second" name="login" title="ตำแหน่ง" value="<?php echo $jobtitle; ?>" readonly>
         <input type="text" id="login" class="fadeIn second" name="login" title="แผนก / ฝ่าย / หน่วยงาน" value="<?php echo $department; ?>" readonly>
-        <input type="text"name="txtPassword" id="txtPassword"   title="" placeholder="ตั้งรหัสผ่านใหม่" autofocus value="<?php echo $txtPassword;?>" autocomplete="off">
+        <input type="text"name="txtPassword" id="txtPassword"   title="" placeholder="ตั้งรหัสผ่านใหม่" autofocus value="<?php echo @$txtPassword;?>" autocomplete="off">
         <input type="text" id="txtConPassword" class="fadeIn third" name="txtConPassword" title=""  placeholder="ยืนยันรหัสผ่านใหม่" value="" autocomplete="off">
         <input type="submit" class="fadeIn fourth" value="แก้ไข" >
     </form>
