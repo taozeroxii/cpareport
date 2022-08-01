@@ -297,6 +297,7 @@
                         <div class="modal-body">
                             <div class="print">
                                 <h4 style="background-color: #878787;color:black;padding:10px;border-style: dotted;border-width: 0.5px;">ใบแจ้งที่: <?php echo $item['id']; ?></h4>
+                                <p>แผนกที่ให้บริการ : <?php echo $item['oi'];?></p>
                                 <p>วันที่แจ้ง : <b><?php echo $begin = $item['insertdate_time']; ?></b>
                                     &nbsp;&nbsp;&nbsp; วันที่เริ่มงาน : <b><?php echo $item['first_day_in_job']; ?></b></p>
                                 <p>ชื่อ-นามสกุลไทย :<b>
