@@ -8,6 +8,7 @@
 <html>
 
 <body class="hold-transition skin-blue sidebar-mini">
+
 	<?php
 	session_start();
 	include "config/pg_con.class.php";
@@ -182,18 +183,18 @@
 	//submit ตัวแปรมา query
 	if ($_POST['submit'] != '' || $_POST['submit'] != null) {
 		$datepickers    = $_POST['datepickers'];
-		$datepickert    = $_POST['datepickert'] ;
+		$datepickert    = $_POST['datepickert'];
 		$starttime      = $_POST['stime'];
-		$endtime        = $_POST['etime'] ;
-		$starticd10     = strtoupper($_POST['sicd10']) ;
-		$endicd10       = strtoupper($_POST['eicd10']) ;
-		$multiplepttype = $_POST['pttype'] ;
-		$multipleSpclty = $_POST['spclty'] ;
-		$multipleward   = $_POST['ward'] ;
+		$endtime        = $_POST['etime'];
+		$starticd10     = strtoupper($_POST['sicd10']);
+		$endicd10       = strtoupper($_POST['eicd10']);
+		$multiplepttype = $_POST['pttype'];
+		$multipleSpclty = $_POST['spclty'];
+		$multipleward   = $_POST['ward'];
 		$multipledoctor = $_POST['doctor'];
 		$multipleroom   = $_POST['room'];
 		$multiplehmain  = $_POST['hmain'];
-		$multiplehsub   = $_POST['hsub'] ;
+		$multiplehsub   = $_POST['hsub'];
 
 		$sqlgethosxp = str_replace("{datepickers}", "'$datepickers'", $sqlgethosxp); // แทนค่า
 		$sqlgethosxp = str_replace("{datepickert}", "'$datepickert'", $sqlgethosxp); // แทนค่า
@@ -221,6 +222,7 @@
 
 
 	<?php include "config/menuleft.class.php"; ?>
+
 	<div class="content-wrapper">
 		<section class="content-header">
 			<h1>
@@ -228,207 +230,214 @@
 				<small><?php echo 'Viewer: ' . $countview; ?></small>
 			</h1>
 		</section>
+
+
 		<section class="content">
-
-			<div class="row">
-				<div class="col-xs-12">
-					<div class="box">
-						<div class="box-header2" style="padding:15px;">
-
-							<div class="container-fulid">
-								<form class="form mt-5" method="POST" action="#">
-									<div class="row">
-										<div class="col-lg-3">
-											<label for="day"> โปรดเลือกวันที่เริ่มต้น : </label>
-											<input type="date" class="form-control" name="datepickers" autocomplete="off" <?php checkhavereplace($ckdatebegin); ?>>
-										</div>
-										<div class="col-lg-3">
-											<label for="datepickert"> วันที่สิ้นสุด :</label>
-											<input type="date" class="form-control" name="datepickert" autocomplete="off" <?php checkhavereplace($ckdateend); ?>>
-										</div>
-										<div class="col-lg-1">
-											<label for="datepickert"> เวลาเริ่มต้น :</label>
-											<input type="time" class="form-control" name="stime" placeholder="เวลาเริ่มต้น" autocomplete="off" <?php checkhavereplace($ckstime); ?>>
-										</div>
-										<div class="col-lg-1">
-											<label for="datepickert"> เวลาสิ้นสุด :</label>
-											<input type="time" class="form-control" name="etime" placeholder="เวลาสิ้นสุด" autocomplete="off" <?php checkhavereplace($cketime); ?>>
-										</div>
-										<div class="col-lg-2">
-											<label for="datepickert"> รหัสโรคเริ่มต้น :</label>
-											<input type="text" class="form-control" name="sicd10" placeholder="รหัสหัตถการ icd10_9" autocomplete="off" <?php checkhavereplace($cksicd10); ?>>
-										</div>
-										<div class="col-lg-2">
-											<label for="datepickert"> รหัสโรคสิ้นสุด :</label>
-											<input type="text" class="form-control" name="eicd10" placeholder="รหัสหัตถการ icd10_9" autocomplete="off" <?php checkhavereplace($ckeicd10); ?>>
-										</div>
-									</div>
-
-									<div class="row mt-2">
-										<div class="col-lg-4">
-											<label for="spclty"> โปรดเลือกแผนก : </label>
-											<select class="js-example-basic-multiple form-control" name="spclty[]" data-search="true" multiple="multiple" <?php checkhavereplace($ckspclty);  	?>>
-												<option value="ALL">เลือกทั้งหมด</option>
-												<?php while ($datasp = pg_fetch_assoc($qselectspclty)) { ?>
-													<option value="<?php echo $datasp['spclty']; ?>"><?php echo  $datasp['spclty'] . ' : ' . $datasp['name'] ?></option>
-												<?php } ?>
-											</select>
-										</div>
-
-										<div class="col-lg-4">
-											<label for="room"> โปรดเลือกห้องตรวจ : </label>
-											<select class="js-example-basic-multiple form-control" name="room[]" data-search="true" multiple="multiple" <?php checkhavereplace($ckroom); ?>>
-												<option value="ALL">เลือกทั้งหมด</option>
-												<?php while ($dataroom = pg_fetch_assoc($qselectroom)) { ?>
-													<option value="<?php echo $dataroom['depcode']; ?>"><?php echo  $dataroom['department'] ?></option>
-												<?php } ?>
-											</select>
-										</div>
-
-										<div class="col-lg-4">
-											<label for="spclty"> โปรดเลือกวอร์ด : </label>
-											<select class="js-example-basic-multiple form-control" name="ward[]" data-search="true" multiple="multiple" <?php checkhavereplace($ckward); ?>>
-												<option value="ALL">เลือกทั้งหมด</option>
-												<?php while ($datasp = pg_fetch_assoc($qselectward)) { ?>
-													<option value="<?php echo $datasp['ward']; ?>"><?php echo  $datasp['ward'] . ' : ' . $datasp['name'] ?></option>
-												<?php } ?>
-											</select>
-										</div>
-
-									</div>
-
-									<div class="row mt-3">
-										<div class="col-lg-6 ">
-											<label for="pttype"> โปรดเลือกสิทธิ : </label>
-											<select class="js-example-basic-multiple form-control" name="pttype[]" data-search="true" multiple="multiple" <?php checkhavereplace($ckpttype); ?>>
-												<option value="ALL">เลือกทั้งหมด</option>
-												<?php while ($datapty = pg_fetch_assoc($qselect2pty)) { ?>
-													<option value="<?php echo $datapty['pttype']; ?>"><?php echo  $datapty['pttype'] . ' : ' . $datapty['name'] ?></option>
-												<?php } ?>
-											</select>
-										</div>
-
-										<div class="col-lg-6 ">
-											<label for="doctor"> โปรดเลือกแพทย์ : </label>
-											<select class="js-example-basic-multiple form-control" name="doctor[]" data-search="true" multiple="multiple" <?php checkhavereplace($ckdoctor); ?>>
-												<option value="ALL">เลือกทั้งหมด</option>
-												<?php while ($datapdc = pg_fetch_assoc($qselectdoctor)) { ?>
-													<option value="<?php echo $datapdc['code']; ?>"><?php echo  $datapdc['code'] . ' : ' . $datapdc['name'] ?></option>
-												<?php } ?>
-											</select>
-										</div>
-									</div>
-
-
-
-									<div class="row mt-3">
-										<div class="col-lg-6 ">
-											<label for="hmain"> โปรดเลือกสถานพยาบาลหลัก : </label>
-											<select class="js-example-basic-multiple form-control" name="hmain[]" data-search="true" multiple="multiple" <?php checkhavereplace($chmain_ri); ?>>
-												<option value="ALL">เลือกทั้งหมด</option>
-												<?php while ($datapty = pg_fetch_assoc($qselecthmain_ri)) { ?>
-													<option value="<?php echo $datapty['hospcode']; ?>"><?php echo  $datapty['hospcode'] . ' : ' . $datapty['name'] ?></option>
-												<?php } ?>
-											</select>
-										</div>
-
-										<div class="col-lg-6 ">
-											<label for="hsub"> โปรดเลือกสถานพยาบาลรอง : </label>
-											<select class="js-example-basic-multiple form-control" name="hsub[]" data-search="true" multiple="multiple" <?php checkhavereplace($chsub_ro); ?>>
-												<option value="ALL">เลือกทั้งหมด</option>
-												<?php while ($datapdc = pg_fetch_assoc($qselecthsub_ro)) { ?>
-													<option value="<?php echo $datapdc['hospcode']; ?>"><?php echo  $datapdc['hospcode'] . ' : ' . $datapdc['name'] ?></option>
-												<?php } ?>
-											</select>
-										</div>
-									</div>
-
-									<div class="row">
-										<div class="col-lg-12 ">
-											<?php echo '<p style="margin-top:20px;color:green;text-align:center;">** โปรดเลือก : ' . $messageInput . ' **</p>' . $msgshow; ?>
-											<button type="submit" name="submit" value="submit" class="btn btn-info btn-block " style="margin-top:25px;" vaule='submit'>ยืนยัน</button>
-										</div>
-									</div>
-
-								</form>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-
-
-			<?php
-			if ($_POST['submit'] != '' || $_POST['submit'] != null) {
-			?>
+			<?php if (false) { ?>
 				<div class="row">
 					<div class="col-xs-12">
 						<div class="box">
-							<div class="box-header">
-								<h3 class="box-title co_dep"><?php echo " ข้อมูลช่วงวันที่ " . date_format(date_create($datepickers), 'd/m/Y') . " ถึงวันที่ " .  date_format(date_create($datepickert), 'd/m/Y'); ?>
-									<small><?php echo " เวลาที่ใช้ในการประมวลผล " . $bm->stop() . " วินาที "; ?></small>
-								</h3>
-								<div class="row" style="margin-right:15px">
-									<?php $sql = $sqlgethosxp; // ปรับแก้เวลา login แสดงผล sql เป็นของ session
-									?>
-									<button type="" class="btn btn-default pull-right" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal"> SQL </button>
-									<form class="form" method="POST" action="./exportexcel.php" target="_blank">
-										<?php
-										//แปลงชุดคำสั่งบางตัวเพื่อไม่ให้ watchgard ตรวจจับเป็นคำสั่ง sql
-										$sqlgethosxp =  str_replace("SELECT", 'SELECTDATA', $sqlgethosxp);
-										$sqlgethosxp =  str_replace("Select", 'SELECTDATA', $sqlgethosxp);
-										$sqlgethosxp =  str_replace("select", 'SELECTDATA', $sqlgethosxp);
-										$sqlgethosxp =  str_replace("FROM", 'FROMTABLES', $sqlgethosxp);
-										$sqlgethosxp =  str_replace("from", 'FROMTABLES', $sqlgethosxp);
-										?>
-										<input type="hidden" name="sendsql" value="<?php echo $sqlgethosxp; ?>">
-										<button type="submit" name="submitexcel" class="btn btn-default pull-right" class="btn btn-info btn-lg"> Excel </button>
+							<div class="box-header2" style="padding:15px;">
+
+								<div class="container-fulid">
+									<form class="form mt-5" method="POST" action="#">
+										<div class="row">
+											<div class="col-lg-3">
+												<label for="day"> โปรดเลือกวันที่เริ่มต้น : </label>
+												<input type="date" class="form-control" name="datepickers" autocomplete="off" <?php checkhavereplace($ckdatebegin); ?>>
+											</div>
+											<div class="col-lg-3">
+												<label for="datepickert"> วันที่สิ้นสุด :</label>
+												<input type="date" class="form-control" name="datepickert" autocomplete="off" <?php checkhavereplace($ckdateend); ?>>
+											</div>
+											<div class="col-lg-1">
+												<label for="datepickert"> เวลาเริ่มต้น :</label>
+												<input type="time" class="form-control" name="stime" placeholder="เวลาเริ่มต้น" autocomplete="off" <?php checkhavereplace($ckstime); ?>>
+											</div>
+											<div class="col-lg-1">
+												<label for="datepickert"> เวลาสิ้นสุด :</label>
+												<input type="time" class="form-control" name="etime" placeholder="เวลาสิ้นสุด" autocomplete="off" <?php checkhavereplace($cketime); ?>>
+											</div>
+											<div class="col-lg-2">
+												<label for="datepickert"> รหัสโรคเริ่มต้น :</label>
+												<input type="text" class="form-control" name="sicd10" placeholder="รหัสหัตถการ icd10_9" autocomplete="off" <?php checkhavereplace($cksicd10); ?>>
+											</div>
+											<div class="col-lg-2">
+												<label for="datepickert"> รหัสโรคสิ้นสุด :</label>
+												<input type="text" class="form-control" name="eicd10" placeholder="รหัสหัตถการ icd10_9" autocomplete="off" <?php checkhavereplace($ckeicd10); ?>>
+											</div>
+										</div>
+
+										<div class="row mt-2">
+											<div class="col-lg-4">
+												<label for="spclty"> โปรดเลือกแผนก : </label>
+												<select class="js-example-basic-multiple form-control" name="spclty[]" data-search="true" multiple="multiple" <?php checkhavereplace($ckspclty);  	?>>
+													<option value="ALL">เลือกทั้งหมด</option>
+													<?php while ($datasp = pg_fetch_assoc($qselectspclty)) { ?>
+														<option value="<?php echo $datasp['spclty']; ?>"><?php echo  $datasp['spclty'] . ' : ' . $datasp['name'] ?></option>
+													<?php } ?>
+												</select>
+											</div>
+
+											<div class="col-lg-4">
+												<label for="room"> โปรดเลือกห้องตรวจ : </label>
+												<select class="js-example-basic-multiple form-control" name="room[]" data-search="true" multiple="multiple" <?php checkhavereplace($ckroom); ?>>
+													<option value="ALL">เลือกทั้งหมด</option>
+													<?php while ($dataroom = pg_fetch_assoc($qselectroom)) { ?>
+														<option value="<?php echo $dataroom['depcode']; ?>"><?php echo  $dataroom['department'] ?></option>
+													<?php } ?>
+												</select>
+											</div>
+
+											<div class="col-lg-4">
+												<label for="spclty"> โปรดเลือกวอร์ด : </label>
+												<select class="js-example-basic-multiple form-control" name="ward[]" data-search="true" multiple="multiple" <?php checkhavereplace($ckward); ?>>
+													<option value="ALL">เลือกทั้งหมด</option>
+													<?php while ($datasp = pg_fetch_assoc($qselectward)) { ?>
+														<option value="<?php echo $datasp['ward']; ?>"><?php echo  $datasp['ward'] . ' : ' . $datasp['name'] ?></option>
+													<?php } ?>
+												</select>
+											</div>
+
+										</div>
+
+										<div class="row mt-3">
+											<div class="col-lg-6 ">
+												<label for="pttype"> โปรดเลือกสิทธิ : </label>
+												<select class="js-example-basic-multiple form-control" name="pttype[]" data-search="true" multiple="multiple" <?php checkhavereplace($ckpttype); ?>>
+													<option value="ALL">เลือกทั้งหมด</option>
+													<?php while ($datapty = pg_fetch_assoc($qselect2pty)) { ?>
+														<option value="<?php echo $datapty['pttype']; ?>"><?php echo  $datapty['pttype'] . ' : ' . $datapty['name'] ?></option>
+													<?php } ?>
+												</select>
+											</div>
+
+											<div class="col-lg-6 ">
+												<label for="doctor"> โปรดเลือกแพทย์ : </label>
+												<select class="js-example-basic-multiple form-control" name="doctor[]" data-search="true" multiple="multiple" <?php checkhavereplace($ckdoctor); ?>>
+													<option value="ALL">เลือกทั้งหมด</option>
+													<?php while ($datapdc = pg_fetch_assoc($qselectdoctor)) { ?>
+														<option value="<?php echo $datapdc['code']; ?>"><?php echo  $datapdc['code'] . ' : ' . $datapdc['name'] ?></option>
+													<?php } ?>
+												</select>
+											</div>
+										</div>
+
+
+
+										<div class="row mt-3">
+											<div class="col-lg-6 ">
+												<label for="hmain"> โปรดเลือกสถานพยาบาลหลัก : </label>
+												<select class="js-example-basic-multiple form-control" name="hmain[]" data-search="true" multiple="multiple" <?php checkhavereplace($chmain_ri); ?>>
+													<option value="ALL">เลือกทั้งหมด</option>
+													<?php while ($datapty = pg_fetch_assoc($qselecthmain_ri)) { ?>
+														<option value="<?php echo $datapty['hospcode']; ?>"><?php echo  $datapty['hospcode'] . ' : ' . $datapty['name'] ?></option>
+													<?php } ?>
+												</select>
+											</div>
+
+											<div class="col-lg-6 ">
+												<label for="hsub"> โปรดเลือกสถานพยาบาลรอง : </label>
+												<select class="js-example-basic-multiple form-control" name="hsub[]" data-search="true" multiple="multiple" <?php checkhavereplace($chsub_ro); ?>>
+													<option value="ALL">เลือกทั้งหมด</option>
+													<?php while ($datapdc = pg_fetch_assoc($qselecthsub_ro)) { ?>
+														<option value="<?php echo $datapdc['hospcode']; ?>"><?php echo  $datapdc['hospcode'] . ' : ' . $datapdc['name'] ?></option>
+													<?php } ?>
+												</select>
+											</div>
+										</div>
+
+										<div class="row">
+											<div class="col-lg-12 ">
+												<?php echo '<p style="margin-top:20px;color:green;text-align:center;">** โปรดเลือก : ' . $messageInput . ' **</p>' . $msgshow; ?>
+												<button type="submit" name="submit" value="submit" class="btn btn-info btn-block " style="margin-top:25px;" vaule='submit'>ยืนยัน</button>
+											</div>
+										</div>
+
 									</form>
 								</div>
-							</div>
-							<div class="box-body table-responsive"><span class="fcol"> </span>
-								<table id="example1" class="table table-bordered table-striped">
-									<thead>
-										<tr>
-											<?php
-											$i = pg_num_fields($result) ?? 0;
-											for ($j = 0; $j < $i; $j++) {
-												$fieldname = pg_field_name($result, $j);
-												echo '<th class="text-nowrap">' . $fieldname . '</th>';
-											}
-											?>
-										</tr>
-									</thead>
-									<tbody>
-										<?php
-										$rw = 0;
-										if ($result >0) {
-											while ($row_result = pg_fetch_array($result)) {
-												$rw++;
-										?>
-												<tr>
-													<?php
-													for ($j = 0; $j < $i; $j++) {
-														$fieldname = pg_field_name($result, $j);
-														echo '<td>' . " " . $row_result[$fieldname] . '</td>';
-													}
-													?>
-												</tr>
-										<?php
-											}
-										}
-										?>
-									</tbody>
-								</table>
 							</div>
 						</div>
 					</div>
 				</div>
-			<?php
-			}
-			?>
+
+
+				<?php
+				if ($_POST['submit'] != '' || $_POST['submit'] != null) {
+				?>
+					<div class="row">
+						<div class="col-xs-12">
+							<div class="box">
+								<div class="box-header">
+									<h3 class="box-title co_dep"><?php echo " ข้อมูลช่วงวันที่ " . date_format(date_create($datepickers), 'd/m/Y') . " ถึงวันที่ " .  date_format(date_create($datepickert), 'd/m/Y'); ?>
+										<small><?php echo " เวลาที่ใช้ในการประมวลผล " . $bm->stop() . " วินาที "; ?></small>
+									</h3>
+									<div class="row" style="margin-right:15px">
+										<?php $sql = $sqlgethosxp; // ปรับแก้เวลา login แสดงผล sql เป็นของ session
+										?>
+										<button type="" class="btn btn-default pull-right" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal"> SQL </button>
+										<form class="form" method="POST" action="./exportexcel.php" target="_blank">
+											<?php
+											//แปลงชุดคำสั่งบางตัวเพื่อไม่ให้ watchgard ตรวจจับเป็นคำสั่ง sql
+											$sqlgethosxp =  str_replace("SELECT", 'SELECTDATA', $sqlgethosxp);
+											$sqlgethosxp =  str_replace("Select", 'SELECTDATA', $sqlgethosxp);
+											$sqlgethosxp =  str_replace("select", 'SELECTDATA', $sqlgethosxp);
+											$sqlgethosxp =  str_replace("FROM", 'FROMTABLES', $sqlgethosxp);
+											$sqlgethosxp =  str_replace("from", 'FROMTABLES', $sqlgethosxp);
+											?>
+											<input type="hidden" name="sendsql" value="<?php echo $sqlgethosxp; ?>">
+											<button type="submit" name="submitexcel" class="btn btn-default pull-right" class="btn btn-info btn-lg"> Excel </button>
+										</form>
+									</div>
+								</div>
+								<div class="box-body table-responsive"><span class="fcol"> </span>
+									<table id="example1" class="table table-bordered table-striped">
+										<thead>
+											<tr>
+												<?php
+												$i = pg_num_fields($result) ?? 0;
+												for ($j = 0; $j < $i; $j++) {
+													$fieldname = pg_field_name($result, $j);
+													echo '<th class="text-nowrap">' . $fieldname . '</th>';
+												}
+												?>
+											</tr>
+										</thead>
+										<tbody>
+											<?php
+											$rw = 0;
+											if ($result > 0) {
+												while ($row_result = pg_fetch_array($result)) {
+													$rw++;
+											?>
+													<tr>
+														<?php
+														for ($j = 0; $j < $i; $j++) {
+															$fieldname = pg_field_name($result, $j);
+															echo '<td>' . " " . $row_result[$fieldname] . '</td>';
+														}
+														?>
+													</tr>
+											<?php
+												}
+											}
+											?>
+										</tbody>
+									</table>
+								</div>
+							</div>
+						</div>
+					</div>
+				<?php
+				}
+				?>
+
+
+			<?php }
+			echo "ปิดการเรียกใช้งานข้อมูลนี้ <br> โปรดใช้งานผ่านเวอร์ชั่นใหม่ <a href='http://172.16.0.251:81/cpareport/#/'>คลิ๊ก !!!</a>"; ?>
 
 		</section>
+
 	</div>
 
 	<?php include "config/footer.class.php"; ?>
@@ -456,6 +465,12 @@
 	</script>
 
 	<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
+
+
+
+
+
+
 
 </body>
 
