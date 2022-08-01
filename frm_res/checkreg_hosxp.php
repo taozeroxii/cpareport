@@ -373,7 +373,9 @@
 
                                     if ($item['first_day_in_job'] != null) {
                                         list($day, $month, $year) = explode('/', $item['first_day_in_job']);
-                                        $dateitem = "'" . ($year - 543) . "-" . $month . "-" . $day . "'";
+                                        // $dateitem = "'" . ($year - 543) . "-" . $month . "-" . $day . "'";
+                                        // $dateitem = "'" . ($year) . "-" . $month . "-" . $day . "'";
+                                        $dateitem = "'" . $item['first_day_in_job']. "'";
                                         $SQLc = $SQLc . ",start_date";
                                         $SQLv = $SQLv . "," . $dateitem;
                                     }
@@ -408,7 +410,8 @@
                                     }
                                     if ($item['birthday'] != null) {
                                         list($day, $month, $year) = explode('/', $item['birthday']);
-                                        $dateitem = "'" . ($year - 543) . "-" . $month . "-" . $day . "'";
+                                        // $dateitem = "'" . ($year - 543) . "-" . $month . "-" . $day . "'";
+                                        $dateitem = "'" .$item['birthday']. "'" ;
                                         $SQLc = $SQLc . ",birth_date";
                                         $SQLv = $SQLv . "," . $dateitem;
                                     }
@@ -418,13 +421,15 @@
                                     }
                                     if ($item['accepcert'] != null) {
                                         list($day, $month, $year) = explode('/', $item['accepcert']);
-                                        $dateitem = "'" . ($year - 543) . "-" . $month . "-" . $day . "'";
+                                        $dateitem =  "'". $item['accepcert']. "'";
+                                        // $dateitem = "'" . ($year - 543) . "-" . $month . "-" . $day . "'";
                                         $SQLc = $SQLc . ",license_issue_date";
                                         $SQLv = $SQLv . "," . $dateitem;
                                     }
                                     if ($item['expirecert'] != null) {
                                         list($day, $month, $year) = explode('/', $item['expirecert']);
-                                        $dateitem = "'" . ($year - 543) . "-" . $month . "-" . $day . "'";
+                                        // $dateitem = "'" . ($year - 543) . "-" . $month . "-" . $day . "'";
+                                        $dateitem = "'" .$item['expirecert']. "'";
                                         $SQLc = $SQLc . ",license_expire_date";
                                         $SQLv = $SQLv . "," . $dateitem;
                                     }
