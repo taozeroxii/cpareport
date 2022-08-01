@@ -84,7 +84,7 @@
             <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                 <div class="navbar-nav">
                     <a class="nav-item nav-link active" href="#">หน้ารายการคำขอ <span class="sr-only">(current)</span></a>
-                    <a class="nav-item nav-link" href="index.php">เพิ่มผู้ใช้งานHosxp</a>
+                    <a class="nav-item nav-link" target="blank" href="http://172.16.0.251:81/cpareport/#/requestuserhos">เพิ่มผู้ใช้งานHosxp</a>
                     <a class="nav-item nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
                 </div>
             </div>
