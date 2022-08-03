@@ -112,10 +112,18 @@
 
     ///////////////////////////////////// เมื่อกดรับงาน ส่ง POST เข้ามาทำงาน //////////////////////////////// 
     if (isset($_POST['closejob'])) { //หากกดยืนยันรับงาน 
-        //echo $_POST['admin_name'].$_POST['status_fix'].$_POST["repair_report_id"].$_SESSION['cid']; 
         mysqli_set_charset($con, "utf8");
-
-
+        if($_POST["txtassisadmin"] != 'มีข้อมูลในระบบแล้ว'){
+            //insert new user hosxp TO cpareport newversion 
+            $unlogin = $_POST['requestusername'];
+            $pname = $_POST['pname'];$fname =  $_POST['fname'];$lname = $_POST['lname'];
+            $createtime = date("Y-m-d H:i:s");
+            $defaultpasswordhash = '$2a$10$VS/LLFaaFTzlNstrnLpzFOff2PUjqFxj8ju/xAUcZq6PoRRI89742';
+            echo $sqlinsert_nv = "INSERT INTO cpareport_userlogin_nversion  
+            (username, password, pname,fname,lname,status,create_datetime) VALUES 
+            ('$unlogin','$defaultpasswordhash','$pname','$fname','$lname','2','$createtime') " ;
+            $QUERY_INSERTnv =  mysqli_query($con, $sqlinsert_nv);
+        }
 
         echo $addadminjob = "UPDATE `frm_res_require_login_hosxp` SET 
         `status` = 'done', 
@@ -238,9 +246,7 @@
                                     <td><?php echo $result['jobclass'] ?></td>
                                     <td><?php echo $result['spclty']; ?> </td>
                                     <td style="text-align:center;"><?php echo $result['it_getrequest']; ?> </td>
-                                    <td class="<?php if (($result['status'] == 'waiting')) {
-                                                    echo 'fontstatusa';
-                                                } else echo 'fontstatusb'; ?>" style="text-align:center;"><?php echo $result['status']; ?> </td>
+                                    <td class="<?php if (($result['status'] == 'waiting')) {  echo 'fontstatusa'; } else echo 'fontstatusb'; ?>" style="text-align:center;"><?php echo $result['status']; ?> </td>
                                     <td style="text-align:center;"><?php echo $result['insertdate_time']; ?> </td>
                                     <td style="text-align:center;"><?php echo $result['enddate_time']; ?> </td>
 
@@ -528,15 +534,17 @@
                                 $today =  $day . '/' . $month . '/' . $year  .  '  ' . $TIME;
                                 ?>
                                 <input type="hidden" name="status" value="done">
-                                <input type="hidden" name="userregis" value="<? echo $userregis; ?>">
+                                <input type="hidden" name="pname" value="<?php echo $item['pname'];?>">
+                                <input type="hidden" name="fname" value="<?php echo $item['fname'];?>">
+                                <input type="hidden" name="lname" value="<?php echo $item['lname'];?>">
+                                <input type="hidden" name="user" value="<?php echo $item['lname'];?>">
+                                <input type="hidden" name="requestusername" value="<? echo $item['username']; ?>">
                                 <input type="hidden" name="idform" value="<? echo $item['id']; ?>">
                                 <input type="hidden" name="enddate_time" value="<?php echo $today ?>">
                                 <input type="hidden" name="begindate" value="<?php echo $begin ?>">
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">ปิด</button>
                                 <?php if ($item['it_getrequest'] != null) { ?><input type="button" class="btn btn-success" value="Print" target="_blank" onclick="window.print()"><? } ?>
-                                <input type="submit" name="closejob" class="btn btn-primary" <?php if ($item['it_getrequest'] != null) {
-                                                                                                    echo 'value="ดำเนินการแล้ว"' . 'disabled';
-                                                                                                } else echo 'value="บันทึก"' ?>>
+                                <input type="submit" name="closejob" class="btn btn-primary" <?php if ($item['it_getrequest'] != null) {  echo 'value="ดำเนินการแล้ว"' . 'disabled';   } else echo 'value="บันทึก"' ?>>
                             </div>
                             </form>
                         </div>
