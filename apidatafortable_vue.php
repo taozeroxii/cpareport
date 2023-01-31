@@ -46,8 +46,8 @@ if ($requestMethod == 'POST') {
     $date2 =  empty($data["date2"]) ? '' : pg_escape_string($conn, $data["date2"]);
     $sdiag =  empty($data["sdiag"]) ? '' : pg_escape_string($data["sdiag"]);
     $ediag =  empty($data["ediag"]) ? '' : pg_escape_string($data["ediag"]);
-    $stime =  empty($data["time1"]) ? '' : pg_escape_string($data["time1"]);
-    $etime =  empty($data["time2"]) ? '' : pg_escape_string($data["time2"]);
+    $stime =  empty($data["time1"]) ? '' : ($data["time1"]);
+    $etime =  empty($data["time2"]) ? '' : ($data["time2"]);
 
     if (sizeof($data["kskdepartments"]) > 0) {
         $arcc = 0; //ไว้นับจำนวนช่อง array
