@@ -1,4 +1,5 @@
 <?php
+ob_start('ob_gzhandler'); // Content-Encoding:  gzip เพื่อย่อขนาด tranfer size ลงนิด ลดลงกว่า 4เท่า เช่น sizeเดิท 69 MD พอมาใช้อันนี้จะเหลือแค่ประมาณ 4.8MB
 if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
     header('Access-Control-Allow-Origin: *');
     header('Access-Control-Allow-Methods: POST');
@@ -240,7 +241,7 @@ if ($requestMethod == 'POST') {
     ];
 
     http_response_code(200);
-    print json_encode($resdata);
+    echo json_encode($resdata);
 } else {
     $errres = array('message' => "METHODS NOT ALLOWS",);
     http_response_code(405);
