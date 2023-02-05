@@ -37,7 +37,7 @@ if ($requestMethod == 'POST') {
     define('DBPWD', 'report');
     define('DBHOST', '172.16.0.251');
     define('DBNAME', 'cpareportdb');
-    $con = new mysqli(DBHOST, DBPWD, DBPWD, DBNAME);
+    $con = new mysqli(DBHOST, DBUSER, DBPWD, DBNAME);
 
     // ค่าที่ post มาจาก fontend
     $data = json_decode(file_get_contents('php://input'), true);
